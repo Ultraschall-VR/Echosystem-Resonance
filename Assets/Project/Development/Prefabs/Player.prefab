@@ -1993,13 +1993,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxSpeed: 4
   JumpingCooldown: 2
-  _jumpPress:
+  _touchpadPressed:
     actionPath: /actions/default/in/TouchpadPressed
     needsReinit: 0
-  _moveValue:
+  _touchPadValue:
     actionPath: /actions/default/in/TouchpadPosition
     needsReinit: 0
   _head: {fileID: 6455501167829187558}
+  _controllerRightTip: {fileID: 5719170566568229461}
+  TouchpadControll: 0
+  _teleportSpeed: 0
 --- !u!114 &8655904094480989936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3610,6 +3613,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cyberhand
       objectReference: {fileID: 0}
+    - target: {fileID: 5628417515668472461, guid: 226d27d0956b3634baef7dfc42dbfd36,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.00000008940696
+      objectReference: {fileID: 0}
+    - target: {fileID: 5628417515668472461, guid: 226d27d0956b3634baef7dfc42dbfd36,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.70710665
+      objectReference: {fileID: 0}
+    - target: {fileID: 5628417515668472461, guid: 226d27d0956b3634baef7dfc42dbfd36,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.000000016826915
+      objectReference: {fileID: 0}
+    - target: {fileID: 5628417515668472461, guid: 226d27d0956b3634baef7dfc42dbfd36,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.707107
+      objectReference: {fileID: 0}
+    - target: {fileID: 5628417515668472461, guid: 226d27d0956b3634baef7dfc42dbfd36,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90.00001
+      objectReference: {fileID: 0}
     - target: {fileID: 8149342813780518527, guid: 226d27d0956b3634baef7dfc42dbfd36,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3676,6 +3704,12 @@ Transform:
 --- !u!136 &3240748465627429180 stripped
 CapsuleCollider:
   m_CorrespondingSourceObject: {fileID: 7682921483504817696, guid: 226d27d0956b3634baef7dfc42dbfd36,
+    type: 3}
+  m_PrefabInstance: {fileID: 5072825511719792412}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5719170566568229461 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 664519234783794505, guid: 226d27d0956b3634baef7dfc42dbfd36,
     type: 3}
   m_PrefabInstance: {fileID: 5072825511719792412}
   m_PrefabAsset: {fileID: 0}
