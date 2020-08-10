@@ -12,6 +12,14 @@ public class VRInteractable : MonoBehaviour
     void Start()
     {
         Scale = transform.localScale;
+        
+        // Deactivate collision with ramps which are for player movement only
+        var ramps = GameObject.FindObjectOfType<Ramps>().RampColliders;
+
+        foreach (var ramp in ramps)
+        {
+            Physics.IgnoreCollision(GetComponent<Collider>(), ramp);
+        }
     }
 
     // Update is called once per frame
