@@ -172,7 +172,6 @@ public class PlayerInteraction : MonoBehaviour
             interactable.MoveRotation(Quaternion.Lerp(target.transform.rotation, _tip.transform.rotation,t));
             yield return null;
         }
-
         _routineRunning = false;
     }
 
