@@ -58,19 +58,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void CalculateTouchpadMovement()
     {
-        var movePos = _rigidbody.position + _head.transform.forward * (_touchPadValue.axis.y * Time.deltaTime * MaxSpeed);
-        _rigidbody.MovePosition(movePos);
-
-        if (_touchpadPressed.state && !_isJumping)
+        if (_touchpadPressed.state)
         {
-            Debug.Log("Jump");
-            
-            _rigidbody.AddForce(Vector3.up*1000, ForceMode.Impulse);
-            _isJumping = true;
-            StartCoroutine(ResetJump(JumpingCooldown));
+            var movePos = _rigidbody.position + _head.transform.forward * (_touchPadValue.axis.y * Time.deltaTime * MaxSpeed);
+            _rigidbody.MovePosition(movePos);
         }
     }
 
+    // TODO Add teleport
+    
     /*
     private void CalculateTeleportMovement()
     {

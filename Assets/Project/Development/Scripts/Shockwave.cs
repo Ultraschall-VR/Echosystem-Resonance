@@ -8,9 +8,8 @@ public class Shockwave : MonoBehaviour
     public List<Rigidbody> Rigidbodies;
 
     private Collider _playerCollider;
-    // Start is called before the first frame update
-
-    private void Awake()
+    
+    private void OnEnable()
     {
         _playerCollider = GameObject.Find("Player").GetComponent<Collider>();
         
@@ -31,10 +30,5 @@ public class Shockwave : MonoBehaviour
             rb.AddForce(transform.forward * (-power *250), ForceMode.Impulse);
             
         }
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

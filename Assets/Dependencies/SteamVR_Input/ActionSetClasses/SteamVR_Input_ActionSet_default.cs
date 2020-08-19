@@ -89,22 +89,6 @@ namespace Valve.VR
             }
         }
         
-        public virtual SteamVR_Action_Boolean SnapTurnLeft
-        {
-            get
-            {
-                return SteamVR_Actions.default_SnapTurnLeft;
-            }
-        }
-        
-        public virtual SteamVR_Action_Boolean SnapTurnRight
-        {
-            get
-            {
-                return SteamVR_Actions.default_SnapTurnRight;
-            }
-        }
-        
         public virtual SteamVR_Action_Vector2 TouchpadPosition
         {
             get
@@ -126,6 +110,30 @@ namespace Valve.VR
             get
             {
                 return SteamVR_Actions.default_MenuPressed;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean LeftTriggerHeld
+        {
+            get
+            {
+                return SteamVR_Actions.default_LeftTriggerHeld;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean RightTriggerHeld
+        {
+            get
+            {
+                return SteamVR_Actions.default_RightTriggerHeld;
+            }
+        }
+        
+        public virtual SteamVR_Action_Single TouchpadSwipe
+        {
+            get
+            {
+                return SteamVR_Actions.default_TouchpadSwipe;
             }
         }
         

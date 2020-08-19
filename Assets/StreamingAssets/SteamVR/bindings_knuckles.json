@@ -4,6 +4,10 @@
    "app_key" : "application.generated.unity.ultraschall.exe",
    "bindings" : {
       "/actions/buggy" : {
+         "chords" : [],
+         "haptics" : [],
+         "poses" : [],
+         "skeleton" : [],
          "sources" : [
             {
                "inputs" : {
@@ -116,6 +120,9 @@
                "inputs" : {
                   "click" : {
                      "output" : "/actions/default/in/interactui"
+                  },
+                  "held" : {
+                     "output" : "/actions/default/in/lefttriggerheld"
                   }
                },
                "mode" : "button",
@@ -152,6 +159,9 @@
                "inputs" : {
                   "click" : {
                      "output" : "/actions/default/in/interactui"
+                  },
+                  "held" : {
+                     "output" : "/actions/default/in/righttriggerheld"
                   }
                },
                "mode" : "button",
@@ -190,40 +200,6 @@
                "parameters" : {
                   "deadzone_pct" : "25",
                   "overlap_pct" : "30",
-                  "sub_mode" : "touch"
-               },
-               "path" : "/user/hand/right/input/thumbstick"
-            },
-            {
-               "inputs" : {
-                  "east" : {
-                     "output" : "/actions/default/in/snapturnright"
-                  },
-                  "west" : {
-                     "output" : "/actions/default/in/snapturnleft"
-                  }
-               },
-               "mode" : "dpad",
-               "parameters" : {
-                  "deadzone_pct" : "85",
-                  "overlap_pct" : "0",
-                  "sub_mode" : "touch"
-               },
-               "path" : "/user/hand/left/input/thumbstick"
-            },
-            {
-               "inputs" : {
-                  "east" : {
-                     "output" : "/actions/default/in/snapturnright"
-                  },
-                  "west" : {
-                     "output" : "/actions/default/in/snapturnleft"
-                  }
-               },
-               "mode" : "dpad",
-               "parameters" : {
-                  "deadzone_pct" : "85",
-                  "overlap_pct" : "0",
                   "sub_mode" : "touch"
                },
                "path" : "/user/hand/right/input/thumbstick"
@@ -291,11 +267,11 @@
             },
             {
                "inputs" : {
-                  "click" : {
-                     "output" : "/actions/default/in/touchpadpressed"
-                  },
                   "position" : {
                      "output" : "/actions/default/in/touchpadposition"
+                  },
+                  "touch" : {
+                     "output" : "/actions/default/in/touchpadpressed"
                   }
                },
                "mode" : "joystick",
@@ -340,6 +316,10 @@
          ]
       },
       "/actions/platformer" : {
+         "chords" : [],
+         "haptics" : [],
+         "poses" : [],
+         "skeleton" : [],
          "sources" : [
             {
                "inputs" : {

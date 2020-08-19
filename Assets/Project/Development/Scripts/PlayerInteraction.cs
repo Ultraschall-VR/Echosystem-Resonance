@@ -7,19 +7,27 @@ using Valve.VR.InteractionSystem;
 
 public class PlayerInteraction : MonoBehaviour
 {
+
+
+    [Header("GRAB")]
     public Transform PlayerHand;
     public GameObject ActiveObject = null;
-
+    
     [SerializeField] private List<GameObject> _hands;
     [SerializeField] private SteamVR_Action_Boolean _grabPress;
     [SerializeField] private float _grabSpeed;
     [SerializeField] private Material _grabMaterial;
-    
+
     private Transform _tip;
     private bool _objectInHand;
     private Collider _playerCollider;
 
     private bool _routineRunning;
+
+    [Header("LYRA")] 
+    [SerializeField] private Lyra _lyra;
+    [SerializeField] private SteamVR_Action_Boolean _leftTriggerHeld;
+    [SerializeField] private SteamVR_Action_Boolean _rightTriggerHeld;
 
     void Start()
     {
@@ -28,34 +36,11 @@ public class PlayerInteraction : MonoBehaviour
 
     void Update()
     {
-        CalculateRaycast();
-
-        if (ActiveObject)
-        {
-            Physics.IgnoreCollision(ActiveObject.GetComponent<Collider>(), _playerCollider);
-
-            foreach (var hand in _hands)
-            {
-                var vrHand = hand.GetComponent<VRHand>();
-
-                foreach (var collider in vrHand.Colliders)
-                {
-                    Physics.IgnoreCollision(collider, ActiveObject.GetComponent<Collider>());
-                }
-            }
-        }
-
-        if (_objectInHand)
-        {
-            GrabObject(ActiveObject);
-        }
-        
-        else
-        {
-            DropObject(ActiveObject);
-        }
+        GRAB();
         
         
+        
+        LYRA();
     }
 
     private void Initialize()
@@ -78,7 +63,39 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-    private void CalculateRaycast()
+    #region GRAB
+
+    private void GRAB()
+    {
+        GRAB_CalculateRaycast();
+
+        if (ActiveObject)
+        {
+            Physics.IgnoreCollision(ActiveObject.GetComponent<Collider>(), _playerCollider);
+
+            foreach (var hand in _hands)
+            {
+                var vrHand = hand.GetComponent<VRHand>();
+
+                foreach (var collider in vrHand.Colliders)
+                {
+                    Physics.IgnoreCollision(collider, ActiveObject.GetComponent<Collider>());
+                }
+            }
+        }
+
+        if (_objectInHand)
+        {
+            GRAB_Grab(ActiveObject);
+        }
+
+        else
+        {
+            GRAB_Drop(ActiveObject);
+        }
+    }
+
+    private void GRAB_CalculateRaycast()
     {
         _tip.GetComponent<LineRenderer>().enabled = false;
         RaycastHit hit;
@@ -100,7 +117,7 @@ public class PlayerInteraction : MonoBehaviour
                     _objectInHand = true;
                 }
             }
-            
+
             else
             {
                 if (!_grabPress.state && ActiveObject != null)
@@ -111,7 +128,7 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-    private void GrabObject(GameObject obj)
+    private void GRAB_Grab(GameObject obj)
     {
         var rb = obj.GetComponent<Rigidbody>();
         var collider = obj.GetComponent<Collider>();
@@ -132,7 +149,7 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-    private void DropObject(GameObject obj)
+    private void GRAB_Drop(GameObject obj)
     {
         if (obj != null)
         {
@@ -142,43 +159,96 @@ public class PlayerInteraction : MonoBehaviour
             var mesh = obj.GetComponent<MeshRenderer>();
 
             mesh.material = interactable.DefaultMaterial;
-            
+
             _routineRunning = false;
 
             rb.isKinematic = false;
             rb.position = rb.position;
-            
+
             StartCoroutine(ReactivateCollision(objectCollider));
-            
+
             ActiveObject = null;
         }
     }
-    
+
+    #endregion
+
+    #region LYRA
+    private void LYRA()
+    {
+        if (_leftTriggerHeld.state && _rightTriggerHeld.state)
+        {
+            _lyra.gameObject.SetActive(true);
+        }
+        else
+        {
+            _lyra.gameObject.SetActive(false);
+        }
+        
+        
+        /*
+        _tip.GetComponent<LineRenderer>().enabled = false;
+        RaycastHit hit;
+
+        if (Physics.Raycast(_tip.transform.position, _tip.transform.right, out hit, Mathf.Infinity))
+        {
+            if (hit.transform.gameObject.GetComponent<VRInteractable>())
+            {
+                if (!_grabPress.state)
+                {
+                    _tip.GetComponent<LineRenderer>().enabled = true;
+                    _objectInHand = false;
+                }
+
+                if (_grabPress.state && ActiveObject == null)
+                {
+                    _tip.GetComponent<LineRenderer>().enabled = false;
+                    ActiveObject = hit.transform.gameObject;
+                    _objectInHand = true;
+                }
+            }
+
+            else
+            {
+                if (!_grabPress.state && ActiveObject != null)
+                {
+                    _objectInHand = false;
+                }
+            }
+        }
+        */
+    }
+
+    #endregion
+
+    #region Helpers
+
     private IEnumerator MoveToPosition(GameObject target, Rigidbody interactable)
     {
         float t = 0;
         float timer = 0.5f;
-        
+
         while (t <= timer)
         {
             if (!ActiveObject)
             {
                 yield break;
             }
-            
+
             _routineRunning = true;
             t += Time.fixedDeltaTime / _grabSpeed;
             interactable.MovePosition(Vector3.Lerp(target.transform.position, _tip.transform.position, t));
-            interactable.MoveRotation(Quaternion.Lerp(target.transform.rotation, _tip.transform.rotation,t));
+            interactable.MoveRotation(Quaternion.Lerp(target.transform.rotation, _tip.transform.rotation, t));
             yield return null;
         }
+
         _routineRunning = false;
     }
 
     private IEnumerator ReactivateCollision(Collider objectCollider)
     {
         yield return new WaitForSeconds(2f);
-        
+
         Physics.IgnoreCollision(objectCollider, _playerCollider, false);
 
         foreach (var hand in _hands)
@@ -191,4 +261,6 @@ public class PlayerInteraction : MonoBehaviour
             }
         }
     }
+
+    #endregion
 }
