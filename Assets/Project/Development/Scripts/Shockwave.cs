@@ -28,7 +28,6 @@ public class Shockwave : MonoBehaviour
             rb.GetComponent<Collider>().enabled = true;
             rb.isKinematic = false;
             rb.AddForce(transform.forward * (-power *250), ForceMode.Impulse);
-            
         }
     }
 }

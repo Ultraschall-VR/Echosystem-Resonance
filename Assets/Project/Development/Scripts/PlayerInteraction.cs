@@ -1,14 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 using Valve.VR;
-using Valve.VR.InteractionSystem;
 
 public class PlayerInteraction : MonoBehaviour
 {
-
-
     [Header("GRAB")]
     public Transform PlayerHand;
     public GameObject ActiveObject = null;
@@ -24,10 +20,16 @@ public class PlayerInteraction : MonoBehaviour
 
     private bool _routineRunning;
 
+    private bool _frequencyBlasterState;
+    private bool _grabState;
+
     [Header("LYRA")] 
     [SerializeField] private Lyra _lyra;
     [SerializeField] private SteamVR_Action_Boolean _leftTriggerHeld;
     [SerializeField] private SteamVR_Action_Boolean _rightTriggerHeld;
+
+    [Header("FREQUENCYBLASTER")] 
+    [SerializeField] private FrequencyBlaster _frequencyBlaster;
 
     void Start()
     {
@@ -36,11 +38,15 @@ public class PlayerInteraction : MonoBehaviour
 
     void Update()
     {
-        GRAB();
-        
-        
-        
-        LYRA();
+        if (!_frequencyBlasterState)
+        {
+            GRAB();
+        }
+
+        if (!_grabState)
+        {
+            FREQUENCYBLASTER();
+        }
     }
 
     private void Initialize()
@@ -51,6 +57,9 @@ public class PlayerInteraction : MonoBehaviour
         _objectInHand = false;
 
         _routineRunning = false;
+
+        _frequencyBlasterState = false;
+        _grabState = false;
 
         foreach (var hand in _hands)
         {
@@ -67,6 +76,8 @@ public class PlayerInteraction : MonoBehaviour
 
     private void GRAB()
     {
+        _grabState = true;
+        
         GRAB_CalculateRaycast();
 
         if (ActiveObject)
@@ -91,6 +102,7 @@ public class PlayerInteraction : MonoBehaviour
 
         else
         {
+            _grabState = false;
             GRAB_Drop(ActiveObject);
         }
     }
@@ -173,50 +185,21 @@ public class PlayerInteraction : MonoBehaviour
 
     #endregion
 
-    #region LYRA
-    private void LYRA()
+    #region FREQUENCYBLASTER
+    private void FREQUENCYBLASTER()
     {
         if (_leftTriggerHeld.state && _rightTriggerHeld.state)
         {
-            _lyra.gameObject.SetActive(true);
+            _frequencyBlasterState = true;
+            Debug.Log("_frequencyBlaster.GenerateBlast();");
+            _frequencyBlaster.GenerateBlast();
         }
         else
         {
-            _lyra.gameObject.SetActive(false);
+            _frequencyBlasterState = false;
+            Debug.Log("_frequencyBlaster.Initialize();");
+            _frequencyBlaster.Initialize();
         }
-        
-        
-        /*
-        _tip.GetComponent<LineRenderer>().enabled = false;
-        RaycastHit hit;
-
-        if (Physics.Raycast(_tip.transform.position, _tip.transform.right, out hit, Mathf.Infinity))
-        {
-            if (hit.transform.gameObject.GetComponent<VRInteractable>())
-            {
-                if (!_grabPress.state)
-                {
-                    _tip.GetComponent<LineRenderer>().enabled = true;
-                    _objectInHand = false;
-                }
-
-                if (_grabPress.state && ActiveObject == null)
-                {
-                    _tip.GetComponent<LineRenderer>().enabled = false;
-                    ActiveObject = hit.transform.gameObject;
-                    _objectInHand = true;
-                }
-            }
-
-            else
-            {
-                if (!_grabPress.state && ActiveObject != null)
-                {
-                    _objectInHand = false;
-                }
-            }
-        }
-        */
     }
 
     #endregion

@@ -8,86 +8,78 @@ public class FrequencyBlaster : MonoBehaviour
 {
     [SerializeField] private GameObject _controllerLeft;
     [SerializeField] private GameObject _controllerRight;
-    
+
     [SerializeField] private SteamVR_Action_Boolean _menuPressed;
-
-    private GameObject _oldPos;
-
-    private bool _isFiring;
     
-    [SerializeField]private AudioSource _riserAudioSource;
-    [SerializeField]private AudioSource _impactAudioSource;
+    [SerializeField] private AudioSource _riserAudioSource;
+    [SerializeField] private AudioSource _impactAudioSource;
 
     [SerializeField] private GameObject _shockwavePrefab;
-    [SerializeField] private Transform _shockWaveSpawnPoint;
+    [SerializeField] private Transform _raycastOrigin;
 
     [SerializeField] private GameObject _blasterRange;
 
     private float _distance;
-    
-    
+    private bool _isFiring;
+
+
     void Start()
     {
         _blasterRange.SetActive(false);
-        _oldPos = new GameObject("OldPos");
+        _raycastOrigin.gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void GenerateBlast()
     {
-        GenerateBlast();
         
-        _blasterRange.transform.eulerAngles = new Vector3(0, _controllerRight.transform.eulerAngles.y, 0);
-        _blasterRange.transform.position = new Vector3(_controllerRight.transform.position.x, 0.05f, _controllerRight.transform.position.z);
+        
+        _isFiring = true;
+        
+        // direction = destination - source
+        
+        _raycastOrigin.gameObject.SetActive(true);
+        _raycastOrigin.position = (_controllerLeft.transform.position + _controllerRight.transform.position) / 2;
+
+        _blasterRange.SetActive(true);
+        _blasterRange.transform.eulerAngles = new Vector3(0, _raycastOrigin.eulerAngles.y, 0);
+        _blasterRange.transform.position = new Vector3(_raycastOrigin.transform.position.x, 0.05f,
+            _raycastOrigin.transform.position.z);
+        
+        var blasterScale = new Vector3(-_distance * 15, -_distance * 20, -_distance * 20);
+        _blasterRange.transform.localScale = blasterScale;
+
+        if (_impactAudioSource.isPlaying)
+        {
+            _impactAudioSource.Stop();
+        }
+
+        _distance = Vector3.Distance(_controllerLeft.transform.position, _controllerRight.transform.position);
+
+        _riserAudioSource.pitch = -_distance;
+
+        if (!_riserAudioSource.isPlaying)
+        {
+            _riserAudioSource.Play();
+        }
     }
 
-    private void GenerateBlast()
+    public void Initialize()
     {
-        if (_menuPressed.state)
+        if (_riserAudioSource.isPlaying)
         {
-            _blasterRange.SetActive(true);
-            var blasterScale = new Vector3(-_distance*15,-_distance*20,-_distance*20);
-            _blasterRange.transform.localScale = blasterScale;
-            
-            if (_impactAudioSource.isPlaying)
-            {
-                _impactAudioSource.Stop();
-            }
-            
-            if (!_isFiring)
-            {
-                _oldPos.transform.position = _controllerLeft.transform.position;
-            }
-            
-            _distance = _oldPos.transform.position.y - _controllerLeft.transform.position.y;
+            var shockwave = Instantiate(_shockwavePrefab, _raycastOrigin.position,
+                _raycastOrigin.rotation);
 
-            _riserAudioSource.pitch = -_distance;
-            
-            if (!_riserAudioSource.isPlaying)
-            {
-                _riserAudioSource.Play();
-            }
-            
-            _isFiring = true;
+            _blasterRange.SetActive(false);
+            _raycastOrigin.gameObject.SetActive(false);
+            StartCoroutine(DestroyAfter(shockwave, 5f));
+            shockwave.GetComponent<Shockwave>().SendWave(_distance);
+            _riserAudioSource.Stop();
+            _impactAudioSource.Play();
         }
-
-        if (!_menuPressed.state)
-        {
-            if (_riserAudioSource.isPlaying)
-            {
-                var _shockwave = Instantiate(_shockwavePrefab, _shockWaveSpawnPoint.position,
-                    _shockWaveSpawnPoint.rotation);
-
-                _blasterRange.SetActive(false);
-                StartCoroutine(DestroyAfter(_shockwave, 5f));
-                _shockwave.GetComponent<Shockwave>().SendWave(_distance);
-                _riserAudioSource.Stop();
-                _impactAudioSource.Play();
-            }
-            
-            _isFiring = false;
-        }
+        _isFiring = false;
     }
+    
 
     private IEnumerator DestroyAfter(GameObject obj, float time)
     {
