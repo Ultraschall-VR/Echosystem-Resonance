@@ -21,13 +21,13 @@ public class Shockwave : MonoBehaviour
         }
     }
 
-    public void SendWave(float power)
+    public void SendWave(Vector3 direction, float power)
     {
         foreach (var rb in Rigidbodies)
         {
             rb.GetComponent<Collider>().enabled = true;
             rb.isKinematic = false;
-            rb.AddForce(transform.forward * (-power *250), ForceMode.Impulse);
+            rb.AddForce(direction * (-power *50), ForceMode.VelocityChange);
         }
     }
 }

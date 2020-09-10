@@ -191,14 +191,14 @@ public class PlayerInteraction : MonoBehaviour
         if (_leftTriggerHeld.state && _rightTriggerHeld.state)
         {
             _frequencyBlasterState = true;
-            Debug.Log("_frequencyBlaster.GenerateBlast();");
+            Debug.Log("_frequencyBlaster.GenerateBlast()");
             _frequencyBlaster.GenerateBlast();
         }
-        else
+        if (!_leftTriggerHeld.state && !_rightTriggerHeld.state && _frequencyBlasterState)
         {
             _frequencyBlasterState = false;
-            Debug.Log("_frequencyBlaster.Initialize();");
-            _frequencyBlaster.Initialize();
+            Debug.Log("_frequencyBlaster.FireBlast()");
+            _frequencyBlaster.FireBlast();
         }
     }
 

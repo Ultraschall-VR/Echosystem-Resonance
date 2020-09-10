@@ -9,19 +9,18 @@ public class PythagorasTest : MonoBehaviour
 
     public Transform Sphere;
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         Sphere.position = (Cube1.position + Cube2.position) / 2;
 
-        Vector3 direction =  (Cube1.up + Cube2.up);
+        float angle = Vector3.Angle(Cube1.position, Cube2.position);
+
+        Vector3 direction = Vector3.Cross(Cube1.position, Cube2.position).normalized;
         
-        Debug.DrawRay(Sphere.position, direction, Color.black);
+        
+        Sphere.transform.rotation = Quaternion.LookRotation(Cube1.position - Cube2.position, Vector3.forward);
+        
+        
+        Debug.DrawRay(Sphere.position, -Sphere.transform.right * 100, Color.black);
     }
 }
