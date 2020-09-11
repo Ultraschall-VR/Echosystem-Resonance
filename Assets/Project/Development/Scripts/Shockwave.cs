@@ -1,33 +1,35 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Shockwave : MonoBehaviour
 {
-    public List<Rigidbody> Rigidbodies;
-
-    private Collider _playerCollider;
+    private bool _explode;
+    private float _power;
     
-    private void OnEnable()
+    public void ShockWave(float power)
     {
-        _playerCollider = GameObject.Find("Player").GetComponent<Collider>();
-        
-        foreach (var rb in Rigidbodies)
-        {
-            rb.isKinematic = true;
-            rb.GetComponent<Collider>().enabled = false;
-            Physics.IgnoreCollision(rb.GetComponent<Collider>(), _playerCollider);
-        }
+        _power = power;
+        _explode = true;
     }
 
-    public void SendWave(Vector3 direction, float power)
+    private void FixedUpdate()
     {
-        foreach (var rb in Rigidbodies)
+        if (_explode)
         {
-            rb.GetComponent<Collider>().enabled = true;
-            rb.isKinematic = false;
-            rb.AddForce(direction * (-power *50), ForceMode.VelocityChange);
+            Collider[] colliders = Physics.OverlapSphere(transform.position, _power);
+            foreach (Collider hit in colliders)
+            {
+                if (hit.gameObject.name == "Player")
+                {
+                    return;
+                }
+            
+                if (hit.GetComponent<Rigidbody>() != null)
+                    hit.GetComponent<Rigidbody>().AddExplosionForce(_power*100, transform.position,
+                        _power * 100, 3.0F);
+            }
+
+            _explode = false;
         }
     }
 }

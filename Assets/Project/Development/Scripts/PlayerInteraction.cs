@@ -5,14 +5,24 @@ using Valve.VR;
 
 public class PlayerInteraction : MonoBehaviour
 {
+    [SerializeField] private PlayerInput _playerInput;
+    
+    
     [Header("GRAB")]
     public Transform PlayerHand;
     public GameObject ActiveObject = null;
-    
+
     [SerializeField] private List<GameObject> _hands;
-    [SerializeField] private SteamVR_Action_Boolean _grabPress;
     [SerializeField] private float _grabSpeed;
     [SerializeField] private Material _grabMaterial;
+    
+    [Header("LYRA")] 
+    [SerializeField] private Lyra _lyra;
+    [SerializeField] private SteamVR_Action_Boolean _leftTriggerHeld;
+    [SerializeField] private SteamVR_Action_Boolean _rightTriggerHeld;
+
+    [Header("SHOCKWAVEGENERATOR")] 
+    [SerializeField] private ShockwaveGenerator shockwaveGenerator;
 
     private Transform _tip;
     private bool _objectInHand;
@@ -23,13 +33,7 @@ public class PlayerInteraction : MonoBehaviour
     private bool _frequencyBlasterState;
     private bool _grabState;
 
-    [Header("LYRA")] 
-    [SerializeField] private Lyra _lyra;
-    [SerializeField] private SteamVR_Action_Boolean _leftTriggerHeld;
-    [SerializeField] private SteamVR_Action_Boolean _rightTriggerHeld;
 
-    [Header("FREQUENCYBLASTER")] 
-    [SerializeField] private FrequencyBlaster _frequencyBlaster;
 
     void Start()
     {
@@ -45,7 +49,7 @@ public class PlayerInteraction : MonoBehaviour
 
         if (!_grabState)
         {
-            FREQUENCYBLASTER();
+            SHOCKWAVEGENERATOR();
         }
     }
 
@@ -116,13 +120,13 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (hit.transform.gameObject.GetComponent<VRInteractable>())
             {
-                if (!_grabPress.state)
+                if (!_playerInput.RightTriggerPressed.state)
                 {
                     _tip.GetComponent<LineRenderer>().enabled = true;
                     _objectInHand = false;
                 }
 
-                if (_grabPress.state && ActiveObject == null)
+                if (_playerInput.RightTriggerPressed.state && ActiveObject == null)
                 {
                     _tip.GetComponent<LineRenderer>().enabled = false;
                     ActiveObject = hit.transform.gameObject;
@@ -132,7 +136,7 @@ public class PlayerInteraction : MonoBehaviour
 
             else
             {
-                if (!_grabPress.state && ActiveObject != null)
+                if (!_playerInput.RightTriggerPressed.state && ActiveObject != null)
                 {
                     _objectInHand = false;
                 }
@@ -185,20 +189,20 @@ public class PlayerInteraction : MonoBehaviour
 
     #endregion
 
-    #region FREQUENCYBLASTER
-    private void FREQUENCYBLASTER()
+    #region SHOCKWAVEGENERATOR
+    private void SHOCKWAVEGENERATOR()
     {
         if (_leftTriggerHeld.state && _rightTriggerHeld.state)
         {
             _frequencyBlasterState = true;
             Debug.Log("_frequencyBlaster.GenerateBlast()");
-            _frequencyBlaster.GenerateBlast();
+            shockwaveGenerator.GenerateShockwave();
         }
         if (!_leftTriggerHeld.state && !_rightTriggerHeld.state && _frequencyBlasterState)
         {
             _frequencyBlasterState = false;
             Debug.Log("_frequencyBlaster.FireBlast()");
-            _frequencyBlaster.FireBlast();
+            shockwaveGenerator.FireShockwave(transform.position);
         }
     }
 
