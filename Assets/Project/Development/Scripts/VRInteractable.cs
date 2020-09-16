@@ -1,8 +1,18 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class VRInteractable : MonoBehaviour
 {
-    public Material DefaultMaterial;
+    [SerializeField] private Material _coveredMaterial;
+    [SerializeField] private Material _uncoveredMaterial;
+    [SerializeField] private MeshRenderer _mesh;
+
+    public bool IsCovered;
+    
+    public Material ActiveMaterial;
+    
+    
 
     void Start()
     {
@@ -13,5 +23,29 @@ public class VRInteractable : MonoBehaviour
         {
             Physics.IgnoreCollision(GetComponent<Collider>(), ramp);
         }
+    }
+
+    private void Update()
+    {
+        if (IsCovered)
+        {
+            ActiveMaterial = _coveredMaterial;
+        }
+        else
+        {
+            ActiveMaterial = _uncoveredMaterial;
+        }
+        
+        _mesh.material = ActiveMaterial;
+    }
+
+    public void Uncover()
+    {
+        IsCovered = false;
+    }
+
+    public void Cover()
+    {
+        IsCovered = false;
     }
 }

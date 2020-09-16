@@ -4,23 +4,25 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class ShockwaveGenerator : MonoBehaviour
 {
-    [SerializeField] private GameObject _controllerLeft;
-    [SerializeField] private GameObject _controllerRight;
-
+    [SerializeField] private PlayerInput _playerInput;
+    
     [SerializeField] private AudioSource _riserAudioSource;
     [SerializeField] private AudioSource _impactAudioSource;
 
     [SerializeField] private GameObject _shockwavePrefab;
 
-    [SerializeField] private GameObject _blasterRange;
+    [SerializeField] private GameObject _rangeSphere;
 
     private float _distance;
     private bool _isFiring;
+
+    private float _rangeMulitplier = 8f;
+    
     
 
     void Start()
     {
-        _blasterRange.SetActive(false);
+        _rangeSphere.SetActive(false);
     }
     public void GenerateShockwave()
     {
@@ -36,15 +38,19 @@ public class ShockwaveGenerator : MonoBehaviour
 
         _isFiring = true;
         
-        _blasterRange.SetActive(true);
+        _rangeSphere.SetActive(true);
         
-        _distance = Vector3.Distance(_controllerLeft.transform.position, _controllerRight.transform.position);
+        _distance = Vector3.Distance(_playerInput.ControllerLeft.transform.position, _playerInput.ControllerRight.transform.position);
+        
+        _distance = _distance * _rangeMulitplier;
 
-        var blasterScale = new Vector3(-_distance * 15, -_distance * 20, -_distance * 20);
+        var sphereScale = new Vector3(_distance, _distance, _distance);
+        var spherePos = new Vector3(_playerInput.Head.transform.position.x, 0, _playerInput.Head.transform.position.z);
         
-        _blasterRange.transform.localScale = blasterScale;
+        _rangeSphere.transform.localScale = sphereScale;
+        _rangeSphere.transform.position = spherePos;
         
-        _riserAudioSource.pitch = -_distance;
+        _riserAudioSource.pitch = -_distance/10;
     }
 
     public void FireShockwave(Vector3 origin)
@@ -54,7 +60,7 @@ public class ShockwaveGenerator : MonoBehaviour
             var shockwave = Instantiate(_shockwavePrefab, origin,
                 Quaternion.identity);
 
-            _blasterRange.SetActive(false);
+            _rangeSphere.SetActive(false);
             StartCoroutine(DestroyAfter(shockwave, 5f));
             
             shockwave.GetComponent<Shockwave>().ShockWave(_distance);

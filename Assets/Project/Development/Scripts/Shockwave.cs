@@ -23,10 +23,19 @@ public class Shockwave : MonoBehaviour
                 {
                     return;
                 }
-            
-                if (hit.GetComponent<Rigidbody>() != null)
-                    hit.GetComponent<Rigidbody>().AddExplosionForce(_power*100, transform.position,
-                        _power * 100, 3.0F);
+
+                if (hit.GetComponent<Rigidbody>())
+                {
+                    if (hit.GetComponent<VRInteractable>())
+                    {
+                        hit.GetComponent<VRInteractable>().Uncover();
+                    }
+                    
+                    hit.GetComponent<Rigidbody>().AddExplosionForce(_power*5, transform.position,
+                        _power, 2.0F);
+                }
+
+                
             }
 
             _explode = false;

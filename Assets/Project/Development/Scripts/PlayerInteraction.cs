@@ -15,11 +15,6 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private List<GameObject> _hands;
     [SerializeField] private float _grabSpeed;
     [SerializeField] private Material _grabMaterial;
-    
-    [Header("LYRA")] 
-    [SerializeField] private Lyra _lyra;
-    [SerializeField] private SteamVR_Action_Boolean _leftTriggerHeld;
-    [SerializeField] private SteamVR_Action_Boolean _rightTriggerHeld;
 
     [Header("SHOCKWAVEGENERATOR")] 
     [SerializeField] private ShockwaveGenerator shockwaveGenerator;
@@ -174,7 +169,7 @@ public class PlayerInteraction : MonoBehaviour
             var interactable = obj.GetComponent<VRInteractable>();
             var mesh = obj.GetComponent<MeshRenderer>();
 
-            mesh.material = interactable.DefaultMaterial;
+            mesh.material = interactable.ActiveMaterial;
 
             _routineRunning = false;
 
@@ -192,13 +187,13 @@ public class PlayerInteraction : MonoBehaviour
     #region SHOCKWAVEGENERATOR
     private void SHOCKWAVEGENERATOR()
     {
-        if (_leftTriggerHeld.state && _rightTriggerHeld.state)
+        if (_playerInput.LeftTriggerPressed.state && _playerInput.RightTriggerPressed.state)
         {
             _frequencyBlasterState = true;
             Debug.Log("_frequencyBlaster.GenerateBlast()");
             shockwaveGenerator.GenerateShockwave();
         }
-        if (!_leftTriggerHeld.state && !_rightTriggerHeld.state && _frequencyBlasterState)
+        if (!_playerInput.LeftTriggerPressed.state && !_playerInput.RightTriggerPressed.state && _frequencyBlasterState)
         {
             _frequencyBlasterState = false;
             Debug.Log("_frequencyBlaster.FireBlast()");
@@ -215,6 +210,8 @@ public class PlayerInteraction : MonoBehaviour
         float t = 0;
         float timer = 0.5f;
 
+        var speed = _grabSpeed * interactable.mass;
+
         while (t <= timer)
         {
             if (!ActiveObject)
@@ -223,7 +220,7 @@ public class PlayerInteraction : MonoBehaviour
             }
 
             _routineRunning = true;
-            t += Time.fixedDeltaTime / _grabSpeed;
+            t += Time.fixedDeltaTime / speed;
             interactable.MovePosition(Vector3.Lerp(target.transform.position, _tip.transform.position, t));
             interactable.MoveRotation(Quaternion.Lerp(target.transform.rotation, _tip.transform.rotation, t));
             yield return null;

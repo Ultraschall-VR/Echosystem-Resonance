@@ -40,9 +40,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (_playerInput.TouchpadPressed.state)
         {
-            var pos= _playerInput.Head.transform.forward * (_playerInput.TouchpadPosition.axis.y * MaxSpeed);
+            var movePos = _rigidbody.position + _playerInput.Head.transform.forward *
+                (_playerInput.TouchpadPosition.axis.y * Time.deltaTime * MaxSpeed);
             
-            _rigidbody.MovePosition(pos);
+            _rigidbody.MovePosition(movePos);
         }
     }
 
