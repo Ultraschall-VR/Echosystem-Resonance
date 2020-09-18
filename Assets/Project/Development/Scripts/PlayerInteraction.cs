@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using Valve.VR;
 
@@ -143,14 +144,12 @@ public class PlayerInteraction : MonoBehaviour
     {
         var rb = obj.GetComponent<Rigidbody>();
         var collider = obj.GetComponent<Collider>();
-        var interactable = obj.GetComponent<VRInteractable>();
         var mesh = obj.GetComponent<MeshRenderer>();
 
         mesh.material = _grabMaterial;
 
         Physics.IgnoreCollision(collider, _playerCollider, true);
 
-        rb.isKinematic = true;
         StartCoroutine(MoveToPosition(obj, rb));
 
         if (!_routineRunning)
@@ -173,7 +172,7 @@ public class PlayerInteraction : MonoBehaviour
 
             _routineRunning = false;
 
-            rb.isKinematic = false;
+            rb.useGravity = true;
             rb.position = rb.position;
 
             StartCoroutine(ReactivateCollision(objectCollider));
@@ -209,6 +208,8 @@ public class PlayerInteraction : MonoBehaviour
     {
         float t = 0;
         float timer = 0.5f;
+        
+        interactable.useGravity = false;
 
         var speed = _grabSpeed * interactable.mass;
 
@@ -218,9 +219,10 @@ public class PlayerInteraction : MonoBehaviour
             {
                 yield break;
             }
-
+            
             _routineRunning = true;
             t += Time.fixedDeltaTime / speed;
+            
             interactable.MovePosition(Vector3.Lerp(target.transform.position, _tip.transform.position, t));
             interactable.MoveRotation(Quaternion.Lerp(target.transform.rotation, _tip.transform.rotation, t));
             yield return null;

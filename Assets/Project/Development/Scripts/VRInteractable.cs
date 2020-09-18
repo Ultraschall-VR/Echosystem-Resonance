@@ -12,10 +12,14 @@ public class VRInteractable : MonoBehaviour
     
     public Material ActiveMaterial;
     
+    public float CollisionMass;
+    
     
 
     void Start()
     {
+        CollisionMass = 1;
+        
         // Deactivate collision with ramps which are for player movement only
         var ramps = GameObject.FindObjectOfType<Ramps>().RampColliders;
 
@@ -47,5 +51,22 @@ public class VRInteractable : MonoBehaviour
     public void Cover()
     {
         IsCovered = false;
+    }
+
+    public void OnCollisionStay(Collision other)
+    {
+        if (other.gameObject.GetComponent<Rigidbody>() != null)
+        {
+            CollisionMass = other.gameObject.GetComponent<Rigidbody>().mass;
+        }
+        else
+        {
+            CollisionMass = 1;
+        }
+    }
+
+    public void OnCollisionExit(Collision other)
+    {
+        CollisionMass = 1;
     }
 }
