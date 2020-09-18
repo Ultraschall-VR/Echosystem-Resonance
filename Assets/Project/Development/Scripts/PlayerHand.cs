@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cyberhand : MonoBehaviour
+public class PlayerHand : MonoBehaviour
 {
-    public Transform Tip;
+    public Transform LineRenderer;
 
     // Start is called before the first frame update
     void Start()

@@ -54,7 +54,6 @@ namespace Valve.VR
         /// <summary><strong>[Shortcut to: SteamVR_Input_Sources.Any]</strong> True when the boolean action is true</summary>
         public bool state { get { return sourceMap[SteamVR_Input_Sources.Any].state; } }
 
-
         /// <summary><strong>[Shortcut to: SteamVR_Input_Sources.Any]</strong> True when the boolean action is true and the last state was false</summary>
         public bool stateDown { get { return sourceMap[SteamVR_Input_Sources.Any].stateDown; } }
 

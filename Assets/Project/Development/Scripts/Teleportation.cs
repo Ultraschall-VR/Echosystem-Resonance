@@ -14,15 +14,16 @@ public class Teleportation : MonoBehaviour
         Hide();
     }
     
-    public void Show(Transform target)
+    public void Show(Vector3 origin, Vector3 target)
     {
         _lineRenderer.enabled = true;
+        RaycastTarget.gameObject.SetActive(true);
         
-        _center = (transform.position + target.position) * 0.5f;
+        _center = (origin + target) * 0.5f;
         _center.y -= 30;
 
-        var relCenter = transform.position - _center;
-        var relAimCenter = target.position - _center;
+        var relCenter = origin - _center;
+        var relAimCenter = target - _center;
 
         float x = -0.0417f;
         var index = -1;
@@ -40,6 +41,7 @@ public class Teleportation : MonoBehaviour
     public void Hide()
     {
         _lineRenderer.enabled = false;
+        RaycastTarget.gameObject.SetActive(false);
     }
     
 }

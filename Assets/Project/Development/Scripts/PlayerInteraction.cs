@@ -13,6 +13,7 @@ public class PlayerInteraction : MonoBehaviour
     public Transform PlayerHand;
     public GameObject ActiveObject = null;
 
+    [SerializeField] private float _maxDistance;
     [SerializeField] private List<GameObject> _hands;
     [SerializeField] private float _grabSpeed;
     [SerializeField] private Material _grabMaterial;
@@ -51,13 +52,11 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Initialize()
     {
-        _tip = PlayerHand.GetComponent<Cyberhand>().Tip;
+        _tip = PlayerHand.GetComponent<PlayerHand>().LineRenderer;
         _tip.GetComponent<LineRenderer>().enabled = false;
         _playerCollider = GetComponent<Collider>();
         _objectInHand = false;
-
         _routineRunning = false;
-
         _frequencyBlasterState = false;
         _grabState = false;
 
@@ -79,6 +78,17 @@ public class PlayerInteraction : MonoBehaviour
         _grabState = true;
         
         GRAB_CalculateRaycast();
+        
+        if (_objectInHand)
+        {
+            GRAB_Grab(ActiveObject);
+        }
+
+        else
+        {
+            _grabState = false;
+            GRAB_Drop(ActiveObject);
+        }
 
         if (ActiveObject)
         {
@@ -94,17 +104,6 @@ public class PlayerInteraction : MonoBehaviour
                 }
             }
         }
-
-        if (_objectInHand)
-        {
-            GRAB_Grab(ActiveObject);
-        }
-
-        else
-        {
-            _grabState = false;
-            GRAB_Drop(ActiveObject);
-        }
     }
 
     private void GRAB_CalculateRaycast()
@@ -112,14 +111,13 @@ public class PlayerInteraction : MonoBehaviour
         _tip.GetComponent<LineRenderer>().enabled = false;
         RaycastHit hit;
 
-        if (Physics.Raycast(_tip.transform.position, _tip.transform.right, out hit, Mathf.Infinity))
+        if (Physics.Raycast(_tip.transform.position, _tip.transform.forward, out hit, _maxDistance))
         {
             if (hit.transform.gameObject.GetComponent<VRInteractable>())
             {
                 if (!_playerInput.RightTriggerPressed.state)
                 {
                     _tip.GetComponent<LineRenderer>().enabled = true;
-                    _objectInHand = false;
                 }
 
                 if (_playerInput.RightTriggerPressed.state && ActiveObject == null)
@@ -132,9 +130,10 @@ public class PlayerInteraction : MonoBehaviour
 
             else
             {
-                if (!_playerInput.RightTriggerPressed.state && ActiveObject != null)
+                if (!_playerInput.RightTriggerPressed.state && ActiveObject)
                 {
                     _objectInHand = false;
+                    Debug.Log("Drop");
                 }
             }
         }

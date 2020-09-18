@@ -31,5 +31,13 @@ public class PlayerInput : MonoBehaviour
         {
             PlayerHand = ControllerLeft.transform;
         }
+
+
+        if (RightAPressed.state)
+        {
+            Debug.Log(RightAPressed);
+        }
     }
+    
+    
 }

@@ -53,13 +53,21 @@ public class PlayerMovement : MonoBehaviour
     {
         RaycastHit hit;
 
-        if (Physics.Raycast(_playerInput.ControllerRight.transform.position,
-            _playerInput.ControllerRight.transform.forward, out hit, Mathf.Infinity))
+        if (_playerInput.RightAPressed.state)
         {
-            if (hit.collider.CompareTag("TeleportArea"))
+            if (Physics.Raycast(_playerInput.ControllerRight.transform.position,
+                _playerInput.ControllerRight.transform.forward, out hit, Mathf.Infinity))
             {
-                _teleportation.RaycastTarget.position = hit.point;
+                if (hit.collider.CompareTag("TeleportArea"))
+                {
+                    _teleportation.RaycastTarget.position = hit.point;
+                    _teleportation.Show(_playerInput.ControllerRight.transform.position,hit.point);
+                }
             }
+        }
+        else
+        {
+            _teleportation.Hide(); 
         }
     }
 
