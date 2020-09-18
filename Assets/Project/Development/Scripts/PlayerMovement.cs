@@ -3,6 +3,7 @@
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private PlayerInput _playerInput;
+    [SerializeField] private Teleportation _teleportation;
 
     public float MaxSpeed = 2.0f;
 
@@ -22,7 +23,6 @@ public class PlayerMovement : MonoBehaviour
         _playerCollider = GetComponent<CapsuleCollider>();
         _isJumping = false;
         _isTeleporting = false;
-
         _speed = MaxSpeed;
     }
 
@@ -31,15 +31,15 @@ public class PlayerMovement : MonoBehaviour
         CalculateCollider();
         FixRotation();
         CalculateTouchpadMovement();
-        
+        CalculateTeleportation();
 
-        if (MaxSpeed - _collisionMass /_massDivider <= 0)
+        if (MaxSpeed - _collisionMass / _massDivider <= 0)
         {
             _speed = 0;
         }
         else
         {
-            _speed = MaxSpeed - _collisionMass /_massDivider;
+            _speed = MaxSpeed - _collisionMass / _massDivider;
         }
     }
 
@@ -47,6 +47,20 @@ public class PlayerMovement : MonoBehaviour
     {
         _playerCollider.center = new Vector3(_playerInput.Head.transform.localPosition.x, 1,
             _playerInput.Head.transform.localPosition.z);
+    }
+
+    private void CalculateTeleportation()
+    {
+        RaycastHit hit;
+
+        if (Physics.Raycast(_playerInput.ControllerRight.transform.position,
+            _playerInput.ControllerRight.transform.forward, out hit, Mathf.Infinity))
+        {
+            if (hit.collider.CompareTag("TeleportArea"))
+            {
+                _teleportation.RaycastTarget.position = hit.point;
+            }
+        }
     }
 
     private void CalculateTouchpadMovement()

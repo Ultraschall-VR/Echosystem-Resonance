@@ -73,6 +73,14 @@ namespace Valve.VR
             }
         }
         
+        public virtual SteamVR_Action_Boolean RightAPressed
+        {
+            get
+            {
+                return SteamVR_Actions.ultraschallVR_RightAPressed;
+            }
+        }
+        
         public virtual SteamVR_Action_Vibration Haptic
         {
             get

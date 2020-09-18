@@ -60,6 +60,10 @@ namespace Valve.VR.InteractionSystem
                 prevThickness = thickness;
                 prevSegmentCount = segmentCount;
             }
+            Show();
+
+
+
         }
 
 

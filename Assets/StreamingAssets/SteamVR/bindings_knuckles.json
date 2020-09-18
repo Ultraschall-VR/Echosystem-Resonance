@@ -25,6 +25,7 @@
          "sources" : []
       },
       "/actions/ultraschallvr" : {
+         "chords" : [],
          "haptics" : [
             {
                "output" : "/actions/ultraschallvr/out/haptic",
@@ -37,14 +38,6 @@
          ],
          "poses" : [
             {
-               "output" : "none",
-               "path" : "/user/hand/left/pose/base"
-            },
-            {
-               "output" : "none",
-               "path" : "/user/hand/right/pose/base"
-            },
-            {
                "output" : "/actions/ultraschallvr/in/pose",
                "path" : "/user/hand/left/pose/tip"
             },
@@ -53,6 +46,7 @@
                "path" : "/user/hand/right/pose/tip"
             }
          ],
+         "skeleton" : [],
          "sources" : [
             {
                "inputs" : {
@@ -113,6 +107,24 @@
                },
                "mode" : "joystick",
                "path" : "/user/hand/right/input/thumbstick"
+            },
+            {
+               "inputs" : {
+                  "held" : {
+                     "output" : "/actions/ultraschallvr/in/rightapressed"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/left/input/a"
+            },
+            {
+               "inputs" : {
+                  "held" : {
+                     "output" : "/actions/ultraschallvr/in/rightapressed"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/right/input/a"
             }
          ]
       }
