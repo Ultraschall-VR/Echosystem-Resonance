@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
-using Valve.VR;
+﻿using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -15,19 +13,34 @@ public class PlayerMovement : MonoBehaviour
     private bool _isJumping;
     private bool _isTeleporting;
 
+    private float _collisionMass;
+    private float _massDivider = 5;
+
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _playerCollider = GetComponent<CapsuleCollider>();
         _isJumping = false;
         _isTeleporting = false;
+
+        _speed = MaxSpeed;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         CalculateCollider();
         FixRotation();
         CalculateTouchpadMovement();
+        
+
+        if (MaxSpeed - _collisionMass /_massDivider <= 0)
+        {
+            _speed = 0;
+        }
+        else
+        {
+            _speed = MaxSpeed - _collisionMass /_massDivider;
+        }
     }
 
     private void CalculateCollider()
@@ -41,8 +54,8 @@ public class PlayerMovement : MonoBehaviour
         if (_playerInput.TouchpadPressed.state)
         {
             var movePos = _rigidbody.position + _playerInput.Head.transform.forward *
-                (_playerInput.TouchpadPosition.axis.y * Time.deltaTime * MaxSpeed);
-            
+                          (_playerInput.TouchpadPosition.axis.y * Time.deltaTime * _speed);
+
             _rigidbody.MovePosition(movePos);
         }
     }
@@ -50,5 +63,22 @@ public class PlayerMovement : MonoBehaviour
     private void FixRotation()
     {
         transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+    }
+
+    private void OnCollisionStay(Collision other)
+    {
+        if (other.gameObject.GetComponent<Rigidbody>() != null)
+        {
+            _collisionMass = other.gameObject.GetComponent<Rigidbody>().mass;
+        }
+        else
+        {
+            _collisionMass = 1;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        _collisionMass = 1;
     }
 }
