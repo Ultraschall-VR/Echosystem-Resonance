@@ -8,7 +8,6 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private PlayerInput _playerInput;
     [SerializeField] private PlayerStateMachine _playerStateMachine;
     
-    
     [Header("GRAB")]
     public Transform PlayerHand;
     public GameObject ActiveObject = null;
@@ -20,6 +19,14 @@ public class PlayerInteraction : MonoBehaviour
 
     [Header("SHOCKWAVEGENERATOR")] 
     [SerializeField] private ShockwaveGenerator shockwaveGenerator;
+
+    [Header("AUDIOPROJECTILE")] [SerializeField]
+    private GameObject _audioProjectilePrefab;
+    private bool _audioProjectileIsCharging;
+    private float _projectilePower;
+    private GameObject _audioProjectile;
+    private bool _projectileInstantiated;
+    
 
     private Transform _tip;
     private bool _objectInHand;
@@ -39,10 +46,18 @@ public class PlayerInteraction : MonoBehaviour
             if (!_playerStateMachine.ShockWaveState)
             {
                 GRAB();
+                AUDIOPROJECTILE();
             }
 
             if (!_playerStateMachine.GrabState)
             {
+                SHOCKWAVEGENERATOR();
+                AUDIOPROJECTILE();
+            }
+
+            if (!_playerStateMachine.AudioProjectileState)
+            {
+                GRAB();
                 SHOCKWAVEGENERATOR();
             }
         }
@@ -57,6 +72,9 @@ public class PlayerInteraction : MonoBehaviour
         _routineRunning = false;
         _playerStateMachine.ShockWaveState = false;
         _playerStateMachine.GrabState = false;
+        _playerStateMachine.AudioProjectileState = false;
+        _audioProjectileIsCharging = false;
+        _projectileInstantiated = false;
 
         foreach (var hand in _hands)
         {
@@ -68,6 +86,80 @@ public class PlayerInteraction : MonoBehaviour
             }
         }
     }
+    
+    #region AUDIOPROJECTILE
+
+    private void AUDIOPROJECTILE()
+    {
+        var maxDistance = 0.15f;
+        
+        if (_playerInput.RightTriggerPressed.state && _playerInput.LeftGripPressed)
+        {
+            if (Vector3.Distance(_playerInput.ControllerLeft.transform.position,
+                    _playerInput.ControllerRight.transform.position) < maxDistance && !_audioProjectileIsCharging)
+            {
+                _audioProjectileIsCharging = true;
+            }
+        }
+
+        if (_audioProjectileIsCharging && _playerInput.RightTriggerPressed.state)
+        {
+            AUDIOPROJECTILE_Charge();
+            _projectileInstantiated = true;
+        } 
+        
+        if (_audioProjectileIsCharging && !_playerInput.RightTriggerPressed.state)
+        {
+            AUDIOPROJECTILE_Shoot();
+            _projectileInstantiated = false;
+        }
+    }
+
+    private void AUDIOPROJECTILE_Charge()
+    {
+        _projectilePower = Vector3.Distance(_playerInput.ControllerLeft.transform.position,
+            _playerInput.ControllerRight.transform.position);
+
+        var projectilePos = _playerInput.ControllerLeft.transform.position;
+
+        if (!_projectileInstantiated)
+        {
+            _audioProjectile = Instantiate(_audioProjectilePrefab, projectilePos, Quaternion.identity);
+        }
+        
+        _audioProjectile.transform.forward = _playerInput.ControllerLeft.transform.position - _playerInput.ControllerRight.transform.position;
+        _audioProjectile.transform.position = _playerInput.ControllerLeft.transform.position;
+
+        var audioProjectileScript = _audioProjectile.GetComponent<AudioProjectile>();
+        
+        audioProjectileScript.Show();
+        audioProjectileScript.Rb.isKinematic = true;
+        audioProjectileScript.Rb.useGravity = false;
+        
+        _playerStateMachine.AudioProjectileState = true;
+        
+    }
+
+    private void AUDIOPROJECTILE_Drop()
+    {
+        
+    }
+
+    private void AUDIOPROJECTILE_Shoot()
+    {
+        var audioProjectileScript = _audioProjectile.GetComponent<AudioProjectile>();
+        
+        audioProjectileScript.Rb.AddForce(_playerInput.ControllerLeft.transform.forward * _projectilePower *10, ForceMode.Impulse);
+        audioProjectileScript.EnableCollision();
+        audioProjectileScript.Hide();
+        
+        audioProjectileScript.Rb.isKinematic = false;
+        audioProjectileScript.Rb.useGravity = true;
+        
+        _playerStateMachine.AudioProjectileState = false;
+    }
+    
+    #endregion
 
     #region GRAB
 

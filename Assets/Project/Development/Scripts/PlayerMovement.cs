@@ -80,6 +80,11 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
+        if (_playerStateMachine.GrabState || _playerStateMachine.ShockWaveState)
+        {
+            return;
+        }
+        
         if (_playerInput.RightAPressed.state)
         {
             _isTeleporting = false;
