@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+
 public class PlayerInteraction : MonoBehaviour
 {
     [SerializeField] private PlayerInput _playerInput;
@@ -142,6 +144,8 @@ public class PlayerInteraction : MonoBehaviour
         var mesh = obj.GetComponent<MeshRenderer>();
 
         mesh.material = _grabMaterial;
+        mesh.shadowCastingMode = ShadowCastingMode.Off;
+        mesh.receiveShadows = false;
 
         Physics.IgnoreCollision(collider, _playerCollider, true);
 
@@ -164,6 +168,8 @@ public class PlayerInteraction : MonoBehaviour
             var mesh = obj.GetComponent<MeshRenderer>();
 
             mesh.material = interactable.ActiveMaterial;
+            mesh.shadowCastingMode = ShadowCastingMode.On;
+            mesh.receiveShadows = true;
 
             _routineRunning = false;
 
