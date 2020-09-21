@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public bool TeleportEnabled;
     public float TeleportMovementSpeed;
     public bool JoystickMovement;
-    public float JoystickMovementSpeed = 2.0f;
+    public float JoystickMovementSpeed;
 
     private Rigidbody _rigidbody;
     private CapsuleCollider _playerCollider;
@@ -80,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
             _playerStateMachine.TeleportState = true;
                 
             if (Physics.Raycast(_playerInput.ControllerRight.transform.position,
-                _playerInput.ControllerRight.transform.forward, out hit, Mathf.Infinity))
+                -_playerInput.ControllerRight.transform.up + _playerInput.ControllerRight.transform.forward, out hit, Mathf.Infinity))
             {
                 if (hit.collider.CompareTag("TeleportArea"))
                 {
@@ -90,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
                     var offsetPos = _playerInput.Head.transform.position - transform.position;
 
                     _teleportTarget = hit.point - offsetPos;
-                    _teleportTarget.y = 0.0f;
+                    _teleportTarget.y = hit.point.y + 0.01f;
                 }
                 else
                 {

@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Teleportation : MonoBehaviour
 {
@@ -20,7 +21,9 @@ public class Teleportation : MonoBehaviour
         RaycastTarget.gameObject.SetActive(true);
         
         _center = (origin + target) * 0.5f;
-        _center.y -= 30;
+        _center.y -= Vector3.Distance(origin, target);
+        
+        
 
         var relCenter = origin - _center;
         var relAimCenter = target - _center;
