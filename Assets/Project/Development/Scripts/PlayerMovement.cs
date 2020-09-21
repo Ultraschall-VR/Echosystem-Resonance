@@ -20,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
     private bool _isJumping;
     private bool _isTeleporting;
 
+    private bool _heavyMassCollision;
+
     private float _collisionMass;
     private float _massDivider = 5;
 
@@ -39,10 +41,10 @@ public class PlayerMovement : MonoBehaviour
         CalculateCollider();
         CalculatePhysics();
         FixRotation();
-        
+
         if (JoystickMovement)
         {
-            CalculateJoystickMovement(); 
+            CalculateJoystickMovement();
         }
 
         if (TeleportEnabled)
@@ -76,16 +78,17 @@ public class PlayerMovement : MonoBehaviour
         if (_playerInput.RightAPressed.state)
         {
             _isTeleporting = false;
-            
+
             _playerStateMachine.TeleportState = true;
-                
+
             if (Physics.Raycast(_playerInput.ControllerRight.transform.position,
-                -_playerInput.ControllerRight.transform.up + _playerInput.ControllerRight.transform.forward, out hit, Mathf.Infinity))
+                -_playerInput.ControllerRight.transform.up + _playerInput.ControllerRight.transform.forward, out hit,
+                Mathf.Infinity))
             {
                 if (hit.collider.CompareTag("TeleportArea"))
                 {
                     _teleportation.RaycastTarget.position = hit.point;
-                    _teleportation.Show(_playerInput.ControllerRight.transform.position,hit.point);
+                    _teleportation.Show(_playerInput.ControllerRight.transform.position, hit.point);
 
                     var offsetPos = _playerInput.Head.transform.position - transform.position;
 
@@ -108,7 +111,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 _isTeleporting = true;
                 Debug.Log("TELEPORT");
-                
+
                 StartCoroutine(MoveToPosition(_rigidbody, _teleportTarget));
             }
         }
@@ -119,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
         if (_playerInput.TouchpadPressed.state)
         {
             var movePos = _rigidbody.position + _playerInput.Head.transform.forward *
-                          (_playerInput.TouchpadPosition.axis.y * Time.deltaTime * _speed);
+                (_playerInput.TouchpadPosition.axis.y * Time.deltaTime * _speed);
 
             _rigidbody.MovePosition(movePos);
         }
@@ -135,20 +138,35 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.GetComponent<Rigidbody>() != null)
         {
             _collisionMass = other.gameObject.GetComponent<Rigidbody>().mass;
+
+            if (_collisionMass > _rigidbody.mass)
+            {
+                _heavyMassCollision = true;
+            }
+            else
+            {
+                _heavyMassCollision = false;
+            }
         }
         else
         {
             _collisionMass = 1;
+            _heavyMassCollision = false;
         }
     }
-    
+
     private IEnumerator MoveToPosition(Rigidbody rb, Vector3 target)
     {
         float t = 0;
         float timer = 0.5f;
-        
+
         while (t <= timer)
         {
+            if (_heavyMassCollision)
+            {
+                yield break;
+            }
+
             t += Time.fixedDeltaTime * TeleportMovementSpeed;
 
             rb.MovePosition(Vector3.Lerp(rb.transform.position, target, t));
@@ -160,5 +178,6 @@ public class PlayerMovement : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         _collisionMass = 1;
+        _heavyMassCollision = false;
     }
 }
