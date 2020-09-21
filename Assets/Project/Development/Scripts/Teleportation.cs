@@ -18,13 +18,11 @@ public class Teleportation : MonoBehaviour
     public void Show(Vector3 origin, Vector3 target)
     {
         _lineRenderer.enabled = true;
-        RaycastTarget.gameObject.SetActive(true);
+        RaycastTarget.gameObject.SetActive(false);
         
         _center = (origin + target) * 0.5f;
         _center.y -= Vector3.Distance(origin, target);
         
-        
-
         var relCenter = origin - _center;
         var relAimCenter = target - _center;
 

@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     private float _massDivider = 5;
 
     private Vector3 _teleportTarget;
+    private bool _teleportCooldownDone;
 
     void Start()
     {
@@ -33,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
         _playerCollider = GetComponent<CapsuleCollider>();
         _isJumping = false;
         _isTeleporting = false;
+        _teleportCooldownDone = true;
         _speed = JoystickMovementSpeed;
     }
 
@@ -63,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (JoystickMovementSpeed - _collisionMass / _massDivider <= 0)
         {
-            _speed = 0;
+            _speed = 0.5f;
         }
         else
         {
@@ -73,7 +75,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void CalculateTeleportation()
     {
-        RaycastHit hit;
+        if (!_teleportCooldownDone)
+        {
+            return;
+        }
 
         if (_playerInput.RightAPressed.state)
         {
@@ -81,6 +86,7 @@ public class PlayerMovement : MonoBehaviour
 
             _playerStateMachine.TeleportState = true;
 
+            RaycastHit hit;
             if (Physics.Raycast(_playerInput.ControllerRight.transform.position,
                 -_playerInput.ControllerRight.transform.up + _playerInput.ControllerRight.transform.forward, out hit,
                 Mathf.Infinity))
@@ -109,12 +115,21 @@ public class PlayerMovement : MonoBehaviour
 
             if (_teleportTarget != Vector3.zero && !_isTeleporting)
             {
+                var cooldown = Vector3.Distance(_playerInput.transform.position, _teleportTarget);
+                
                 _isTeleporting = true;
-                Debug.Log("TELEPORT");
+                _teleportCooldownDone = false;
+                Invoke("CheckTeleportCooldown", cooldown  /10);
+                
 
                 StartCoroutine(MoveToPosition(_rigidbody, _teleportTarget));
             }
         }
+    }
+
+    private void CheckTeleportCooldown()
+    {
+        _teleportCooldownDone = true;
     }
 
     private void CalculateJoystickMovement()
@@ -139,7 +154,7 @@ public class PlayerMovement : MonoBehaviour
         {
             _collisionMass = other.gameObject.GetComponent<Rigidbody>().mass;
 
-            if (_collisionMass > _rigidbody.mass)
+            if (_collisionMass > _rigidbody.mass && _rigidbody.velocity.magnitude > 1f)
             {
                 _heavyMassCollision = true;
             }
