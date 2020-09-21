@@ -1,12 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using Valve.VR;
-
 public class PlayerInteraction : MonoBehaviour
 {
     [SerializeField] private PlayerInput _playerInput;
+    [SerializeField] private PlayerStateMachine _playerStateMachine;
     
     
     [Header("GRAB")]
@@ -26,12 +24,7 @@ public class PlayerInteraction : MonoBehaviour
     private Collider _playerCollider;
 
     private bool _routineRunning;
-
-    private bool _frequencyBlasterState;
-    private bool _grabState;
-
-
-
+    
     void Start()
     {
         Initialize();
@@ -39,14 +32,17 @@ public class PlayerInteraction : MonoBehaviour
 
     void Update()
     {
-        if (!_frequencyBlasterState)
+        if (!_playerStateMachine.TeleportState)
         {
-            GRAB();
-        }
+            if (!_playerStateMachine.ShockWaveState)
+            {
+                GRAB();
+            }
 
-        if (!_grabState)
-        {
-            SHOCKWAVEGENERATOR();
+            if (!_playerStateMachine.GrabState)
+            {
+                SHOCKWAVEGENERATOR();
+            }
         }
     }
 
@@ -57,8 +53,8 @@ public class PlayerInteraction : MonoBehaviour
         _playerCollider = GetComponent<Collider>();
         _objectInHand = false;
         _routineRunning = false;
-        _frequencyBlasterState = false;
-        _grabState = false;
+        _playerStateMachine.ShockWaveState = false;
+        _playerStateMachine.GrabState = false;
 
         foreach (var hand in _hands)
         {
@@ -75,7 +71,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private void GRAB()
     {
-        _grabState = true;
+        _playerStateMachine.GrabState = true;
         
         GRAB_CalculateRaycast();
         
@@ -86,7 +82,7 @@ public class PlayerInteraction : MonoBehaviour
 
         else
         {
-            _grabState = false;
+            _playerStateMachine.GrabState = false;
             GRAB_Drop(ActiveObject);
         }
 
@@ -187,13 +183,13 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (_playerInput.LeftTriggerPressed.state && _playerInput.RightTriggerPressed.state)
         {
-            _frequencyBlasterState = true;
+            _playerStateMachine.ShockWaveState = true;
             Debug.Log("_frequencyBlaster.GenerateBlast()");
             shockwaveGenerator.GenerateShockwave();
         }
-        if (!_playerInput.LeftTriggerPressed.state && !_playerInput.RightTriggerPressed.state && _frequencyBlasterState)
+        if (!_playerInput.LeftTriggerPressed.state && !_playerInput.RightTriggerPressed.state && _playerStateMachine.ShockWaveState)
         {
-            _frequencyBlasterState = false;
+            _playerStateMachine.ShockWaveState = false;
             Debug.Log("_frequencyBlaster.FireBlast()");
             shockwaveGenerator.FireShockwave(transform.position);
         }

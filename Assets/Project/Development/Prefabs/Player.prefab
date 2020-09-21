@@ -1938,6 +1938,7 @@ GameObject:
   - component: {fileID: 1980368796666639692}
   - component: {fileID: 8655904094480989936}
   - component: {fileID: 26677170906082817}
+  - component: {fileID: 8564031942041354891}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -2037,8 +2038,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerInput: {fileID: 26677170906082817}
+  _playerStateMachine: {fileID: 8564031942041354891}
   _teleportation: {fileID: 2092961536}
-  MaxSpeed: 4
+  TeleportEnabled: 1
+  TeleportMovementSpeed: 4
+  JoystickMovement: 0
+  JoystickMovementSpeed: 4
 --- !u!114 &8655904094480989936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2052,6 +2057,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerInput: {fileID: 26677170906082817}
+  _playerStateMachine: {fileID: 8564031942041354891}
   PlayerHand: {fileID: 5412889743198808911}
   ActiveObject: {fileID: 0}
   _maxDistance: 15
@@ -2097,6 +2103,21 @@ MonoBehaviour:
     needsReinit: 0
   Head: {fileID: 6455501167829228072}
   Player: {fileID: 6455501167829242766}
+--- !u!114 &8564031942041354891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6455501167829242766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1389d5fe1c66bdd43935f64377b03c99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShockWaveState: 0
+  GrabState: 0
+  TeleportState: 0
 --- !u!1 &6455501167829243360
 GameObject:
   m_ObjectHideFlags: 0

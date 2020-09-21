@@ -20,7 +20,7 @@ public class PlayerInput : MonoBehaviour
 
     public GameObject Head;
     public GameObject Player;
-    
+
     void Update()
     {
         if (RightHanded)
