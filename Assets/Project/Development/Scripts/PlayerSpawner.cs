@@ -9,15 +9,9 @@ public class PlayerSpawner : MonoBehaviour
 
     [HideInInspector] public GameObject PlayerInstance = null;
     
-    // Start is called before the first frame update
     void Start()
     {
         PlayerInstance = Instantiate(_playerPrefab, _playerSpawn.position, _playerSpawn.rotation);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        PlayerInstance.name = _playerPrefab.name;
     }
 }

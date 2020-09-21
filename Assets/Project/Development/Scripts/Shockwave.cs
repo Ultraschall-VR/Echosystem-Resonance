@@ -1,40 +1,44 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Shockwave : MonoBehaviour
 {
-    public List<Rigidbody> Rigidbodies;
-
-    private Collider _playerCollider;
-    // Start is called before the first frame update
-
-    private void Awake()
+    private bool _explode;
+    private float _power;
+    
+    public void ShockWave(float power)
     {
-        _playerCollider = GameObject.Find("Player").GetComponent<Collider>();
-        
-        foreach (var rb in Rigidbodies)
-        {
-            rb.isKinematic = true;
-            rb.GetComponent<Collider>().enabled = false;
-            Physics.IgnoreCollision(rb.GetComponent<Collider>(), _playerCollider);
-        }
+        _power = power;
+        _explode = true;
     }
 
-    public void SendWave(float power)
+    private void FixedUpdate()
     {
-        foreach (var rb in Rigidbodies)
+        if (_explode)
         {
-            rb.GetComponent<Collider>().enabled = true;
-            rb.isKinematic = false;
-            rb.AddForce(transform.forward * (-power *250), ForceMode.Impulse);
-            
+            Collider[] colliders = Physics.OverlapSphere(transform.position, _power);
+            foreach (Collider hit in colliders)
+            {
+                if (hit.gameObject.name == "Player")
+                {
+                    return;
+                }
+
+                if (hit.GetComponent<Rigidbody>())
+                {
+                    if (hit.GetComponent<VRInteractable>())
+                    {
+                        hit.GetComponent<VRInteractable>().Uncover();
+                    }
+                    
+                    hit.GetComponent<Rigidbody>().AddExplosionForce(_power*5, transform.position,
+                        _power, 2.0F);
+                }
+
+                
+            }
+
+            _explode = false;
         }
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
