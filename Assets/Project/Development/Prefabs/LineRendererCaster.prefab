@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3385868598754396387}
   - component: {fileID: 3385868598754396386}
   m_Layer: 0
-  m_Name: Teleportation
+  m_Name: LineRendererCaster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,6 +46,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lineRenderer: {fileID: 3385868599268528308}
+  _validTeleportMaterial: {fileID: 2100000, guid: 7343cf6eef4eb4e4790ade14e0f428f6,
+    type: 2}
+  _invalidTeleportMaterial: {fileID: 2100000, guid: 9d242678c01051a46aad6f04641bc2b7,
+    type: 2}
+  _grabMaterial: {fileID: 2100000, guid: 3aed5ebfdf0b80840b00e3c87d8a4b84, type: 2}
   RaycastTarget: {fileID: 8993132354082281797}
 --- !u!1 &3385868599268528311
 GameObject:

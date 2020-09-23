@@ -34,10 +34,7 @@ public class Shockwave : MonoBehaviour
                     hit.GetComponent<Rigidbody>().AddExplosionForce(_power*5, transform.position,
                         _power, 2.0F);
                 }
-
-                
             }
-
             _explode = false;
         }
     }

@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using Valve.VR;
+using Valve.VR.InteractionSystem;
 
 public class PlayerInteraction : MonoBehaviour
 {
     [SerializeField] private PlayerInput _playerInput;
     [SerializeField] private PlayerStateMachine _playerStateMachine;
-    
-    [Header("GRAB")]
-    public Transform PlayerHand;
+    [SerializeField] private LineRendererCaster _lineRendererCaster;
+
+    [Header("GRAB")] public Transform PlayerHand;
     public GameObject ActiveObject = null;
 
     [SerializeField] private float _maxDistance;
@@ -17,23 +19,22 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private float _grabSpeed;
     [SerializeField] private Material _grabMaterial;
 
-    [Header("SHOCKWAVEGENERATOR")] 
-    [SerializeField] private ShockwaveGenerator shockwaveGenerator;
+    [Header("SHOCKWAVEGENERATOR")] [SerializeField]
+    private ShockwaveGenerator shockwaveGenerator;
 
     [Header("AUDIOPROJECTILE")] [SerializeField]
     private GameObject _audioProjectilePrefab;
+
     private bool _audioProjectileIsCharging;
     private float _projectilePower;
     private GameObject _audioProjectile;
     private bool _projectileInstantiated;
-    
 
-    private Transform _tip;
     private bool _objectInHand;
     private Collider _playerCollider;
 
     private bool _routineRunning;
-    
+
     void Start()
     {
         Initialize();
@@ -41,32 +42,31 @@ public class PlayerInteraction : MonoBehaviour
 
     void Update()
     {
-        if (!_playerStateMachine.TeleportState)
+        if (_playerStateMachine.TeleportState)
         {
-            if (!_playerStateMachine.ShockWaveState)
-            {
-                GRAB();
-                AUDIOPROJECTILE();
-            }
+            return;
+        }
 
-            if (!_playerStateMachine.GrabState)
-            {
-                SHOCKWAVEGENERATOR();
-                AUDIOPROJECTILE();
-            }
+        if (!_playerStateMachine.TeleportState && !_playerStateMachine.GrabState && !_playerStateMachine.ShockWaveState)
+        {
+            AUDIOPROJECTILE();
+        }
 
-            if (!_playerStateMachine.AudioProjectileState)
-            {
-                GRAB();
-                SHOCKWAVEGENERATOR();
-            }
+        if (!_playerStateMachine.TeleportState && !_playerStateMachine.GrabState &&
+            !_playerStateMachine.AudioProjectileState)
+        {
+            SHOCKWAVEGENERATOR();
+        }
+
+        if (!_playerStateMachine.TeleportState && !_playerStateMachine.ShockWaveState &&
+            !_playerStateMachine.AudioProjectileState)
+        {
+            GRAB();
         }
     }
 
     private void Initialize()
     {
-        _tip = PlayerHand.GetComponent<PlayerHand>().LineRenderer;
-        _tip.GetComponent<LineRenderer>().enabled = false;
         _playerCollider = GetComponent<Collider>();
         _objectInHand = false;
         _routineRunning = false;
@@ -86,17 +86,17 @@ public class PlayerInteraction : MonoBehaviour
             }
         }
     }
-    
+
     #region AUDIOPROJECTILE
 
     private void AUDIOPROJECTILE()
     {
         var maxDistance = 0.15f;
-        
+
         if (_playerInput.RightTriggerPressed.state && _playerInput.LeftGripPressed)
         {
             if (Vector3.Distance(_playerInput.ControllerLeft.transform.position,
-                    _playerInput.ControllerRight.transform.position) < maxDistance && !_audioProjectileIsCharging)
+                _playerInput.ControllerRight.transform.position) < maxDistance && !_audioProjectileIsCharging)
             {
                 _audioProjectileIsCharging = true;
             }
@@ -106,12 +106,13 @@ public class PlayerInteraction : MonoBehaviour
         {
             AUDIOPROJECTILE_Charge();
             _projectileInstantiated = true;
-        } 
-        
+        }
+
         if (_audioProjectileIsCharging && !_playerInput.RightTriggerPressed.state)
         {
             AUDIOPROJECTILE_Shoot();
             _projectileInstantiated = false;
+            _audioProjectileIsCharging = false;
         }
     }
 
@@ -126,18 +127,18 @@ public class PlayerInteraction : MonoBehaviour
         {
             _audioProjectile = Instantiate(_audioProjectilePrefab, projectilePos, Quaternion.identity);
         }
-        
-        _audioProjectile.transform.forward = _playerInput.ControllerLeft.transform.position - _playerInput.ControllerRight.transform.position;
+
+        _audioProjectile.transform.forward = _playerInput.ControllerLeft.transform.position -
+                                             _playerInput.ControllerRight.transform.position;
         _audioProjectile.transform.position = _playerInput.ControllerLeft.transform.position;
 
         var audioProjectileScript = _audioProjectile.GetComponent<AudioProjectile>();
-        
+
         audioProjectileScript.Show();
         audioProjectileScript.Rb.isKinematic = true;
         audioProjectileScript.Rb.useGravity = false;
-        
+
         _playerStateMachine.AudioProjectileState = true;
-        
     }
 
     private void AUDIOPROJECTILE_Drop()
@@ -149,16 +150,18 @@ public class PlayerInteraction : MonoBehaviour
     {
         var audioProjectileScript = _audioProjectile.GetComponent<AudioProjectile>();
         
-        audioProjectileScript.Rb.AddForce(_playerInput.ControllerLeft.transform.forward * _projectilePower *10, ForceMode.Impulse);
         audioProjectileScript.EnableCollision();
-        audioProjectileScript.Hide();
-        
+        audioProjectileScript.Show();
+        audioProjectileScript.DestroyProjectile(5f);
+
         audioProjectileScript.Rb.isKinematic = false;
         audioProjectileScript.Rb.useGravity = true;
         
+        audioProjectileScript.Rb.AddForce(_audioProjectile.transform.forward * _projectilePower * 500, ForceMode.Impulse);
+
         _playerStateMachine.AudioProjectileState = false;
     }
-    
+
     #endregion
 
     #region GRAB
@@ -166,9 +169,9 @@ public class PlayerInteraction : MonoBehaviour
     private void GRAB()
     {
         _playerStateMachine.GrabState = true;
-        
+
         GRAB_CalculateRaycast();
-        
+
         if (_objectInHand)
         {
             GRAB_Grab(ActiveObject);
@@ -198,32 +201,51 @@ public class PlayerInteraction : MonoBehaviour
 
     private void GRAB_CalculateRaycast()
     {
-        _tip.GetComponent<LineRenderer>().enabled = false;
+        if (!_playerInput.RightTriggerPressed.state && ActiveObject)
+        {
+            _objectInHand = false;
+        }
+        
         RaycastHit hit;
 
-        if (Physics.Raycast(_tip.transform.position, _tip.transform.forward, out hit, _maxDistance))
+        if (Physics.Raycast(_playerInput.ControllerRight.transform.position,
+            _playerInput.ControllerRight.transform.forward, out hit,
+            _maxDistance))
         {
-            if (hit.transform.gameObject.GetComponent<VRInteractable>())
+            var sphereRadius = 0.5f;
+            Collider[] colliders = Physics.OverlapSphere(hit.point, sphereRadius);
+            
+            var nearestDist = float.MaxValue;
+            
+            foreach (Collider coliderHit in colliders)
             {
-                if (!_playerInput.RightTriggerPressed.state)
+                if (coliderHit.gameObject.name == "Player")
                 {
-                    _tip.GetComponent<LineRenderer>().enabled = true;
+                    return;
                 }
 
-                if (_playerInput.RightTriggerPressed.state && ActiveObject == null)
+                if (coliderHit.GetComponent<Rigidbody>())
                 {
-                    _tip.GetComponent<LineRenderer>().enabled = false;
-                    ActiveObject = hit.transform.gameObject;
-                    _objectInHand = true;
-                }
-            }
+                    if (coliderHit.GetComponent<VRInteractable>())
+                    {
+                        if (Vector3.Distance(hit.point, coliderHit.transform.position) < nearestDist)
+                        {
+                            nearestDist = Vector3.Distance(hit.point, coliderHit.transform.position);
+                            
+                            if (!_playerInput.RightTriggerPressed.state)
+                            {
+                                _lineRendererCaster.ShowGrab(_playerInput.ControllerRight.transform.position,
+                                    coliderHit.transform.position);
+                            }
 
-            else
-            {
-                if (!_playerInput.RightTriggerPressed.state && ActiveObject)
-                {
-                    _objectInHand = false;
-                    Debug.Log("Drop");
+                            if (_playerInput.RightTriggerPressed.state && ActiveObject == null)
+                            {
+                                _objectInHand = true;
+                                _lineRendererCaster.Hide();
+                                ActiveObject = coliderHit.transform.gameObject;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -245,8 +267,8 @@ public class PlayerInteraction : MonoBehaviour
 
         if (!_routineRunning)
         {
-            rb.position = _tip.transform.position;
-            rb.rotation = _tip.transform.rotation;
+            rb.position = _playerInput.ControllerRight.transform.position;
+            rb.rotation = _playerInput.ControllerRight.transform.rotation;
         }
     }
 
@@ -277,18 +299,19 @@ public class PlayerInteraction : MonoBehaviour
     #endregion
 
     #region SHOCKWAVEGENERATOR
+
     private void SHOCKWAVEGENERATOR()
     {
         if (_playerInput.LeftTriggerPressed.state && _playerInput.RightTriggerPressed.state)
         {
             _playerStateMachine.ShockWaveState = true;
-            Debug.Log("_frequencyBlaster.GenerateBlast()");
             shockwaveGenerator.GenerateShockwave();
         }
-        if (!_playerInput.LeftTriggerPressed.state && !_playerInput.RightTriggerPressed.state && _playerStateMachine.ShockWaveState)
+
+        if (!_playerInput.LeftTriggerPressed.state && !_playerInput.RightTriggerPressed.state &&
+            _playerStateMachine.ShockWaveState)
         {
             _playerStateMachine.ShockWaveState = false;
-            Debug.Log("_frequencyBlaster.FireBlast()");
             shockwaveGenerator.FireShockwave(transform.position);
         }
     }
@@ -301,7 +324,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         float t = 0;
         float timer = 0.5f;
-        
+
         interactable.useGravity = false;
 
         var speed = _grabSpeed * interactable.mass;
@@ -312,12 +335,14 @@ public class PlayerInteraction : MonoBehaviour
             {
                 yield break;
             }
-            
+
             _routineRunning = true;
             t += Time.fixedDeltaTime / speed;
-            
-            interactable.MovePosition(Vector3.Lerp(target.transform.position, _tip.transform.position, t));
-            interactable.MoveRotation(Quaternion.Lerp(target.transform.rotation, _tip.transform.rotation, t));
+
+            interactable.MovePosition(Vector3.Lerp(target.transform.position,
+                _playerInput.ControllerRight.transform.position, t));
+            interactable.MoveRotation(Quaternion.Lerp(target.transform.rotation,
+                _playerInput.ControllerRight.transform.rotation, t));
             yield return null;
         }
 

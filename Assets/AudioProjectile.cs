@@ -30,6 +30,11 @@ public class AudioProjectile : MonoBehaviour
         _collider.enabled = true;
     }
 
+    public void DestroyProjectile(float time)
+    {
+        Invoke("DestroyObject", time);
+    }
+
     private void Start()
     {
         var playerCollider = GameObject.Find("Player").GetComponent<Collider>();
@@ -38,5 +43,10 @@ public class AudioProjectile : MonoBehaviour
         Physics.IgnoreCollision(playerCollider, _collider);
         Physics.IgnoreCollision(playerInput.ControllerLeftCollider, _collider);
         Physics.IgnoreCollision(playerInput.ControllerRightCollider, _collider);
+    }
+    
+    private void DestroyObject()
+    {
+        Destroy(this.gameObject);
     }
 }

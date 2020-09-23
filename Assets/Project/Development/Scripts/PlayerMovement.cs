@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private PlayerInput _playerInput;
     [SerializeField] private PlayerStateMachine _playerStateMachine;
-    [SerializeField] private Teleportation _teleportation;
+    [SerializeField] private LineRendererCaster _lineRendererCaster;
 
     public bool TeleportEnabled;
     public float TeleportMovementSpeed;
@@ -96,10 +96,11 @@ public class PlayerMovement : MonoBehaviour
                 -_playerInput.ControllerRight.transform.up + _playerInput.ControllerRight.transform.forward, out hit,
                 Mathf.Infinity))
             {
+                _lineRendererCaster.RaycastTarget.position = hit.point;
+                
                 if (hit.collider.CompareTag("TeleportArea"))
                 {
-                    _teleportation.RaycastTarget.position = hit.point;
-                    _teleportation.Show(_playerInput.ControllerRight.transform.position, hit.point);
+                    _lineRendererCaster.ShowValidTeleport(_playerInput.ControllerRight.transform.position, hit.point);
 
                     var offsetPos = _playerInput.Head.transform.position - transform.position;
 
@@ -108,7 +109,7 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else
                 {
-                    _teleportation.Hide();
+                    _lineRendererCaster.ShowInvalidTeleport(_playerInput.ControllerRight.transform.position, hit.point);
                     _teleportTarget = Vector3.zero;
                 }
             }
@@ -116,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             _playerStateMachine.TeleportState = false;
-            _teleportation.Hide();
+            _lineRendererCaster.Hide();
 
             if (_teleportTarget != Vector3.zero && !_isTeleporting)
             {
