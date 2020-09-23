@@ -7,7 +7,6 @@ public class Ramps : MonoBehaviour
 {
     public List <Collider> RampColliders = new List<Collider>();
 
-
     private void Start()
     {
         foreach (Transform child in transform)

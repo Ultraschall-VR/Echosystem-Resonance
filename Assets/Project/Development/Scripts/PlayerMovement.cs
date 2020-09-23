@@ -30,6 +30,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        Initialize();
+    }
+
+    private void Initialize()
+    {
         _rigidbody = GetComponent<Rigidbody>();
         _playerCollider = GetComponent<CapsuleCollider>();
         _isJumping = false;
@@ -84,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
-        
+
         if (_playerInput.RightAPressed.state)
         {
             _isTeleporting = false;
@@ -97,10 +102,11 @@ public class PlayerMovement : MonoBehaviour
                 Mathf.Infinity))
             {
                 _lineRendererCaster.RaycastTarget.position = hit.point;
-                
+
                 if (hit.collider.CompareTag("TeleportArea"))
                 {
-                    _lineRendererCaster.ShowValidTeleport(_playerInput.ControllerRight.transform.position, hit.point);
+                    _lineRendererCaster.ShowValidTeleport(_playerInput.ControllerRight.transform.position, hit.point,
+                        1);
 
                     var offsetPos = _playerInput.Head.transform.position - transform.position;
 
@@ -109,7 +115,8 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else
                 {
-                    _lineRendererCaster.ShowInvalidTeleport(_playerInput.ControllerRight.transform.position, hit.point);
+                    _lineRendererCaster.ShowInvalidTeleport(_playerInput.ControllerRight.transform.position, hit.point,
+                        1);
                     _teleportTarget = Vector3.zero;
                 }
             }
@@ -122,11 +129,11 @@ public class PlayerMovement : MonoBehaviour
             if (_teleportTarget != Vector3.zero && !_isTeleporting)
             {
                 var cooldown = Vector3.Distance(_playerInput.transform.position, _teleportTarget);
-                
+
                 _isTeleporting = true;
                 _teleportCooldownDone = false;
-                Invoke("CheckTeleportCooldown", cooldown  /10);
-                
+                Invoke("CheckTeleportCooldown", cooldown / 10);
+
 
                 StartCoroutine(MoveToPosition(_rigidbody, _teleportTarget));
             }

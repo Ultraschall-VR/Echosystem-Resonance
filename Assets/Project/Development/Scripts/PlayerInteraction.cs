@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
-using Valve.VR;
-using Valve.VR.InteractionSystem;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -143,21 +141,21 @@ public class PlayerInteraction : MonoBehaviour
 
     private void AUDIOPROJECTILE_Drop()
     {
-        
     }
 
     private void AUDIOPROJECTILE_Shoot()
     {
         var audioProjectileScript = _audioProjectile.GetComponent<AudioProjectile>();
-        
+
         audioProjectileScript.EnableCollision();
         audioProjectileScript.Show();
         audioProjectileScript.DestroyProjectile(5f);
 
         audioProjectileScript.Rb.isKinematic = false;
         audioProjectileScript.Rb.useGravity = true;
-        
-        audioProjectileScript.Rb.AddForce(_audioProjectile.transform.forward * _projectilePower * 500, ForceMode.Impulse);
+
+        audioProjectileScript.Rb.AddForce(_audioProjectile.transform.forward * _projectilePower * 500,
+            ForceMode.Impulse);
 
         _playerStateMachine.AudioProjectileState = false;
     }
@@ -205,47 +203,48 @@ public class PlayerInteraction : MonoBehaviour
         {
             _objectInHand = false;
         }
-        
+
         RaycastHit hit;
 
         if (Physics.Raycast(_playerInput.ControllerRight.transform.position,
             _playerInput.ControllerRight.transform.forward, out hit,
             _maxDistance))
         {
-            var sphereRadius = 0.5f;
+            var sphereRadius = 2f;
             Collider[] colliders = Physics.OverlapSphere(hit.point, sphereRadius);
-            
-            var nearestDist = float.MaxValue;
-            
-            foreach (Collider coliderHit in colliders)
+
+            var kdList = new KdTree<Collider>();
+
+            foreach (var collider in colliders)
             {
-                if (coliderHit.gameObject.name == "Player")
+                if (collider.GetComponent<VRInteractable>())
+                {
+                    kdList.Add(collider);
+                }
+            }
+
+            var nearestDist = float.MaxValue;
+
+            foreach (var colliderHit in kdList)
+            {
+                if (colliderHit.gameObject.name == "Player")
                 {
                     return;
                 }
 
-                if (coliderHit.GetComponent<Rigidbody>())
-                {
-                    if (coliderHit.GetComponent<VRInteractable>())
-                    {
-                        if (Vector3.Distance(hit.point, coliderHit.transform.position) < nearestDist)
-                        {
-                            nearestDist = Vector3.Distance(hit.point, coliderHit.transform.position);
-                            
-                            if (!_playerInput.RightTriggerPressed.state)
-                            {
-                                _lineRendererCaster.ShowGrab(_playerInput.ControllerRight.transform.position,
-                                    coliderHit.transform.position);
-                            }
+                var nearestObject = kdList.FindClosest(hit.point);
 
-                            if (_playerInput.RightTriggerPressed.state && ActiveObject == null)
-                            {
-                                _objectInHand = true;
-                                _lineRendererCaster.Hide();
-                                ActiveObject = coliderHit.transform.gameObject;
-                            }
-                        }
-                    }
+                if (!_playerInput.RightTriggerPressed.state)
+                {
+                    _lineRendererCaster.ShowGrab(_playerInput.ControllerRight.transform.position,
+                        nearestObject.transform.position, 8);
+                }
+
+                if (_playerInput.RightTriggerPressed.state && ActiveObject == null)
+                {
+                    ActiveObject = nearestObject.transform.gameObject;
+                    _objectInHand = true;
+                    _lineRendererCaster.Hide();
                 }
             }
         }
