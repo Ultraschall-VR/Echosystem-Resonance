@@ -6,22 +6,25 @@ public class PlayerSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject _playerPrefab;
     [SerializeField] private Transform _playerSpawn;
-
     
     [Header("Settings")]
     [SerializeField] private bool _joystickMovement;
-
     [SerializeField] private float _joystickMovementSpeed;
     [SerializeField] private bool _teleportMovement;
-
+    [SerializeField] private float _teleportMaxRange;
     [SerializeField] private float _teleportMovementSpeed;
 
     [HideInInspector] public GameObject PlayerInstance = null;
-    
-    
+
+
     void Start()
     {
-        PlayerInstance = Instantiate(_playerPrefab, _playerSpawn.position, _playerSpawn.rotation);
+        InstantiatePlayer(_playerSpawn.position, _playerSpawn.rotation);
+    }
+
+    public void InstantiatePlayer(Vector3 position, Quaternion rotation)
+    {
+        PlayerInstance = Instantiate(_playerPrefab, position, rotation);
         PlayerInstance.name = _playerPrefab.name;
 
         if (_joystickMovement)
@@ -44,6 +47,12 @@ public class PlayerSpawner : MonoBehaviour
 
         PlayerInstance.GetComponent<PlayerMovement>().JoystickMovementSpeed = _joystickMovementSpeed;
         PlayerInstance.GetComponent<PlayerMovement>().TeleportMovementSpeed = _teleportMovementSpeed;
+        PlayerInstance.GetComponent<PlayerMovement>().TeleportMaxRange = _teleportMaxRange;
+    }
 
+    public void MovePlayer(Vector3 position, Quaternion rotation)
+    {
+        PlayerInstance.transform.position = position;
+        PlayerInstance.transform.rotation = rotation;
     }
 }

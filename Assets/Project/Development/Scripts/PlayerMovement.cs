@@ -7,9 +7,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private PlayerInput _playerInput;
     [SerializeField] private PlayerStateMachine _playerStateMachine;
     [SerializeField] private LineRendererCaster _lineRendererCaster;
+    
+    
 
     public bool TeleportEnabled;
     public float TeleportMovementSpeed;
+    public float TeleportMaxRange;
     public bool JoystickMovement;
     public float JoystickMovementSpeed;
 
@@ -102,16 +105,26 @@ public class PlayerMovement : MonoBehaviour
                 Mathf.Infinity))
             {
                 _lineRendererCaster.RaycastTarget.position = hit.point;
-
+                
                 if (hit.collider.CompareTag("TeleportArea"))
                 {
-                    _lineRendererCaster.ShowValidTeleport(_playerInput.ControllerRight.transform.position, hit.point,
-                        1);
+                    if (Vector3.Distance(_playerInput.Player.transform.position, hit.point) <= TeleportMaxRange)
+                    {
+                        _lineRendererCaster.ShowValidTeleport(_playerInput.ControllerRight.transform.position, hit.point,
+                            1);
 
-                    var offsetPos = _playerInput.Head.transform.position - transform.position;
+                        var offsetPos = _playerInput.Head.transform.position - transform.position;
 
-                    _teleportTarget = hit.point - offsetPos;
-                    _teleportTarget.y = hit.point.y + 0.01f;
+                        _teleportTarget = hit.point - offsetPos;
+                        _teleportTarget.y = hit.point.y + 0.01f;
+                    }
+                    
+                    else
+                    {
+                        _lineRendererCaster.ShowInvalidTeleport(_playerInput.ControllerRight.transform.position, hit.point,
+                            1);
+                        _teleportTarget = Vector3.zero;
+                    }
                 }
                 else
                 {

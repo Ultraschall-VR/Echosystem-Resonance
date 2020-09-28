@@ -344,7 +344,6 @@ public class PlayerInteraction : MonoBehaviour
                 _playerInput.ControllerRight.transform.rotation, t));
             yield return null;
         }
-
         _routineRunning = false;
     }
 
