@@ -210,7 +210,7 @@ public class PlayerInteraction : MonoBehaviour
             _playerInput.ControllerRight.transform.forward, out hit,
             _maxDistance))
         {
-            var sphereRadius = 2f;
+            var sphereRadius = 0.5f;
             Collider[] colliders = Physics.OverlapSphere(hit.point, sphereRadius);
 
             var kdList = new KdTree<Collider>();

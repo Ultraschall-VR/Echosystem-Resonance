@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SyncPosition : MonoBehaviour
+public class SyncTransform : MonoBehaviour
 {
     [SerializeField] private bool _targetIsPlayer;
     [SerializeField] private GameObject _target;
@@ -10,6 +10,8 @@ public class SyncPosition : MonoBehaviour
     [SerializeField] private bool _xAxis;
     [SerializeField] private bool _yAxis;
     [SerializeField] private bool _zAxis;
+
+    [SerializeField] private bool _syncRotation;
 
     private Vector3 _position;
     private Vector3 _targetPosition;
@@ -33,6 +35,11 @@ public class SyncPosition : MonoBehaviour
         if (_target != null)
         {
             _targetPosition = _target.transform.position;
+        }
+
+        if (_syncRotation)
+        {
+            transform.rotation = _target.transform.rotation;
         }
         
         if (_xAxis)
