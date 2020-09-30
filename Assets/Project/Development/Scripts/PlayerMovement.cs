@@ -46,12 +46,8 @@ public class PlayerMovement : MonoBehaviour
         _speed = JoystickMovementSpeed;
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        CalculateCollider();
-        CalculatePhysics();
-        FixRotation();
-
         if (JoystickMovement)
         {
             CalculateJoystickMovement();
@@ -61,6 +57,13 @@ public class PlayerMovement : MonoBehaviour
         {
             CalculateTeleportation();
         }
+    }
+
+    private void Update()
+    {
+        CalculateCollider();
+        CalculatePhysics();
+        FixRotation();
     }
 
     private void CalculateCollider()

@@ -21,11 +21,15 @@ public class VRInteractable : MonoBehaviour
         CollisionMass = 1;
         
         // Deactivate collision with ramps which are for player movement only
-        var ramps = GameObject.FindObjectOfType<Ramps>().RampColliders;
 
-        foreach (var ramp in ramps)
+        if (GameObject.FindObjectOfType<Ramps>())
         {
-            Physics.IgnoreCollision(GetComponent<Collider>(), ramp);
+            var ramps = GameObject.FindObjectOfType<Ramps>().RampColliders;
+            
+            foreach (var ramp in ramps)
+            {
+                Physics.IgnoreCollision(GetComponent<Collider>(), ramp);
+            }
         }
     }
 
