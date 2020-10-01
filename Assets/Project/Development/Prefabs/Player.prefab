@@ -2214,10 +2214,10 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6455501167829242766}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: fabaf1e575ec542409d32e230e07b551, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.05
+  m_Radius: 0.01
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
@@ -2264,6 +2264,9 @@ MonoBehaviour:
   _playerInput: {fileID: 26677170906082817}
   _playerStateMachine: {fileID: 8564031942041354891}
   _lineRendererCaster: {fileID: 2092961536}
+  _teleportIgnoreLayer:
+    serializedVersion: 2
+    m_Bits: 3895
   TeleportEnabled: 1
   TeleportMovementSpeed: 4
   TeleportMaxRange: 0

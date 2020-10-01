@@ -11,5 +11,15 @@ public class NoGoZone : MonoBehaviour
         {
             _spawner.MovePlayer(_spawnPos.position, _spawnPos.rotation);
         }
+        
+        if(other.gameObject.GetComponent<VRInteractable>())
+        {
+            var interactable = other.gameObject.GetComponent<VRInteractable>();
+            var offsetPos = new Vector3(interactable.InitialPos.x, interactable.InitialPos.y + 0.01f, interactable.InitialPos.z);
+            
+            
+            other.transform.position = offsetPos;
+            other.transform.rotation = interactable.InitialRot;
+        }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerSpawner : MonoBehaviour
 {
@@ -25,6 +23,8 @@ public class PlayerSpawner : MonoBehaviour
     public void InstantiatePlayer(Vector3 position, Quaternion rotation)
     {
         PlayerInstance = Instantiate(_playerPrefab, position, rotation);
+        PrototypeProgress.Instance.PlayerInstance = PlayerInstance;
+        
         PlayerInstance.name = _playerPrefab.name;
 
         if (_joystickMovement)
@@ -48,6 +48,8 @@ public class PlayerSpawner : MonoBehaviour
         PlayerInstance.GetComponent<PlayerMovement>().JoystickMovementSpeed = _joystickMovementSpeed;
         PlayerInstance.GetComponent<PlayerMovement>().TeleportMovementSpeed = _teleportMovementSpeed;
         PlayerInstance.GetComponent<PlayerMovement>().TeleportMaxRange = _teleportMaxRange;
+
+
     }
 
     public void MovePlayer(Vector3 position, Quaternion rotation)

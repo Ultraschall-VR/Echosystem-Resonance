@@ -7,8 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private PlayerInput _playerInput;
     [SerializeField] private PlayerStateMachine _playerStateMachine;
     [SerializeField] private LineRendererCaster _lineRendererCaster;
-    
-    
+    [SerializeField] private LayerMask _teleportIgnoreLayer;
 
     public bool TeleportEnabled;
     public float TeleportMovementSpeed;
@@ -44,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
         _isTeleporting = false;
         _teleportCooldownDone = true;
         _speed = JoystickMovementSpeed;
+        _rigidbody.detectCollisions = true;
     }
 
     private void FixedUpdate()
@@ -103,9 +103,10 @@ public class PlayerMovement : MonoBehaviour
             _playerStateMachine.TeleportState = true;
 
             RaycastHit hit;
+
             if (Physics.Raycast(_playerInput.ControllerRight.transform.position,
                 -_playerInput.ControllerRight.transform.up + _playerInput.ControllerRight.transform.forward, out hit,
-                Mathf.Infinity))
+                Mathf.Infinity, _teleportIgnoreLayer))
             {
                 _lineRendererCaster.RaycastTarget.position = hit.point;
                 
@@ -119,7 +120,7 @@ public class PlayerMovement : MonoBehaviour
                         var offsetPos = _playerInput.Head.transform.position - transform.position;
 
                         _teleportTarget = hit.point - offsetPos;
-                        _teleportTarget.y = hit.point.y + 0.01f;
+                        _teleportTarget.y = hit.point.y + 0.1f;
                     }
                     
                     else
@@ -208,8 +209,11 @@ public class PlayerMovement : MonoBehaviour
         {
             if (_heavyMassCollision)
             {
+                _rigidbody.detectCollisions = true;
                 yield break;
             }
+            
+            _rigidbody.detectCollisions = false;
 
             t += Time.fixedDeltaTime * TeleportMovementSpeed;
 
@@ -217,6 +221,8 @@ public class PlayerMovement : MonoBehaviour
             rb.MoveRotation(Quaternion.Lerp(rb.rotation, rb.rotation, t));
             yield return null;
         }
+        
+        _rigidbody.detectCollisions = true;
     }
 
     private void OnTriggerExit(Collider other)

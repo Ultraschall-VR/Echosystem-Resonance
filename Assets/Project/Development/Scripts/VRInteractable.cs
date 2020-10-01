@@ -8,7 +8,11 @@ public class VRInteractable : MonoBehaviour
     [SerializeField] private Material _uncoveredMaterial;
     [SerializeField] private MeshRenderer _mesh;
 
+    [HideInInspector] public Vector3 InitialPos;
+    [HideInInspector] public Quaternion InitialRot;
+
     public bool IsCovered;
+    public bool isTeleportable;
     
     public Material ActiveMaterial;
     
@@ -18,6 +22,8 @@ public class VRInteractable : MonoBehaviour
 
     void Start()
     {
+        InitialPos = transform.position;
+        InitialRot = transform.rotation;
         CollisionMass = 1;
         
         // Deactivate collision with ramps which are for player movement only
