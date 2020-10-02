@@ -8,26 +8,15 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private PlayerInput _playerInput;
     [SerializeField] private PlayerStateMachine _playerStateMachine;
     [SerializeField] private LineRendererCaster _lineRendererCaster;
-
-    [Header("GRAB")] public Transform PlayerHand;
+    
+    public Transform PlayerHand;
     public GameObject ActiveObject = null;
 
     [SerializeField] private float _maxDistance;
     [SerializeField] private List<GameObject> _hands;
     [SerializeField] private float _grabSpeed;
     [SerializeField] private Material _grabMaterial;
-
-    [Header("SHOCKWAVEGENERATOR")] [SerializeField]
-    private ShockwaveGenerator shockwaveGenerator;
-
-    [Header("AUDIOPROJECTILE")] [SerializeField]
-    private GameObject _audioProjectilePrefab;
-
-    private bool _audioProjectileIsCharging;
-    private float _projectilePower;
-    private GameObject _audioProjectile;
-    private bool _projectileInstantiated;
-
+    
     private bool _objectInHand;
     private Collider _playerCollider;
 
@@ -44,18 +33,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             return;
         }
-
-        if (!_playerStateMachine.TeleportState && !_playerStateMachine.GrabState && !_playerStateMachine.ShockWaveState)
-        {
-            AUDIOPROJECTILE();
-        }
-
-        if (!_playerStateMachine.TeleportState && !_playerStateMachine.GrabState &&
-            !_playerStateMachine.AudioProjectileState)
-        {
-            SHOCKWAVEGENERATOR();
-        }
-
+        
         if (!_playerStateMachine.TeleportState && !_playerStateMachine.ShockWaveState &&
             !_playerStateMachine.AudioProjectileState)
         {
@@ -71,8 +49,6 @@ public class PlayerInteraction : MonoBehaviour
         _playerStateMachine.ShockWaveState = false;
         _playerStateMachine.GrabState = false;
         _playerStateMachine.AudioProjectileState = false;
-        _audioProjectileIsCharging = false;
-        _projectileInstantiated = false;
 
         foreach (var hand in _hands)
         {
@@ -84,85 +60,6 @@ public class PlayerInteraction : MonoBehaviour
             }
         }
     }
-
-    #region AUDIOPROJECTILE
-
-    private void AUDIOPROJECTILE()
-    {
-        var maxDistance = 0.15f;
-
-        if (_playerInput.RightTriggerPressed.state && _playerInput.LeftGripPressed)
-        {
-            if (Vector3.Distance(_playerInput.ControllerLeft.transform.position,
-                _playerInput.ControllerRight.transform.position) < maxDistance && !_audioProjectileIsCharging)
-            {
-                _audioProjectileIsCharging = true;
-            }
-        }
-
-        if (_audioProjectileIsCharging && _playerInput.RightTriggerPressed.state)
-        {
-            AUDIOPROJECTILE_Charge();
-            _projectileInstantiated = true;
-        }
-
-        if (_audioProjectileIsCharging && !_playerInput.RightTriggerPressed.state)
-        {
-            AUDIOPROJECTILE_Shoot();
-            _projectileInstantiated = false;
-            _audioProjectileIsCharging = false;
-        }
-    }
-
-    private void AUDIOPROJECTILE_Charge()
-    {
-        _projectilePower = Vector3.Distance(_playerInput.ControllerLeft.transform.position,
-            _playerInput.ControllerRight.transform.position);
-
-        var projectilePos = _playerInput.ControllerLeft.transform.position;
-
-        if (!_projectileInstantiated)
-        {
-            _audioProjectile = Instantiate(_audioProjectilePrefab, projectilePos, Quaternion.identity);
-        }
-
-        _audioProjectile.transform.forward = _playerInput.ControllerLeft.transform.position -
-                                             _playerInput.ControllerRight.transform.position;
-        _audioProjectile.transform.position = _playerInput.ControllerLeft.transform.position;
-
-        var audioProjectileScript = _audioProjectile.GetComponent<AudioProjectile>();
-
-        audioProjectileScript.Show();
-        audioProjectileScript.Rb.isKinematic = true;
-        audioProjectileScript.Rb.useGravity = false;
-
-        _playerStateMachine.AudioProjectileState = true;
-    }
-
-    private void AUDIOPROJECTILE_Drop()
-    {
-    }
-
-    private void AUDIOPROJECTILE_Shoot()
-    {
-        var audioProjectileScript = _audioProjectile.GetComponent<AudioProjectile>();
-
-        audioProjectileScript.EnableCollision();
-        audioProjectileScript.Show();
-        audioProjectileScript.DestroyProjectile(5f);
-
-        audioProjectileScript.Rb.isKinematic = false;
-        audioProjectileScript.Rb.useGravity = true;
-
-        audioProjectileScript.Rb.AddForce(_audioProjectile.transform.forward * _projectilePower * 500,
-            ForceMode.Impulse);
-
-        _playerStateMachine.AudioProjectileState = false;
-    }
-
-    #endregion
-
-    #region GRAB
 
     private void GRAB()
     {
@@ -294,28 +191,6 @@ public class PlayerInteraction : MonoBehaviour
             ActiveObject = null;
         }
     }
-
-    #endregion
-
-    #region SHOCKWAVEGENERATOR
-
-    private void SHOCKWAVEGENERATOR()
-    {
-        if (_playerInput.LeftTriggerPressed.state && _playerInput.RightTriggerPressed.state)
-        {
-            _playerStateMachine.ShockWaveState = true;
-            shockwaveGenerator.GenerateShockwave();
-        }
-
-        if (!_playerInput.LeftTriggerPressed.state && !_playerInput.RightTriggerPressed.state &&
-            _playerStateMachine.ShockWaveState)
-        {
-            _playerStateMachine.ShockWaveState = false;
-            shockwaveGenerator.FireShockwave(transform.position);
-        }
-    }
-
-    #endregion
 
     #region Helpers
 

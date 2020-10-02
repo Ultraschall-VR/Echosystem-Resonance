@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
-using Valve.VR.InteractionSystem;
 
 public class VRHand : MonoBehaviour
 {
@@ -12,6 +10,9 @@ public class VRHand : MonoBehaviour
     private Rigidbody _rb;
     
     [SerializeField] private GameObject _inputHand;
+    [SerializeField] private bool _isRightHand;
+
+    public SteamVR_Action_Vibration hapticAction;
 
     private bool _collision = false;
 
@@ -24,5 +25,17 @@ public class VRHand : MonoBehaviour
     private void Update()
     {
         transform.rotation = _inputHand.transform.rotation;
+    }
+
+    private void OnCollisionStay(Collision other)
+    {
+        if (_isRightHand)
+        {
+            hapticAction.Execute(0, 0.05f, 70, Vector3.Distance(transform.position, _inputHand.transform.position)/2, SteamVR_Input_Sources.RightHand);
+        }
+        else
+        {
+            hapticAction.Execute(0, 0.05f, 70, Vector3.Distance(transform.position, _inputHand.transform.position)/2, SteamVR_Input_Sources.LeftHand);
+        }
     }
 }
