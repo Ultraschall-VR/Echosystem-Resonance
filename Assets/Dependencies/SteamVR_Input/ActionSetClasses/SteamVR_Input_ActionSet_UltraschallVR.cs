@@ -81,6 +81,22 @@ namespace Valve.VR
             }
         }
         
+        public virtual SteamVR_Action_Boolean LeftGripPressed
+        {
+            get
+            {
+                return SteamVR_Actions.ultraschallVR_LeftGripPressed;
+            }
+        }
+        
+        public virtual SteamVR_Action_Single LeftGripForce
+        {
+            get
+            {
+                return SteamVR_Actions.ultraschallVR_LeftGripForce;
+            }
+        }
+        
         public virtual SteamVR_Action_Vibration Haptic
         {
             get

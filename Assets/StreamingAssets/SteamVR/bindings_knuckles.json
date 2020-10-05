@@ -115,16 +115,25 @@
                   }
                },
                "mode" : "button",
-               "path" : "/user/hand/left/input/a"
+               "path" : "/user/hand/right/input/a"
             },
             {
                "inputs" : {
-                  "held" : {
-                     "output" : "/actions/ultraschallvr/in/rightapressed"
+                  "force" : {
+                     "output" : "/actions/ultraschallvr/in/leftgripforce"
                   }
                },
-               "mode" : "button",
-               "path" : "/user/hand/right/input/a"
+               "mode" : "force_sensor",
+               "path" : "/user/hand/left/input/grip"
+            },
+            {
+               "inputs" : {
+                  "force" : {
+                     "output" : "/actions/ultraschallvr/in/leftgripforce"
+                  }
+               },
+               "mode" : "force_sensor",
+               "path" : "/user/hand/right/input/grip"
             }
          ]
       }

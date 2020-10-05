@@ -7,9 +7,8 @@ public class PlayerInteraction : MonoBehaviour
 {
     [SerializeField] private PlayerInput _playerInput;
     [SerializeField] private PlayerStateMachine _playerStateMachine;
+    [SerializeField] private LineRendererCaster _lineRendererCaster;
     
-    
-    [Header("GRAB")]
     public Transform PlayerHand;
     public GameObject ActiveObject = null;
 
@@ -17,16 +16,12 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private List<GameObject> _hands;
     [SerializeField] private float _grabSpeed;
     [SerializeField] private Material _grabMaterial;
-
-    [Header("SHOCKWAVEGENERATOR")] 
-    [SerializeField] private ShockwaveGenerator shockwaveGenerator;
-
-    private Transform _tip;
+    
     private bool _objectInHand;
     private Collider _playerCollider;
 
     private bool _routineRunning;
-    
+
     void Start()
     {
         Initialize();
@@ -34,29 +29,26 @@ public class PlayerInteraction : MonoBehaviour
 
     void Update()
     {
-        if (!_playerStateMachine.TeleportState)
+        if (_playerStateMachine.TeleportState)
         {
-            if (!_playerStateMachine.ShockWaveState)
-            {
-                GRAB();
-            }
-
-            if (!_playerStateMachine.GrabState)
-            {
-                SHOCKWAVEGENERATOR();
-            }
+            return;
+        }
+        
+        if (!_playerStateMachine.TeleportState && !_playerStateMachine.ShockWaveState &&
+            !_playerStateMachine.AudioProjectileState)
+        {
+            GRAB();
         }
     }
 
     private void Initialize()
     {
-        _tip = PlayerHand.GetComponent<PlayerHand>().LineRenderer;
-        _tip.GetComponent<LineRenderer>().enabled = false;
         _playerCollider = GetComponent<Collider>();
         _objectInHand = false;
         _routineRunning = false;
         _playerStateMachine.ShockWaveState = false;
         _playerStateMachine.GrabState = false;
+        _playerStateMachine.AudioProjectileState = false;
 
         foreach (var hand in _hands)
         {
@@ -69,14 +61,12 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-    #region GRAB
-
     private void GRAB()
     {
         _playerStateMachine.GrabState = true;
-        
+
         GRAB_CalculateRaycast();
-        
+
         if (_objectInHand)
         {
             GRAB_Grab(ActiveObject);
@@ -106,32 +96,52 @@ public class PlayerInteraction : MonoBehaviour
 
     private void GRAB_CalculateRaycast()
     {
-        _tip.GetComponent<LineRenderer>().enabled = false;
+        if (!_playerInput.RightTriggerPressed.state && ActiveObject)
+        {
+            _objectInHand = false;
+        }
+
         RaycastHit hit;
 
-        if (Physics.Raycast(_tip.transform.position, _tip.transform.forward, out hit, _maxDistance))
+        if (Physics.Raycast(_playerInput.ControllerRight.transform.position,
+            _playerInput.ControllerRight.transform.forward, out hit,
+            _maxDistance))
         {
-            if (hit.transform.gameObject.GetComponent<VRInteractable>())
+            var sphereRadius = 0.5f;
+            Collider[] colliders = Physics.OverlapSphere(hit.point, sphereRadius);
+
+            var kdList = new KdTree<Collider>();
+
+            foreach (var collider in colliders)
             {
+                if (collider.GetComponent<VRInteractable>())
+                {
+                    kdList.Add(collider);
+                }
+            }
+
+            var nearestDist = float.MaxValue;
+
+            foreach (var colliderHit in kdList)
+            {
+                if (colliderHit.gameObject.name == "Player")
+                {
+                    return;
+                }
+
+                var nearestObject = kdList.FindClosest(hit.point);
+
                 if (!_playerInput.RightTriggerPressed.state)
                 {
-                    _tip.GetComponent<LineRenderer>().enabled = true;
+                    _lineRendererCaster.ShowGrab(_playerInput.ControllerRight.transform.position,
+                        nearestObject.transform.position, 8);
                 }
 
                 if (_playerInput.RightTriggerPressed.state && ActiveObject == null)
                 {
-                    _tip.GetComponent<LineRenderer>().enabled = false;
-                    ActiveObject = hit.transform.gameObject;
+                    ActiveObject = nearestObject.transform.gameObject;
                     _objectInHand = true;
-                }
-            }
-
-            else
-            {
-                if (!_playerInput.RightTriggerPressed.state && ActiveObject)
-                {
-                    _objectInHand = false;
-                    Debug.Log("Drop");
+                    _lineRendererCaster.Hide();
                 }
             }
         }
@@ -153,8 +163,8 @@ public class PlayerInteraction : MonoBehaviour
 
         if (!_routineRunning)
         {
-            rb.position = _tip.transform.position;
-            rb.rotation = _tip.transform.rotation;
+            rb.position = _playerInput.ControllerRight.transform.position;
+            rb.rotation = _playerInput.ControllerRight.transform.rotation;
         }
     }
 
@@ -182,34 +192,13 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-    #endregion
-
-    #region SHOCKWAVEGENERATOR
-    private void SHOCKWAVEGENERATOR()
-    {
-        if (_playerInput.LeftTriggerPressed.state && _playerInput.RightTriggerPressed.state)
-        {
-            _playerStateMachine.ShockWaveState = true;
-            Debug.Log("_frequencyBlaster.GenerateBlast()");
-            shockwaveGenerator.GenerateShockwave();
-        }
-        if (!_playerInput.LeftTriggerPressed.state && !_playerInput.RightTriggerPressed.state && _playerStateMachine.ShockWaveState)
-        {
-            _playerStateMachine.ShockWaveState = false;
-            Debug.Log("_frequencyBlaster.FireBlast()");
-            shockwaveGenerator.FireShockwave(transform.position);
-        }
-    }
-
-    #endregion
-
     #region Helpers
 
     private IEnumerator MoveToPosition(GameObject target, Rigidbody interactable)
     {
         float t = 0;
         float timer = 0.5f;
-        
+
         interactable.useGravity = false;
 
         var speed = _grabSpeed * interactable.mass;
@@ -220,15 +209,16 @@ public class PlayerInteraction : MonoBehaviour
             {
                 yield break;
             }
-            
+
             _routineRunning = true;
             t += Time.fixedDeltaTime / speed;
-            
-            interactable.MovePosition(Vector3.Lerp(target.transform.position, _tip.transform.position, t));
-            interactable.MoveRotation(Quaternion.Lerp(target.transform.rotation, _tip.transform.rotation, t));
+
+            interactable.MovePosition(Vector3.Lerp(target.transform.position,
+                _playerInput.ControllerRight.transform.position, t));
+            interactable.MoveRotation(Quaternion.Lerp(target.transform.rotation,
+                _playerInput.ControllerRight.transform.rotation, t));
             yield return null;
         }
-
         _routineRunning = false;
     }
 
