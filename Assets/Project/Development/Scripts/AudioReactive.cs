@@ -1,47 +1,92 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class AudioReactive : MonoBehaviour
 {
-    private Uncovering _uncovering;
-    [SerializeField] private List<MeshRenderer> _meshes;
+    [SerializeField] public List<MeshRenderer> Meshes;
+    [SerializeField] private Material _audioReactiveMat;
+    [SerializeField] private Material _uncoveredMat;
     
     private static readonly int ObjectPos = Shader.PropertyToID("ObjectPos");
     private static readonly int Radius = Shader.PropertyToID("Radius");
 
+    [SerializeField] private bool _singleMesh;
+
     private bool _initialized = false;
 
+    private float _power;
+
+    private bool _conceal = false;
+    
     void Start()
     {
-        Invoke("Initialize", 2f);
+        Initialize();
     }
 
     private void Initialize()
     {
-        if (!GameObject.Find("Uncovering").GetComponent<Uncovering>())
+        if (_singleMesh)
         {
-            throw new Exception("No Uncovering Component found.");
-            return;
+            Meshes.Add(GetComponent<MeshRenderer>());
         }
         
-        _uncovering = GameObject.Find("Uncovering").GetComponent<Uncovering>();
-        _initialized = true;
+        foreach (var mesh in Meshes)
+        {
+            mesh.material = _audioReactiveMat;
+        }
+    }
+
+    private void Update()
+    {
+        foreach (var mesh in Meshes)
+        {
+            mesh.material.SetFloat(Radius, _power * 500);
+        }
+    }
+
+    public void Reveal(Vector3 position, float power)
+    {
+        foreach (var mesh in Meshes)
+        {
+            mesh.material.SetVector(ObjectPos, position);
+            _power = power;
+        }
+
+        _conceal = false;
+    }
+
+    public void Conceal(float speed)
+    {
+        if (!_conceal)
+        {
+            StartCoroutine(Conceal(0,speed)); 
+        }
+    }
+
+    public void Uncover()
+    {
+        foreach (var mesh in Meshes)
+        {
+            mesh.material = _uncoveredMat;
+        }
     }
     
-    void Update()
+    private IEnumerator Conceal(float targetValue, float speed)
     {
-        if (!_initialized)
+        float t = 0;
+        float timer = 0.5f;
+
+        while (t <= timer)
         {
-            return;
-        }
-        
-        foreach (var mesh in _meshes)
-        {
-            mesh.material.SetVector(ObjectPos, this._uncovering.transform.position);
-            mesh.material.SetFloat(Radius, _uncovering.Power * 500);
+            _conceal = true;
+            
+            t += Time.fixedDeltaTime / speed;
+
+            _power = Mathf.Lerp(_power, targetValue, t);
+            
+            yield return null;
         }
     }
 }
