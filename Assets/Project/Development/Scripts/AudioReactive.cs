@@ -2,12 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class AudioReactive : MonoBehaviour
 {
     [SerializeField] public List<MeshRenderer> Meshes;
+    [SerializeField] public List<Collider> Colliders;
     [SerializeField] private Material _audioReactiveMat;
-    [SerializeField] private Material _uncoveredMat;
+    private Rigidbody _rb;
+    private Material _uncoveredMat;
     
     private static readonly int ObjectPos = Shader.PropertyToID("ObjectPos");
     private static readonly int Radius = Shader.PropertyToID("Radius");
@@ -22,6 +25,7 @@ public class AudioReactive : MonoBehaviour
     
     void Start()
     {
+        _rb = GetComponent<Rigidbody>();
         Initialize();
     }
 
@@ -30,19 +34,23 @@ public class AudioReactive : MonoBehaviour
         if (_singleMesh)
         {
             Meshes.Add(GetComponent<MeshRenderer>());
+            Colliders.Add(GetComponent<Collider>());
         }
         
         foreach (var mesh in Meshes)
         {
+            _uncoveredMat = mesh.material;
             mesh.material = _audioReactiveMat;
         }
+
+        Cover();
     }
 
     private void Update()
     {
         foreach (var mesh in Meshes)
         {
-            mesh.material.SetFloat(Radius, _power * 500);
+            mesh.material.SetFloat(Radius, _power);
         }
     }
 
@@ -70,6 +78,20 @@ public class AudioReactive : MonoBehaviour
         foreach (var mesh in Meshes)
         {
             mesh.material = _uncoveredMat;
+            mesh.shadowCastingMode = ShadowCastingMode.On;
+            gameObject.tag = "TeleportArea";
+            gameObject.layer = 10;
+        }
+    }
+
+    public void Cover()
+    {
+        foreach (var mesh in Meshes)
+        {
+            mesh.material = _audioReactiveMat;
+            mesh.shadowCastingMode = ShadowCastingMode.Off;
+            gameObject.tag = "Covered";
+            gameObject.layer = 13;
         }
     }
     

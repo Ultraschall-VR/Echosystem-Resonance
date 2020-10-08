@@ -34,8 +34,8 @@ public class PlayerInteraction : MonoBehaviour
             return;
         }
         
-        if (!_playerStateMachine.TeleportState && !_playerStateMachine.ShockWaveState &&
-            !_playerStateMachine.AudioProjectileState)
+        if (!_playerStateMachine.TeleportState && !_playerStateMachine.Uncovering &&
+            !_playerStateMachine.AudioProjectileState && !_playerStateMachine.Uncovering)
         {
             GRAB();
         }
@@ -46,7 +46,7 @@ public class PlayerInteraction : MonoBehaviour
         _playerCollider = GetComponent<Collider>();
         _objectInHand = false;
         _routineRunning = false;
-        _playerStateMachine.ShockWaveState = false;
+        _playerStateMachine.Uncovering = false;
         _playerStateMachine.GrabState = false;
         _playerStateMachine.AudioProjectileState = false;
 

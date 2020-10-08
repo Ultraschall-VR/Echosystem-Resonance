@@ -6,6 +6,7 @@ using UnityEngine;
 public class Uncovering : MonoBehaviour
 {
     [SerializeField] private PlayerInput _playerInput;
+    [SerializeField] private PlayerStateMachine _playerStateMachine;
     [SerializeField] private AudioSource _riserAudio;
     [SerializeField] private float _concealSpeed;
 
@@ -39,6 +40,8 @@ public class Uncovering : MonoBehaviour
     {
         if (_playerInput.LeftTriggerPressed.state && _playerInput.RightTriggerPressed.state)
         {
+            _playerStateMachine.Uncovering = true;
+            
             _riserAudio.pitch = Vector3.Distance(_leftHand.position, _rightHand.position);
 
             Power = _riserAudio.pitch;
@@ -56,6 +59,7 @@ public class Uncovering : MonoBehaviour
         else
         {
             _riserAudio.Stop();
+            _playerStateMachine.Uncovering = false;
 
             foreach (var audioReactive in _audioReactives)
             {

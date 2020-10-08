@@ -2217,7 +2217,7 @@ CapsuleCollider:
   m_Material: {fileID: 13400000, guid: fabaf1e575ec542409d32e230e07b551, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.01
+  m_Radius: 0.2
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
@@ -2266,7 +2266,7 @@ MonoBehaviour:
   _lineRendererCaster: {fileID: 2092961536}
   _teleportIgnoreLayer:
     serializedVersion: 2
-    m_Bits: 3895
+    m_Bits: 1847
   TeleportEnabled: 1
   TeleportMovementSpeed: 4
   TeleportMaxRange: 0
@@ -2346,7 +2346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1389d5fe1c66bdd43935f64377b03c99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShockWaveState: 0
+  Uncovering: 0
   GrabState: 0
   TeleportState: 0
   AudioProjectileState: 0
@@ -3884,8 +3884,13 @@ PrefabInstance:
     - target: {fileID: 5257540230228758126, guid: 3048b2447cfe6064e8c3fc369ece8d96,
         type: 3}
       propertyPath: _concealSpeed
-      value: 2500
+      value: 1000
       objectReference: {fileID: 0}
+    - target: {fileID: 5257540230228758126, guid: 3048b2447cfe6064e8c3fc369ece8d96,
+        type: 3}
+      propertyPath: _playerStateMachine
+      value: 
+      objectReference: {fileID: 8564031942041354891}
     - target: {fileID: 6022882138332354584, guid: 3048b2447cfe6064e8c3fc369ece8d96,
         type: 3}
       propertyPath: m_LocalPosition.x
