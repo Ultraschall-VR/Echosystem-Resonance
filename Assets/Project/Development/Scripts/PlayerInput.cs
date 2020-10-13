@@ -6,15 +6,20 @@ public class PlayerInput : MonoBehaviour
     public GameObject ControllerLeft;
     public GameObject ControllerRight;
 
+    public Collider ControllerLeftCollider;
+    public Collider ControllerRightCollider;
+
     public bool RightHanded;
     public Transform PlayerHand;
 
     public SteamVR_Action_Boolean TouchpadPressed;
     public SteamVR_Action_Vector2 TouchpadPosition;
-    public SteamVR_Action_Boolean AnyTriggerPressed;
 
     public SteamVR_Action_Boolean LeftTriggerPressed;
     public SteamVR_Action_Boolean RightTriggerPressed;
+
+    public bool LeftGripPressed;
+    public SteamVR_Action_Single LeftGripForce;
 
     public SteamVR_Action_Boolean RightAPressed;
 
@@ -32,12 +37,13 @@ public class PlayerInput : MonoBehaviour
             PlayerHand = ControllerLeft.transform;
         }
 
-
-        if (RightAPressed.state)
+        if (LeftGripForce.axis >= 1)
         {
-            Debug.Log(RightAPressed);
+            LeftGripPressed = true;
+        }
+        else
+        {
+            LeftGripPressed = false;
         }
     }
-    
-    
 }
