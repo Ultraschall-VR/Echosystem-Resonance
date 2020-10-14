@@ -91,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        if (_playerStateMachine.GrabState || _playerStateMachine.ShockWaveState)
+        if (_playerStateMachine.GrabState || _playerStateMachine.Uncovering)
         {
             return;
         }

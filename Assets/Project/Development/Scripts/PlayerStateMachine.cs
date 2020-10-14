@@ -2,7 +2,7 @@
 
 public class PlayerStateMachine : MonoBehaviour
 {
-    public bool ShockWaveState = false;
+    public bool Uncovering = false;
     public bool GrabState = false;
     public bool TeleportState = false;
     public bool AudioProjectileState = false;

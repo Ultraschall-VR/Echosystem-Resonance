@@ -23,7 +23,7 @@ public class PlayerSpawner : MonoBehaviour
     public void InstantiatePlayer(Vector3 position, Quaternion rotation)
     {
         PlayerInstance = Instantiate(_playerPrefab, position, rotation);
-        PrototypeProgress.Instance.PlayerInstance = PlayerInstance;
+        //PrototypeProgress.Instance.PlayerInstance = PlayerInstance;
         
         PlayerInstance.name = _playerPrefab.name;
 
