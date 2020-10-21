@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4786295219124869369}
   - component: {fileID: 4786295219124869368}
   m_Layer: 0
-  m_Name: Spawner
+  m_Name: '[PlayerSpawner]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,8 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b273ec87de8f88d49b84007fb4e4ef55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerPrefab: {fileID: 6455501167829242766, guid: 3b2ab9df6fec45444b64f5b48fb36a73,
+  NonVR: 0
+  _vrPlayerPrefab: {fileID: 6455501167829242766, guid: 3b2ab9df6fec45444b64f5b48fb36a73,
     type: 3}
+  _nonVrPlayerPrefab: {fileID: 100000, guid: b5e43b7595b38124aba44858e283c6ef, type: 3}
   _playerSpawn: {fileID: 4786295220804956369}
   _joystickMovement: 1
   _joystickMovementSpeed: 6
