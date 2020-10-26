@@ -29,6 +29,11 @@ public class PlayerInteraction : MonoBehaviour
 
     void Update()
     {
+        if (PlayerSpawner.Instance.IsMenu)
+        {
+            return;
+        }
+        
         if (_playerStateMachine.TeleportState)
         {
             return;

@@ -8,6 +8,7 @@ public class VRHand : MonoBehaviour
     private RigidbodyConstraints _initialConstraints;
 
     private Rigidbody _rb;
+    private bool _initialized = false;
     
     [SerializeField] private GameObject _inputHand;
     [SerializeField] private bool _isRightHand;
@@ -18,8 +19,14 @@ public class VRHand : MonoBehaviour
 
     private void Start()
     {
+        Invoke("Initialize",2f);
+    }
+
+    private void Initialize()
+    {
         _rb = GetComponent<Rigidbody>();
         _initialConstraints = _rb.constraints;
+        _initialized = true;
     }
 
     private void Update()
@@ -29,6 +36,8 @@ public class VRHand : MonoBehaviour
 
     private void OnCollisionStay(Collision other)
     {
+        if (!_initialized) return;
+        /*
         if (_isRightHand)
         {
             hapticAction.Execute(0, 0.05f, 70, Vector3.Distance(transform.position, _inputHand.transform.position)/2, SteamVR_Input_Sources.RightHand);
@@ -36,6 +45,6 @@ public class VRHand : MonoBehaviour
         else
         {
             hapticAction.Execute(0, 0.05f, 70, Vector3.Distance(transform.position, _inputHand.transform.position)/2, SteamVR_Input_Sources.LeftHand);
-        }
+        }*/
     }
 }

@@ -18,6 +18,8 @@ public class PlayerInput : MonoBehaviour
     public SteamVR_Action_Boolean LeftTriggerPressed;
     public SteamVR_Action_Boolean RightTriggerPressed;
 
+    public SteamVR_Action_Boolean BButtonPressed;
+
     public bool LeftGripPressed;
     public SteamVR_Action_Single LeftGripForce;
 

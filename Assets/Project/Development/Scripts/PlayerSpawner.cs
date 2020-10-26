@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerSpawner : MonoBehaviour
 { 
     public bool NonVR;
+    public bool IsMenu;
     
     [SerializeField] private GameObject _vrPlayerPrefab;
     [SerializeField] private GameObject _nonVrPlayerPrefab;
