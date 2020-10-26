@@ -6,6 +6,7 @@ using UnityEngine;
 public class Uncovering : MonoBehaviour
 {
     [SerializeField] private PlayerInput _playerInput;
+    [SerializeField] private KeyboardInput _keyboardInput;
     [SerializeField] private PlayerStateMachine _playerStateMachine;
     [SerializeField] private AudioSource _riserAudio;
     [SerializeField] private float _concealSpeed;
@@ -27,16 +28,29 @@ public class Uncovering : MonoBehaviour
     private void Initialize()
     {
         _audioReactives = FindObjectsOfType<AudioReactive>().ToList();
+
+        if (PlayerSpawner.Instance.NonVR)
+        {
+            return;
+        }
+        
         _leftHand = _playerInput.ControllerLeft.transform;
         _rightHand = _playerInput.ControllerRight.transform;
     }
 
     void Update()
     {
-        InputHandler();
+        if (PlayerSpawner.Instance.NonVR)
+        {
+            KeyboardInputHandler();
+        }
+        else
+        {
+            VRInputHandler();
+        }
     }
 
-    private void InputHandler()
+    private void VRInputHandler()
     {
         if (_playerInput.LeftTriggerPressed.state && _playerInput.RightTriggerPressed.state)
         {
@@ -60,6 +74,35 @@ public class Uncovering : MonoBehaviour
         {
             _riserAudio.Stop();
             _playerStateMachine.Uncovering = false;
+
+            foreach (var audioReactive in _audioReactives)
+            {
+                audioReactive.Conceal(_concealSpeed);
+            }
+        }
+    }
+
+    private void KeyboardInputHandler()
+    {
+        if (_keyboardInput.UncoveringPressed)
+        {
+            _riserAudio.pitch += 0 + Time.deltaTime / 10;
+
+            Power = _riserAudio.pitch;
+
+            foreach (var audioReactive in _audioReactives)
+            {
+                audioReactive.Reveal(_playerInput.Player.transform.position, Power);
+            }
+
+            if (!_riserAudio.isPlaying)
+            {
+                _riserAudio.Play();
+            }
+        }
+        else
+        {
+            _riserAudio.Stop();
 
             foreach (var audioReactive in _audioReactives)
             {

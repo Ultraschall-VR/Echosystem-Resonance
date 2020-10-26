@@ -6,6 +6,7 @@ public class LineRendererCaster : MonoBehaviour
     [SerializeField] private Material _validTeleportMaterial;
     [SerializeField] private Material _invalidTeleportMaterial;
     [SerializeField] private Material _grabMaterial;
+    [SerializeField] private Material _uiMaterial;
     
     public Transform RaycastTarget;
 
@@ -56,6 +57,11 @@ public class LineRendererCaster : MonoBehaviour
     public void ShowGrab(Vector3 origin, Vector3 target, float arcMultiplier)
     {
         DrawLineRenderer(origin, target, arcMultiplier, _grabMaterial);
+    }
+
+    public void ShowUiRaycast(Vector3 origin, Vector3 target, float arcMultiplier)
+    {
+        DrawLineRenderer(origin, target, arcMultiplier, _uiMaterial);
     }
 
     public void Hide()
