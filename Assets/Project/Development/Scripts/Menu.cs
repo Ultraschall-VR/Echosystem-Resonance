@@ -6,7 +6,4 @@ public class Menu : MonoBehaviour
     {
         
     }
-    
-    
-    
 }
