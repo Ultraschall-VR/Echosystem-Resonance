@@ -22,7 +22,7 @@ public class Oscillator : MonoBehaviour
         timeCounter += Time.deltaTime*speed;
 
         float x = Mathf.Cos (timeCounter)*width;
-        float y = 1;
+        float y = 2;
         float z = Mathf.Sin (timeCounter)*width;
 
         transform.position = transform.localPosition + new Vector3(x, y, z);
