@@ -1,22 +1,31 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GameMenu : MonoBehaviour
 {
-
     [SerializeField] private GameObject _canvas;
     [SerializeField] private PlayerInput _playerInput;
+
+    private bool _showMenu;
     
-    // Start is called before the first frame update
     void Start()
     {
-        _canvas.SetActive(false);
+        _showMenu = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
+        if (_showMenu)
+        {
+            _canvas.SetActive(true);
+        }
+        else
+        {
+            _canvas.SetActive(false);
+        }
         
+        if (_playerInput.BButtonPressed.stateUp)
+        {
+            _showMenu = !_showMenu;
+        }
     }
 }
