@@ -56,6 +56,8 @@ public class PlayerSpawner : MonoBehaviour
         else
         {
             PlayerInstance = FindObjectOfType<PlayerMovement>().gameObject;
+            PlayerInstance.transform.position = position;
+            PlayerInstance.transform.rotation = rotation;
         }
         
         if (NonVR)
