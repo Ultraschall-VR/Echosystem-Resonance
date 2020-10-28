@@ -6,8 +6,7 @@ public class GameMenu : MonoBehaviour
 {
     [SerializeField] private PlayerInput _playerInput;
     [SerializeField] private GameObject _menuPrefab;
-
-    [HideInInspector] public bool ShowMenu;
+    public bool ShowMenu;
 
     [SerializeField] private VolumeProfile _menuPostProcessing;
     [SerializeField] private VolumeProfile _gamePostProcessing;
@@ -15,10 +14,10 @@ public class GameMenu : MonoBehaviour
     private Volume _postProcessingVolume;
 
     private GameObject _currentMenu;
-    
+
     [SerializeField] private Transform _camera;
     private RectTransform _canvas;
-    
+
     void Start()
     {
         _postProcessingVolume = FindObjectOfType<Volume>();
@@ -34,7 +33,7 @@ public class GameMenu : MonoBehaviour
         {
             _currentMenu = Instantiate(_menuPrefab, pos, Quaternion.identity);
         }
-        
+
         Calibrate();
     }
 
@@ -54,15 +53,15 @@ public class GameMenu : MonoBehaviour
             {
                 rot = _camera.eulerAngles;
             }
-            
+
             _canvas.eulerAngles = rot;
 
             if (GameStateMachine.Instance.CurrentGameState == GameStateMachine.Gamestate.MainMenu)
             {
                 return;
             }
-            
-            _canvas.localPosition = _camera.position + _camera.forward*2;
+
+            _canvas.localPosition = _camera.position + _camera.forward * 2;
             _canvas.localPosition = new Vector3(_canvas.position.x, _camera.transform.position.y, _canvas.position.z);
         }
     }
@@ -78,7 +77,6 @@ public class GameMenu : MonoBehaviour
         else
         {
             _currentMenu = Instantiate(_menuPrefab, Vector3.zero, Quaternion.identity);
-            Calibrate();
         }
     }
 
@@ -94,13 +92,13 @@ public class GameMenu : MonoBehaviour
     void Update()
     {
         GameStateMachine.Instance.MenuOpen = ShowMenu;
-        
+
         if (GameStateMachine.Instance.CurrentGameState == GameStateMachine.Gamestate.MainMenu)
         {
-            ShowMenuOverlay();
+            ShowMenu = true;
             return;
         }
-        
+
         if (ShowMenu)
         {
             ShowMenuOverlay();
@@ -113,18 +111,6 @@ public class GameMenu : MonoBehaviour
         if (_playerInput.BButtonPressed.stateUp)
         {
             ShowMenu = !ShowMenu;
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.blabla)
-        {
-            if (!audioPlayed)
-            {
-                AudioSource.play();
-                audioPlayed = true;
-            }
         }
     }
 }
