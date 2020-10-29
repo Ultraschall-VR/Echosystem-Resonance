@@ -11,7 +11,7 @@ public class AudioLight : MonoBehaviour
     Light _light;
 
     // AUDIO--------------
-   // public float updateStep = 0.1f;
+    public float updateStep = 0.1f;
     public int sampleDataLength = 1024;
 
     private float currentUpdateTime = 0f;
@@ -46,7 +46,7 @@ public class AudioLight : MonoBehaviour
     // Update is called once per frame
     private void Update() {
         currentUpdateTime += Time.deltaTime;
-        if (currentUpdateTime >= smooth) {
+        if (currentUpdateTime >= updateStep) {
             currentUpdateTime = 0f;
             _audioSource.clip.GetData(clipSampleData, _audioSource.timeSamples); //I read 1024 samples, which is about 80 ms on a 44khz stereo clip, beginning at the current sample position of the clip.
             clipLoudness = 0f;
