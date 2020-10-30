@@ -1,0 +1,88 @@
+﻿using System;
+using UnityEngine;
+
+public class AudioBow : MonoBehaviour
+{
+    [SerializeField] private PlayerInput _playerInput;
+    [SerializeField] private float _maxTriggerDistance;
+
+    [SerializeField] private GameObject _arrowPrefab;
+    private GameObject _arrowInstance = null;
+
+    private bool _distanceChecked;
+
+    private VRHand _hand;
+
+    private void Start()
+    {
+        _hand = _playerInput.ControllerLeft.GetComponent<VRHand>();
+    }
+    
+    private void Update()
+    {
+        CheckInput();
+        
+        if (_arrowInstance != null)
+            _hand.CrossHair.transform.forward = _arrowInstance.transform.forward;
+        
+        if (_distanceChecked)
+        {
+            DrawArrow();
+            _hand.Bow = true;
+            _hand.Idle = false;
+        }
+        else
+        {
+            _hand.Bow = false;
+            _hand.Idle = true;
+        }
+    }
+
+    private void CheckInput()
+    {
+        float controllerDistance = Vector3.Distance(_playerInput.ControllerLeft.transform.position,
+            _playerInput.ControllerRight.transform.position);
+        
+        if (_playerInput.LeftGripPressed && _playerInput.RightTriggerPressed.state)
+        {
+            if (controllerDistance <= _maxTriggerDistance)
+            {
+                _distanceChecked = true;
+            }
+        }
+        else
+        {
+            if (_arrowInstance != null)
+            {
+                AudioArrow audioArrow = _arrowInstance.GetComponent<AudioArrow>();
+
+                _arrowInstance.transform.forward =
+                    (_playerInput.ControllerLeft.transform.position - _playerInput.ControllerRight.transform.position)
+                    .normalized;
+
+                audioArrow.DisableCollision(_playerInput.ControllerLeftCollider);
+                audioArrow.DisableCollision(_playerInput.ControllerRightCollider);
+                audioArrow.DisableCollision(_playerInput.Player.GetComponent<Collider>());
+                
+                audioArrow.Launch(controllerDistance);
+                _arrowInstance = null;
+            }
+            
+            _distanceChecked = false;
+        }
+    }
+
+    private void DrawArrow()
+    {
+        if (_arrowInstance == null)
+        {
+            _arrowInstance = Instantiate(_arrowPrefab, _playerInput.ControllerRight.transform.position,
+                Quaternion.identity);
+        }
+
+        _arrowInstance.transform.position = _playerInput.ControllerRight.transform.position;
+        _arrowInstance.transform.forward =
+            (_playerInput.ControllerLeft.transform.position - _playerInput.ControllerRight.transform.position)
+            .normalized;
+    }
+}

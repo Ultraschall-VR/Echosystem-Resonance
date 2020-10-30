@@ -98,13 +98,13 @@ public class AudioReactive : MonoBehaviour
     private IEnumerator Conceal(float targetValue, float speed)
     {
         float t = 0;
-        float timer = 0.5f;
+        float timer = 1f;
 
         while (t <= timer)
         {
             _conceal = true;
             
-            t += Time.fixedDeltaTime / speed;
+            t += Time.deltaTime / speed;
 
             _power = Mathf.Lerp(_power, targetValue, t);
             

@@ -1,8 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class PlayerSpawner : MonoBehaviour
-{
-    [SerializeField] private GameObject _playerPrefab;
+{ 
+    public bool NonVR;
+    public bool IsMenu;
+    
+    [SerializeField] private GameObject _vrPlayerPrefab;
+    [SerializeField] private GameObject _nonVrPlayerPrefab;
     [SerializeField] private Transform _playerSpawn;
     
     [Header("Settings")]
@@ -14,19 +19,52 @@ public class PlayerSpawner : MonoBehaviour
 
     [HideInInspector] public GameObject PlayerInstance = null;
 
+    public static PlayerSpawner Instance;
+
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {
-        InstantiatePlayer(_playerSpawn.position, _playerSpawn.rotation);
+        if (NonVR)
+        {
+            InstantiatePlayer(_nonVrPlayerPrefab, _playerSpawn.position, _playerSpawn.rotation);
+        }
+        else
+        {
+            InstantiatePlayer(_vrPlayerPrefab, _playerSpawn.position, _playerSpawn.rotation);
+        }
     }
 
-    public void InstantiatePlayer(Vector3 position, Quaternion rotation)
+    public void InstantiatePlayer(GameObject playerPrefab, Vector3 position, Quaternion rotation)
     {
-        PlayerInstance = Instantiate(_playerPrefab, position, rotation);
-        //PrototypeProgress.Instance.PlayerInstance = PlayerInstance;
+        if (!FindObjectOfType<PlayerMovement>())
+        {
+            PlayerInstance = Instantiate(playerPrefab, position, rotation);
+            PlayerInstance.name = _vrPlayerPrefab.name;
+        }
+        else
+        {
+            PlayerInstance = FindObjectOfType<PlayerMovement>().gameObject;
+            PlayerInstance.transform.position = position;
+            PlayerInstance.transform.rotation = rotation;
+        }
         
-        PlayerInstance.name = _playerPrefab.name;
-
+        if (NonVR)
+        {
+            return;
+        }
+        
         if (_joystickMovement)
         {
             PlayerInstance.GetComponent<PlayerMovement>().JoystickMovement = true;
@@ -48,8 +86,6 @@ public class PlayerSpawner : MonoBehaviour
         PlayerInstance.GetComponent<PlayerMovement>().JoystickMovementSpeed = _joystickMovementSpeed;
         PlayerInstance.GetComponent<PlayerMovement>().TeleportMovementSpeed = _teleportMovementSpeed;
         PlayerInstance.GetComponent<PlayerMovement>().TeleportMaxRange = _teleportMaxRange;
-
-
     }
 
     public void MovePlayer(Vector3 position, Quaternion rotation)

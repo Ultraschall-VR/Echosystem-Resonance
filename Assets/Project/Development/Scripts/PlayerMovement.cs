@@ -48,6 +48,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (PlayerSpawner.Instance.IsMenu)
+        {
+            return;
+        }
+        
         if (JoystickMovement)
         {
             CalculateJoystickMovement();
@@ -61,6 +66,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (PlayerSpawner.Instance.IsMenu)
+        {
+            return;
+        }
+        
         CalculateCollider();
         CalculatePhysics();
         FixRotation();
