@@ -48,10 +48,18 @@ public class PlayerSpawner : MonoBehaviour
 
     public void InstantiatePlayer(GameObject playerPrefab, Vector3 position, Quaternion rotation)
     {
-        PlayerInstance = Instantiate(playerPrefab, position, rotation);
-
-        PlayerInstance.name = _vrPlayerPrefab.name;
-
+        if (!FindObjectOfType<PlayerMovement>())
+        {
+            PlayerInstance = Instantiate(playerPrefab, position, rotation);
+            PlayerInstance.name = _vrPlayerPrefab.name;
+        }
+        else
+        {
+            PlayerInstance = FindObjectOfType<PlayerMovement>().gameObject;
+            PlayerInstance.transform.position = position;
+            PlayerInstance.transform.rotation = rotation;
+        }
+        
         if (NonVR)
         {
             return;

@@ -27,77 +27,10 @@
             </e>
           </e>
         </e>
+        <e p="AudioArrow.cs" t="Include" />
+        <e p="AudioBow.cs" t="Include" />
+        <e p="CrossHair.cs" t="Include" />
         <e p="Dependencies" t="Include">
-          <e p="FlatKit" t="Include">
-            <e p="[Render Pipeline] URP" t="Include">
-              <e p="RenderFeatures" t="Include">
-                <e p="Common" t="Include">
-                  <e p="ShaderIncludeUtilities.cs" t="Include" />
-                </e>
-                <e p="Fog" t="Include">
-                  <e p="FlatKitFog.cs" t="Include" />
-                  <e p="FogSettings.cs" t="Include" />
-                  <e p="Resources" t="Include">
-                    <e p="FlatKitFog.shader" t="Include" />
-                  </e>
-                </e>
-                <e p="Outline" t="Include">
-                  <e p="FlatKitDepthNormals.cs" t="Include" />
-                  <e p="FlatKitOutline.cs" t="Include" />
-                  <e p="OutlineSettings.cs" t="Include" />
-                  <e p="Resources" t="Include">
-                    <e p="FlatKitOutline.shader" t="Include" />
-                  </e>
-                </e>
-              </e>
-            </e>
-            <e p="Demos" t="Include">
-              <e p="Common" t="Include">
-                <e p="Scripts" t="Include">
-                  <e p="Motion" t="Include">
-                    <e p="CameraMouseOrbit.cs" t="Include" />
-                    <e p="Editor" t="Include">
-                      <e p="LinearMotionEditor.cs" t="Include" />
-                    </e>
-                    <e p="LinearMotion.cs" t="Include" />
-                  </e>
-                </e>
-              </e>
-            </e>
-            <e p="Scripts" t="Include">
-              <e p="UvScroller.cs" t="Include" />
-            </e>
-            <e p="Shaders" t="Include">
-              <e p="Editor" t="Include">
-                <e p="StylizedSurfaceEditor.cs" t="Include" />
-              </e>
-              <e p="GradientSkybox" t="Include">
-                <e p="Editor" t="Include">
-                  <e p="GradientSkyboxEditor.cs" t="Include" />
-                </e>
-                <e p="GradientSkybox.shader" t="Include" />
-              </e>
-              <e p="LightPlane.shader" t="Include" />
-              <e p="StylizedSurface" t="Include">
-                <e p="DustyroomTerrainSplatmapCommon.cginc" t="Include" />
-                <e p="LibraryUrp" t="Include">
-                  <e p="DepthOnlyPass_DR.hlsl" t="Include" />
-                  <e p="Lighting_DR.hlsl" t="Include" />
-                  <e p="LitForwardPass_DR.hlsl" t="Include" />
-                  <e p="LitInput_DR.hlsl" t="Include" />
-                  <e p="ShadowCasterPass_DR.hlsl" t="Include" />
-                  <e p="StylizedInput.hlsl" t="Include" />
-                  <e p="SurfaceInput_DR.hlsl" t="Include" />
-                  <e p="TerrainLitInput_DR.hlsl" t="Include" />
-                  <e p="TerrainLitPasses_DR.hlsl" t="Include" />
-                </e>
-                <e p="StylizedSurface.shader" t="Include" />
-                <e p="StylizedSurfaceCutout.shader" t="Include" />
-                <e p="StylizedSurfaceOutline.shader" t="Include" />
-                <e p="Terrain.shader" t="Include" />
-              </e>
-            </e>
-          </e>
           <e p="LeanTween" t="Include">
             <e p="Editor" t="Include">
               <e p="LeanTweenDocumentationEditor.cs" t="Include" />
@@ -681,7 +614,7 @@
             <e p="SteamVR_Input_Initialization.cs" t="Include" />
           </e>
         </e>
-        <e p="GameMenu.cs" t="Include" />
+        <e p="GameStateMachine.cs" t="Include" />
         <e p="Project" t="Include">
           <e p="Development" t="Include">
             <e p="_deprecated" t="Include">
@@ -692,19 +625,25 @@
               <e p="Shockwave.cs" t="Include" />
               <e p="ShockwaveGenerator.cs" t="Include" />
             </e>
+            <e p="Fonts" t="Include">
+              <e p="OFL.txt" t="Include" />
+            </e>
             <e p="Scripts" t="Include">
               <e p="AudioController.cs" t="Include" />
               <e p="AudioReactive.cs" t="Include" />
               <e p="EmptyClass.cs" t="Include" />
               <e p="Exit.cs" t="Include" />
+              <e p="GameMenu.cs" t="Include" />
               <e p="Helpers" t="Include">
                 <e p="KdTree.cs" t="Include" />
               </e>
+              <e p="HideUI.cs" t="Include" />
               <e p="IgnorePlayerCollision.cs" t="Include" />
               <e p="KeyboardInput.cs" t="Include" />
               <e p="LineRendererCaster.cs" t="Include" />
               <e p="LoadScene.cs" t="Include" />
               <e p="Menu.cs" t="Include" />
+              <e p="MenuCalibration.cs" t="Include" />
               <e p="MenuElement.cs" t="Include" />
               <e p="NoGoZone.cs" t="Include" />
               <e p="ParticleTest.cs" t="Include" />
