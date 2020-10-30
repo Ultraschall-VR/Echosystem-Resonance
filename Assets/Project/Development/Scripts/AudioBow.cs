@@ -5,6 +5,7 @@ public class AudioBow : MonoBehaviour
 {
     [SerializeField] private PlayerInput _playerInput;
     [SerializeField] private float _maxTriggerDistance;
+    [SerializeField] private PlayerStateMachine _playerStateMachine;
 
     [SerializeField] private GameObject _arrowPrefab;
     private GameObject _arrowInstance = null;
@@ -48,6 +49,7 @@ public class AudioBow : MonoBehaviour
             if (controllerDistance <= _maxTriggerDistance)
             {
                 _distanceChecked = true;
+                _playerStateMachine.AudioBowState = true;
             }
         }
         else
@@ -56,19 +58,21 @@ public class AudioBow : MonoBehaviour
             {
                 AudioArrow audioArrow = _arrowInstance.GetComponent<AudioArrow>();
 
-                _arrowInstance.transform.forward =
-                    (_playerInput.ControllerLeft.transform.position - _playerInput.ControllerRight.transform.position)
+                var direction = (_playerInput.ControllerLeft.transform.position - _playerInput.ControllerRight.transform.position)
                     .normalized;
+
+                _arrowInstance.transform.forward = direction;
 
                 audioArrow.DisableCollision(_playerInput.ControllerLeftCollider);
                 audioArrow.DisableCollision(_playerInput.ControllerRightCollider);
                 audioArrow.DisableCollision(_playerInput.Player.GetComponent<Collider>());
                 
-                audioArrow.Launch(controllerDistance);
+                audioArrow.Launch(controllerDistance, direction);
                 _arrowInstance = null;
             }
             
             _distanceChecked = false;
+            _playerStateMachine.AudioBowState = false;
         }
     }
 

@@ -17,8 +17,6 @@ public class CrossHair : MonoBehaviour
     {
         RaycastHit hit;
 
-        Debug.DrawRay(transform.position, transform.forward * 10, Color.black);
-        
         if (Physics.Raycast(transform.position, transform.forward * 10, out hit, Mathf.Infinity))
         {
             if (!hit.transform.gameObject.isStatic)

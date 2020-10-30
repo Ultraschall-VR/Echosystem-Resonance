@@ -40,6 +40,17 @@ public class Uncovering : MonoBehaviour
 
     void Update()
     {
+        if (_playerStateMachine.TeleportState ||
+            _playerStateMachine.AudioBowState)
+        {
+            return;
+        }
+
+        if (_playerInput.LeftGripPressed)
+        {
+            return;
+        }
+        
         if (PlayerSpawner.Instance.NonVR)
         {
             KeyboardInputHandler();

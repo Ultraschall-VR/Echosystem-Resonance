@@ -39,7 +39,7 @@ public class PlayerInput : MonoBehaviour
             PlayerHand = ControllerLeft.transform;
         }
 
-        if (LeftGripForce.axis >= 1)
+        if (LeftGripForce.axis >= 0.5)
         {
             LeftGripPressed = true;
         }

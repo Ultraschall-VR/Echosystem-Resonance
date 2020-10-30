@@ -19,9 +19,13 @@ public class AudioReactive : MonoBehaviour
 
     private bool _initialized = false;
 
-    private float _power;
+    public float Power;
+    public bool Uncovered = false;
 
     private bool _conceal = false;
+    
+    
+    
     
     void Start()
     {
@@ -50,7 +54,37 @@ public class AudioReactive : MonoBehaviour
     {
         foreach (var mesh in Meshes)
         {
-            mesh.material.SetFloat(Radius, _power);
+            mesh.material.SetFloat(Radius, Power);
+        }
+
+        ControllColliders();
+    }
+
+    private void ControllColliders()
+    {
+        if (!Uncovered)
+        {
+            if (Power < 0.1f)
+            {
+                foreach (var collider in Colliders)
+                {
+                    collider.enabled = false;
+                }
+            }
+            else
+            {
+                foreach (var collider in Colliders)
+                {
+                    collider.enabled = true;
+                }
+            }
+        }
+        else
+        {
+            foreach (var collider in Colliders)
+            {
+                collider.enabled = true;
+            }
         }
     }
 
@@ -59,7 +93,7 @@ public class AudioReactive : MonoBehaviour
         foreach (var mesh in Meshes)
         {
             mesh.material.SetVector(ObjectPos, position);
-            _power = power;
+            Power = power;
         }
 
         _conceal = false;
@@ -81,6 +115,7 @@ public class AudioReactive : MonoBehaviour
             mesh.shadowCastingMode = ShadowCastingMode.On;
             gameObject.tag = "TeleportArea";
             gameObject.layer = 10;
+            Uncovered = true;
         }
     }
 
@@ -97,8 +132,8 @@ public class AudioReactive : MonoBehaviour
     
     private IEnumerator Conceal(float targetValue, float speed)
     {
-        float t = 0;
-        float timer = 1f;
+        float t = 0.01f;
+        float timer = Power;
 
         while (t <= timer)
         {
@@ -106,7 +141,7 @@ public class AudioReactive : MonoBehaviour
             
             t += Time.deltaTime / speed;
 
-            _power = Mathf.Lerp(_power, targetValue, t);
+            Power = Mathf.Lerp(Power, targetValue, t);
             
             yield return null;
         }
