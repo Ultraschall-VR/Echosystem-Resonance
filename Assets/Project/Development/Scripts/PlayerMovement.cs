@@ -118,7 +118,7 @@ public class PlayerMovement : MonoBehaviour
                 -_playerInput.ControllerRight.transform.up + _playerInput.ControllerRight.transform.forward, out hit,
                 Mathf.Infinity, _teleportIgnoreLayer))
             {
-                _lineRendererCaster.RaycastTarget.position = hit.point;
+                _lineRendererCaster.RaycastTarget.position = hit.point + hit.transform.up/8;
                 
                 if (hit.collider.CompareTag("TeleportArea"))
                 {

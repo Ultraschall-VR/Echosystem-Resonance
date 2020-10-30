@@ -2399,7 +2399,7 @@ MonoBehaviour:
   Uncovering: 0
   GrabState: 0
   TeleportState: 0
-  AudioProjectileState: 0
+  AudioBowState: 0
 --- !u!114 &8430175100193598007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3701,11 +3701,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5669354167908323059}
     m_Modifications:
-    - target: {fileID: 3385868598754396386, guid: b5839a905c8c8344a9533ff71689721c,
-        type: 3}
-      propertyPath: _uiMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: e900a7f6a742f004a9c88a9a70b73144, type: 2}
     - target: {fileID: 3385868598754396387, guid: b5839a905c8c8344a9533ff71689721c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3765,51 +3760,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LineRendererCaster
-      objectReference: {fileID: 0}
-    - target: {fileID: 3385868599268528308, guid: b5839a905c8c8344a9533ff71689721c,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 3aed5ebfdf0b80840b00e3c87d8a4b84, type: 2}
-    - target: {fileID: 3385868599268528308, guid: b5839a905c8c8344a9533ff71689721c,
-        type: 3}
-      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
-      value: 0.0070765354
-      objectReference: {fileID: 0}
-    - target: {fileID: 3385868599268528308, guid: b5839a905c8c8344a9533ff71689721c,
-        type: 3}
-      propertyPath: m_Parameters.alignment
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3385868599268528308, guid: b5839a905c8c8344a9533ff71689721c,
-        type: 3}
-      propertyPath: m_UseWorldSpace
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3385868599268528308, guid: b5839a905c8c8344a9533ff71689721c,
-        type: 3}
-      propertyPath: m_CastShadows
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3385868599268528308, guid: b5839a905c8c8344a9533ff71689721c,
-        type: 3}
-      propertyPath: m_Parameters.widthMultiplier
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 3385868599268528308, guid: b5839a905c8c8344a9533ff71689721c,
-        type: 3}
-      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
-      value: 0.0076904297
-      objectReference: {fileID: 0}
-    - target: {fileID: 3832741485087091264, guid: b5839a905c8c8344a9533ff71689721c,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3832741485087091264, guid: b5839a905c8c8344a9533ff71689721c,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5839a905c8c8344a9533ff71689721c, type: 3}
@@ -4015,7 +3965,7 @@ PrefabInstance:
     - target: {fileID: 5257540230228758126, guid: 3048b2447cfe6064e8c3fc369ece8d96,
         type: 3}
       propertyPath: _concealSpeed
-      value: 1000
+      value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: 5257540230228758126, guid: 3048b2447cfe6064e8c3fc369ece8d96,
         type: 3}
@@ -4171,8 +4121,13 @@ PrefabInstance:
     - target: {fileID: 2689883567257241976, guid: c4f1d45c2d3cf4147b3ea6f617487da4,
         type: 3}
       propertyPath: _maxTriggerDistance
-      value: 0.5
+      value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 2689883567257241976, guid: c4f1d45c2d3cf4147b3ea6f617487da4,
+        type: 3}
+      propertyPath: _playerStateMachine
+      value: 
+      objectReference: {fileID: 8564031942041354891}
     - target: {fileID: 4839663896125625149, guid: c4f1d45c2d3cf4147b3ea6f617487da4,
         type: 3}
       propertyPath: m_Name

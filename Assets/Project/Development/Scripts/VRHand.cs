@@ -4,6 +4,8 @@ using Valve.VR;
 
 public class VRHand : MonoBehaviour
 {
+    private PlayerInput _playerInput;
+    
     public List<Collider> Colliders;
     private RigidbodyConstraints _initialConstraints;
 
@@ -22,6 +24,8 @@ public class VRHand : MonoBehaviour
     [SerializeField] private Animator _animator;
 
     [SerializeField] private Transform _ring;
+    [SerializeField] private List<LineRenderer> _slings;
+    [SerializeField] private Transform _slingIdlePos;
 
     public bool Idle;
     public bool Bow;
@@ -37,6 +41,7 @@ public class VRHand : MonoBehaviour
 
     private void Initialize()
     {
+        _playerInput = FindObjectOfType<PlayerInput>();
         _rb = GetComponent<Rigidbody>();
         _initialConstraints = _rb.constraints;
         _initialized = true;
@@ -44,11 +49,39 @@ public class VRHand : MonoBehaviour
 
     private void Update()
     {
+        if (!_initialized)
+        {
+            return;
+        }
+        
         _ring.eulerAngles = new Vector3(_ring.eulerAngles.x, _ring.eulerAngles.y, 0);
         transform.rotation = _inputHand.transform.rotation;
         
         _animator.SetBool("Bow", Bow);
         _animator.SetBool("Idle", Idle);
+
+        
+            DrawSling();
+    }
+
+    private void DrawSling()
+    {
+        if (Bow)
+        {
+            foreach (var renderer in _slings)
+            {
+                renderer.SetPosition(1, _playerInput.ControllerRight.transform.position);
+                renderer.widthMultiplier = 0.2f;
+            }
+        }
+        else
+        {
+            foreach (var renderer in _slings)
+            {
+                renderer.SetPosition(1, _slingIdlePos.position);
+                renderer.widthMultiplier = 0.05f;
+            }
+        }
     }
 
     private void OnCollisionStay(Collision other)
