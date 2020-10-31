@@ -70,22 +70,22 @@ public class GameMenu : MonoBehaviour
     {
         if (_currentMenu != null)
         {
-            _postProcessingVolume.profile = _menuPostProcessing;
+            _currentMenu.GetComponent<CanvasGroup>().alpha = 1f;
             Calibrate();
-            _currentMenu.SetActive(true);
         }
         else
         {
             _currentMenu = Instantiate(_menuPrefab, Vector3.zero, Quaternion.identity);
         }
+        
+        
     }
 
     public void HideMenuOverlay()
     {
         if (_currentMenu != null)
         {
-            _postProcessingVolume.profile = _gamePostProcessing;
-            _currentMenu.SetActive(false);
+            _currentMenu.GetComponent<CanvasGroup>().alpha = 0f;
         }
     }
 

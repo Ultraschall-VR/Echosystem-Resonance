@@ -1,23 +1,28 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Menu : MonoBehaviour
 {
-    [SerializeField] private GameObject _mainMenu;
-    [SerializeField] private GameObject _gameMenu;
-    
+    [SerializeField] private SubMenu _mainMenu;
+    [SerializeField] private SubMenu _gameMenu;
+
+    private bool _initialized = false;
+
     private void OnEnable()
     {
-        if(GameStateMachine.Instance.CurrentGameState == GameStateMachine.Gamestate.MainMenu)
+        Initialize();
+    }
+
+    public void Initialize()
+    {
+        if (GameStateMachine.Instance.CurrentGameState == GameStateMachine.Gamestate.MainMenu)
         {
-            _mainMenu.SetActive(true);
-            _gameMenu.SetActive(false);
+            _mainMenu.Show();
+            _gameMenu.Hide();
         }
         else
         {
-            _gameMenu.SetActive(true);
-            _mainMenu.SetActive(false);
+            _mainMenu.Hide();
+            _gameMenu.Show();
         }
-            
     }
 }
