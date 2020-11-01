@@ -7,12 +7,13 @@ public class GameStateMachine : MonoBehaviour
     [SerializeField] private SceneAsset _menuScene;
     [SerializeField] private SceneAsset _playgroundScene;
     [SerializeField] private SceneAsset _storyScene;
+    [SerializeField] private SceneAsset _loadingScene;
 
     public bool MenuOpen;
     
     public static GameStateMachine Instance;
 
-    public Gamestate CurrentGameState;
+    [HideInInspector] public Gamestate CurrentGameState;
     
     private void Awake()
     {
@@ -35,6 +36,10 @@ public class GameStateMachine : MonoBehaviour
         else if (SceneManager.GetActiveScene().name == _playgroundScene.name)
         {
             CurrentGameState = Gamestate.Playground;
+        } 
+        else if (SceneManager.GetActiveScene().name == _loadingScene.name)
+        {
+            CurrentGameState = Gamestate.Loading;
         }
         else
         {
@@ -47,6 +52,7 @@ public class GameStateMachine : MonoBehaviour
     {
         MainMenu,
         Playground,
-        Story
+        Story,
+        Loading
     }
 }

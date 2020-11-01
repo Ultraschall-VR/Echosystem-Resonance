@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +7,12 @@ public class Menu : MonoBehaviour
 {
     [SerializeField] private List<Collider> _colliders;
     [SerializeField] private CanvasGroup _canvasGroup;
-    
+
+    private void Start()
+    {
+        Hide();
+    }
+
     public void Hide()
     {
         _canvasGroup.alpha = 0;
@@ -19,9 +25,12 @@ public class Menu : MonoBehaviour
 
     public void EnableColliders(bool enable)
     {
-        foreach (var collider in _colliders)
+        if (_colliders.Count != 0)
         {
-            collider.enabled = enable;
+            foreach (var collider in _colliders)
+            {
+                collider.enabled = enable;
+            }
         }
     }
 }
