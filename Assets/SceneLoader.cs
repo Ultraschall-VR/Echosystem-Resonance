@@ -64,8 +64,17 @@ public class SceneLoader : MonoBehaviour
         yield return new WaitForSeconds(_transitionManager.CurrentAnimationLength);
 
         var loadingScene = SceneManager.LoadSceneAsync(_loadingScene.name);
+        
+        _transitionManager.FadeIn(Color.black);
 
         UnloadScene(SceneManager.GetActiveScene().name);
+
+        yield return new WaitForSeconds(10f);
+        
+        _transitionManager.FadeOut(Color.black);
+        
+        yield return new WaitForSeconds(_transitionManager.CurrentAnimationLength);
+        
         var targetScene = SceneManager.LoadSceneAsync(scene);
 
         while (!targetScene.isDone)
