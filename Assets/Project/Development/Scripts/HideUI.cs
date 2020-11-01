@@ -2,10 +2,10 @@
 
 public class HideUI : MonoBehaviour
 {
-    [SerializeField] private SubMenu _gameMenu;
+    [SerializeField] private MenuController _menuController;
     
     private void OnEnable()
     {
-        _gameMenu.Hide();
+        _menuController.ToggleMenu();
     }
 }

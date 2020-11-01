@@ -21,6 +21,11 @@ public class AudioBow : MonoBehaviour
     
     private void Update()
     {
+        if (!GameProgress.Instance.LearnedBow)
+        {
+            return;
+        }
+        
         CheckInput();
         
         if (_arrowInstance != null)

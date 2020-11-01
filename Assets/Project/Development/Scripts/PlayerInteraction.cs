@@ -38,6 +38,11 @@ public class PlayerInteraction : MonoBehaviour
         {
             return;
         }
+
+        if (!GameProgress.Instance.LearnedGrab)
+        {
+            return;
+        }
         
         if (!_playerStateMachine.TeleportState && !_playerStateMachine.Uncovering &&
             !_playerStateMachine.AudioBowState)

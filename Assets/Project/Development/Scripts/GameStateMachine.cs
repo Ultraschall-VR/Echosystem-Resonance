@@ -8,7 +8,7 @@ public class GameStateMachine : MonoBehaviour
     [SerializeField] private SceneAsset _playgroundScene;
     [SerializeField] private SceneAsset _storyScene;
 
-    [HideInInspector] public bool MenuOpen;
+    public bool MenuOpen;
     
     public static GameStateMachine Instance;
 

@@ -52,6 +52,11 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
+
+        if (!GameProgress.Instance.LearnedTeleport)
+        {
+            return;
+        }
         
         if (JoystickMovement)
         {

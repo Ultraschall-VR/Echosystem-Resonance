@@ -40,6 +40,11 @@ public class Uncovering : MonoBehaviour
 
     void Update()
     {
+        if (!GameProgress.Instance.LearnedUncover)
+        {
+            return;
+        }
+        
         if (_playerStateMachine.TeleportState ||
             _playerStateMachine.AudioBowState)
         {
@@ -86,9 +91,12 @@ public class Uncovering : MonoBehaviour
             _riserAudio.Stop();
             _playerStateMachine.Uncovering = false;
 
-            foreach (var audioReactive in _audioReactives)
+            if (_audioReactives.Count != 0)
             {
-                audioReactive.Conceal(_concealSpeed);
+                foreach (var audioReactive in _audioReactives)
+                {
+                    audioReactive.Conceal(_concealSpeed);
+                }
             }
         }
     }

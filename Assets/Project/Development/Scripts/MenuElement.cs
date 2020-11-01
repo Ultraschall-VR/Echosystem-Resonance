@@ -52,5 +52,6 @@ public class MenuElement : MonoBehaviour
         }
         
         _selectAction.enabled = true;
+        _selectAction.enabled = false;
     }
 }
