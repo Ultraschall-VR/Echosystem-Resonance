@@ -149,6 +149,6 @@ public class MenuController : MonoBehaviour
             }
         }
         
-        transform.position = pos + _playerInput.Head.transform.forward *2;
+        transform.position = pos + _playerInput.Head.transform.forward *1;
     }
 }

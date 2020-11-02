@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 public class GameStateMachine : MonoBehaviour
 {
     [SerializeField] private SceneAsset _orpheusScene;
-    [SerializeField] private SceneAsset _playgroundScene;
     [SerializeField] private SceneAsset _storyScene;
     [SerializeField] private SceneAsset _loadingScene;
 
@@ -32,11 +31,7 @@ public class GameStateMachine : MonoBehaviour
         if (SceneManager.GetActiveScene().name == _orpheusScene.name)
         {
             CurrentGameState = Gamestate.Orpheus;
-        } 
-        else if (SceneManager.GetActiveScene().name == _playgroundScene.name)
-        {
-            CurrentGameState = Gamestate.Playground;
-        } 
+        }
         else if (SceneManager.GetActiveScene().name == _loadingScene.name)
         {
             CurrentGameState = Gamestate.Loading;
@@ -51,7 +46,6 @@ public class GameStateMachine : MonoBehaviour
     public enum Gamestate
     {
         Orpheus,
-        Playground,
         Story,
         Loading
     }

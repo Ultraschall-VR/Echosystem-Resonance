@@ -7,5 +7,9 @@ public class HideUI : MonoBehaviour
     private void OnEnable()
     {
         _menuController.ToggleMenu();
+        GameProgress.Instance.LearnedBow = true;
+        GameProgress.Instance.LearnedGrab = true;
+        GameProgress.Instance.LearnedTeleport = true;
+        GameProgress.Instance.LearnedUncover = true;
     }
 }

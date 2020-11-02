@@ -27,6 +27,7 @@ public class Uncovering : MonoBehaviour
 
     private void Initialize()
     {
+        _audioReactives = new List<AudioReactive>();
         _audioReactives = FindObjectsOfType<AudioReactive>().ToList();
 
         if (PlayerSpawner.Instance.NonVR)
@@ -40,6 +41,14 @@ public class Uncovering : MonoBehaviour
 
     void Update()
     {
+        if (_audioReactives.Count != 0)
+        {
+            if (_audioReactives[0] == null)
+            {
+                Initialize();
+            } 
+        }
+        
         if (!GameProgress.Instance.LearnedUncover)
         {
             return;

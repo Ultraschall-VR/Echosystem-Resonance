@@ -7,12 +7,19 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
     [SerializeField] private TransitionManager _transitionManager;
-    
     [SerializeField] private SceneAsset _loadingScene;
     [SerializeField] private SceneAsset _orpheusScene;
     [SerializeField] private SceneAsset _storyScene;
     [SerializeField] private SceneAsset _playgroundScene;
+
+    [SerializeField] private bool _loadFirstScene;
     
+    private void Start()
+    {
+        if(_loadFirstScene)
+            LoadScene(Scene.Orpheus);
+    }
+
     public void LoadScene(Scene scene)
     {
         string sceneToLoad = null;
