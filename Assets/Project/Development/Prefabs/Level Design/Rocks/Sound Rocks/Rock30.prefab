@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: -4232410547504482514}
   - component: {fileID: 535665976739875102}
   - component: {fileID: 3769075878660724115}
+  - component: {fileID: -147455782242815680}
+  - component: {fileID: -8950467948610011075}
   m_Layer: 0
   m_Name: Rock30
   m_TagString: Untagged
@@ -238,3 +240,33 @@ MonoBehaviour:
   pitchMax: 0.4
   volumeMin: 1
   volumeMax: 1
+--- !u!54 &-147455782242815680
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002582616399190357}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!64 &-8950467948610011075
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002582616399190357}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 5848406794884887672, guid: e7afc416c91143a4abac7d47afc53510, type: 3}

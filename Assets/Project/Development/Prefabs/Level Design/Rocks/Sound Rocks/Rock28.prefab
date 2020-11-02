@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: -2160128430715546060}
   - component: {fileID: 8802290163514736106}
   - component: {fileID: -6838109157411105885}
+  - component: {fileID: -8788795577255821873}
+  - component: {fileID: 3998530131995979029}
   m_Layer: 0
   m_Name: Rock28
   m_TagString: Untagged
@@ -238,3 +240,33 @@ MonoBehaviour:
   pitchMax: 0.4
   volumeMin: 1
   volumeMax: 1
+--- !u!54 &-8788795577255821873
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2476338210722289163}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!64 &3998530131995979029
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2476338210722289163}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -443745548752355477, guid: 043ba67907fb96741a107172f21f373d, type: 3}

@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: -1936807775954355558}
   - component: {fileID: -1172310260210758770}
   - component: {fileID: -3215701023933377126}
+  - component: {fileID: -1541047049802119464}
+  - component: {fileID: -4906155584680720582}
   m_Layer: 0
   m_Name: Sound Rock_05_Big
   m_TagString: Untagged
@@ -238,3 +240,33 @@ MonoBehaviour:
   pitchMax: 0.4
   volumeMin: 1
   volumeMax: 1
+--- !u!54 &-1541047049802119464
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7575994318468844017}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!64 &-4906155584680720582
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7575994318468844017}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -9085331004972601494, guid: a464d98ec7a609e4985adee5ac9ce2b2, type: 3}
