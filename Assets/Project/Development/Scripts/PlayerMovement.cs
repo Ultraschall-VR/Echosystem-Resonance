@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LineRendererCaster _lineRendererCaster;
     [SerializeField] private LayerMask _teleportIgnoreLayer;
 
+    private bool _snapTurnReady = true;
     public bool TeleportEnabled;
     public float TeleportMovementSpeed;
     public float TeleportMaxRange;
@@ -29,6 +30,8 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 _teleportTarget;
     private bool _teleportCooldownDone;
+    
+    
 
     void Start()
     {
@@ -68,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
             CalculateTeleportation();
         }
     }
+    
 
     private void Update()
     {

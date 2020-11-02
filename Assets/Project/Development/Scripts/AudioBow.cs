@@ -6,7 +6,6 @@ public class AudioBow : MonoBehaviour
     [SerializeField] private PlayerInput _playerInput;
     [SerializeField] private float _maxTriggerDistance;
     [SerializeField] private PlayerStateMachine _playerStateMachine;
-
     [SerializeField] private GameObject _arrowPrefab;
     private GameObject _arrowInstance = null;
 
