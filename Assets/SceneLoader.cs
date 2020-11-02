@@ -47,11 +47,6 @@ public class SceneLoader : MonoBehaviour
         
         StartCoroutine(WaitForTransition(sceneToLoad));
     }
-
-    private void Start()
-    {
-        LoadScene(Scene.Playground);
-    }
     
     private void UnloadScene(string scene)
     {

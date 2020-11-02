@@ -30,7 +30,7 @@ public class MenuController : MonoBehaviour
         _gamestate = GameStateMachine.Instance.CurrentGameState;
         _playerInput = FindObjectOfType<PlayerInput>();
 
-        if (_gamestate == GameStateMachine.Gamestate.MainMenu || _gamestate == GameStateMachine.Gamestate.Loading)
+        if (_gamestate == GameStateMachine.Gamestate.Orpheus || _gamestate == GameStateMachine.Gamestate.Loading)
         {
             _toggleMenu = true;
         }
@@ -57,7 +57,7 @@ public class MenuController : MonoBehaviour
 
     private void HandleInput()
     {
-        if (_gamestate == GameStateMachine.Gamestate.MainMenu || _gamestate == GameStateMachine.Gamestate.Loading)
+        if (_gamestate == GameStateMachine.Gamestate.Orpheus || _gamestate == GameStateMachine.Gamestate.Loading)
         {
             return;
         }
@@ -70,7 +70,7 @@ public class MenuController : MonoBehaviour
 
     private void HandleMenuVisibility(bool show)
     {
-        if (_gamestate == GameStateMachine.Gamestate.MainMenu)
+        if (_gamestate == GameStateMachine.Gamestate.Orpheus)
         {
             _gameMenu.Hide();
             _gameMenu.EnableColliders(false);
@@ -137,7 +137,7 @@ public class MenuController : MonoBehaviour
     {
         Vector3 pos = transform.position;
         
-        if (_gamestate != GameStateMachine.Gamestate.MainMenu)
+        if (_gamestate != GameStateMachine.Gamestate.Orpheus)
         {
             if (_playerInput.Head.transform.position.y >= 1)
             {
