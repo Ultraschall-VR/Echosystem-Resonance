@@ -1,13 +1,11 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class HideUI : MonoBehaviour
 {
-    private GameMenu _gameMenu;
+    [SerializeField] private MenuController _menuController;
     
     private void OnEnable()
     {
-        _gameMenu = FindObjectOfType<GameMenu>();
-        _gameMenu.ShowMenu = false;
+        _menuController.ToggleMenu();
     }
 }

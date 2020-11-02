@@ -1,23 +1,36 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Menu : MonoBehaviour
 {
-    [SerializeField] private GameObject _mainMenu;
-    [SerializeField] private GameObject _gameMenu;
-    
-    private void OnEnable()
+    [SerializeField] private List<Collider> _colliders;
+    [SerializeField] private CanvasGroup _canvasGroup;
+
+    private void Start()
     {
-        if(GameStateMachine.Instance.CurrentGameState == GameStateMachine.Gamestate.MainMenu)
+        Hide();
+    }
+
+    public void Hide()
+    {
+        _canvasGroup.alpha = 0;
+    }
+
+    public void Show()
+    {
+        _canvasGroup.alpha = 1;
+    }
+
+    public void EnableColliders(bool enable)
+    {
+        if (_colliders.Count != 0)
         {
-            _mainMenu.SetActive(true);
-            _gameMenu.SetActive(false);
+            foreach (var collider in _colliders)
+            {
+                collider.enabled = enable;
+            }
         }
-        else
-        {
-            _gameMenu.SetActive(true);
-            _mainMenu.SetActive(false);
-        }
-            
     }
 }

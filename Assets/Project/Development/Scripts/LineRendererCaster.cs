@@ -23,12 +23,12 @@ public class LineRendererCaster : MonoBehaviour
         Hide();
     }
 
-    private void DrawLineRenderer(Vector3 origin, Vector3 target, float arcMultiplier, Material mat)
+    private void DrawLineRenderer(Vector3 origin, Vector3 target, float arcMultiplier, Material mat, bool showRaycastTarget)
     {
         _lineRenderer.enabled = true;
         _lineRenderer.material = mat;
         
-        RaycastTarget.gameObject.SetActive(true);
+        RaycastTarget.gameObject.SetActive(showRaycastTarget);
 
         RaycastHit hit;
 
@@ -59,24 +59,24 @@ public class LineRendererCaster : MonoBehaviour
     
     public void ShowValidTeleport(Vector3 origin, Vector3 target, float arcMultiplier)
     {
-        DrawLineRenderer(origin, target, arcMultiplier, _validTeleportMaterial);
+        DrawLineRenderer(origin, target, arcMultiplier, _validTeleportMaterial, true);
         _teleportTargetRenderer.material = _validTeleportTargetMaterial;
     }
 
     public void ShowInvalidTeleport(Vector3 origin, Vector3 target, float arcMultiplier)
     {
-        DrawLineRenderer(origin, target, arcMultiplier, _invalidTeleportMaterial);
+        DrawLineRenderer(origin, target, arcMultiplier, _invalidTeleportMaterial, true);
         _teleportTargetRenderer.material = _invalidTeleportTargetMaterial;
     }
     
     public void ShowGrab(Vector3 origin, Vector3 target, float arcMultiplier)
     {
-        DrawLineRenderer(origin, target, arcMultiplier, _grabMaterial);
+        DrawLineRenderer(origin, target, arcMultiplier, _grabMaterial, false);
     }
 
     public void ShowUiRaycast(Vector3 origin, Vector3 target, float arcMultiplier)
     {
-        DrawLineRenderer(origin, target, arcMultiplier, _uiMaterial);
+        DrawLineRenderer(origin, target, arcMultiplier, _uiMaterial, false);
     }
 
     public void Hide()
