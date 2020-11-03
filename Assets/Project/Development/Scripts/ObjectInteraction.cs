@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ObjectInteraction : MonoBehaviour
 {
@@ -21,12 +20,17 @@ public class ObjectInteraction : MonoBehaviour
                 if (_selectedInteraction == null)
                 {
                     _selectedInteraction = hit.transform.gameObject.GetComponent<VRInteraction>();
-                    _selectedInteraction.FillPower(); 
+                    _selectedInteraction.IncreasePower(); 
                 }
             }
             else
             {
-                _selectedInteraction = null;
+                if (_selectedInteraction != null)
+                {
+                    _selectedInteraction.DecreasePower();
+                    _selectedInteraction = null;
+                }
+                
             }
         }
     }
