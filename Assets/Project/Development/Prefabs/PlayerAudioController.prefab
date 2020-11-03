@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bf84f0fd7f54174a933a2da65f2b8f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _uncoveringLoop:
+  UncoveringLoop:
     AudioClips:
     - {fileID: 8300000, guid: 780a11b2e0fc8e44faf9c261f31a4c62, type: 3}
     - {fileID: 8300000, guid: de1fb462a75a0f244acd2ae142fe2a0f, type: 3}
@@ -62,82 +62,80 @@ MonoBehaviour:
     - {fileID: 8300000, guid: c9eeea26aba6c494387c2746ad5dfe8a, type: 3}
     - {fileID: 8300000, guid: 82030b3fb8700014a9d76f9a375479b5, type: 3}
     SingleClip: 0
-    RandomizePitch: 0
-    Attack: 0
-    Release: 0
-    AudioMixerGroup: {fileID: 0}
-  _uncoveringStart:
-    AudioClips:
-    - {fileID: 8300000, guid: 680adaba640ab934f98754885356a0bf, type: 3}
-    SingleClip: 1
+    Volume: 1
     RandomizePitch: 1
-    Attack: 0
-    Release: 0
+    PitchMin: 0.8
+    PitchMax: 1.2
+    Attack: 50
+    Release: 50
     AudioMixerGroup: {fileID: 0}
-  _uncoveringRelease:
-    AudioClips:
-    - {fileID: 8300000, guid: 2836094008d305241915e28a4426fc41, type: 3}
-    - {fileID: 8300000, guid: 5193ebec3b78a9941887665f9908662a, type: 3}
-    - {fileID: 8300000, guid: 080da7741ea706649b4f8aad412ba6a6, type: 3}
-    - {fileID: 8300000, guid: cfd3bf972932b354d99342d239ba2a84, type: 3}
-    - {fileID: 8300000, guid: da71ef77a139fe64db4d2a946d8beb14, type: 3}
-    - {fileID: 8300000, guid: 566af50eda460004294b951ee944dd80, type: 3}
-    - {fileID: 8300000, guid: 751bbe60eb5736545862f66a7e6b324a, type: 3}
-    - {fileID: 8300000, guid: 29c632156cd14f34eb90d74594eff531, type: 3}
-    - {fileID: 8300000, guid: 5e64b787bb4a60143a22db9092743285, type: 3}
-    - {fileID: 8300000, guid: 7933a3ddd7fffc946b8723a4081ae372, type: 3}
+  UncoveringStart:
+    AudioClips: []
     SingleClip: 0
+    Volume: 0
     RandomizePitch: 0
+    PitchMin: 0
+    PitchMax: 0
     Attack: 0
     Release: 0
     AudioMixerGroup: {fileID: 0}
-  _teleportLoop:
-    AudioClips:
-    - {fileID: 8300000, guid: 2d6fd12c4a02d274b92f43254c44f9c0, type: 3}
-    SingleClip: 1
-    RandomizePitch: 0
-    Attack: 0
-    Release: 0
-    AudioMixerGroup: {fileID: 0}
-  _teleportRelease:
-    AudioClips:
-    - {fileID: 8300000, guid: 83f8882461e69e64e9298a9228961c56, type: 3}
-    - {fileID: 8300000, guid: 85690a7339c5f6b4686d2da0627b7217, type: 3}
-    - {fileID: 8300000, guid: 735d3f02050fb4744a2cc454697e6fec, type: 3}
-    - {fileID: 8300000, guid: 7d16477947fe62448b9fe5e0968309a1, type: 3}
-    - {fileID: 8300000, guid: f6bead43ea9cc064fa9d67ccebfc84d2, type: 3}
-    - {fileID: 8300000, guid: 038f522f0ea7a904baa4f1d4e6029a5c, type: 3}
-    - {fileID: 8300000, guid: 43baba30072407849b12edcabda407e9, type: 3}
-    - {fileID: 8300000, guid: 553e165b5947fd94794efb10b2221bc8, type: 3}
-    - {fileID: 8300000, guid: b3b0642e52f81f44c8b12c5766c78938, type: 3}
-    - {fileID: 8300000, guid: b3a3c46e7d87c47438f416be3ba07a57, type: 3}
-    - {fileID: 8300000, guid: 2ade5771e54e763418766c68e6dfaee4, type: 3}
+  UncoveringRelease:
+    AudioClips: []
     SingleClip: 0
+    Volume: 0
     RandomizePitch: 0
+    PitchMin: 0
+    PitchMax: 0
     Attack: 0
     Release: 0
     AudioMixerGroup: {fileID: 0}
-  _gravityPullSnapping:
-    AudioClips:
-    - {fileID: 8300000, guid: 95c509b4303535f44824e094baa03a89, type: 3}
-    SingleClip: 1
-    RandomizePitch: 1
+  TeleportLoop:
+    AudioClips: []
+    SingleClip: 0
+    Volume: 0
+    RandomizePitch: 0
+    PitchMin: 0
+    PitchMax: 0
     Attack: 0
     Release: 0
     AudioMixerGroup: {fileID: 0}
-  _gravityPullLoop:
-    AudioClips:
-    - {fileID: 8300000, guid: e2d68fddd4345a54da6b7f58b54995b7, type: 3}
-    SingleClip: 1
+  TeleportRelease:
+    AudioClips: []
+    SingleClip: 0
+    Volume: 0
     RandomizePitch: 0
+    PitchMin: 0
+    PitchMax: 0
     Attack: 0
     Release: 0
     AudioMixerGroup: {fileID: 0}
-  _slingShotLoop:
-    AudioClips:
-    - {fileID: 8300000, guid: 18497f317dd04da4d9de605a5fdd5557, type: 3}
-    SingleClip: 1
+  GravityPullSnapping:
+    AudioClips: []
+    SingleClip: 0
+    Volume: 0
     RandomizePitch: 0
+    PitchMin: 0
+    PitchMax: 0
+    Attack: 0
+    Release: 0
+    AudioMixerGroup: {fileID: 0}
+  GravityPullLoop:
+    AudioClips: []
+    SingleClip: 0
+    Volume: 0
+    RandomizePitch: 0
+    PitchMin: 0
+    PitchMax: 0
+    Attack: 0
+    Release: 0
+    AudioMixerGroup: {fileID: 0}
+  SlingShotLoop:
+    AudioClips: []
+    SingleClip: 0
+    Volume: 0
+    RandomizePitch: 0
+    PitchMin: 0
+    PitchMax: 0
     Attack: 0
     Release: 0
     AudioMixerGroup: {fileID: 0}

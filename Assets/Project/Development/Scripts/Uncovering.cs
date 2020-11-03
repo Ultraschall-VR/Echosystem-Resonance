@@ -8,16 +8,16 @@ public class Uncovering : MonoBehaviour
     [SerializeField] private PlayerInput _playerInput;
     [SerializeField] private KeyboardInput _keyboardInput;
     [SerializeField] private PlayerStateMachine _playerStateMachine;
+    [SerializeField] private PlayerAudioController _playerAudioController;
+    [SerializeField] private AudioPlayer _audioPlayer;
     [SerializeField] private AudioSource _riserAudio;
     [SerializeField] private float _concealSpeed;
 
     private List<AudioReactive> _audioReactives;
 
     public float Power;
-
     private Transform _leftHand;
     private Transform _rightHand;
-
     private bool _concealing;
 
     void Start()
@@ -29,7 +29,7 @@ public class Uncovering : MonoBehaviour
     {
         _audioReactives = new List<AudioReactive>();
         _audioReactives = FindObjectsOfType<AudioReactive>().ToList();
-
+        
         if (PlayerSpawner.Instance.NonVR)
         {
             return;
@@ -89,15 +89,12 @@ public class Uncovering : MonoBehaviour
             {
                 audioReactive.Reveal(_playerInput.Player.transform.position, Power);
             }
-
-            if (!_riserAudio.isPlaying)
-            {
-                _riserAudio.Play();
-            }
+            
+            _audioPlayer.PlayAudio(_playerAudioController.UncoveringLoop);
         }
         else
         {
-            _riserAudio.Stop();
+            _audioPlayer.StopAudio();
             _playerStateMachine.Uncovering = false;
 
             if (_audioReactives.Count != 0)
