@@ -59,11 +59,9 @@ public class UiInteraction : MonoBehaviour
     
     private void Update()
     {
-        if (!PlayerSpawner.Instance.IsMenu)
+        if (GameStateMachine.Instance.MenuOpen)
         {
-            return;
+            CalculateRaycast();
         }
-        
-        CalculateRaycast();
     }
 }

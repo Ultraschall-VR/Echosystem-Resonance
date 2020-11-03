@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LineRendererCaster _lineRendererCaster;
     [SerializeField] private LayerMask _teleportIgnoreLayer;
 
+    private bool _snapTurnReady = true;
     public bool TeleportEnabled;
     public float TeleportMovementSpeed;
     public float TeleportMaxRange;
@@ -29,6 +30,8 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 _teleportTarget;
     private bool _teleportCooldownDone;
+    
+    
 
     void Start()
     {
@@ -48,6 +51,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (PlayerSpawner.Instance.IsMenu)
+        {
+            return;
+        }
+
+        if (!GameProgress.Instance.LearnedTeleport)
+        {
+            return;
+        }
+        
         if (JoystickMovement)
         {
             CalculateJoystickMovement();
@@ -58,9 +71,15 @@ public class PlayerMovement : MonoBehaviour
             CalculateTeleportation();
         }
     }
+    
 
     private void Update()
     {
+        if (PlayerSpawner.Instance.IsMenu)
+        {
+            return;
+        }
+        
         CalculateCollider();
         CalculatePhysics();
         FixRotation();
@@ -108,7 +127,7 @@ public class PlayerMovement : MonoBehaviour
                 -_playerInput.ControllerRight.transform.up + _playerInput.ControllerRight.transform.forward, out hit,
                 Mathf.Infinity, _teleportIgnoreLayer))
             {
-                _lineRendererCaster.RaycastTarget.position = hit.point;
+                _lineRendererCaster.RaycastTarget.position = hit.point + hit.transform.up/8;
                 
                 if (hit.collider.CompareTag("TeleportArea"))
                 {

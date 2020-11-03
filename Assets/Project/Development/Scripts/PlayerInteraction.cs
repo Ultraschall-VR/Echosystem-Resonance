@@ -38,9 +38,14 @@ public class PlayerInteraction : MonoBehaviour
         {
             return;
         }
+
+        if (!GameProgress.Instance.LearnedGrab)
+        {
+            return;
+        }
         
         if (!_playerStateMachine.TeleportState && !_playerStateMachine.Uncovering &&
-            !_playerStateMachine.AudioProjectileState && !_playerStateMachine.Uncovering)
+            !_playerStateMachine.AudioBowState)
         {
             GRAB();
         }
@@ -53,7 +58,7 @@ public class PlayerInteraction : MonoBehaviour
         _routineRunning = false;
         _playerStateMachine.Uncovering = false;
         _playerStateMachine.GrabState = false;
-        _playerStateMachine.AudioProjectileState = false;
+        _playerStateMachine.AudioBowState = false;
 
         foreach (var hand in _hands)
         {

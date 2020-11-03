@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using UnityEngine;
 using Valve.VR;
 
 public class PlayerInput : MonoBehaviour
@@ -39,7 +41,7 @@ public class PlayerInput : MonoBehaviour
             PlayerHand = ControllerLeft.transform;
         }
 
-        if (LeftGripForce.axis >= 1)
+        if (LeftGripForce.axis >= 0.5)
         {
             LeftGripPressed = true;
         }
