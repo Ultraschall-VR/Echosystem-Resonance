@@ -4,15 +4,15 @@ using UnityEngine.SceneManagement;
 
 public class GameStateMachine : MonoBehaviour
 {
-    [SerializeField] private SceneAsset _menuScene;
-    [SerializeField] private SceneAsset _playgroundScene;
+    [SerializeField] private SceneAsset _orpheusScene;
     [SerializeField] private SceneAsset _storyScene;
+    [SerializeField] private SceneAsset _loadingScene;
 
-    [HideInInspector] public bool MenuOpen;
+    public bool MenuOpen;
     
     public static GameStateMachine Instance;
 
-    public Gamestate CurrentGameState;
+    [HideInInspector] public Gamestate CurrentGameState;
     
     private void Awake()
     {
@@ -28,13 +28,13 @@ public class GameStateMachine : MonoBehaviour
 
     private void Update()
     {
-        if (SceneManager.GetActiveScene().name == _menuScene.name)
+        if (SceneManager.GetActiveScene().name == _orpheusScene.name)
         {
-            CurrentGameState = Gamestate.MainMenu;
-        } 
-        else if (SceneManager.GetActiveScene().name == _playgroundScene.name)
+            CurrentGameState = Gamestate.Orpheus;
+        }
+        else if (SceneManager.GetActiveScene().name == _loadingScene.name)
         {
-            CurrentGameState = Gamestate.Playground;
+            CurrentGameState = Gamestate.Loading;
         }
         else
         {
@@ -45,8 +45,8 @@ public class GameStateMachine : MonoBehaviour
     
     public enum Gamestate
     {
-        MainMenu,
-        Playground,
-        Story
+        Orpheus,
+        Story,
+        Loading
     }
 }
