@@ -19,22 +19,16 @@ public class PlayerAudioController : MonoBehaviour
     [SerializeField] private AudioAsset _gravityPullSnapping;
     [SerializeField] private AudioAsset _gravityPullLoop;
 
-    [Header("Bow")] 
-    [SerializeField] private AudioAsset _bowLoop;
-    [SerializeField] private AudioAsset _bowRelease;
-    
-    [Header("Player hands")] 
-    [Header("OTHER")]
-    [SerializeField] private AudioAsset _playerHandsLoop;
-    [SerializeField] private AudioAsset _playerHandsTriangle;
-
+    [Header("Sling Shot")] 
+    [SerializeField] private AudioAsset _slingShotLoop;
 }
 
 [Serializable]public class AudioAsset
 {
     public List<AudioClip> AudioClips;
     public bool SingleClip;
-    public float Pitch;
-    public float Volume;
+    public bool RandomizePitch;
+    public float Attack;
+    public float Release;
     public AudioMixerGroup AudioMixerGroup;
 }
