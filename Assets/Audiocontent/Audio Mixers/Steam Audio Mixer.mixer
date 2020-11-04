@@ -209,6 +209,7 @@ AudioMixerController:
     - 01cbdb531dbc54d8787303a7c2ff4db7
     - 72572c1cdf87f4dcfbb78964749c95d2
     - 3afc62fc8a0904e9ca2f4ae1e904f600
+    - 48377aabf19f54837818f02e9ce1c4fe
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -233,6 +234,7 @@ AudioMixerGroupController:
   - {fileID: -4436534038535986864}
   - {fileID: 1615814682736038688}
   - {fileID: 3206715376782644857}
+  - {fileID: 1035657293528837244}
   m_Volume: 417d83f8bab624403a00f9753e67cae8
   m_Pitch: 49418fe4a483247829fea7b49dec3818
   m_Send: 00000000000000000000000000000000
@@ -301,6 +303,25 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: -8856811219459061721}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!243 &1035657293528837244
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Orpheus
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 48377aabf19f54837818f02e9ce1c4fe
+  m_Children: []
+  m_Volume: 225dbfcc3b3c541278bba4ba658eecd0
+  m_Pitch: f22b8869e8afa4bcdad346b90cea036d
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: 2666090048242221919}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!245 &1383990398450606291
 AudioMixerSnapshotController:
   m_ObjectHideFlags: 0
@@ -344,6 +365,20 @@ AudioMixerEffectController:
   m_EffectID: 48ca0be8d4e0c42d2b9745577256e1cf
   m_EffectName: Attenuation
   m_MixLevel: d13961b07b92445b98908d1f6696b5b7
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!244 &2666090048242221919
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 9ee82e13c37c24596b4a3fea24813e30
+  m_EffectName: Attenuation
+  m_MixLevel: 7ca657bc6fcf641049b6e6159bc87590
   m_Parameters: []
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
