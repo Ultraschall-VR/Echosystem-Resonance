@@ -30,11 +30,9 @@ public class MenuElement : MonoBehaviour
     public void Highlight()
     {
         _text.faceColor = _highlightColor;
-
-        if (!_audioSource.isPlaying)
-        {
-            _audioSource.PlayOneShot(_highlightSound);
-        }
+        
+        _audioSource.PlayOneShot(_highlightSound);
+        
     }
 
     public void DeHighlight()
@@ -46,10 +44,7 @@ public class MenuElement : MonoBehaviour
     {
         _text.faceColor = _selectColor;
         
-        if (!_audioSource.isPlaying)
-        {
-            _audioSource.PlayOneShot(_selectSound);
-        }
+        _audioSource.PlayOneShot(_selectSound);
         
         _selectAction.enabled = true;
         _selectAction.enabled = false;

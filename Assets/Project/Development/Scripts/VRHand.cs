@@ -27,6 +27,8 @@ public class VRHand : MonoBehaviour
     [SerializeField] private List<LineRenderer> _slings;
     [SerializeField] private Transform _slingIdlePos;
 
+    [SerializeField] private AudioSource _audioSource;
+
     public bool Idle;
     public bool Bow;
 
@@ -53,7 +55,8 @@ public class VRHand : MonoBehaviour
         {
             return;
         }
-        
+
+        _audioSource.pitch = (_rb.velocity.magnitude / 4) + 0.33f;
         _ring.eulerAngles = new Vector3(_ring.eulerAngles.x, _ring.eulerAngles.y, 0);
         transform.rotation = _inputHand.transform.rotation;
         

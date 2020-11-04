@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Assertions.Comparers;
 
 public class VRInteraction : MonoBehaviour
 {
     [SerializeField] private MonoBehaviour _actionClass;
 
-    private float _power = 0.0f;
+    public float Power = 0.0f;
     private bool _isIncreasing = false;
-    
+
+    private float _activationThreshold = 10.0f;
+
     public void IncreasePower()
     {
         if (!_isIncreasing)
@@ -27,34 +30,25 @@ public class VRInteraction : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        IncreasePower();
-    }
-
     private void Update()
     {
-        Debug.Log(_power);
+        if (Power >= _activationThreshold && !_actionClass.enabled)
+        {
+            _actionClass.enabled = true;
+        }
     }
 
     IEnumerator ManagePower()
     {
-        float timer = 2.0f;
-        float t = 0.0f;
-        
-        while (_isIncreasing && _power < 1)
+        while (_isIncreasing && Power < _activationThreshold)
         {
-            t += Time.deltaTime;
-            _power = Mathf.Lerp(_power, 1, t);
-            
+            Power += Time.deltaTime;
             yield return null;
         }
 
-        while (!_isIncreasing && _power > 0)
+        while (!_isIncreasing && Power > 0)
         {
-            t += Time.deltaTime;
-            _power = Mathf.Lerp(_power, 0, t);
-            
+            Power -= Time.deltaTime;
             yield return null;
         }
     }

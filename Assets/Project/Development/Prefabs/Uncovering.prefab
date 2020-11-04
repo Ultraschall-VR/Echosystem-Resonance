@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6022882138332354584}
   - component: {fileID: 5257540230228758126}
   - component: {fileID: 6900115517514634881}
+  - component: {fileID: 927429529498002405}
   m_Layer: 8
   m_Name: Uncovering
   m_TagString: Untagged
@@ -45,7 +46,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerInput: {fileID: 0}
+  _keyboardInput: {fileID: 0}
+  _playerStateMachine: {fileID: 0}
+  _playerAudioController: {fileID: 0}
   _riserAudio: {fileID: 6900115517514634881}
+  _concealSpeed: 2000
   Power: 0
 --- !u!82 &6900115517514634881
 AudioSource:
@@ -143,3 +148,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &927429529498002405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9055221306637107436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07c46028e1ecd784fa5fd04b05469dfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioSource: {fileID: 6900115517514634881}

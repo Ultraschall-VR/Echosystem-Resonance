@@ -7,34 +7,31 @@ public class PlayerAudioController : MonoBehaviour
 {
     [Header("Uncovering")]
     [Header("MECHANICS")]
-    [SerializeField] private AudioAsset _uncoveringLoop;
-    [SerializeField] private AudioAsset _uncoveringStart;
-    [SerializeField] private AudioAsset _uncoveringRelease;
+    public AudioAsset UncoveringLoop;
+    public AudioAsset UncoveringStart;
+    public AudioAsset UncoveringRelease;
 
     [Header("Teleport")] 
-    [SerializeField] private AudioAsset _teleportLoop;
-    [SerializeField] private AudioAsset _teleportRelease;
+    public AudioAsset TeleportLoop;
+    public AudioAsset TeleportRelease;
 
     [Header("Gravity pull")] 
-    [SerializeField] private AudioAsset _gravityPullSnapping;
-    [SerializeField] private AudioAsset _gravityPullLoop;
+    public AudioAsset GravityPullSnapping;
+    public AudioAsset GravityPullLoop;
 
-    [Header("Bow")] 
-    [SerializeField] private AudioAsset _bowLoop;
-    [SerializeField] private AudioAsset _bowRelease;
-    
-    [Header("Player hands")] 
-    [Header("OTHER")]
-    [SerializeField] private AudioAsset _playerHandsLoop;
-    [SerializeField] private AudioAsset _playerHandsTriangle;
-
+    [Header("Sling Shot")] 
+    public AudioAsset SlingShotLoop;
 }
 
 [Serializable]public class AudioAsset
 {
     public List<AudioClip> AudioClips;
     public bool SingleClip;
-    public float Pitch;
     public float Volume;
+    public bool RandomizePitch;
+    public float PitchMin;
+    public float PitchMax;
+    public float Attack;
+    public float Release;
     public AudioMixerGroup AudioMixerGroup;
 }
