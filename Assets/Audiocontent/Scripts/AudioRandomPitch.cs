@@ -11,6 +11,7 @@ public class AudioRandomPitch : MonoBehaviour
     void Start() {
         _audioSource = GetComponent<AudioSource>();
         _audioSource.pitch = Random.Range(pitchMin, pitchMax);
+        _audioSource.volume = Random.Range(volumeMin, volumeMax);
     }
 
     // Update is called once per frame

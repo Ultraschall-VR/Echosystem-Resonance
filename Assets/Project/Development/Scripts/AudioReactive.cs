@@ -141,7 +141,7 @@ public class AudioReactive : MonoBehaviour
             
             t += Time.deltaTime / speed;
 
-            Power = Mathf.Lerp(Power, targetValue, t);
+            Power = Mathf.Lerp(Power * 10, targetValue, t);
             
             yield return null;
         }

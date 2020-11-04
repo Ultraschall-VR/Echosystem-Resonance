@@ -1,36 +1,54 @@
-﻿using UnityEngine;
+﻿using System;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UIElements;
+using Slider = UnityEngine.UI.Slider;
 
 public class ObjectInteraction : MonoBehaviour
 {
-
     [SerializeField] private PlayerInput _playerInput;
+    [SerializeField] private RectTransform _rectTransform;
+    [SerializeField] private Slider _slider;
+    [SerializeField] private TextMeshProUGUI _text;
 
-    private VRInteraction _selectedInteraction;
-    
+    public VRInteraction _selectedInteraction;
     
     private void CalculateRaycast()
     {
+        if (_selectedInteraction != null)
+        {
+            _selectedInteraction.DecreasePower();
+        }
+        
         RaycastHit hit;
         if (Physics.Raycast(_playerInput.ControllerRight.transform.position,
             _playerInput.ControllerRight.transform.forward, out hit,
-            Mathf.Infinity))
+            5f))
         {
             if (hit.transform.gameObject.GetComponent<VRInteraction>())
             {
+                _rectTransform.gameObject.SetActive(true);
+                
                 if (_selectedInteraction == null)
                 {
                     _selectedInteraction = hit.transform.gameObject.GetComponent<VRInteraction>();
-                    _selectedInteraction.IncreasePower(); 
+                }
+                
+                _text.text = _selectedInteraction.gameObject.name;
+                
+                if (_playerInput.RightTriggerPressed.state)
+                {
+                    _selectedInteraction.IncreasePower();
+                }
+                else
+                {
+                    _selectedInteraction.DecreasePower();
                 }
             }
             else
             {
-                if (_selectedInteraction != null)
-                {
-                    _selectedInteraction.DecreasePower();
-                    _selectedInteraction = null;
-                }
-                
+                _rectTransform.gameObject.SetActive(false);
+                _selectedInteraction = null;
             }
         }
     }
@@ -38,5 +56,17 @@ public class ObjectInteraction : MonoBehaviour
     private void Update()
     {
         CalculateRaycast();
+        _rectTransform.position = _playerInput.ControllerRight.transform.position;
+        _rectTransform.LookAt(_playerInput.Head.transform.position);
+        
+        if (_selectedInteraction != null)
+        {
+            _slider.value = _selectedInteraction.Power;
+        }
+    }
+
+    private void Start()
+    {
+        _rectTransform.gameObject.SetActive(false);
     }
 }
