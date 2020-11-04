@@ -28,10 +28,14 @@ public class PlayerAudioController : MonoBehaviour
     public List<AudioClip> AudioClips;
     public bool SingleClip;
     public float Volume;
+    public bool Spatialized;
+    [Range(0, 1)]public float SpatializeBlend;
     public bool RandomizePitch;
     public float PitchMin;
     public float PitchMax;
     public float Attack;
     public float Release;
+
+    [Range(0, 255)] public int Priority = 128;
     public AudioMixerGroup AudioMixerGroup;
 }

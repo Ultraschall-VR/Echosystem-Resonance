@@ -2,25 +2,44 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.Audio;
-using UnityEngine.Rendering.UI;
 using Random = UnityEngine.Random;
 
+[RequireComponent(typeof(AudioSource))]
 public class AudioPlayer : MonoBehaviour
 {
     private AudioAsset _audioAsset;
 
-    [SerializeField] private AudioSource _audioSource;
+    private AudioSource _audioSource;
 
     private AudioClip _clip;
     private float _pitch;
     private float _volume;
     private float _attack;
     private float _release;
+    private int _priority;
+    private bool _spatialized;
+    private float _spatialzedBlend;
     private AudioMixerGroup _audioMixerGroup;
+
+    private bool _playedOnce;
 
     private bool _parametersSet = false;
 
+    private bool _audioEnded = true;
+
     private bool _break;
+
+
+    private void Update()
+    {
+        _playedOnce = !_audioEnded;
+        _parametersSet = !_audioEnded;
+    }
+
+    private void Start()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
 
     private void SetParameters(AudioAsset audioAsset)
     {
@@ -31,10 +50,15 @@ public class AudioPlayer : MonoBehaviour
         SetPitch();
         SetEnvelope();
         SetAudioMixerGroup();
+        SetPriority();
+        SetSpatialization();
 
         _audioSource.clip = _clip;
         _audioSource.pitch = _pitch;
         _audioSource.volume = _volume;
+        _audioSource.priority = _priority;
+        _audioSource.spatialize = _spatialized;
+        _audioSource.spatialBlend = _spatialzedBlend;
 
         _parametersSet = true;
     }
@@ -42,20 +66,32 @@ public class AudioPlayer : MonoBehaviour
     public void PlayAudio(AudioAsset audioAsset)
     {
         _break = false;
-        
+
         if (!_parametersSet)
         {
             SetParameters(audioAsset);
         }
 
-        if (!_audioSource.isPlaying)
-            StartCoroutine(AttackEnvelope());
+        if (audioAsset.SingleClip)
+        {
+            if (!_playedOnce)
+            {
+                if (!_audioSource.isPlaying)
+                    StartCoroutine(AttackEnvelope());
+                _playedOnce = true;
+            }
+        }
+        else
+        {
+            if (!_audioSource.isPlaying)
+                StartCoroutine(AttackEnvelope());
+        }
     }
 
     public void StopAudio()
     {
         _break = true;
-        
+
         if (_audioSource.isPlaying)
             StartCoroutine(ReleaseEnvelope());
     }
@@ -64,26 +100,27 @@ public class AudioPlayer : MonoBehaviour
     {
         _audioSource.volume = 0.0f;
         _audioSource.Play();
+        _audioEnded = false;
 
         while (_audioSource.volume <= _volume - 0.1f)
         {
-            _audioSource.volume += Time.deltaTime / _attack;
+            _audioSource.volume += Time.deltaTime / (_attack / 60);
             yield return null;
         }
     }
 
     private IEnumerator ReleaseEnvelope()
     {
-        while (_audioSource.volume >= 0.1f)
+        while (_audioSource.volume >= 0f)
         {
-            _audioSource.volume -= Time.deltaTime / _release;
+            _audioSource.volume -= Time.deltaTime / (_release / 60);
 
-            if (_audioSource.volume <= 0.1)
+            if (_audioSource.volume <= 0.01f)
             {
                 _audioSource.Stop();
             }
-            
-            yield return _parametersSet = false;
+
+            yield return _audioEnded = true;
         }
     }
 
@@ -127,5 +164,16 @@ public class AudioPlayer : MonoBehaviour
     private void SetAudioMixerGroup()
     {
         _audioMixerGroup = _audioAsset.AudioMixerGroup;
+    }
+
+    private void SetPriority()
+    {
+        _priority = _audioAsset.Priority;
+    }
+
+    private void SetSpatialization()
+    {
+        _spatialized = _audioAsset.Spatialized;
+        _spatialzedBlend = _audioAsset.SpatializeBlend;
     }
 }
