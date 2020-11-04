@@ -48,8 +48,8 @@ public class PlayerMovement : MonoBehaviour
         _speed = JoystickMovementSpeed;
         _rigidbody.detectCollisions = true;
     }
-
-    private void FixedUpdate()
+    
+    private void Update()
     {
         if (PlayerSpawner.Instance.IsMenu)
         {
@@ -70,11 +70,7 @@ public class PlayerMovement : MonoBehaviour
         {
             CalculateTeleportation();
         }
-    }
-    
 
-    private void Update()
-    {
         if (PlayerSpawner.Instance.IsMenu)
         {
             return;
@@ -234,7 +230,7 @@ public class PlayerMovement : MonoBehaviour
             
             _rigidbody.detectCollisions = false;
 
-            t += Time.fixedDeltaTime * TeleportMovementSpeed;
+            t += Time.deltaTime * TeleportMovementSpeed;
 
             rb.MovePosition(Vector3.Lerp(rb.transform.position, target, t));
             rb.MoveRotation(Quaternion.Lerp(rb.rotation, rb.rotation, t));
