@@ -59,7 +59,7 @@ public class AudioArrow : MonoBehaviour
                     StickArrow(other);
                 }
 
-                if (audioReactive.Power > 0.1f && !audioReactive.Uncovered)
+                if (audioReactive.Power > 0.001f && !audioReactive.Uncovered)
                 {
                     audioReactive.Uncover();
                     StickArrow(other);
