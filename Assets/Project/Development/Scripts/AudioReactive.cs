@@ -24,9 +24,6 @@ public class AudioReactive : MonoBehaviour
 
     private bool _conceal = false;
     
-    
-    
-    
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -141,7 +138,7 @@ public class AudioReactive : MonoBehaviour
             
             t += Time.deltaTime / speed;
 
-            Power = Mathf.Lerp(Power * 10, targetValue, t);
+            Power = Mathf.Lerp(Power, targetValue, t);
             
             yield return null;
         }
