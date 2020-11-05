@@ -9,7 +9,9 @@ public class Uncovering : MonoBehaviour
     [SerializeField] private KeyboardInput _keyboardInput;
     [SerializeField] private PlayerStateMachine _playerStateMachine;
     [SerializeField] private PlayerAudioController _playerAudioController;
-    [SerializeField] private AudioPlayer _audioPlayer;
+    [SerializeField] private AudioPlayer _audioPlayerLoop;
+    [SerializeField] private AudioPlayer _audioPlayerStart;
+    [SerializeField] private AudioPlayer _audioPlayerRelease;
     [SerializeField] private AudioSource _riserAudio;
     [SerializeField] private float _concealSpeed;
 
@@ -79,22 +81,32 @@ public class Uncovering : MonoBehaviour
     {
         if (_playerInput.LeftTriggerPressed.state && _playerInput.RightTriggerPressed.state)
         {
+            _audioPlayerRelease.StopAudio();
+            _audioPlayerStart.PlayAudio(_playerAudioController.UncoveringStart);
+            
             _playerStateMachine.Uncovering = true;
             
             _riserAudio.pitch = Vector3.Distance(_leftHand.position, _rightHand.position);
 
-            Power = _riserAudio.pitch;
+            Power = _riserAudio.pitch /4;
 
             foreach (var audioReactive in _audioReactives)
             {
                 audioReactive.Reveal(_playerInput.Player.transform.position, Power);
             }
             
-            _audioPlayer.PlayAudio(_playerAudioController.UncoveringLoop);
+            _audioPlayerLoop.PlayAudio(_playerAudioController.UncoveringLoop);
         }
+
         else
         {
-            _audioPlayer.StopAudio();
+            if (_playerStateMachine.Uncovering)
+            {
+                _audioPlayerLoop.StopAudio();
+                _audioPlayerRelease.PlayAudio(_playerAudioController.UncoveringRelease);
+            }
+            _audioPlayerLoop.StopAudio();
+            _audioPlayerStart.StopAudio();
             _playerStateMachine.Uncovering = false;
 
             if (_audioReactives.Count != 0)

@@ -34,7 +34,7 @@ public class VRHand : MonoBehaviour
 
     private void Start()
     {
-        Invoke("Initialize",2f);
+        Invoke("Initialize",0.5f);
         if (_isRightHand)
         {
             CrossHair.SetActive(false);

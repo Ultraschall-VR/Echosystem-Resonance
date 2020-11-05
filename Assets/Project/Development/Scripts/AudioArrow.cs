@@ -30,7 +30,7 @@ public class AudioArrow : MonoBehaviour
 
     public void Launch(float power, Vector3 direction)
     {
-        power *= 15;
+        power *= 100;
         _rb.velocity = direction * power;
         _launched = true;
     }
