@@ -25,7 +25,7 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.635
+    m_Value: 0.5
     min: 0
     max: 1
   smoothness:
@@ -36,43 +36,6 @@ MonoBehaviour:
   rounded:
     m_OverrideState: 1
     m_Value: 0
---- !u!114 &-7087973418435945181
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5e1dc532bcb41949b58bc4f2abfbb7e, type: 3}
-  m_Name: LensDistortion
-  m_EditorClassIdentifier: 
-  active: 1
-  m_AdvancedMode: 0
-  intensity:
-    m_OverrideState: 1
-    m_Value: -0.1
-    min: -1
-    max: 1
-  xMultiplier:
-    m_OverrideState: 1
-    m_Value: 1
-    min: 0
-    max: 1
-  yMultiplier:
-    m_OverrideState: 1
-    m_Value: 1
-    min: 0
-    max: 1
-  center:
-    m_OverrideState: 1
-    m_Value: {x: 0.5, y: 0.5}
-  scale:
-    m_OverrideState: 1
-    m_Value: 1
-    min: 0.01
-    max: 5
 --- !u!114 &-6181545991662768659
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -96,7 +59,7 @@ MonoBehaviour:
     min: 0
   gaussianEnd:
     m_OverrideState: 1
-    m_Value: 200
+    m_Value: 350
     min: 0
   gaussianMaxRadius:
     m_OverrideState: 1
@@ -172,11 +135,11 @@ MonoBehaviour:
     min: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 1.8
+    m_Value: 1
     min: 0
   scatter:
     m_OverrideState: 1
-    m_Value: 0.5
+    m_Value: 0.623
     min: 0
     max: 1
   clamp:
@@ -215,35 +178,8 @@ MonoBehaviour:
   - {fileID: -577325217749444456}
   - {fileID: -6181545991662768659}
   - {fileID: -7925950115042875835}
-  - {fileID: 363261468855042775}
   - {fileID: -2652409350489690260}
   - {fileID: 1356529234139544026}
-  - {fileID: 1653159827382567662}
-  - {fileID: -7087973418435945181}
---- !u!114 &363261468855042775
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 221518ef91623a7438a71fef23660601, type: 3}
-  m_Name: WhiteBalance
-  m_EditorClassIdentifier: 
-  active: 1
-  m_AdvancedMode: 0
-  temperature:
-    m_OverrideState: 1
-    m_Value: 50
-    min: -100
-    max: 100
-  tint:
-    m_OverrideState: 1
-    m_Value: 0
-    min: -100
-    max: 100
 --- !u!114 &1356529234139544026
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -279,36 +215,6 @@ MonoBehaviour:
     max: 180
   saturation:
     m_OverrideState: 1
-    m_Value: 30
+    m_Value: 0
     min: -100
     max: 100
---- !u!114 &1653159827382567662
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29fa0085f50d5e54f8144f766051a691, type: 3}
-  m_Name: FilmGrain
-  m_EditorClassIdentifier: 
-  active: 1
-  m_AdvancedMode: 0
-  type:
-    m_OverrideState: 1
-    m_Value: 0
-  intensity:
-    m_OverrideState: 1
-    m_Value: 0.554
-    min: 0
-    max: 1
-  response:
-    m_OverrideState: 1
-    m_Value: 1
-    min: 0
-    max: 1
-  texture:
-    m_OverrideState: 1
-    m_Value: {fileID: 0}
