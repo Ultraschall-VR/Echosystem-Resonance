@@ -222,6 +222,8 @@ public class PlayerMovement : MonoBehaviour
 
         while (t <= timer)
         {
+            
+            
             if (_heavyMassCollision)
             {
                 _rigidbody.detectCollisions = true;
