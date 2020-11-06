@@ -8,6 +8,9 @@ public class PlayerInput : MonoBehaviour
     public GameObject ControllerLeft;
     public GameObject ControllerRight;
 
+    public GameObject ControllerLeftGhost;
+    public GameObject ControllerRightGhost;
+
     public Collider ControllerLeftCollider;
     public Collider ControllerRightCollider;
 

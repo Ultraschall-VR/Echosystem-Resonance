@@ -1,7 +1,4 @@
-﻿using System;
-using UnityEditorInternal;
-using UnityEngine;
-using UnityEngine.Rendering;
+﻿using UnityEngine;
 
 public class MenuController : MonoBehaviour
 {
@@ -12,6 +9,8 @@ public class MenuController : MonoBehaviour
     [SerializeField] private Menu _mainMenu;
     [SerializeField] private Menu _loadingMenu;
 
+
+    private ToolTipps _toolTipps;
     private GameStateMachine.Gamestate _gamestate;
     private bool _toggleMenu;
 
@@ -27,6 +26,7 @@ public class MenuController : MonoBehaviour
 
     private void Initialize()
     {
+        _toolTipps = FindObjectOfType<ToolTipps>();
         _gamestate = GameStateMachine.Instance.CurrentGameState;
         _playerInput = FindObjectOfType<PlayerInput>();
 

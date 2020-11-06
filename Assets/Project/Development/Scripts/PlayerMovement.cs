@@ -31,8 +31,6 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _teleportTarget;
     private bool _teleportCooldownDone;
     
-    
-
     void Start()
     {
         Initialize();
@@ -164,7 +162,7 @@ public class PlayerMovement : MonoBehaviour
 
                 _isTeleporting = true;
                 _teleportCooldownDone = false;
-                Invoke("CheckTeleportCooldown", cooldown / 10);
+                Invoke("CheckTeleportCooldown", cooldown / 100);
 
 
                 StartCoroutine(MoveToPosition(_rigidbody, _teleportTarget));
@@ -219,9 +217,15 @@ public class PlayerMovement : MonoBehaviour
     {
         float t = 0;
         float timer = 0.5f;
+        
+        _playerInput.ControllerRight.transform.position = _playerInput.ControllerRightGhost.transform.position;
+        _playerInput.ControllerLeft.transform.position = _playerInput.ControllerLeftGhost.transform.position;
 
         while (t <= timer)
         {
+            _playerInput.ControllerRight.transform.position = _playerInput.ControllerRightGhost.transform.position;
+            _playerInput.ControllerLeft.transform.position = _playerInput.ControllerLeftGhost.transform.position;
+
             if (_heavyMassCollision)
             {
                 _rigidbody.detectCollisions = true;
@@ -234,10 +238,8 @@ public class PlayerMovement : MonoBehaviour
 
             rb.MovePosition(Vector3.Lerp(rb.transform.position, target, t));
             rb.MoveRotation(Quaternion.Lerp(rb.rotation, rb.rotation, t));
-            yield return null;
+            yield return _rigidbody.detectCollisions = true;
         }
-        
-        _rigidbody.detectCollisions = true;
     }
 
     private void OnTriggerExit(Collider other)

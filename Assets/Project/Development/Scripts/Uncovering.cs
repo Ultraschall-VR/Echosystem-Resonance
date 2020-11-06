@@ -25,37 +25,31 @@ public class Uncovering : MonoBehaviour
     void Start()
     {
         Initialize();
+        
+        InvokeRepeating("Initialize", 0f, 5f);
     }
 
     private void Initialize()
     {
         _audioReactives = new List<AudioReactive>();
         _audioReactives = FindObjectsOfType<AudioReactive>().ToList();
-        
+
         if (PlayerSpawner.Instance.NonVR)
         {
             return;
         }
-        
+
         _leftHand = _playerInput.ControllerLeft.transform;
         _rightHand = _playerInput.ControllerRight.transform;
     }
 
     void Update()
     {
-        if (_audioReactives.Count != 0)
-        {
-            if (_audioReactives[0] == null)
-            {
-                Initialize();
-            } 
-        }
-        
         if (!GameProgress.Instance.LearnedUncover)
         {
             return;
         }
-        
+
         if (_playerStateMachine.TeleportState ||
             _playerStateMachine.AudioBowState)
         {
@@ -66,7 +60,7 @@ public class Uncovering : MonoBehaviour
         {
             return;
         }
-        
+
         if (PlayerSpawner.Instance.NonVR)
         {
             KeyboardInputHandler();
@@ -83,18 +77,18 @@ public class Uncovering : MonoBehaviour
         {
             _audioPlayerRelease.StopAudio();
             _audioPlayerStart.PlayAudio(_playerAudioController.UncoveringStart);
-            
+
             _playerStateMachine.Uncovering = true;
-            
+
             _riserAudio.pitch = Vector3.Distance(_leftHand.position, _rightHand.position);
 
-            Power = _riserAudio.pitch /4;
+            Power = _riserAudio.pitch / 4;
 
             foreach (var audioReactive in _audioReactives)
             {
                 audioReactive.Reveal(_playerInput.Player.transform.position, Power);
             }
-            
+
             _audioPlayerLoop.PlayAudio(_playerAudioController.UncoveringLoop);
         }
 
@@ -105,6 +99,7 @@ public class Uncovering : MonoBehaviour
                 _audioPlayerLoop.StopAudio();
                 _audioPlayerRelease.PlayAudio(_playerAudioController.UncoveringRelease);
             }
+
             _audioPlayerLoop.StopAudio();
             _audioPlayerStart.StopAudio();
             _playerStateMachine.Uncovering = false;

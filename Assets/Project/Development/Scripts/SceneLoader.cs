@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections;
-using UnityEditor;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
     [SerializeField] private TransitionManager _transitionManager;
-    [SerializeField] private SceneAsset _loadingScene;
-    [SerializeField] private SceneAsset _orpheusScene;
-    [SerializeField] private SceneAsset _storyScene;
-    [SerializeField] private SceneAsset _playgroundScene;
+    [SerializeField] private string _loadingSceneName;
+    [SerializeField] private string _orpheusSceneName;
+    [SerializeField] private string _storySceneName;
+    [SerializeField] private string _playgroundSceneName;
+    [SerializeField] private string _caveSceneName;
 
     [HideInInspector] public bool LoadFirstScene;
     
@@ -28,22 +27,27 @@ public class SceneLoader : MonoBehaviour
         {
             case Scene.Loading:
 
-                sceneToLoad = _loadingScene.name;
+                sceneToLoad = _loadingSceneName;
                 break;
             
             case Scene.Orpheus:
 
-                sceneToLoad = _orpheusScene.name;
+                sceneToLoad = _orpheusSceneName;
                 break;
             
             case Scene.Story:
 
-                sceneToLoad = _storyScene.name;
+                sceneToLoad = _storySceneName;
                 break;
             
             case Scene.Playground:
 
-                sceneToLoad = _playgroundScene.name;
+                sceneToLoad = _playgroundSceneName;
+                break;
+            
+            case Scene.Cave:
+
+                sceneToLoad = _caveSceneName;
                 break;
         }
 
@@ -65,7 +69,7 @@ public class SceneLoader : MonoBehaviour
         _transitionManager.FadeOut(Color.black);
         yield return new WaitForSeconds(_transitionManager.CurrentAnimationLength);
 
-        var loadingScene = SceneManager.LoadSceneAsync(_loadingScene.name);
+        var loadingScene = SceneManager.LoadSceneAsync(_loadingSceneName);
         
         _transitionManager.FadeIn(Color.black);
 
@@ -92,6 +96,7 @@ public class SceneLoader : MonoBehaviour
         Orpheus,
         Story,
         Loading,
-        Playground
+        Playground,
+        Cave
     }
 }
