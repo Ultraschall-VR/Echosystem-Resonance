@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class GameProgress : MonoBehaviour
 {
@@ -18,6 +19,24 @@ public class GameProgress : MonoBehaviour
         else
         {
             Destroy(this);
+        }
+    }
+
+    private void Update()
+    {
+        if (GameStateMachine.Instance.MenuOpen)
+        {
+            LearnedTeleport = false;
+            LearnedGrab = false;
+            LearnedUncover = false;
+            LearnedBow = false;
+        }
+        else
+        {
+            LearnedTeleport = true;
+            LearnedGrab = true;
+            LearnedUncover = true;
+            LearnedBow = true;
         }
     }
 }

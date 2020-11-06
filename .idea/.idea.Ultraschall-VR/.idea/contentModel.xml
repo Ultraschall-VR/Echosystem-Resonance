@@ -7,28 +7,6 @@
       <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
-        <e p="Allegorithmic" t="Include">
-          <e p="Plugins" t="Include">
-            <e p="engine_build_info.txt" t="Include" />
-            <e p="EULA.txt" t="Include" />
-            <e p="Substance" t="Include">
-              <e p="Livelink" t="Include">
-                <e p="Editor" t="Include">
-                  <e p="Plugins" t="Include">
-                    <e p="SimpleJSON.cs" t="Include" />
-                  </e>
-                  <e p="Scripts" t="Include">
-                    <e p="ItemSelectorWindow.cs" t="Include" />
-                    <e p="MaterialPropertiesManipulation.cs" t="Include" />
-                    <e p="MaterialsManipulation.cs" t="Include" />
-                    <e p="MeshLinkEditor.cs" t="Include" />
-                    <e p="ShadersInfos.cs" t="Include" />
-                  </e>
-                </e>
-              </e>
-            </e>
-          </e>
-        </e>
         <e p="Audiocontent" t="Include">
           <e p="Scripts" t="Include">
             <e p="AudioDelay.cs" t="Include" />
@@ -44,78 +22,7 @@
             <e p="SimpleSpectrum.cs" t="Include" />
           </e>
         </e>
-        <e p="AudioPlayer.cs" t="Include" />
         <e p="Dependencies" t="Include">
-          <e p="FlatKit" t="Include">
-            <e p="[Render Pipeline] URP" t="Include">
-              <e p="RenderFeatures" t="Include">
-                <e p="Common" t="Include">
-                  <e p="ShaderIncludeUtilities.cs" t="Include" />
-                </e>
-                <e p="Fog" t="Include">
-                  <e p="FlatKitFog.cs" t="Include" />
-                  <e p="FogSettings.cs" t="Include" />
-                  <e p="Resources" t="Include">
-                    <e p="FlatKitFog.shader" t="Include" />
-                  </e>
-                </e>
-                <e p="Outline" t="Include">
-                  <e p="FlatKitDepthNormals.cs" t="Include" />
-                  <e p="FlatKitOutline.cs" t="Include" />
-                  <e p="OutlineSettings.cs" t="Include" />
-                  <e p="Resources" t="Include">
-                    <e p="FlatKitOutline.shader" t="Include" />
-                  </e>
-                </e>
-              </e>
-            </e>
-            <e p="Demos" t="Include">
-              <e p="Common" t="Include">
-                <e p="Scripts" t="Include">
-                  <e p="Motion" t="Include">
-                    <e p="CameraMouseOrbit.cs" t="Include" />
-                    <e p="Editor" t="Include">
-                      <e p="LinearMotionEditor.cs" t="Include" />
-                    </e>
-                    <e p="LinearMotion.cs" t="Include" />
-                  </e>
-                </e>
-              </e>
-            </e>
-            <e p="Scripts" t="Include">
-              <e p="UvScroller.cs" t="Include" />
-            </e>
-            <e p="Shaders" t="Include">
-              <e p="Editor" t="Include">
-                <e p="StylizedSurfaceEditor.cs" t="Include" />
-              </e>
-              <e p="GradientSkybox" t="Include">
-                <e p="Editor" t="Include">
-                  <e p="GradientSkyboxEditor.cs" t="Include" />
-                </e>
-                <e p="GradientSkybox.shader" t="Include" />
-              </e>
-              <e p="LightPlane.shader" t="Include" />
-              <e p="StylizedSurface" t="Include">
-                <e p="DustyroomTerrainSplatmapCommon.cginc" t="Include" />
-                <e p="LibraryUrp" t="Include">
-                  <e p="DepthOnlyPass_DR.hlsl" t="Include" />
-                  <e p="Lighting_DR.hlsl" t="Include" />
-                  <e p="LitForwardPass_DR.hlsl" t="Include" />
-                  <e p="LitInput_DR.hlsl" t="Include" />
-                  <e p="ShadowCasterPass_DR.hlsl" t="Include" />
-                  <e p="StylizedInput.hlsl" t="Include" />
-                  <e p="SurfaceInput_DR.hlsl" t="Include" />
-                  <e p="TerrainLitInput_DR.hlsl" t="Include" />
-                  <e p="TerrainLitPasses_DR.hlsl" t="Include" />
-                </e>
-                <e p="StylizedSurface.shader" t="Include" />
-                <e p="StylizedSurfaceCutout.shader" t="Include" />
-                <e p="StylizedSurfaceOutline.shader" t="Include" />
-                <e p="Terrain.shader" t="Include" />
-              </e>
-            </e>
-          </e>
           <e p="LeanTween" t="Include">
             <e p="Editor" t="Include">
               <e p="LeanTweenDocumentationEditor.cs" t="Include" />
@@ -171,6 +78,15 @@
                 <e p="ModularTerrainCameraControl.cs" t="Include" />
                 <e p="ModularTerrainCloudsControl.cs" t="Include" />
                 <e p="ModularTerrainSunControl.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="Low Poly Vegetation Pack" t="Include">
+            <e p="Bonus Assets" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="LowPolyVegetation_CameraControl.cs" t="Include" />
+                <e p="LowPolyVegetation_CloudsControl.cs" t="Include" />
+                <e p="LowPolyVegetation_SunControl.cs" t="Include" />
               </e>
             </e>
           </e>
@@ -711,6 +627,67 @@
               </e>
             </e>
           </e>
+          <e p="SteamAudio" t="Include">
+            <e p="AudioEngine.cs" t="Include" />
+            <e p="AudioEngineAmbisonicsSource.cs" t="Include" />
+            <e p="AudioEngineAmbisonicsSource_Unity.cs" t="Include" />
+            <e p="AudioEngineAmbisonicsSourceFactory.cs" t="Include" />
+            <e p="AudioEngineSource.cs" t="Include" />
+            <e p="AudioEngineSource_Unity.cs" t="Include" />
+            <e p="AudioEngineSourceFactory.cs" t="Include" />
+            <e p="AudioEngineState.cs" t="Include" />
+            <e p="AudioEngineState_Unity.cs" t="Include" />
+            <e p="AudioEngineStateFactory.cs" t="Include" />
+            <e p="Baker.cs" t="Include" />
+            <e p="Common.cs" t="Include" />
+            <e p="ComponentCache.cs" t="Include" />
+            <e p="ComputeDevice.cs" t="Include" />
+            <e p="Core.cs" t="Include" />
+            <e p="Core_Unity.cs" t="Include" />
+            <e p="Editor" t="Include">
+              <e p="Build.cs" t="Include" />
+              <e p="MaterialValueDrawer.cs" t="Include" />
+              <e p="SimulationSettingsValueDrawer.cs" t="Include" />
+              <e p="SteamAudioAmbisonicsSourceInspector.cs" t="Include" />
+              <e p="SteamAudioBakedStaticListenerNodeInspector.cs" t="Include" />
+              <e p="SteamAudioCustomSettingsInspector.cs" t="Include" />
+              <e p="SteamAudioDynamicObjectInspector.cs" t="Include" />
+              <e p="SteamAudioGeometryInspector.cs" t="Include" />
+              <e p="SteamAudioListenerInspector.cs" t="Include" />
+              <e p="SteamAudioManagerInspector.cs" t="Include" />
+              <e p="SteamAudioMaterialInspector.cs" t="Include" />
+              <e p="SteamAudioMixerReturnGUI.cs" t="Include" />
+              <e p="SteamAudioProbeBoxInspector.cs" t="Include" />
+              <e p="SteamAudioReverbGUI.cs" t="Include" />
+              <e p="SteamAudioSourceInspector.cs" t="Include" />
+              <e p="SteamAudioWindow.cs" t="Include" />
+            </e>
+            <e p="Environment.cs" t="Include" />
+            <e p="GameEngineState.cs" t="Include" />
+            <e p="ManagerData.cs" t="Include" />
+            <e p="MaterialPreset.cs" t="Include" />
+            <e p="MaterialPresetList.cs" t="Include" />
+            <e p="MaterialValue.cs" t="Include" />
+            <e p="ProbeManager.cs" t="Include" />
+            <e p="RayTracer.cs" t="Include" />
+            <e p="Scene.cs" t="Include" />
+            <e p="SceneExporter.cs" t="Include" />
+            <e p="SimulationSettingsPreset.cs" t="Include" />
+            <e p="SimulationSettingsPresetList.cs" t="Include" />
+            <e p="SimulationSettingsValue.cs" t="Include" />
+            <e p="SteamAudioAmbisonicsSource.cs" t="Include" />
+            <e p="SteamAudioBakedStaticListenerNode.cs" t="Include" />
+            <e p="SteamAudioCustomSettings.cs" t="Include" />
+            <e p="SteamAudioCustomSpeakerLayout.cs" t="Include" />
+            <e p="SteamAudioDynamicObject.cs" t="Include" />
+            <e p="SteamAudioGeometry.cs" t="Include" />
+            <e p="SteamAudioListener.cs" t="Include" />
+            <e p="SteamAudioManager.cs" t="Include" />
+            <e p="SteamAudioMaterial.cs" t="Include" />
+            <e p="SteamAudioProbeBox.cs" t="Include" />
+            <e p="SteamAudioSource.cs" t="Include" />
+            <e p="Version.cs" t="Include" />
+          </e>
           <e p="SteamVR" t="Include">
             <e p="Editor" t="Include">
               <e p="SteamVR_AutoEnableVR.cs" t="Include" />
@@ -1005,6 +982,37 @@
             <e p="SteamVR_Input_ActionSets.cs" t="Include" />
             <e p="SteamVR_Input_Initialization.cs" t="Include" />
           </e>
+          <e p="TextMesh Pro" t="Include">
+            <e p="Fonts" t="Include">
+              <e p="LiberationSans - OFL.txt" t="Include" />
+            </e>
+            <e p="Resources" t="Include">
+              <e p="LineBreaking Following Characters.txt" t="Include" />
+              <e p="LineBreaking Leading Characters.txt" t="Include" />
+              <e p="Shaders" t="Include">
+                <e p="TMP_Bitmap-Custom-Atlas.shader" t="Include" />
+                <e p="TMP_Bitmap-Mobile.shader" t="Include" />
+                <e p="TMP_Bitmap.shader" t="Include" />
+                <e p="TMP_SDF Overlay.shader" t="Include" />
+                <e p="TMP_SDF-Mobile Masking.shader" t="Include" />
+                <e p="TMP_SDF-Mobile Overlay.shader" t="Include" />
+                <e p="TMP_SDF-Mobile.shader" t="Include" />
+                <e p="TMP_SDF-Surface-Mobile.shader" t="Include" />
+                <e p="TMP_SDF-Surface.shader" t="Include" />
+                <e p="TMP_SDF.shader" t="Include" />
+                <e p="TMP_Sprite.shader" t="Include" />
+                <e p="TMPro.cginc" t="Include" />
+                <e p="TMPro_Properties.cginc" t="Include" />
+                <e p="TMPro_Surface.cginc" t="Include" />
+              </e>
+            </e>
+            <e p="Sprites" t="Include">
+              <e p="EmojiOne Attribution.txt" t="Include" />
+            </e>
+          </e>
+          <e p="Underwater Plants v2" t="Include">
+            <e p="readme.txt" t="Include" />
+          </e>
           <e p="VegetationSpawner" t="Include">
             <e p="Editor" t="Include">
               <e p="sc.vegetationspawner.editor.asmdef" t="Include" />
@@ -1020,9 +1028,15 @@
               <e p="VegetationSpawner.cs" t="Include" />
             </e>
           </e>
+          <e p="Water" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="Water.cs" t="Include" />
+            </e>
+            <e p="Shaders" t="Include">
+              <e p="FlatShadedWaterWithEdgeBlend.shader" t="Include" />
+            </e>
+          </e>
         </e>
-        <e p="ImpactSounds.cs" t="Include" />
-        <e p="LevelDesignSpawner.cs" t="Include" />
         <e p="Project" t="Include">
           <e p="Development" t="Include">
             <e p="_deprecated" t="Include">
@@ -1039,6 +1053,7 @@
             <e p="Scripts" t="Include">
               <e p="AudioArrow.cs" t="Include" />
               <e p="AudioBow.cs" t="Include" />
+              <e p="AudioPlayer.cs" t="Include" />
               <e p="AudioReactive.cs" t="Include" />
               <e p="ControllerManager.cs" t="Include" />
               <e p="CrossHair.cs" t="Include" />
@@ -1051,7 +1066,9 @@
               </e>
               <e p="HideUI.cs" t="Include" />
               <e p="IgnorePlayerCollision.cs" t="Include" />
+              <e p="ImpactSounds.cs" t="Include" />
               <e p="KeyboardInput.cs" t="Include" />
+              <e p="LevelDesignSpawner.cs" t="Include" />
               <e p="LineRendererCaster.cs" t="Include" />
               <e p="LoadScene.cs" t="Include" />
               <e p="Menu.cs" t="Include" />
@@ -1117,6 +1134,7 @@
             </e>
           </e>
         </e>
+        <e p="ShowToolTipp.cs" t="Include" />
         <e p="Standard Assets" t="Include">
           <e p="2D" t="Include">
             <e p="Scripts" t="Include">
@@ -1346,67 +1364,6 @@
             </e>
           </e>
         </e>
-        <e p="SteamAudio" t="Include">
-          <e p="AudioEngine.cs" t="Include" />
-          <e p="AudioEngineAmbisonicsSource.cs" t="Include" />
-          <e p="AudioEngineAmbisonicsSource_Unity.cs" t="Include" />
-          <e p="AudioEngineAmbisonicsSourceFactory.cs" t="Include" />
-          <e p="AudioEngineSource.cs" t="Include" />
-          <e p="AudioEngineSource_Unity.cs" t="Include" />
-          <e p="AudioEngineSourceFactory.cs" t="Include" />
-          <e p="AudioEngineState.cs" t="Include" />
-          <e p="AudioEngineState_Unity.cs" t="Include" />
-          <e p="AudioEngineStateFactory.cs" t="Include" />
-          <e p="Baker.cs" t="Include" />
-          <e p="Common.cs" t="Include" />
-          <e p="ComponentCache.cs" t="Include" />
-          <e p="ComputeDevice.cs" t="Include" />
-          <e p="Core.cs" t="Include" />
-          <e p="Core_Unity.cs" t="Include" />
-          <e p="Editor" t="Include">
-            <e p="Build.cs" t="Include" />
-            <e p="MaterialValueDrawer.cs" t="Include" />
-            <e p="SimulationSettingsValueDrawer.cs" t="Include" />
-            <e p="SteamAudioAmbisonicsSourceInspector.cs" t="Include" />
-            <e p="SteamAudioBakedStaticListenerNodeInspector.cs" t="Include" />
-            <e p="SteamAudioCustomSettingsInspector.cs" t="Include" />
-            <e p="SteamAudioDynamicObjectInspector.cs" t="Include" />
-            <e p="SteamAudioGeometryInspector.cs" t="Include" />
-            <e p="SteamAudioListenerInspector.cs" t="Include" />
-            <e p="SteamAudioManagerInspector.cs" t="Include" />
-            <e p="SteamAudioMaterialInspector.cs" t="Include" />
-            <e p="SteamAudioMixerReturnGUI.cs" t="Include" />
-            <e p="SteamAudioProbeBoxInspector.cs" t="Include" />
-            <e p="SteamAudioReverbGUI.cs" t="Include" />
-            <e p="SteamAudioSourceInspector.cs" t="Include" />
-            <e p="SteamAudioWindow.cs" t="Include" />
-          </e>
-          <e p="Environment.cs" t="Include" />
-          <e p="GameEngineState.cs" t="Include" />
-          <e p="ManagerData.cs" t="Include" />
-          <e p="MaterialPreset.cs" t="Include" />
-          <e p="MaterialPresetList.cs" t="Include" />
-          <e p="MaterialValue.cs" t="Include" />
-          <e p="ProbeManager.cs" t="Include" />
-          <e p="RayTracer.cs" t="Include" />
-          <e p="Scene.cs" t="Include" />
-          <e p="SceneExporter.cs" t="Include" />
-          <e p="SimulationSettingsPreset.cs" t="Include" />
-          <e p="SimulationSettingsPresetList.cs" t="Include" />
-          <e p="SimulationSettingsValue.cs" t="Include" />
-          <e p="SteamAudioAmbisonicsSource.cs" t="Include" />
-          <e p="SteamAudioBakedStaticListenerNode.cs" t="Include" />
-          <e p="SteamAudioCustomSettings.cs" t="Include" />
-          <e p="SteamAudioCustomSpeakerLayout.cs" t="Include" />
-          <e p="SteamAudioDynamicObject.cs" t="Include" />
-          <e p="SteamAudioGeometry.cs" t="Include" />
-          <e p="SteamAudioListener.cs" t="Include" />
-          <e p="SteamAudioManager.cs" t="Include" />
-          <e p="SteamAudioMaterial.cs" t="Include" />
-          <e p="SteamAudioProbeBox.cs" t="Include" />
-          <e p="SteamAudioSource.cs" t="Include" />
-          <e p="Version.cs" t="Include" />
-        </e>
         <e p="TextMesh Pro" t="Include">
           <e p="Fonts" t="Include">
             <e p="LiberationSans - OFL.txt" t="Include" />
@@ -1435,6 +1392,7 @@
             <e p="EmojiOne Attribution.txt" t="Include" />
           </e>
         </e>
+        <e p="ToolTipps.cs" t="Include" />
       </e>
       <e p="obj" t="ExcludeRecursive" />
       <e p="packages" t="ExcludeRecursive" />

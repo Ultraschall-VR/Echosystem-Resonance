@@ -23,8 +23,15 @@ public class LevelDesignSpawner : MonoBehaviour
     [ContextMenu("SpawnObjects")]
     public void SpawnObjects()
     {
-        SpawnRotRandom();
-        SpawnYRotRandom();
+        if (_randomRotPrefabs.Count != 0)
+        {
+            SpawnRotRandom();
+        }
+
+        if (_randomYRotPrefabs.Count != 0)
+        {
+            SpawnYRotRandom();
+        }
     }
 
     private void SpawnYRotRandom()

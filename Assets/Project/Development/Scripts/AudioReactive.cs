@@ -61,7 +61,7 @@ public class AudioReactive : MonoBehaviour
     {
         if (!Uncovered)
         {
-            if (Power < 0.1f)
+            if (Power < 0.001f)
             {
                 foreach (var collider in Colliders)
                 {
@@ -90,7 +90,7 @@ public class AudioReactive : MonoBehaviour
         foreach (var mesh in Meshes)
         {
             mesh.material.SetVector(ObjectPos, position);
-            Power = power;
+            Power = power/Vector3.Distance(position, transform.position);
         }
 
         _conceal = false;
