@@ -1,7 +1,4 @@
-﻿using System;
-using UnityEditorInternal;
-using UnityEngine;
-using UnityEngine.Rendering;
+﻿using UnityEngine;
 
 public class MenuController : MonoBehaviour
 {

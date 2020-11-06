@@ -4,9 +4,10 @@ using UnityEngine.SceneManagement;
 
 public class GameStateMachine : MonoBehaviour
 {
-    [SerializeField] private SceneAsset _orpheusScene;
-    [SerializeField] private SceneAsset _storyScene;
-    [SerializeField] private SceneAsset _loadingScene;
+    [SerializeField] private string _orpheusSceneName;
+    [SerializeField] private string _storySceneName;
+    [SerializeField] private string _loadingSceneName;
+    [SerializeField] private string _caveSceneName;
 
     public bool MenuOpen;
     
@@ -28,13 +29,17 @@ public class GameStateMachine : MonoBehaviour
 
     private void Update()
     {
-        if (SceneManager.GetActiveScene().name == _orpheusScene.name)
+        if (SceneManager.GetActiveScene().name == _orpheusSceneName)
         {
             CurrentGameState = Gamestate.Orpheus;
         }
-        else if (SceneManager.GetActiveScene().name == _loadingScene.name)
+        else if (SceneManager.GetActiveScene().name == _loadingSceneName)
         {
             CurrentGameState = Gamestate.Loading;
+        } 
+        else if (SceneManager.GetActiveScene().name == _caveSceneName)
+        {
+            CurrentGameState = Gamestate.Cave;
         }
         else
         {
@@ -47,6 +52,7 @@ public class GameStateMachine : MonoBehaviour
     {
         Orpheus,
         Story,
-        Loading
+        Loading,
+        Cave
     }
 }
