@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1524281928443125362}
   - component: {fileID: 1524281928443125361}
   m_Layer: 0
-  m_Name: Test_Audio
+  m_Name: Steam Audio (Occ,Ref)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,9 +28,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1524281928443125375}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.66, y: 2.51, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -50,7 +50,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1524281928443125375}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 09d689fffc8ae4e19a0c30d4470c8a1a, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -104,9 +104,9 @@ AudioSource:
   m_GameObject: {fileID: 1524281928443125375}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -5200345126797016125, guid: 89a02da96a05145b0868138c329f34d1,
+  OutputAudioMixerGroup: {fileID: 1712943637270414222, guid: 90f9cf71ccef2495c8af1280b5408ebd,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 889cb5907fe974352b01d6db3bab6fad, type: 3}
+  m_audioClip: {fileID: 8300000, guid: e4f42f74247224ec7a34d5e6c7c2184d, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -217,11 +217,11 @@ MonoBehaviour:
   interpolation: 0
   physicsBasedAttenuation: 1
   airAbsorption: 1
-  dipoleWeight: 0
-  dipolePower: 0
+  dipoleWeight: 0.326
+  dipolePower: 2.35
   occlusionMode: 3
   occlusionMethod: 1
-  sourceRadius: 2.06
+  sourceRadius: 0.27
   occlusionSamples: 16
   directMixLevel: 1
   reflections: 1
