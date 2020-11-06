@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -12,7 +13,7 @@ public class MenuElement : MonoBehaviour
     [SerializeField] private AudioClip _highlightSound;
     [SerializeField] private Color _selectColor;
     [SerializeField] private AudioClip _selectSound;
-    [SerializeField] private MonoBehaviour _selectAction;
+    [SerializeField] private List<MonoBehaviour> _selectActions;
 
     private AudioSource _audioSource;
     private bool _audioPlaying = false;
@@ -45,8 +46,11 @@ public class MenuElement : MonoBehaviour
         _text.faceColor = _selectColor;
         
         _audioSource.PlayOneShot(_selectSound);
-        
-        _selectAction.enabled = true;
-        _selectAction.enabled = false;
+
+        foreach (var action in _selectActions)
+        {
+            action.enabled = true;
+            action.enabled = false;
+        }
     }
 }

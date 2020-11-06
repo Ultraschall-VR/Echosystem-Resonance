@@ -31,8 +31,6 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _teleportTarget;
     private bool _teleportCooldownDone;
     
-    
-
     void Start()
     {
         Initialize();

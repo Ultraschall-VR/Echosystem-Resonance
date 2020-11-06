@@ -31,5 +31,12 @@ public class GameProgress : MonoBehaviour
             LearnedUncover = false;
             LearnedBow = false;
         }
+        else
+        {
+            LearnedTeleport = true;
+            LearnedGrab = true;
+            LearnedUncover = true;
+            LearnedBow = true;
+        }
     }
 }
