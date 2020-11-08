@@ -7,7 +7,9 @@ public class GameStateMachine : MonoBehaviour
     [SerializeField] private string _orpheusSceneName;
     [SerializeField] private string _storySceneName;
     [SerializeField] private string _loadingSceneName;
+    [SerializeField] private string _loadingOceanFloorSceneName;
     [SerializeField] private string _caveSceneName;
+
 
     public bool MenuOpen;
     
@@ -37,6 +39,10 @@ public class GameStateMachine : MonoBehaviour
         {
             CurrentGameState = Gamestate.Loading;
         } 
+        else if (SceneManager.GetActiveScene().name == _loadingOceanFloorSceneName)
+        {
+            CurrentGameState = Gamestate.LoadingOceanFloor;
+        }
         else if (SceneManager.GetActiveScene().name == _caveSceneName)
         {
             CurrentGameState = Gamestate.Cave;
@@ -53,6 +59,7 @@ public class GameStateMachine : MonoBehaviour
         Orpheus,
         Story,
         Loading,
+        LoadingOceanFloor,
         Cave
     }
 }
