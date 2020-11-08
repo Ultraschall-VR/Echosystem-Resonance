@@ -29,20 +29,25 @@ public class AudioPlayer : MonoBehaviour
 
     private bool _break;
 
-
-    private void Update()
-    {
-        _playedOnce = !_audioEnded;
-        _parametersSet = !_audioEnded;
-    }
-
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
     }
 
+    private void Update()
+    {
+        if (_audioEnded)
+        {
+            _parametersSet = false;
+            _audioEnded = false;
+        }
+    }
+
     private void SetParameters(AudioAsset audioAsset)
     {
+        if (_parametersSet)
+            return;
+
         _audioAsset = audioAsset;
 
         SetClip();

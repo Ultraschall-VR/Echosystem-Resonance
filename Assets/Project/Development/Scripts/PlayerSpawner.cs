@@ -92,7 +92,7 @@ public class PlayerSpawner : MonoBehaviour
         if (!FindObjectOfType<PlayerMovement>())
         {
             PlayerInstance = Instantiate(playerPrefab, position, rotation);
-            PlayerInstance.name = _vrPlayerPrefab.name;
+            PlayerInstance.name = playerPrefab.name;
         }
         else
         {

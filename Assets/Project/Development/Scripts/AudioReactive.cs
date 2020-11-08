@@ -115,6 +115,9 @@ public class AudioReactive : MonoBehaviour
             gameObject.tag = "TeleportArea";
             gameObject.layer = 10;
             Uncovered = true;
+            
+            if(_anim != null)
+
             _anim.enabled = false;
         }
     }
@@ -127,6 +130,9 @@ public class AudioReactive : MonoBehaviour
             mesh.shadowCastingMode = ShadowCastingMode.Off;
             gameObject.tag = "Covered";
             gameObject.layer = 13;
+            
+            if(_anim != null)
+            
             _anim.enabled = true;
         }
     }

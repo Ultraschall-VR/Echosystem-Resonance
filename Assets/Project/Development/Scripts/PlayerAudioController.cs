@@ -11,8 +11,7 @@ public class PlayerAudioController : MonoBehaviour
     public AudioAsset UncoveringStart;
     public AudioAsset UncoveringRelease;
 
-    [Header("Teleport")] 
-    public AudioAsset TeleportLoop;
+    [Header("Teleport")]
     public AudioAsset TeleportRelease;
 
     [Header("Gravity pull")] 

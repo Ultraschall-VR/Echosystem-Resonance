@@ -30,7 +30,10 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 _teleportTarget;
     private bool _teleportCooldownDone;
-    
+
+    [SerializeField] private AudioPlayer _audioPlayer;
+    [SerializeField] private PlayerAudioController _playerAudioController;
+
     void Start()
     {
         Initialize();
@@ -217,6 +220,8 @@ public class PlayerMovement : MonoBehaviour
     {
         float t = 0;
         float timer = 0.5f;
+        
+        _audioPlayer.PlayAudio(_playerAudioController.TeleportRelease);
         
         _playerInput.ControllerRight.transform.position = _playerInput.ControllerRightGhost.transform.position;
         _playerInput.ControllerLeft.transform.position = _playerInput.ControllerLeftGhost.transform.position;
