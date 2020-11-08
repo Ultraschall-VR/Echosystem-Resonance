@@ -25,6 +25,8 @@ public class VRInteractable : MonoBehaviour
         InitialPos = transform.position;
         InitialRot = transform.rotation;
         CollisionMass = 1;
+
+        _mesh = GetComponent<MeshRenderer>();
         
         // Deactivate collision with ramps which are for player movement only
 
@@ -51,16 +53,6 @@ public class VRInteractable : MonoBehaviour
         }
         
         _mesh.material = ActiveMaterial;
-    }
-
-    public void Uncover()
-    {
-        IsCovered = false;
-    }
-
-    public void Cover()
-    {
-        IsCovered = false;
     }
 
     public void OnCollisionStay(Collision other)
