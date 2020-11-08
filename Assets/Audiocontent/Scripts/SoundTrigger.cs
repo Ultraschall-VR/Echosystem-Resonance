@@ -9,7 +9,7 @@ public class SoundTrigger : MonoBehaviour
     private bool isPlayed;
 
     public void Awake() {
-        _Triggersource = GetComponent < AudioSource>();
+     //   _Triggersource = GetComponent < AudioSource>();
         isPlayed = false;
     }
 
