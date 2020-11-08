@@ -5,7 +5,9 @@ using UnityEngine;
 
 public static class FadeMixerGroupFrom {
 
-    public static IEnumerator StartFadeFrom(AudioMixer audioMixer, string exposedParam, float duration, float fromVolume, float targetVolume) {
+    public static IEnumerator StartFadeFrom(AudioMixer audioMixer, string exposedParam, float duration, float fromVolume, float targetVolume, float delay) {
+        yield return new WaitForSeconds(delay);
+
         float currentTime = 0;
         /*  float currentVol;
           audioMixer.GetFloat(exposedParam, out currentVol);
