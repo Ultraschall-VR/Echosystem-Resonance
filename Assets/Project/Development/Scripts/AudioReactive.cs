@@ -23,7 +23,9 @@ public class AudioReactive : MonoBehaviour
     public bool Uncovered = false;
 
     private bool _conceal = false;
-    
+
+    [SerializeField] private Animator _anim;
+
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -113,6 +115,7 @@ public class AudioReactive : MonoBehaviour
             gameObject.tag = "TeleportArea";
             gameObject.layer = 10;
             Uncovered = true;
+            _anim.enabled = false;
         }
     }
 
@@ -124,6 +127,7 @@ public class AudioReactive : MonoBehaviour
             mesh.shadowCastingMode = ShadowCastingMode.Off;
             gameObject.tag = "Covered";
             gameObject.layer = 13;
+            _anim.enabled = true;
         }
     }
     
