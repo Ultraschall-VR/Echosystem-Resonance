@@ -10,18 +10,33 @@ public class SceneLoader : MonoBehaviour
     [SerializeField] private string _storySceneName;
     [SerializeField] private string _playgroundSceneName;
     [SerializeField] private string _caveSceneName;
+    [SerializeField] private string _oceanFloorLoadingSceneName;
 
     [HideInInspector] public bool LoadFirstScene;
     
     private void Start()
     {
         if(LoadFirstScene)
-            LoadScene(Scene.Orpheus);
+            LoadScene(Scene.Orpheus, Scene.Loading, 10f);
     }
 
-    public void LoadScene(Scene scene)
+    public void LoadScene(Scene scene, Scene loaderScene, float loaderSceneDuration)
     {
         string sceneToLoad = null;
+        string loadingSceneToLoad = null;
+
+        switch (loaderScene)
+        {
+            case Scene.OceanFloorLoading:
+
+                loadingSceneToLoad = _oceanFloorLoadingSceneName;
+                break;
+            
+            case Scene.Loading:
+
+                loadingSceneToLoad = _loadingSceneName;
+                break;
+        }
         
         switch (scene)
         {
@@ -56,7 +71,7 @@ public class SceneLoader : MonoBehaviour
             return; 
         }
         
-        StartCoroutine(WaitForTransition(sceneToLoad));
+        StartCoroutine(WaitForTransition(sceneToLoad, loadingSceneToLoad, loaderSceneDuration));
     }
     
     private void UnloadScene(string scene)
@@ -64,18 +79,18 @@ public class SceneLoader : MonoBehaviour
         SceneManager.UnloadSceneAsync(scene);
     }
 
-    private IEnumerator WaitForTransition(string scene)
+    private IEnumerator WaitForTransition(string scene, string loaderScene, float duration)
     {
         _transitionManager.FadeOut(Color.black);
         yield return new WaitForSeconds(_transitionManager.CurrentAnimationLength);
 
-        var loadingScene = SceneManager.LoadSceneAsync(_loadingSceneName);
+        var loadingScene = SceneManager.LoadSceneAsync(loaderScene);
         
         _transitionManager.FadeIn(Color.black);
 
         UnloadScene(SceneManager.GetActiveScene().name);
 
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(duration);
         
         _transitionManager.FadeOut(Color.black);
         
@@ -96,6 +111,7 @@ public class SceneLoader : MonoBehaviour
         Orpheus,
         Story,
         Loading,
+        OceanFloorLoading,
         Playground,
         Cave
     }

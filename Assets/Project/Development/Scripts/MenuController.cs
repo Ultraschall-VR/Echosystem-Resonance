@@ -11,7 +11,7 @@ public class MenuController : MonoBehaviour
 
 
     private ToolTipps _toolTipps;
-    private GameStateMachine.Gamestate _gamestate;
+    public GameStateMachine.Gamestate _gamestate;
     private bool _toggleMenu;
 
     private bool _initialized = false;
@@ -30,7 +30,7 @@ public class MenuController : MonoBehaviour
         _gamestate = GameStateMachine.Instance.CurrentGameState;
         _playerInput = FindObjectOfType<PlayerInput>();
 
-        if (_gamestate == GameStateMachine.Gamestate.Orpheus || _gamestate == GameStateMachine.Gamestate.Loading)
+        if (_gamestate == GameStateMachine.Gamestate.Orpheus || _gamestate == GameStateMachine.Gamestate.Loading || _gamestate == GameStateMachine.Gamestate.LoadingOceanFloor)
         {
             _toggleMenu = true;
         }
@@ -57,7 +57,7 @@ public class MenuController : MonoBehaviour
 
     private void HandleInput()
     {
-        if (_gamestate == GameStateMachine.Gamestate.Orpheus || _gamestate == GameStateMachine.Gamestate.Loading)
+        if (_gamestate == GameStateMachine.Gamestate.Orpheus || _gamestate == GameStateMachine.Gamestate.Loading || _gamestate == GameStateMachine.Gamestate.LoadingOceanFloor)
         {
             return;
         }
@@ -79,7 +79,7 @@ public class MenuController : MonoBehaviour
             _loadingMenu.Hide();
             _loadingMenu.EnableColliders(false);
         } 
-        else if (_gamestate == GameStateMachine.Gamestate.Loading)
+        else if (_gamestate == GameStateMachine.Gamestate.Loading || _gamestate == GameStateMachine.Gamestate.LoadingOceanFloor)
         {
             _gameMenu.Hide();
             _gameMenu.EnableColliders(false);

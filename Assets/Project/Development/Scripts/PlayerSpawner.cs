@@ -20,6 +20,8 @@ public class PlayerSpawner : MonoBehaviour
 
     [HideInInspector] public GameObject PlayerInstance = null;
 
+    [SerializeField] private bool _playerVisible;
+
     public static PlayerSpawner Instance;
 
 
@@ -43,10 +45,48 @@ public class PlayerSpawner : MonoBehaviour
         }
         else
         {
-            InstantiatePlayer(_vrPlayerPrefab, _playerSpawn.position, _playerSpawn.rotation);
+            InstantiateVRPlayer();
         }
     }
 
+    public void InstantiateVRPlayer()
+    {
+        if (!FindObjectOfType<PlayerMovement>())
+        {
+            PlayerInstance = Instantiate(_vrPlayerPrefab, _playerSpawn.position, _playerSpawn.rotation);
+            PlayerInstance.name = _vrPlayerPrefab.name;
+        }
+        else
+        {
+            PlayerInstance = FindObjectOfType<PlayerMovement>().gameObject;
+            PlayerInstance.transform.position = _playerSpawn.position;
+            PlayerInstance.transform.rotation = _playerSpawn.rotation;
+        }
+
+        if (NonVR)
+        {
+            return;
+        }
+
+        PlayerInstance.GetComponent<ControllerManager>().SceneLoader.LoadFirstScene = _loadWholeGame;
+        PlayerInstance.GetComponent<PlayerMovement>().JoystickMovement = _joystickMovement;
+        PlayerInstance.GetComponent<PlayerMovement>().TeleportEnabled = _teleportMovement;
+        PlayerInstance.GetComponent<PlayerMovement>().JoystickMovementSpeed = _joystickMovementSpeed;
+        PlayerInstance.GetComponent<PlayerMovement>().TeleportMovementSpeed = _teleportMovementSpeed;
+        PlayerInstance.GetComponent<PlayerMovement>().TeleportMaxRange = _teleportMaxRange;
+
+        if (_playerVisible)
+        {
+            VisibilityController.Instance.RevealPlayer(); 
+        }
+        else
+        {
+            VisibilityController.Instance.HidePlayer();
+        }
+        
+    }
+    
+    
     public void InstantiatePlayer(GameObject playerPrefab, Vector3 position, Quaternion rotation)
     {
         if (!FindObjectOfType<PlayerMovement>())
@@ -65,7 +105,7 @@ public class PlayerSpawner : MonoBehaviour
         {
             return;
         }
-
+        
         PlayerInstance.GetComponent<ControllerManager>().SceneLoader.LoadFirstScene = _loadWholeGame;
         PlayerInstance.GetComponent<PlayerMovement>().JoystickMovement = _joystickMovement;
         PlayerInstance.GetComponent<PlayerMovement>().TeleportEnabled = _teleportMovement;
