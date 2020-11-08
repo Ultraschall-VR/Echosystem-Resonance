@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 using AOT;
 using UnityEngine;
 
@@ -25,7 +26,14 @@ namespace SteamAudio
         public void Initialize(SimulationSettingsValue settings, ComponentCache componentCache,
             GameEngineStateInitReason reason)
         {
-            PhononCore.iplCreateContext(LogMessage, IntPtr.Zero, IntPtr.Zero, ref context);
+            var thread = new Thread(() =>
+            {
+                PhononCore.iplCreateContext(LogMessage, IntPtr.Zero, IntPtr.Zero, ref context);
+            });
+            
+            thread.Start();
+            thread.Join();
+            
 
             if (reason != GameEngineStateInitReason.EditingProbes)
             {

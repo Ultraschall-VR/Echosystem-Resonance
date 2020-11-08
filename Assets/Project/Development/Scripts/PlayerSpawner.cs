@@ -18,6 +18,8 @@ public class PlayerSpawner : MonoBehaviour
     [SerializeField] private float _teleportMovementSpeed;
     [SerializeField] private bool _loadWholeGame;
 
+    [SerializeField] private bool _invisiblePlayer;
+
     [HideInInspector] public GameObject PlayerInstance = null;
 
     public static PlayerSpawner Instance;
@@ -66,12 +68,25 @@ public class PlayerSpawner : MonoBehaviour
             return;
         }
 
+        if (_invisiblePlayer)
+        {
+            PlayerInstance.GetComponent<PlayerInput>().ControllerLeft.gameObject.SetActive(false);
+            PlayerInstance.GetComponent<PlayerInput>().ControllerRight.gameObject.SetActive(false);
+        }
+        else
+        {
+            PlayerInstance.GetComponent<PlayerInput>().ControllerLeft.gameObject.SetActive(true);
+            PlayerInstance.GetComponent<PlayerInput>().ControllerRight.gameObject.SetActive(true);
+        }
+
         PlayerInstance.GetComponent<ControllerManager>().SceneLoader.LoadFirstScene = _loadWholeGame;
         PlayerInstance.GetComponent<PlayerMovement>().JoystickMovement = _joystickMovement;
         PlayerInstance.GetComponent<PlayerMovement>().TeleportEnabled = _teleportMovement;
         PlayerInstance.GetComponent<PlayerMovement>().JoystickMovementSpeed = _joystickMovementSpeed;
         PlayerInstance.GetComponent<PlayerMovement>().TeleportMovementSpeed = _teleportMovementSpeed;
         PlayerInstance.GetComponent<PlayerMovement>().TeleportMaxRange = _teleportMaxRange;
+        
+        
     }
 
     public void MovePlayer(Vector3 position, Quaternion rotation)
