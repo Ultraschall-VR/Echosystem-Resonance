@@ -24,16 +24,18 @@ public class AudioReactive : MonoBehaviour
 
     private bool _conceal = false;
 
-    [SerializeField] private Animator _anim;
+    private Animator _anim;
 
     void Start()
     {
-        _rb = GetComponent<Rigidbody>();
         Initialize();
     }
 
     private void Initialize()
     {
+        _rb = GetComponent<Rigidbody>();
+        _anim = GetComponent<Animator>();
+        
         if (_singleMesh)
         {
             Meshes.Add(GetComponent<MeshRenderer>());
