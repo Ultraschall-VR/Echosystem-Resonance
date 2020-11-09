@@ -2818,10 +2818,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1301958833}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc9dde591b7ae489ea16d06a9bd89f42, type: 3}
+  m_Script: {fileID: 11500000, guid: aea08ca11dd614b2c8ccffe9fcd01896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audiosources: []
+  audioMixer: {fileID: 24100000, guid: c6e98bfc99b62427d956896adf02ddb8, type: 2}
+  exposedParameter: volAllExceptExpl
+  duration: 10
+  targetVolume: 0
+  fromVolume: 1
+  delay: 0
+  _audiosources:
+  - {fileID: 1301958835}
 --- !u!135 &1301958837
 SphereCollider:
   m_ObjectHideFlags: 0
