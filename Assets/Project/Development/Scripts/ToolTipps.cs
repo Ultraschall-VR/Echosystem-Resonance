@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class ToolTipps : MonoBehaviour
@@ -39,23 +38,6 @@ public class ToolTipps : MonoBehaviour
         foreach (var toolTipp in _toolTipps)
         {
             toolTipp.SetActive(false);
-        }
-    }
-
-
-    void Update()
-    {
-        _rectTransform.position = _playerInput.ControllerRight.transform.position;
-        _rectTransform.LookAt(_playerInput.Head.transform.position);
-
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            LoadToolTip(Tooltip.Teleport);
-        }
-
-        if (Input.GetKeyUp(KeyCode.A))
-        {
-            UnloadToolTip();
         }
     }
 

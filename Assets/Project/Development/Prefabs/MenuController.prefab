@@ -1453,7 +1453,6 @@ GameObject:
   - component: {fileID: 2342650413896662755}
   - component: {fileID: 6495102670421352893}
   - component: {fileID: 5143532448550532066}
-  - component: {fileID: 2184192615099554055}
   m_Layer: 5
   m_Name: PLAY
   m_TagString: UI
@@ -1632,7 +1631,6 @@ MonoBehaviour:
   _selectSound: {fileID: 8300000, guid: 9285c1d56be92e54db230c990633ee4c, type: 3}
   _selectActions:
   - {fileID: 5143532448550532066}
-  - {fileID: 2184192615099554055}
   Highlighted: 0
   Selected: 0
 --- !u!82 &6495102670421352893
@@ -1744,19 +1742,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _menuController: {fileID: 2712980811628367096}
---- !u!114 &2184192615099554055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4948062919637593815}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8f46ac5213ddb4498afe0de3df03e4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _tooltip: 0
 --- !u!1 &6596416103923561056
 GameObject:
   m_ObjectHideFlags: 0
@@ -2484,6 +2469,7 @@ MonoBehaviour:
   _gameMenu: {fileID: 6611043610216865848}
   _mainMenu: {fileID: 6730619667822465004}
   _loadingMenu: {fileID: 8957934873586454580}
+  _gamestate: 0
 --- !u!1 &9123159451178296398
 GameObject:
   m_ObjectHideFlags: 0
