@@ -11,7 +11,7 @@ public class TransitionManager : MonoBehaviour
     public void FadeIn(Color color)
     {
         CurrentAnimationLength = _animator.GetCurrentAnimatorStateInfo(0).length;
-        _panel.material.color = color;
+        _panel.color = color;
         _animator.SetBool("FadeIn", true);
         _animator.SetBool("FadeOut", false);
     }
@@ -19,7 +19,7 @@ public class TransitionManager : MonoBehaviour
     public void FadeOut(Color color)
     {
         CurrentAnimationLength = _animator.GetCurrentAnimatorStateInfo(0).length;
-        _panel.material.color = color;
+        _panel.color = color;
         _animator.SetBool("FadeIn", false);
         _animator.SetBool("FadeOut", true);
     }

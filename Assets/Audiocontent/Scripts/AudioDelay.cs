@@ -11,6 +11,5 @@ public class AudioDelay : MonoBehaviour
     void Start() {
         audioData = GetComponent<AudioSource>();
         audioData.PlayDelayed(DelayTime);
-        Debug.Log("started");
     }
 }

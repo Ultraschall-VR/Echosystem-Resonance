@@ -16,15 +16,7 @@ public class XPEnd : MonoBehaviour {
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Player") & !audioStarted) {
             foreach (AudioSource i in _audiosources) {
-
-
-
                 StartCoroutine(FadeMixerGroupFrom.StartFadeFrom(audioMixer, exposedParameter, duration, fromVolume, targetVolume, delay));
-
-
-
-
-
                 StartCoroutine(PlayAudio(i));
             }
             // Sets audioStarted = true, so Player can't trigger it again
@@ -36,7 +28,4 @@ public class XPEnd : MonoBehaviour {
         yield return new WaitForSeconds(duration);
         _audio.Play();
     }
-
-
-
 }
