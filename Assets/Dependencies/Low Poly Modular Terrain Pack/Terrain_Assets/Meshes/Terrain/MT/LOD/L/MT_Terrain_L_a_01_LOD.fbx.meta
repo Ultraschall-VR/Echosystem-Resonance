@@ -66,7 +66,12 @@ ModelImporter:
   - first:
       205: 20500000
     second: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Terrain_01
+    second: {fileID: 2100000, guid: d3da2b1363700d3489ef5d9df40a2c89, type: 2}
   materials:
     materialImportMode: 1
     materialName: 1
@@ -111,7 +116,7 @@ ModelImporter:
     importLights: 0
     fileIdsGeneration: 1
     swapUVChannels: 0
-    generateSecondaryUV: 1
+    generateSecondaryUV: 0
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
