@@ -1,5 +1,24 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!243 &-9061880469916370265
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TeleportRelease
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 96e322538c514e148a2baae7d01e6c34
+  m_Children: []
+  m_Volume: c621780e9fa942447b9741a44c44f0cb
+  m_Pitch: b823939db68ba7d419e1f9fea053b7c1
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -8265703460042664485}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!244 &-8856811219459061721
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -10,6 +29,20 @@ AudioMixerEffectController:
   m_EffectID: b891791bdc71b41fd92e81884ab3fa1e
   m_EffectName: Receive
   m_MixLevel: 35ba76cc676254876abfb4de1957dfa9
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!244 &-8265703460042664485
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 944698b4da44e2148be14733ce17044a
+  m_EffectName: Attenuation
+  m_MixLevel: 4ba08d9fc2d0ff847b7593aef2cb8378
   m_Parameters: []
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
@@ -209,6 +242,7 @@ AudioMixerController:
     - 642345d8e9b954f9a8c1c60123f226da
     - 7ee1a78fbf343413bbf81dc7434d3dac
     - 241e78e816f424873b72296bc2c37abf
+    - 96e322538c514e148a2baae7d01e6c34
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -291,6 +325,7 @@ AudioMixerSnapshotController:
     d533f52ddd81c43c5b8010f754086299: 22000
     602af88d1be4c4d52bba4dd8df0a17a1: 0
     0412c1dd33b0b4ee2bec8805b175d414: -10000
+    c621780e9fa942447b9741a44c44f0cb: -20.09816
     64305cbe6fde14159a68972568249e1f: 0
   m_TransitionOverrides: {}
 --- !u!244 &294455998799772013
@@ -493,7 +528,8 @@ AudioMixerGroupController:
   m_Name: Player
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: 7ee1a78fbf343413bbf81dc7434d3dac
-  m_Children: []
+  m_Children:
+  - {fileID: -9061880469916370265}
   m_Volume: db77b7806a46a4b6b99a33108183423c
   m_Pitch: 63c17ee595dc74c1da8820ea018b80dd
   m_Send: 00000000000000000000000000000000

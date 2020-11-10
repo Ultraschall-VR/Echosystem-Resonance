@@ -30,7 +30,7 @@ public class PostProcessingExplosion : MonoBehaviour
 
     private void Initialize()
     {
-        _bloomLayer.intensity.value = 3f;
+        _bloomLayer.intensity.value = 1f;
         _colorAdjustments.postExposure.value = 1f;
     }
 
