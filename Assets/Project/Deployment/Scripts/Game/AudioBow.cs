@@ -10,9 +10,7 @@ namespace Echosystem.Resonance.Game
         [SerializeField] private PlayerStateMachine _playerStateMachine;
         [SerializeField] private GameObject _arrowPrefab;
 
-        [SerializeField] private AudioPlayer _audioPlayerLoop;
-        [SerializeField] private PlayerAudioController _playerAudioController;
-        [SerializeField] private AudioSource _audioSource;
+        [SerializeField] private AudioEnvelope _audioLoop;
         private GameObject _arrowInstance = null;
 
         private bool _distanceChecked;
@@ -61,19 +59,19 @@ namespace Echosystem.Resonance.Game
                     _distanceChecked = true;
                     _playerStateMachine.AudioBowState = true;
 
-                    _audioPlayerLoop.PlayAudio(_playerAudioController.SlingShotLoop);
+                    _audioLoop.Attack();
                 }
 
                 if (_distanceChecked)
                 {
-                    _audioSource.pitch = controllerDistance;
+                    _audioLoop.AudioSource.pitch = controllerDistance*3;
                 }
             }
             else
             {
                 if (_arrowInstance != null)
                 {
-                    _audioPlayerLoop.StopAudio();
+                    _audioLoop.Release();
 
                     AudioArrow audioArrow = _arrowInstance.GetComponent<AudioArrow>();
 

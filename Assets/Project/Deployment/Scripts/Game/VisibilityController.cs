@@ -9,7 +9,7 @@ namespace Echosystem.Resonance.Game
         [SerializeField] private List<MeshRenderer> _meshes;
         [SerializeField] private List<Canvas> _canvases;
         [SerializeField] private List<LineRenderer> _lineRenderers;
-
+        
         private void Awake()
         {
             if (Instance == null)

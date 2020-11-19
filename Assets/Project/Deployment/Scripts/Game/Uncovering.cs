@@ -7,23 +7,24 @@ namespace Echosystem.Resonance.Game
 {
     public class Uncovering : MonoBehaviour
     {
-        [SerializeField] private PlayerInput _playerInput;
-        [SerializeField] private KeyboardInput _keyboardInput;
+        
         [SerializeField] private PlayerStateMachine _playerStateMachine;
-        [SerializeField] private PlayerAudioController _playerAudioController;
-        [SerializeField] private AudioPlayer _audioPlayerLoop;
-        [SerializeField] private AudioPlayer _audioPlayerStart;
-        [SerializeField] private AudioPlayer _audioPlayerRelease;
-        [SerializeField] private AudioSource _riserAudio;
         [SerializeField] private float _concealSpeed;
 
+        [SerializeField] private AudioEnvelope _audioLoop;
+        [SerializeField] private AudioEnvelope _audioStart;
+        [SerializeField] private AudioEnvelope _audioStop;
+
         private List<AudioReactive> _audioReactives;
+        
+        private PlayerInput _playerInput;
 
         public float Power;
         private Transform _leftHand;
         private Transform _rightHand;
         private bool _concealing;
 
+        private bool _distanceChecked;
         void Start()
         {
             Initialize();
@@ -33,6 +34,7 @@ namespace Echosystem.Resonance.Game
 
         private void Initialize()
         {
+            _playerInput = PlayerInput.Instance;
             _audioReactives = new List<AudioReactive>();
             _audioReactives = FindObjectsOfType<AudioReactive>().ToList();
 
@@ -63,84 +65,59 @@ namespace Echosystem.Resonance.Game
                 return;
             }
 
-            if (PlayerSpawner.Instance.NonVR)
-            {
-                KeyboardInputHandler();
-            }
-            else
-            {
-                VRInputHandler();
-            }
+
+            VRInputHandler();
+            
         }
 
         private void VRInputHandler()
         {
+            if (Vector3.Distance(_playerInput.ControllerRight.transform.position,
+                _playerInput.ControllerLeft.transform.position) < 0.1f)
+            {
+                _distanceChecked = true;
+            }
+            else
+            {
+                _distanceChecked = false;
+            }
+
             if (_playerInput.LeftTriggerPressed.state && _playerInput.RightTriggerPressed.state)
             {
-                _audioPlayerRelease.StopAudio();
-                _audioPlayerStart.PlayAudio(_playerAudioController.UncoveringStart);
-
-                _playerStateMachine.Uncovering = true;
-
-                _riserAudio.pitch = Vector3.Distance(_leftHand.position, _rightHand.position);
-
-                Power = _riserAudio.pitch / 4;
-
-                foreach (var audioReactive in _audioReactives)
+                if (_distanceChecked || _playerStateMachine.Uncovering)
                 {
-                    audioReactive.Reveal(_playerInput.Player.transform.position, Power);
-                }
+                    _audioLoop.Attack();
+                    _audioStart.Attack();
+                
+                    _playerStateMachine.Uncovering = true;
 
-                _audioPlayerLoop.PlayAudio(_playerAudioController.UncoveringLoop);
+                    _audioLoop.AudioSource.pitch = Vector3.Distance(_leftHand.position, _rightHand.position);
+
+                    Power = _audioLoop.AudioSource.pitch / 4;
+
+                    foreach (var audioReactive in _audioReactives)
+                    {
+                        audioReactive.Reveal(_playerInput.Player.transform.position, Power);
+                    }
+                }
             }
 
             else
             {
                 if (_playerStateMachine.Uncovering)
                 {
-                    _audioPlayerLoop.StopAudio();
-                    _audioPlayerRelease.PlayAudio(_playerAudioController.UncoveringRelease);
+                    _audioLoop.Release();
+                    _audioStop.Attack();
                 }
-
-                _audioPlayerLoop.StopAudio();
-                _audioPlayerStart.StopAudio();
+                
                 _playerStateMachine.Uncovering = false;
-
+                
                 if (_audioReactives.Count != 0)
                 {
                     foreach (var audioReactive in _audioReactives)
                     {
                         audioReactive.Conceal(_concealSpeed);
                     }
-                }
-            }
-        }
-
-        private void KeyboardInputHandler()
-        {
-            if (_keyboardInput.UncoveringPressed)
-            {
-                _riserAudio.pitch += 0 + Time.deltaTime / 10;
-
-                Power = _riserAudio.pitch;
-
-                foreach (var audioReactive in _audioReactives)
-                {
-                    audioReactive.Reveal(_playerInput.Player.transform.position, Power);
-                }
-
-                if (!_riserAudio.isPlaying)
-                {
-                    _riserAudio.Play();
-                }
-            }
-            else
-            {
-                _riserAudio.Stop();
-
-                foreach (var audioReactive in _audioReactives)
-                {
-                    audioReactive.Conceal(_concealSpeed);
                 }
             }
         }

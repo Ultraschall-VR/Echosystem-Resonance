@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using Echosystem.Resonance.Game;
 using UnityEngine;
 
 namespace Echosystem.Resonance.Audio
@@ -7,11 +6,12 @@ namespace Echosystem.Resonance.Audio
     [RequireComponent(typeof(AudioSource))]
     public class AudioEnvelope : MonoBehaviour
     {
-        private AudioSource _audioSource;
+        [HideInInspector] public AudioSource AudioSource;
         private float _targetVol;
-        
-        [Header("1 Unit = 1 Millisecond")]
-        [SerializeField] private float _attack;
+
+        [Header("1 Unit = 1 Millisecond")] [SerializeField]
+        private float _attack;
+
         [SerializeField] private float _release;
 
         private bool _breakRelease;
@@ -19,12 +19,12 @@ namespace Echosystem.Resonance.Audio
 
         [SerializeField] private bool _debug;
         [SerializeField] private KeyCode _debugKey;
-        
+
         private void Awake()
         {
-            _audioSource = GetComponent<AudioSource>();
-            _targetVol = _audioSource.volume;
-            _audioSource.volume = 0.0f;
+            AudioSource = GetComponent<AudioSource>();
+            _targetVol = AudioSource.volume;
+            AudioSource.volume = 0.0f;
         }
 
         private void Update()
@@ -36,7 +36,7 @@ namespace Echosystem.Resonance.Audio
                     Attack();
                 }
 
-                else if(Input.GetKeyUp(_debugKey))
+                else if (Input.GetKeyUp(_debugKey))
                 {
                     Release();
                 }
@@ -45,7 +45,20 @@ namespace Echosystem.Resonance.Audio
 
         public void Attack()
         {
-            if (!_audioSource.isPlaying)
+            if (!AudioSource.loop)
+            {
+                AudioSource.volume = _targetVol;
+
+                if (!AudioSource.isPlaying)
+                {
+                    AudioSource.PlayOneShot(AudioSource.clip);
+                    StartCoroutine(LerpRelease(_release));
+                }
+                
+                return;
+            }
+
+            if (!AudioSource.isPlaying)
             {
                 StartCoroutine(LerpAttack(_attack));
             }
@@ -53,7 +66,7 @@ namespace Echosystem.Resonance.Audio
 
         public void Release()
         {
-            if (_audioSource.isPlaying)
+            if (AudioSource.isPlaying)
             {
                 StartCoroutine(LerpRelease(_release));
             }
@@ -62,20 +75,20 @@ namespace Echosystem.Resonance.Audio
         private IEnumerator LerpAttack(float milliseconds)
         {
             float t = 0.0f;
-            
-            float currentVol = _audioSource.volume;
-            float randStartPos = Random.Range(0, _audioSource.clip.length);
 
-            _audioSource.time = randStartPos;
-            _audioSource.Play();
+            float currentVol = AudioSource.volume;
+            float randStartPos = Random.Range(0, AudioSource.clip.length);
+
+            AudioSource.time = randStartPos;
+            AudioSource.Play();
 
             milliseconds /= 1000;
-            
+
             while (t < milliseconds)
             {
                 t += Time.deltaTime;
-                
-                _audioSource.volume = Mathf.Lerp(currentVol, _targetVol, t/milliseconds);
+
+                AudioSource.volume = Mathf.Lerp(currentVol, _targetVol, t / milliseconds);
                 yield return null;
             }
         }
@@ -83,21 +96,21 @@ namespace Echosystem.Resonance.Audio
         private IEnumerator LerpRelease(float milliseconds)
         {
             float t = 0.0f;
-            
-            float currentVol = _audioSource.volume;
-            
+
+            float currentVol = AudioSource.volume;
+
             milliseconds /= 1000;
-            
+
             while (t < milliseconds)
             {
                 t += Time.deltaTime;
-                
-                if (_audioSource.volume <= 0.05)
+
+                if (AudioSource.volume <= 0.05)
                 {
-                    _audioSource.Stop();
+                    AudioSource.Stop();
                 }
 
-                _audioSource.volume = Mathf.Lerp(currentVol, 0, t/milliseconds);
+                AudioSource.volume = Mathf.Lerp(currentVol, 0, t / milliseconds);
                 yield return null;
             }
         }
