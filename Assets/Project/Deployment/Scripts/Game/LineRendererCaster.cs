@@ -15,7 +15,10 @@ namespace Echosystem.Resonance.Game
         [SerializeField] private Material _grabMaterial;
         [SerializeField] private Material _uiMaterial;
 
+        [SerializeField] private MeshRenderer _raycastTargetMesh;
+
         public Transform RaycastTarget;
+        
 
         private Vector3 _arc;
         private Vector3 _center;
@@ -31,7 +34,7 @@ namespace Echosystem.Resonance.Game
             _lineRenderer.enabled = true;
             _lineRenderer.material = mat;
 
-            RaycastTarget.gameObject.SetActive(showRaycastTarget);
+            _raycastTargetMesh.enabled = true;
 
             RaycastHit hit;
 
@@ -85,7 +88,7 @@ namespace Echosystem.Resonance.Game
         public void Hide()
         {
             _lineRenderer.enabled = false;
-            RaycastTarget.gameObject.SetActive(false);
+            _raycastTargetMesh.enabled = false;
         }
     }
 }
