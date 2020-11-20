@@ -32,6 +32,20 @@ namespace Echosystem.Resonance.Game
 
         public GameObject Head;
         public GameObject Player;
+        
+        public static PlayerInput Instance;
+
+        private void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                Destroy(this);
+            }
+        }
 
         void Update()
         {

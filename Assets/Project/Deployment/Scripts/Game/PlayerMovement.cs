@@ -32,9 +32,10 @@ namespace Echosystem.Resonance.Game
 
         private Vector3 _teleportTarget;
         private bool _teleportCooldownDone;
-
-        [SerializeField] private AudioPlayer _audioPlayer;
-        [SerializeField] private PlayerAudioController _playerAudioController;
+        
+        [SerializeField] private AudioEnvelope _audioEnvelope;
+        
+        
 
         void Start()
         {
@@ -128,7 +129,7 @@ namespace Echosystem.Resonance.Game
                     Mathf.Infinity, _teleportIgnoreLayer))
                 {
                     _lineRendererCaster.RaycastTarget.position = hit.point + hit.transform.up / 8;
-
+                    
                     if (hit.collider.CompareTag("TeleportArea"))
                     {
                         if (Vector3.Distance(_playerInput.Player.transform.position, hit.point) <= TeleportMaxRange)
@@ -136,6 +137,8 @@ namespace Echosystem.Resonance.Game
                             _lineRendererCaster.ShowValidTeleport(_playerInput.ControllerRight.transform.position,
                                 hit.point,
                                 1);
+                            
+                            _audioEnvelope.Attack();
 
                             var offsetPos = _playerInput.Head.transform.position - transform.position;
 
@@ -164,6 +167,8 @@ namespace Echosystem.Resonance.Game
             {
                 _playerStateMachine.TeleportState = false;
                 _lineRendererCaster.Hide();
+                
+                _audioEnvelope.Release();
 
                 if (_teleportTarget != Vector3.zero && !_isTeleporting)
                 {
@@ -226,9 +231,7 @@ namespace Echosystem.Resonance.Game
         {
             float t = 0;
             float timer = 0.5f;
-
-            _audioPlayer.PlayAudio(_playerAudioController.TeleportRelease);
-
+            
             _playerInput.ControllerRight.transform.position = _playerInput.ControllerRightGhost.transform.position;
             _playerInput.ControllerLeft.transform.position = _playerInput.ControllerLeftGhost.transform.position;
 
