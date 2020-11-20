@@ -5,6 +5,7 @@ using UnityEngine.Rendering;
 
 namespace Echosystem.Resonance.Game
 {
+    [RequireComponent(typeof(LineRenderer))]
     public class AudioReactive : MonoBehaviour
     {
         [SerializeField] public List<MeshRenderer> Meshes;
@@ -25,6 +26,8 @@ namespace Echosystem.Resonance.Game
 
         private bool _conceal = false;
 
+        private LineRenderer _lineRenderer;
+
         private Animator _anim;
 
         void Start()
@@ -36,6 +39,7 @@ namespace Echosystem.Resonance.Game
         {
             _rb = GetComponent<Rigidbody>();
             _anim = GetComponent<Animator>();
+            _lineRenderer = GetComponent<LineRenderer>();
 
             if (_singleMesh)
             {
@@ -58,7 +62,7 @@ namespace Echosystem.Resonance.Game
             {
                 mesh.material.SetFloat(Radius, Power);
             }
-
+            
             ControllColliders();
         }
 
@@ -90,8 +94,13 @@ namespace Echosystem.Resonance.Game
             }
         }
 
-        public void Reveal(Vector3 position, float power)
+        public void Reveal(Vector3 position, float power, Vector3 uncoverPos)
         {
+            _lineRenderer.enabled = true;
+            
+            _lineRenderer.SetPosition(0, transform.position);
+            _lineRenderer.SetPosition(1, uncoverPos);
+            
             foreach (var mesh in Meshes)
             {
                 mesh.material.SetVector(ObjectPos, position);
@@ -103,14 +112,19 @@ namespace Echosystem.Resonance.Game
 
         public void Conceal(float speed)
         {
+            _lineRenderer.enabled = false;
+            
             if (!_conceal)
             {
+                
                 StartCoroutine(Conceal(0, speed));
             }
         }
 
         public void Uncover()
         {
+            _lineRenderer.enabled = false;
+            
             foreach (var mesh in Meshes)
             {
                 mesh.material = _uncoveredMat;
@@ -127,6 +141,8 @@ namespace Echosystem.Resonance.Game
 
         public void Cover()
         {
+            _lineRenderer.enabled = false;
+            
             foreach (var mesh in Meshes)
             {
                 mesh.material = _audioReactiveMat;
@@ -142,9 +158,11 @@ namespace Echosystem.Resonance.Game
 
         private IEnumerator Conceal(float targetValue, float speed)
         {
+            _lineRenderer.enabled = false;
+            
             float t = 0.01f;
             float timer = Power;
-
+            
             while (t <= timer)
             {
                 _conceal = true;

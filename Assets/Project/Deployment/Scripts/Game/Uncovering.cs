@@ -14,6 +14,8 @@ namespace Echosystem.Resonance.Game
         [SerializeField] private AudioEnvelope _audioLoop;
         [SerializeField] private AudioEnvelope _audioStart;
         [SerializeField] private AudioEnvelope _audioStop;
+
+        [SerializeField] private GameObject _uncoverTransform;
         
         private List<AudioReactive> _audioReactives;
         private List<AudioReactiveEnvironment> _audioReactiveEnvironments;
@@ -35,6 +37,8 @@ namespace Echosystem.Resonance.Game
 
         private void Initialize()
         {
+            
+            _uncoverTransform.SetActive(false);
             _playerInput = PlayerInput.Instance;
             _audioReactives = new List<AudioReactive>();
             _audioReactives = FindObjectsOfType<AudioReactive>().ToList();
@@ -91,6 +95,10 @@ namespace Echosystem.Resonance.Game
                 {
                     _audioLoop.Attack();
                     _audioStart.Attack();
+                    
+                    _uncoverTransform.SetActive(true);
+                    _uncoverTransform.transform.position = (_playerInput.ControllerRight.transform.position +
+                                                           _playerInput.ControllerLeft.transform.position) /2;
                 
                     _playerStateMachine.Uncovering = true;
 
@@ -98,9 +106,11 @@ namespace Echosystem.Resonance.Game
 
                     Power = _audioLoop.AudioSource.pitch / 4;
 
+                    _uncoverTransform.transform.localScale = new Vector3(Power, Power, Power);
+
                     foreach (var audioReactive in _audioReactives)
                     {
-                        audioReactive.Reveal(_playerInput.Player.transform.position, Power);
+                        audioReactive.Reveal(_playerInput.Player.transform.position, Power, _uncoverTransform.transform.position);
                     }
 
                     foreach (var audioReactiveEnvironment in _audioReactiveEnvironments)
@@ -114,6 +124,8 @@ namespace Echosystem.Resonance.Game
             {
                 if (_playerStateMachine.Uncovering)
                 {
+                    _uncoverTransform.SetActive(false);
+                    
                     _audioLoop.Release();
                     _audioStop.Attack();
                     
