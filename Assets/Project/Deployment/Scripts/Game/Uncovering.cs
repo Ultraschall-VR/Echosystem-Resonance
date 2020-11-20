@@ -15,9 +15,8 @@ namespace Echosystem.Resonance.Game
         [SerializeField] private AudioEnvelope _audioStart;
         [SerializeField] private AudioEnvelope _audioStop;
         
-        
-
         private List<AudioReactive> _audioReactives;
+        private List<AudioReactiveEnvironment> _audioReactiveEnvironments;
         
         private PlayerInput _playerInput;
 
@@ -39,6 +38,8 @@ namespace Echosystem.Resonance.Game
             _playerInput = PlayerInput.Instance;
             _audioReactives = new List<AudioReactive>();
             _audioReactives = FindObjectsOfType<AudioReactive>().ToList();
+            _audioReactiveEnvironments = new List<AudioReactiveEnvironment>();
+            _audioReactiveEnvironments = FindObjectsOfType<AudioReactiveEnvironment>().ToList();
 
             if (PlayerSpawner.Instance.NonVR)
             {
@@ -101,6 +102,11 @@ namespace Echosystem.Resonance.Game
                     {
                         audioReactive.Reveal(_playerInput.Player.transform.position, Power);
                     }
+
+                    foreach (var audioReactiveEnvironment in _audioReactiveEnvironments)
+                    {
+                        audioReactiveEnvironment.Uncover();
+                    }
                 }
             }
 
@@ -110,17 +116,25 @@ namespace Echosystem.Resonance.Game
                 {
                     _audioLoop.Release();
                     _audioStop.Attack();
+                    
+                    if (_audioReactives.Count != 0)
+                    {
+                        foreach (var audioReactive in _audioReactives)
+                        {
+                            audioReactive.Conceal(_concealSpeed);
+                        }
+                    }
+                
+                    if (_audioReactiveEnvironments.Count != 0)
+                    {
+                        foreach (var audioReactiveEnvironment in _audioReactiveEnvironments)
+                        {
+                            audioReactiveEnvironment.Cover();
+                        }
+                    }
                 }
                 
                 _playerStateMachine.Uncovering = false;
-                
-                if (_audioReactives.Count != 0)
-                {
-                    foreach (var audioReactive in _audioReactives)
-                    {
-                        audioReactive.Conceal(_concealSpeed);
-                    }
-                }
             }
         }
     }
