@@ -14,6 +14,8 @@ namespace Echosystem.Resonance.Game
         [SerializeField] private AudioEnvelope _audioLoop;
         [SerializeField] private AudioEnvelope _audioStart;
         [SerializeField] private AudioEnvelope _audioStop;
+        
+        
 
         private List<AudioReactive> _audioReactives;
         
