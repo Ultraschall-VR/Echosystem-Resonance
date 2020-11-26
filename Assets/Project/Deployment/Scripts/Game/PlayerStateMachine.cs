@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Echosystem.Resonance.Game
 {
@@ -8,5 +9,19 @@ namespace Echosystem.Resonance.Game
         public bool GrabState = false;
         public bool TeleportState = false;
         public bool AudioBowState = false;
+
+        public static PlayerStateMachine Instance;
+
+        private void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                Destroy(this);
+            }
+        }
     }
 }
