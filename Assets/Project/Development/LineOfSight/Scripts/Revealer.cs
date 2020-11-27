@@ -4,6 +4,7 @@ using System.Linq;
 using Echosystem.Resonance.Game;
 using TMPro;
 using UnityEngine;
+using Valve.Newtonsoft.Json.Serialization;
 
 namespace Echosystem.Resonance.Prototyping
 {
@@ -24,6 +25,8 @@ namespace Echosystem.Resonance.Prototyping
         private bool _breakConceal = false;
 
         private float _power;
+
+        private bool _uncoverDone = false;
 
         private void Start()
         {
@@ -46,6 +49,7 @@ namespace Echosystem.Resonance.Prototyping
             _rightHand = _playerInput.ControllerRight.transform;
 
             _animator = GetComponent<Animator>();
+            _animator.SetBool("IsShockwave", false);
 
             _playerStateMachine = PlayerStateMachine.Instance;
         }
@@ -84,13 +88,19 @@ namespace Echosystem.Resonance.Prototyping
                     _power = Vector3.Distance(_leftHand.position, _rightHand.position);
                     _animator.SetBool("IsShockwave", false);
                     RevealStatic();
+                    _uncoverDone = true;
                 }
             }
 
             else
             {
+                if (_uncoverDone)
+                {
+                    _animator.SetBool("IsShockwave", true);
+                    _uncoverDone = false;
+                }
+
                 _breakConceal = false;
-                _animator.SetBool("IsShockwave", true);
                 StartCoroutine(Conceal());
                 _playerStateMachine.Uncovering = false;
             }
