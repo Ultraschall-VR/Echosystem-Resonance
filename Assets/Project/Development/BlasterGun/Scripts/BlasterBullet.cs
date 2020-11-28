@@ -1,10 +1,11 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.VFX;
 using Random = UnityEngine.Random;
 
-public class EchoBlasterBullet : MonoBehaviour
+public class BlasterBullet : MonoBehaviour
 {
     [SerializeField] private List<MeshRenderer> _meshes;
     [SerializeField] private Light _light;
@@ -13,6 +14,10 @@ public class EchoBlasterBullet : MonoBehaviour
     private bool _objectHit;
     private Rigidbody _rb;
     private Vector3 _offset;
+
+    private float _maxLifeTime = 5f;
+    private float _lifeTime;
+    private bool _maxLifeTimeReached;
 
     private void Start()
     {
@@ -24,7 +29,20 @@ public class EchoBlasterBullet : MonoBehaviour
 
     private void Update()
     {
-        if (_objectHit)
+        foreach (var collider in FindObjectsOfType<OverdriveBullet>().ToList())
+        {
+            Physics.IgnoreCollision(collider.GetComponent<Collider>(), GetComponent<Collider>());
+        }
+
+
+        _lifeTime += Time.deltaTime;
+
+        if (_lifeTime >= _maxLifeTime)
+        {
+            _maxLifeTimeReached = true;
+        }
+
+        if (_objectHit || _maxLifeTimeReached)
         {
             foreach (var mesh in _meshes)
             {
@@ -32,21 +50,34 @@ public class EchoBlasterBullet : MonoBehaviour
             }
 
             _particles.SetFloat("SpawnRate", 0f);
-            _light.enabled = false; 
+            _light.enabled = false;
+
+            StartCoroutine(DestroyBullet());
         }
     }
 
     private void FixedUpdate()
     {
-        if(_objectHit)
+        if (_objectHit)
             return;
-        
-        _rb.velocity = (transform.forward + _offset) *10;
+
+        _rb.velocity = (transform.forward + _offset) * 20;
+    }
+
+    private IEnumerator DestroyBullet()
+    {
+        yield return new WaitForSeconds(2f);
+        Destroy(this.gameObject);
     }
 
     private void OnCollisionEnter(Collision other)
     {
-        _rb.useGravity = true;
+        if (other.gameObject.GetComponent<BlasterBullet>())
+            return;
+
+        if (other.gameObject.GetComponent<OverdriveBullet>())
+            return;
+        
         _objectHit = true;
     }
 }

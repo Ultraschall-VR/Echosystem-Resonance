@@ -32,7 +32,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d4c867f6b72b714dbb5fd1780afe208, type: 3}
-  m_Name: ArrowParticles
+  m_Name: OverdriveParticles
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 0}
   m_Children:
@@ -69,7 +69,7 @@ VisualEffectResource:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ArrowParticles
+  m_Name: OverdriveParticles
   m_Graph: {fileID: 114350483966674976}
   m_ShaderSources:
   - compute: 1
@@ -233,7 +233,7 @@ VisualEffectResource:
       = index;\r\n#endif\r\n#endif\r\n\t}\r\n}\r\n"
   - compute: 0
     name: '[System 1]Output Particle Quad'
-    source: "Shader \"Hidden/VFX/ArrowParticles/System 1/Output Particle Quad\"\n{\r\n\tSubShader\r\n\t{\t\r\n\t\tCull
+    source: "Shader \"Hidden/VFX/OverdriveParticles/System 1/Output Particle Quad\"\n{\r\n\tSubShader\r\n\t{\t\r\n\t\tCull
       Off\r\n\t\t\r\n\t\tTags { \"Queue\"=\"Transparent\" \"IgnoreProjector\"=\"True\"
       \"RenderType\"=\"Transparent\" }\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\tBlend
       SrcAlpha OneMinusSrcAlpha\n\t\tZTest LEqual\n\t\tZWrite Off\n\t\tCull Off\n\t\t\n\t\n\t\t\t\n\t\tHLSLINCLUDE\n\t\t\n\t\t#define
@@ -773,86 +773,80 @@ VisualEffectResource:
         data[1]: -1
         data[2]: -1
         data[3]: 3
-      - op: 1
-        valueIndex: 29
-        data[0]: -1
-        data[1]: -1
-        data[2]: -1
-        data[3]: 3
       - op: 31
-        valueIndex: 32
+        valueIndex: 29
         data[0]: 0
         data[1]: 1
         data[2]: -1
         data[3]: 1
       - op: 57
-        valueIndex: 33
+        valueIndex: 30
         data[0]: 6
         data[1]: -1
         data[2]: -1
         data[3]: 0
       - op: 56
-        valueIndex: 34
+        valueIndex: 31
         data[0]: 2
         data[1]: -1
         data[2]: -1
         data[3]: 0
       - op: 6
-        valueIndex: 38
+        valueIndex: 35
         data[0]: -1
         data[1]: -1
         data[2]: -1
         data[3]: -1
       - op: 43
-        valueIndex: 39
+        valueIndex: 36
         data[0]: 3
         data[1]: 7
         data[2]: -1
         data[3]: -1
       - op: 1
-        valueIndex: 42
+        valueIndex: 39
         data[0]: -1
         data[1]: -1
         data[2]: -1
         data[3]: 1
       - op: 1
-        valueIndex: 43
+        valueIndex: 40
         data[0]: -1
         data[1]: -1
         data[2]: -1
         data[3]: 1
       - op: 43
-        valueIndex: 44
+        valueIndex: 41
         data[0]: 3
         data[1]: 5
         data[2]: -1
         data[3]: -1
       - op: 43
-        valueIndex: 47
+        valueIndex: 44
         data[0]: 3
         data[1]: 4
         data[2]: -1
         data[3]: -1
+      - op: 1
+        valueIndex: 47
+        data[0]: -1
+        data[1]: -1
+        data[2]: -1
+        data[3]: 3
       - op: 1
         valueIndex: 50
         data[0]: -1
         data[1]: -1
         data[2]: -1
         data[3]: 3
-      - op: 1
-        valueIndex: 53
-        data[0]: -1
-        data[1]: -1
-        data[2]: -1
-        data[3]: 3
       - op: 42
-        valueIndex: 56
+        valueIndex: 53
         data[0]: 3
-        data[1]: 8
+        data[1]: 7
         data[2]: -1
         data[3]: -1
       - op: 1
-        valueIndex: 59
+        valueIndex: 56
         data[0]: -1
         data[1]: -1
         data[2]: -1
@@ -867,9 +861,9 @@ VisualEffectResource:
           m_Value: 512
         - m_ExpressionIndex: 1
           m_Value: 0
-        - m_ExpressionIndex: 14
+        - m_ExpressionIndex: 13
           m_Value: 0.5
-        - m_ExpressionIndex: 15
+        - m_ExpressionIndex: 14
           m_Value: 1
       m_Vector2f:
         m_Array: []
@@ -880,12 +874,10 @@ VisualEffectResource:
         - m_ExpressionIndex: 5
           m_Value: {x: 0.2, y: 0, z: 0.2}
         - m_ExpressionIndex: 7
-          m_Value: {x: 0, y: 0.2, z: 0}
-        - m_ExpressionIndex: 8
           m_Value: {x: 0, y: 0, z: 0}
-        - m_ExpressionIndex: 18
+        - m_ExpressionIndex: 17
           m_Value: {x: 2, y: 3, z: 2}
-        - m_ExpressionIndex: 19
+        - m_ExpressionIndex: 18
           m_Value: {x: 0, y: 1, z: 0}
       m_Vector4f:
         m_Array: []
@@ -902,28 +894,28 @@ VisualEffectResource:
             serializedVersion: 2
             m_Curve:
             - serializedVersion: 3
-              time: -0.0029708724
-              value: 0.249687
-              inSlope: -0.41100642
-              outSlope: -0.41100642
+              time: -0.0015327316
+              value: 0.104606435
+              inSlope: 0.17956817
+              outSlope: 0.17956817
               tangentMode: 34
               weightedMode: 0
               inWeight: 0
               outWeight: 0
             - serializedVersion: 3
-              time: 0.5002997
-              value: 0.042839564
-              inSlope: -0.17506641
-              outSlope: -0.17506641
+              time: 0.5161383
+              value: 0.19756368
+              inSlope: 0.27130675
+              outSlope: 0.27130675
               tangentMode: 0
               weightedMode: 0
               inWeight: 0
               outWeight: 0
             - serializedVersion: 3
-              time: 0.9875163
-              value: 0.003755957
-              inSlope: -0.08021814
-              outSlope: -0.08021814
+              time: 0.9990519
+              value: 0.7752098
+              inSlope: 1.1961687
+              outSlope: 1.1961687
               tangentMode: 34
               weightedMode: 0
               inWeight: 0
@@ -965,7 +957,7 @@ VisualEffectResource:
             m_NumAlphaKeys: 4
       m_NamedObject:
         m_Array:
-        - m_ExpressionIndex: 21
+        - m_ExpressionIndex: 20
           m_Value: {fileID: 2800000, guid: 37d8f42d93e05364481e42205d3a82d8, type: 3}
       m_Bool:
         m_Array: []
@@ -1102,7 +1094,7 @@ VisualEffectResource:
       temporaryBuffers: []
       values:
       - nameId: Rate
-        index: 9
+        index: 8
       params: []
       processor: {fileID: 0}
       shaderSourceIndex: -1
@@ -1129,9 +1121,9 @@ VisualEffectResource:
       index: 6
     values:
     - nameId: bounds_center
-      index: 19
-    - nameId: bounds_size
       index: 18
+    - nameId: bounds_size
+      index: 17
     tasks:
     - type: 536870912
       buffers:
@@ -1146,16 +1138,16 @@ VisualEffectResource:
       temporaryBuffers: []
       values:
       - nameId: A_a
-        index: 17
-      - nameId: B_a
         index: 16
+      - nameId: B_a
+        index: 15
       - nameId: Position_c
-        index: 20
+        index: 19
       params:
       - nameId: bounds_center
-        index: 19
-      - nameId: bounds_size
         index: 18
+      - nameId: bounds_size
+        index: 17
       processor: {fileID: 0}
       shaderSourceIndex: 0
     - type: 805306368
@@ -1169,9 +1161,9 @@ VisualEffectResource:
       temporaryBuffers: []
       values:
       - nameId: Force_a
-        index: 13
-      - nameId: deltaTime_a
         index: 12
+      - nameId: deltaTime_a
+        index: 11
       params: []
       processor: {fileID: 0}
       shaderSourceIndex: 1
@@ -1201,11 +1193,11 @@ VisualEffectResource:
       temporaryBuffers: []
       values:
       - nameId: Size_b
-        index: 11
-      - nameId: Color_c
         index: 10
+      - nameId: Color_c
+        index: 9
       - nameId: mainTexture
-        index: 21
+        index: 20
       params:
       - nameId: sortPriority
         index: 0
@@ -2398,7 +2390,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.AnimationCurve, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"frames":[{"time":-0.0029708724468946459,"value":0.24968700110912324,"inTangent":-0.4110064208507538,"outTangent":-0.4110064208507538,"tangentMode":0,"leftTangentMode":1,"rightTangentMode":1,"broken":false},{"time":0.5002996921539307,"value":0.04283956438302994,"inTangent":-0.17506641149520875,"outTangent":-0.17506641149520875,"tangentMode":0,"leftTangentMode":0,"rightTangentMode":0,"broken":false},{"time":0.9875162839889526,"value":0.0037559568881988527,"inTangent":-0.08021813631057739,"outTangent":-0.08021813631057739,"tangentMode":0,"leftTangentMode":1,"rightTangentMode":1,"broken":false}],"preWrapMode":8,"postWrapMode":8,"version":1}'
+      m_SerializableObject: '{"frames":[{"time":-0.0015327315777540207,"value":0.10460643470287323,"inTangent":0.17956817150115968,"outTangent":0.17956817150115968,"tangentMode":0,"leftTangentMode":1,"rightTangentMode":1,"broken":false},{"time":0.5161383152008057,"value":0.19756367802619935,"inTangent":0.27130675315856936,"outTangent":0.27130675315856936,"tangentMode":0,"leftTangentMode":0,"rightTangentMode":0,"broken":false},{"time":0.9990519285202026,"value":0.7752097845077515,"inTangent":1.1961686611175538,"outTangent":1.1961686611175538,"tangentMode":0,"leftTangentMode":1,"rightTangentMode":1,"broken":false}],"preWrapMode":8,"postWrapMode":8,"version":1}'
     m_Space: 2147483647
   m_Property:
     name: Size
@@ -2516,7 +2508,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEditor.VFX.Vector, Unity.VisualEffectGraph.Editor,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"vector":{"x":0.0,"y":0.20000000298023225,"z":0.0}}'
+      m_SerializableObject: '{"vector":{"x":0.0,"y":0.0,"z":0.0}}'
     m_Space: 0
   m_Property:
     name: Force
