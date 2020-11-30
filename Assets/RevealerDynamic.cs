@@ -6,10 +6,13 @@ namespace Echosystem.Resonance.Prototyping
     {
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.GetComponent<Revealable>().Dynamic)
+            if (other.gameObject.GetComponent<Revealable>())
             {
-                Revealable revealable = other.gameObject.GetComponent<Revealable>();
-                revealable.Reveal();
+                if (other.gameObject.GetComponent<Revealable>().Dynamic)
+                {
+                    Revealable revealable = other.gameObject.GetComponent<Revealable>();
+                    revealable.Reveal();
+                }
             }
         }
     }

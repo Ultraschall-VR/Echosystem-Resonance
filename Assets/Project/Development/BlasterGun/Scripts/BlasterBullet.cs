@@ -23,7 +23,7 @@ public class BlasterBullet : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _rb.useGravity = false;
-        _offset = transform.forward +
+        _offset = transform.forward; // +
                   new Vector3(Random.Range(-0.02f, 0.02f), Random.Range(-0.02f, 0.02f), Random.Range(-0.02f, 0.02f));
     }
 
@@ -61,7 +61,7 @@ public class BlasterBullet : MonoBehaviour
         if (_objectHit)
             return;
 
-        _rb.velocity = (transform.forward + _offset) * 20;
+        _rb.velocity = (transform.forward + _offset) * 15;
     }
 
     private IEnumerator DestroyBullet()
@@ -77,6 +77,11 @@ public class BlasterBullet : MonoBehaviour
 
         if (other.gameObject.GetComponent<OverdriveBullet>())
             return;
+
+        if (other.gameObject.GetComponent<AttackDrone>())
+        {
+            other.gameObject.GetComponent<AttackDrone>().Life--;
+        }
         
         _objectHit = true;
     }

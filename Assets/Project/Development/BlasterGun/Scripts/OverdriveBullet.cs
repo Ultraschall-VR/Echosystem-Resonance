@@ -45,15 +45,15 @@ public class OverdriveBullet : MonoBehaviour
 
         for (int i = 0; i < 4; i++)
         {
-            Instantiate(_blasterBulletPrefab, transform.position - transform.forward, Quaternion.Euler(90 * i,0,0));
+            Instantiate(_blasterBulletPrefab, transform.position -transform.forward, Quaternion.Euler(90 * i,0,0));
 
             for (int j = 0; j < 4; j++)
             {
-                Instantiate(_blasterBulletPrefab, transform.position - transform.forward, Quaternion.Euler(90 * i,90*j,0));
+                Instantiate(_blasterBulletPrefab, transform.position -transform.forward, Quaternion.Euler(90 * i,90*j,0));
 
                 for (int k = 0; k < 4; k++)
                 {
-                    Instantiate(_blasterBulletPrefab, transform.position - transform.forward, Quaternion.Euler(90 * i,90*j,90*k));
+                    Instantiate(_blasterBulletPrefab, transform.position -transform.forward, Quaternion.Euler(90 * i,90*j,90*k));
                 }
             }
         }
@@ -66,7 +66,7 @@ public class OverdriveBullet : MonoBehaviour
         if(_objectHit)
             return;
         
-        _rb.velocity = (transform.forward + _offset) *15;
+        _rb.velocity = (transform.forward + _offset) *10;
     }
 
     private void OnCollisionEnter(Collision other)

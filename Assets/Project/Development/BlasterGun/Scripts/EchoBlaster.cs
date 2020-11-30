@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
+using Valve.VR;
 
 namespace Echosystem.Resonance.Game
 {
@@ -11,6 +11,9 @@ namespace Echosystem.Resonance.Game
         [SerializeField] private GameObject _overdrivePrefab;
         [SerializeField] private Transform _muzzleExplosion;
         [SerializeField] private Light _muzzleLight;
+        [SerializeField] private Animator _animator;
+
+        private PlayerInput _playerInput;
 
         private bool _charging;
         private bool _charged;
@@ -20,13 +23,26 @@ namespace Echosystem.Resonance.Game
 
         private float _ammo;
         private float _maxAmmo;
-        private float _initialAmmo = 60;
+        private float _initialAmmo = 240;
 
         [SerializeField] private bool _debug;
+        [SerializeField] private bool _isAI;
+
+        public bool PlayerInRange;
+
+        private bool _unlimitedAmmo;
+        private bool _firing;
 
         private void Start()
         {
-            AmmoUp();
+            _playerInput = PlayerInput.Instance;
+
+            if (_isAI)
+            {
+                _unlimitedAmmo = true;
+            }
+
+            AmmoUp(_initialAmmo);
         }
 
         void Update()
@@ -35,11 +51,95 @@ namespace Echosystem.Resonance.Game
             {
                 Debug();
             }
+            else if (_isAI)
+            {
+                AIInput();
+            }
+            else
+            {
+                VRInput();
+            }
         }
 
-        public void AmmoUp()
+        public void AmmoUp(float amount)
         {
+            if (_unlimitedAmmo)
+            {
+                _ammo = 1000000f;
+            }
+
             _ammo = _initialAmmo;
+        }
+
+        private void AIInput()
+        {
+            if (PlayerInRange)
+            {
+                if (!_firing)
+                {
+                    StartCoroutine(AIFire());
+                    _firing = true;
+                }
+            }
+        }
+
+        private IEnumerator AIFire()
+        {
+            SpawnBlast();
+
+            yield return new WaitForSeconds(0.5f);
+
+            SpawnBlast();
+
+            yield return new WaitForSeconds(0.5f);
+
+            SpawnBlast();
+
+            yield return new WaitForSeconds(3f);
+
+            yield return StartCoroutine(AIFire());
+        }
+
+        private void VRInput()
+        {
+            if (_playerInput.RightTriggerPressed.stateUp)
+            {
+                if (!_charged)
+                {
+                    if (_ammo >= 1f)
+                    {
+                        SpawnBlast();
+                    }
+                }
+                else
+                {
+                    if (_ammo >= 10f)
+                    {
+                        SpawnOverdrive();
+                    }
+                }
+
+                _charging = false;
+                _charged = false;
+                _charge = 0.0f;
+            }
+
+            if (_playerInput.RightTriggerPressed.state)
+            {
+                _charge += Time.deltaTime;
+            }
+
+            if (_charge >= _chargeThreshold && !_charged)
+            {
+                _charging = true;
+            }
+
+            if (_charge >= _maxCharge)
+            {
+                _charging = false;
+                _charged = true;
+                _charge = _maxCharge;
+            }
         }
 
         private void Debug()
@@ -52,7 +152,6 @@ namespace Echosystem.Resonance.Game
                     {
                         SpawnBlast();
                     }
-                    
                 }
                 else
                 {
@@ -87,15 +186,15 @@ namespace Echosystem.Resonance.Game
 
         private void SpawnOverdrive()
         {
-            _ammo = _ammo - 10;
-            StartCoroutine(MuzzleExplosion(15));
+            _ammo -= 10;
+            StartCoroutine(MuzzleExplosion(400));
             Instantiate(_overdrivePrefab, _tip.transform.position, _tip.transform.rotation);
         }
 
         private void SpawnBlast()
         {
-            _ammo = _ammo - 1;
-            StartCoroutine(MuzzleExplosion(8));
+            _ammo -= 1;
+            StartCoroutine(MuzzleExplosion(250));
             Instantiate(_blastPrefab, _tip.transform.position, _tip.transform.rotation);
         }
 
@@ -109,29 +208,27 @@ namespace Echosystem.Resonance.Game
                 t += Time.deltaTime;
 
                 float value = Mathf.Lerp(0, 1, t / timer);
-                
+
                 _muzzleLight.intensity = value * 10;
-                _muzzleExplosion.localScale = new Vector3(scale*value, scale*value, scale*value);
-                
+                _muzzleExplosion.localScale = new Vector3(scale * value, scale * value, scale * value);
+
                 yield return null;
             }
-            
-            timer = 0.005f;
+
+            timer = 0.1f;
             t = 0.0f;
-            
+
             while (t < timer)
             {
                 t += Time.deltaTime;
 
                 float value = Mathf.Lerp(1, 0, t / timer);
-                
+
                 _muzzleLight.intensity = value * 10;
-                _muzzleExplosion.localScale = new Vector3(scale*value, scale*value, scale*value);
-                
+                _muzzleExplosion.localScale = new Vector3(scale * value, scale * value, scale * value);
+
                 yield return null;
             }
         }
     }
 }
-
-

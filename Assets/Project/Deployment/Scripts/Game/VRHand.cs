@@ -39,7 +39,7 @@ namespace Echosystem.Resonance.Game
             Invoke("Initialize", 0.5f);
             if (_isRightHand)
             {
-                CrossHair.SetActive(false);
+                CrossHair.SetActive(true);
             }
         }
 
