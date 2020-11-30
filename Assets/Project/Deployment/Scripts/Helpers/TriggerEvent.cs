@@ -1,21 +1,42 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Echosystem.Resonance.Helper
 {
     public class TriggerEvent : MonoBehaviour
     {
-        [SerializeField] private MonoBehaviour _action;
+        [SerializeField] private List<MonoBehaviour> _actions;
+        [SerializeField] private string _tag;
 
         private void Start()
         {
-            _action.enabled = false;
+            HandleAction(false);
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Player"))
+            if (_tag == null)
             {
-                _action.enabled = true;
+                if (other.CompareTag("Player"))
+                {
+                    HandleAction(true);
+                }
+            }
+            else
+            {
+                if (other.CompareTag(_tag))
+                {
+                    HandleAction(true);
+                }
+            }
+        }
+
+        private void HandleAction(bool enabled)
+        {
+            foreach (var action in _actions)
+            {
+                action.enabled = enabled;
             }
         }
     }
