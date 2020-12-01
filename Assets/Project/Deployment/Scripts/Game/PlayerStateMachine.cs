@@ -8,7 +8,7 @@ namespace Echosystem.Resonance.Game
         public bool Uncovering = false;
         public bool GrabState = false;
         public bool TeleportState = false;
-        public bool AudioBowState = false;
+        public bool EchoBlasterState = false;
 
         public static PlayerStateMachine Instance;
 

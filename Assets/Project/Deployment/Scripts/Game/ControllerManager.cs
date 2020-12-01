@@ -6,7 +6,7 @@ namespace Echosystem.Resonance.Game
     public class ControllerManager : MonoBehaviour
     {
         public Uncovering Uncovering;
-        public AudioBow AudioBow;
+        public EchoBlaster EchoBlaster;
         public SceneLoader SceneLoader;
         public ObjectInteraction ObjectInteraction;
     }

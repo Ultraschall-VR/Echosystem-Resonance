@@ -57,7 +57,7 @@ namespace Echosystem.Resonance.Game
                 if (controllerDistance <= _maxTriggerDistance)
                 {
                     _distanceChecked = true;
-                    _playerStateMachine.AudioBowState = true;
+                    _playerStateMachine.EchoBlasterState = true;
 
                     _audioLoop.Attack();
                 }
@@ -90,7 +90,7 @@ namespace Echosystem.Resonance.Game
                 }
 
                 _distanceChecked = false;
-                _playerStateMachine.AudioBowState = false;
+                _playerStateMachine.EchoBlasterState = false;
             }
         }
 

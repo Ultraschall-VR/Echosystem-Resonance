@@ -2,24 +2,19 @@
 
 namespace Echosystem.Resonance.Game
 {
-    public class LineRendererCaster : MonoBehaviour
+    public class TeleportCaster : MonoBehaviour
     {
         [SerializeField] private LineRenderer _lineRenderer;
         [SerializeField] private Material _validTeleportMaterial;
         [SerializeField] private Material _invalidTeleportMaterial;
-
         [SerializeField] private MeshRenderer _teleportTargetRenderer;
         [SerializeField] private Material _validTeleportTargetMaterial;
         [SerializeField] private Material _invalidTeleportTargetMaterial;
-
-        [SerializeField] private Material _grabMaterial;
-        [SerializeField] private Material _uiMaterial;
-
+        
         [SerializeField] private MeshRenderer _raycastTargetMesh;
 
         public Transform RaycastTarget;
         
-
         private Vector3 _arc;
         private Vector3 _center;
 
@@ -61,8 +56,7 @@ namespace Echosystem.Resonance.Game
                 _lineRenderer.SetPosition(index, _arc + _center);
             }
         }
-
-
+        
         public void ShowValidTeleport(Vector3 origin, Vector3 target, float arcMultiplier)
         {
             DrawLineRenderer(origin, target, arcMultiplier, _validTeleportMaterial, true);
@@ -74,17 +68,7 @@ namespace Echosystem.Resonance.Game
             DrawLineRenderer(origin, target, arcMultiplier, _invalidTeleportMaterial, true);
             _teleportTargetRenderer.material = _invalidTeleportTargetMaterial;
         }
-
-        public void ShowGrab(Vector3 origin, Vector3 target, float arcMultiplier)
-        {
-            DrawLineRenderer(origin, target, arcMultiplier, _grabMaterial, false);
-        }
-
-        public void ShowUiRaycast(Vector3 origin, Vector3 target, float arcMultiplier)
-        {
-            DrawLineRenderer(origin, target, arcMultiplier, _uiMaterial, false);
-        }
-
+        
         public void Hide()
         {
             _lineRenderer.enabled = false;

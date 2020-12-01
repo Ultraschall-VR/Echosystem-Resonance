@@ -6,7 +6,7 @@ namespace Echosystem.Resonance.UI
     public class UiInteraction : MonoBehaviour
     {
         [SerializeField] private PlayerInput _playerInput;
-        [SerializeField] private LineRendererCaster _lineRendererCaster;
+        [SerializeField] private UICaster _UICaster;
 
         private MenuElement _selection = null;
 
@@ -23,7 +23,7 @@ namespace Echosystem.Resonance.UI
             }
 
             RaycastHit hit;
-            _lineRendererCaster.Hide();
+            _UICaster.Hide();
 
             if (Physics.Raycast(_playerInput.ControllerRight.transform.position,
                 _playerInput.ControllerRight.transform.forward, out hit,
@@ -31,7 +31,7 @@ namespace Echosystem.Resonance.UI
             {
                 if (hit.transform.CompareTag("UI"))
                 {
-                    _lineRendererCaster.ShowUiRaycast(_playerInput.ControllerRight.transform.position, hit.point, 16);
+                    _UICaster.ShowCast(_playerInput.ControllerRight.transform.position, hit.point, 16);
 
                     MenuElement menuElement = hit.transform.GetComponent<MenuElement>();
 

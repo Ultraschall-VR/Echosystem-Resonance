@@ -78,7 +78,11 @@ public class AttackDrone : MonoBehaviour
         transform.eulerAngles = new Vector3(0, Random.Range(0, 180), 0);
         _rb.useGravity = false;
 
-        _playerPos = FindObjectOfType<PlayerMovement>().transform;
+        if (FindObjectOfType<PlayerMovement>())
+        {
+            _playerPos = FindObjectOfType<PlayerMovement>().transform;
+        }
+        
         StartCoroutine(EyeMovement());
         StartCoroutine(RandomDirection());
         StartCoroutine(RandomMovement());

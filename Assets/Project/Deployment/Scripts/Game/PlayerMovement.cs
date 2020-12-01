@@ -8,7 +8,7 @@ namespace Echosystem.Resonance.Game
     {
         [SerializeField] private PlayerInput _playerInput;
         [SerializeField] private PlayerStateMachine _playerStateMachine;
-        [SerializeField] private LineRendererCaster _lineRendererCaster;
+        [SerializeField] private TeleportCaster teleportCaster;
         [SerializeField] private LayerMask _teleportIgnoreLayer;
 
         private bool _snapTurnReady = true;
@@ -35,8 +35,6 @@ namespace Echosystem.Resonance.Game
         
         [SerializeField] private AudioEnvelope _audioEnvelope;
         
-        
-
         void Start()
         {
             Initialize();
@@ -128,13 +126,13 @@ namespace Echosystem.Resonance.Game
                     out hit,
                     Mathf.Infinity, _teleportIgnoreLayer))
                 {
-                    _lineRendererCaster.RaycastTarget.position = hit.point + hit.transform.up / 8;
+                    teleportCaster.RaycastTarget.position = hit.point + hit.transform.up / 8;
                     
                     if (hit.collider.CompareTag("TeleportArea"))
                     {
                         if (Vector3.Distance(_playerInput.Player.transform.position, hit.point) <= TeleportMaxRange)
                         {
-                            _lineRendererCaster.ShowValidTeleport(_playerInput.ControllerRight.transform.position,
+                            teleportCaster.ShowValidTeleport(_playerInput.ControllerRight.transform.position,
                                 hit.point,
                                 1);
                             
@@ -148,7 +146,7 @@ namespace Echosystem.Resonance.Game
 
                         else
                         {
-                            _lineRendererCaster.ShowInvalidTeleport(_playerInput.ControllerRight.transform.position,
+                            teleportCaster.ShowInvalidTeleport(_playerInput.ControllerRight.transform.position,
                                 hit.point,
                                 1);
                             _teleportTarget = Vector3.zero;
@@ -156,7 +154,7 @@ namespace Echosystem.Resonance.Game
                     }
                     else
                     {
-                        _lineRendererCaster.ShowInvalidTeleport(_playerInput.ControllerRight.transform.position,
+                        teleportCaster.ShowInvalidTeleport(_playerInput.ControllerRight.transform.position,
                             hit.point,
                             1);
                         _teleportTarget = Vector3.zero;
@@ -166,7 +164,7 @@ namespace Echosystem.Resonance.Game
             else
             {
                 _playerStateMachine.TeleportState = false;
-                _lineRendererCaster.Hide();
+                teleportCaster.Hide();
                 
                 _audioEnvelope.Release();
 

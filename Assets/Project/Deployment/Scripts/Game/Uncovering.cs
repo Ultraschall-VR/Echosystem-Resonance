@@ -58,7 +58,7 @@ namespace Echosystem.Resonance.Game
             }
 
             if (_playerStateMachine.TeleportState ||
-                _playerStateMachine.AudioBowState)
+                _playerStateMachine.EchoBlasterState)
             {
                 return;
             }
