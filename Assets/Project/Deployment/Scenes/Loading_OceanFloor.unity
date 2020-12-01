@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -137,7 +137,7 @@ PrefabInstance:
     - target: {fileID: 497473728180285717, guid: 17192ba363d4243b08a150764487c430,
         type: 3}
       propertyPath: delay
-      value: 19
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 497473728180285717, guid: 17192ba363d4243b08a150764487c430,
         type: 3}
@@ -1043,7 +1043,12 @@ PrefabInstance:
     - target: {fileID: 5224478567705925857, guid: dd432d2aa529d4b77b1e053c831d4696,
         type: 3}
       propertyPath: m_Name
-      value: Water
+      value: Drone
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224478567705925857, guid: dd432d2aa529d4b77b1e053c831d4696,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5224478567705925858, guid: dd432d2aa529d4b77b1e053c831d4696,
         type: 3}
@@ -1110,7 +1115,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 1e8a1c6bad2214806b631993dcf1f80c, type: 3}
+      objectReference: {fileID: 8300000, guid: 51b938c007dd94c658820f946b560a65, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd432d2aa529d4b77b1e053c831d4696, type: 3}
 --- !u!1001 &1733225437
@@ -1123,7 +1128,7 @@ PrefabInstance:
     - target: {fileID: 497473728180285717, guid: 17192ba363d4243b08a150764487c430,
         type: 3}
       propertyPath: delay
-      value: 14
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 497473728180285717, guid: 17192ba363d4243b08a150764487c430,
         type: 3}
@@ -1416,7 +1421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da523d79ad7124616921ca5a4d7cbe06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DelayTime: 18
+  DelayTime: 29
 --- !u!1001 &2044548188
 PrefabInstance:
   m_ObjectHideFlags: 0
