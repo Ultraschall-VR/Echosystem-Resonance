@@ -4,21 +4,13 @@ namespace Echosystem.Resonance.Game
 {
     public class TriggerAnimation : MonoBehaviour
     {
-        [SerializeField] private bool triggered;
-        Animator m_Animator;
-        
+        private Animator _animator;
+
         void Start()
         {
-            m_Animator = gameObject.GetComponent<Animator>();
-            triggered = false;
-        }
+            _animator = gameObject.GetComponent<Animator>();
 
-        void Update()
-        {
-            if (triggered == true)
-            {
-                m_Animator.SetBool("triggered", true);
-            }
+            _animator.SetBool("triggered", true);
         }
     }
 }
