@@ -14,8 +14,9 @@ GameObject:
   - component: {fileID: 5400000}
   - component: {fileID: 8200000}
   - component: {fileID: 7673737768026514246}
+  - component: {fileID: -8840769178546968298}
   m_Layer: 8
-  m_Name: NonVRPlayer
+  m_Name: '[NonVRPlayer]'
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -306,6 +307,23 @@ MonoBehaviour:
   _uncoveringKey: 107
   _uncovering: {fileID: 2196465751856800543}
   UncoveringPressed: 0
+--- !u!114 &-8840769178546968298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab8861d51354b4004958f93a969680ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _noMusic: {fileID: 24500006, guid: dd20e19eaa52f4233bc36f58d830b7c4, type: 2}
+  _music1: {fileID: 8150405545823540618, guid: dd20e19eaa52f4233bc36f58d830b7c4, type: 2}
+  _music2: {fileID: 7163190236437233341, guid: dd20e19eaa52f4233bc36f58d830b7c4, type: 2}
+  _TransitionIn: 2000
+  _TransitionOut: 2000
 --- !u!1 &100002
 GameObject:
   m_ObjectHideFlags: 0
