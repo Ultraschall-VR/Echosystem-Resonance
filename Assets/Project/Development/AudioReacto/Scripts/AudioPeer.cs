@@ -9,10 +9,11 @@ public class AudioPeer : MonoBehaviour
     AudioSource _audioSource;
 
     // Microphone input
-    public AudioClip _audioClip;
+    // public AudioClip _audioClip;
     public bool _useMicrophone;
     public string _selectedDevice;
-    public AudioMixerGroup _mixerGroupMicrophone, _mixerGroupAudioclip;
+    public AudioMixerGroup _mixerGroupMicrophone;
+    //  public AudioMixerGroup _mixerGroupAudioclip;
 
     // FFT values
     private float[] _samplesLeft = new float[512];
@@ -71,8 +72,8 @@ public class AudioPeer : MonoBehaviour
             }
         }
         if (!_useMicrophone) {
-            _audioSource.outputAudioMixerGroup = _mixerGroupAudioclip;
-            _audioSource.clip = _audioClip;
+           // _audioSource.outputAudioMixerGroup = _mixerGroupAudioclip;
+            _audioSource = GetComponent<AudioSource>();
         }
 
         _audioSource.Play();
