@@ -1,62 +1,82 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using System.Data;
+using TMPro;
+using UnityEngine;
 
 namespace Echosystem.Resonance.Game
 {
     public class VRInteractable : MonoBehaviour
     {
-        [SerializeField] private Material _coveredMaterial;
-        [SerializeField] private Material _uncoveredMaterial;
-        [SerializeField] private MeshRenderer _mesh;
+        private MeshRenderer _ghostRenderer;
+        private GameObject _ghost;
+        private float _alpha;
+        private bool _ghostInstantiated;
+        
+        [SerializeField] private Material _ghostMaterial;
 
-        [HideInInspector] public Vector3 InitialPos;
-        [HideInInspector] public Quaternion InitialRot;
+        public bool IsActive;
 
-        public bool IsCovered;
-        public bool isTeleportable;
-
-        public Material ActiveMaterial;
-
-        public float CollisionMass;
-
-
-        void Start()
+        private void Start()
         {
-            InitialPos = transform.position;
-            InitialRot = transform.rotation;
-            CollisionMass = 1;
+            InstantiateGhost();
+            HideGhost();
+        }
 
-            _mesh = GetComponent<MeshRenderer>();
+        private void InstantiateGhost()
+        {
+            _ghost = Instantiate(this.gameObject, transform.position, transform.rotation);
+            _ghost.GetComponent<VRInteractable>().enabled = false;
+            _ghost.transform.SetParent(this.transform);
+            _ghost.transform.localScale *= 1.01f;
+            _ghost.GetComponent<Collider>().enabled = false;
+            _ghost.name = "Ghost";
+            _ghostRenderer = _ghost.GetComponent<MeshRenderer>();
+            _ghostRenderer.material = _ghostMaterial;
+            _ghostInstantiated = true;
         }
 
         private void Update()
         {
-            if (IsCovered)
+            if (!_ghostInstantiated)
+                return;
+
+            _ghostRenderer.material.SetFloat("Alpha", _alpha);
+
+            if (IsActive)
             {
-                ActiveMaterial = _coveredMaterial;
+                ShowGhost();
             }
             else
             {
-                ActiveMaterial = _uncoveredMaterial;
-            }
-
-            _mesh.material = ActiveMaterial;
-        }
-
-        public void OnCollisionStay(Collision other)
-        {
-            if (other.gameObject.GetComponent<Rigidbody>() != null)
-            {
-                CollisionMass = other.gameObject.GetComponent<Rigidbody>().mass;
-            }
-            else
-            {
-                CollisionMass = 1;
+                HideGhost();
             }
         }
-
-        public void OnCollisionExit(Collision other)
+        
+        public void ShowGhost()
         {
-            CollisionMass = 1;
+            StartCoroutine(FadeIn());
+        }
+        
+        private IEnumerator FadeIn()
+        {
+            float timer = 0.5f;
+            float t = 0.0f;
+
+            while (t <= timer)
+            {
+                t += Time.deltaTime;
+
+                _alpha = Mathf.Lerp(0, 0.5f, t / timer);
+                yield return null;
+            }
+            yield return null;
+        }
+
+        public void HideGhost()
+        {
+            StopAllCoroutines();
+            _alpha = 0;
         }
     }
 }

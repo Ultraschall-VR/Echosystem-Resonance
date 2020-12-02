@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using System.Data.SqlTypes;
+using UnityEngine;
 
 namespace Echosystem.Resonance.Game
 {
@@ -10,38 +13,50 @@ namespace Echosystem.Resonance.Game
         private Vector3 _arc;
         private Vector3 _center;
 
+        private float _alpha;
+
         private void Start()
         {
             Hide();
         }
 
-        private void DrawLineRenderer(Vector3 origin, Vector3 target, float arcMultiplier)
+        private void Update()
+        {
+            _lineRendererMaterial.SetFloat("Alpha", _alpha);
+        }
+
+        private void DrawLineRenderer(Vector3 origin, Vector3 target)
         {
             _lineRenderer.enabled = true;
             _lineRenderer.material = _lineRendererMaterial;
-            
-            _center = (origin + target) * 0.5f;
-            _center.y -= Vector3.Distance(origin, target) * arcMultiplier;
 
-            var relCenter = origin - _center;
-            var relAimCenter = target - _center;
+            var direction = ((target - origin).normalized) / 2;
 
-            float x = -0.0417f;
-            var index = -1;
-
-            while (x < 1.0f && index < _lineRenderer.positionCount - 1)
-            {
-                x += 0.0417f;
-                index++;
-
-                _arc = Vector3.Slerp(relCenter, relAimCenter, x);
-                _lineRenderer.SetPosition(index, _arc + _center);
-            }
+            _lineRenderer.SetPosition(0, origin + direction);
+            _lineRenderer.SetPosition(1, target - direction);
         }
-        
-        public void ShowCast(Vector3 origin, Vector3 target, float arcMultiplier)
+
+        public void ShowCast(Vector3 origin, Vector3 target)
         {
-            DrawLineRenderer(origin, target, arcMultiplier);
+            StopAllCoroutines();
+            _alpha = 0.0f;
+            DrawLineRenderer(origin, target);
+            StartCoroutine(FadeIn());
+        }
+
+        private IEnumerator FadeIn()
+        {
+            float timer = 2.0f;
+            float t = 0.0f;
+
+            while (t <= timer)
+            {
+                t += Time.deltaTime;
+
+                _alpha = Mathf.Lerp(0, 0.2f, t / timer);
+                yield return null;
+            }
+            yield return null;
         }
 
         public void Hide()
