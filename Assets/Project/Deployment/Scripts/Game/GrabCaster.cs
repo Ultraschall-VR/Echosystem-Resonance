@@ -52,7 +52,7 @@ namespace Echosystem.Resonance.Game
             while (t <= timer)
             {
                 t += Time.deltaTime;
-
+                
                 _alpha = Mathf.Lerp(0, 0.2f, t / timer);
                 yield return null;
             }

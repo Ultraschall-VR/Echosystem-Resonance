@@ -19,21 +19,31 @@ namespace Echosystem.Resonance.Game
 
         private void Start()
         {
-            InstantiateGhost();
+            
+            Invoke("InstantiateGhost", 2f);
             HideGhost();
         }
 
         private void InstantiateGhost()
         {
             _ghost = Instantiate(this.gameObject, transform.position, transform.rotation);
+            
+            RemoveUnused();
+
             _ghost.GetComponent<VRInteractable>().enabled = false;
             _ghost.transform.SetParent(this.transform);
             _ghost.transform.localScale *= 1.01f;
-            _ghost.GetComponent<Collider>().enabled = false;
+            
             _ghost.name = "Ghost";
             _ghostRenderer = _ghost.GetComponent<MeshRenderer>();
             _ghostRenderer.material = _ghostMaterial;
             _ghostInstantiated = true;
+        }
+
+        private void RemoveUnused()
+        {
+            Destroy(_ghost.GetComponent<Collider>());
+            Destroy(_ghost.GetComponent<Rigidbody>());
         }
 
         private void Update()
@@ -42,7 +52,7 @@ namespace Echosystem.Resonance.Game
                 return;
 
             _ghostRenderer.material.SetFloat("Alpha", _alpha);
-
+            
             if (IsActive)
             {
                 ShowGhost();
@@ -67,6 +77,12 @@ namespace Echosystem.Resonance.Game
             {
                 t += Time.deltaTime;
 
+                if (!IsActive)
+                {
+                    _alpha = 0.0f;
+                    break;
+                }
+                
                 _alpha = Mathf.Lerp(0, 0.5f, t / timer);
                 yield return null;
             }

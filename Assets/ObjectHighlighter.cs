@@ -9,8 +9,12 @@ public class ObjectHighlighter : MonoBehaviour
     [SerializeField] private GrabCaster _grabCaster;
     public GameObject ActiveObject;
 
+    public bool Locked;
+
     void Update()
     {
+        _grabCaster.Hide();
+
         if (_debug)
         {
             DebugMode();
@@ -47,6 +51,12 @@ public class ObjectHighlighter : MonoBehaviour
     {
         if (hit.collider.GetComponent<VRInteractable>())
         {
+            if (Locked)
+            {
+                _grabCaster.Hide();
+                return;
+            }
+
             if (hit.collider.gameObject == ActiveObject)
             {
                 return;
@@ -56,14 +66,11 @@ public class ObjectHighlighter : MonoBehaviour
             ActiveObject.GetComponent<VRInteractable>().IsActive = true;
             _grabCaster.ShowCast(transform.position, ActiveObject.transform.position);
         }
-        else
+        else if (ActiveObject != null && !Locked)
         {
-            if (ActiveObject != null)
-            {
-                ActiveObject.GetComponent<VRInteractable>().IsActive = false;
-                ActiveObject = null;
-                _grabCaster.Hide();
-            }
+            ActiveObject.GetComponent<VRInteractable>().IsActive = false;
+            ActiveObject = null;
+            _grabCaster.Hide();
         }
     }
 }
