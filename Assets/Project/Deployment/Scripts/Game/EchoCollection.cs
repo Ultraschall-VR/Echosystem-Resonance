@@ -4,7 +4,7 @@ namespace Echosystem.Resonance.Game
 {
     public class EchoCollection : MonoBehaviour
     {
-        [SerializeField] private TeleportCaster teleportCaster;
+        [SerializeField] private GrabCaster _grabCaster;
 
         private void Update()
         {
@@ -15,11 +15,11 @@ namespace Echosystem.Resonance.Game
             {
                 if (hit.collider.gameObject.GetComponent<Echo>())
                 {
-                    teleportCaster.ShowGrab(leftHand.transform.position, hit.collider.transform.position, 4);
+                    _grabCaster.ShowCast(leftHand.transform.position, hit.collider.transform.position, 4);
                 }
                 else
                 {
-                    teleportCaster.Hide();
+                    _grabCaster.Hide();
                 }
             }
         }

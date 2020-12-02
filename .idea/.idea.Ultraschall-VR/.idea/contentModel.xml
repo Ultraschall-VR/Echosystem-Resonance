@@ -15,8 +15,6 @@
           <e p="Lyra.cs" t="Include" />
           <e p="PlayerHand.cs" t="Include" />
         </e>
-        <e p="AttackDrone.cs" t="Include" />
-        <e p="AttackDroneRange.cs" t="Include" />
         <e p="Dependencies" t="Include">
           <e p="Low Poly Modular Terrain Pack" t="Include">
             <e p="Bonus_Assets" t="Include">
@@ -922,13 +920,16 @@
             </e>
           </e>
         </e>
-        <e p="Echo.cs" t="Include" />
         <e p="Project" t="Include">
           <e p="Deployment" t="Include">
             <e p="Fonts" t="Include">
               <e p="OFL.txt" t="Include" />
             </e>
             <e p="Scripts" t="Include">
+              <e p="AI" t="Include">
+                <e p="AttackDrone.cs" t="Include" />
+                <e p="AttackDroneRange.cs" t="Include" />
+              </e>
               <e p="Audio" t="Include">
                 <e p="Alexej" t="Include">
                   <e p="AudioDelay.cs" t="Include" />
@@ -960,15 +961,20 @@
                 <e p="AudioBow.cs" t="Include" />
                 <e p="AudioReactive.cs" t="Include" />
                 <e p="AudioReactiveEnvironment.cs" t="Include" />
+                <e p="BlasterBullet.cs" t="Include" />
                 <e p="ControllerManager.cs" t="Include" />
                 <e p="CrossHair.cs" t="Include" />
+                <e p="Echo.cs" t="Include" />
+                <e p="EchoBlaster.cs" t="Include" />
                 <e p="EchoCollection.cs" t="Include" />
                 <e p="GameProgress.cs" t="Include" />
                 <e p="GameStateMachine.cs" t="Include" />
+                <e p="GrabCaster.cs" t="Include" />
                 <e p="HideUI.cs" t="Include" />
                 <e p="IgnorePlayerCollision.cs" t="Include" />
                 <e p="KeyboardInput.cs" t="Include" />
                 <e p="LoadScene.cs" t="Include" />
+                <e p="OverdriveBullet.cs" t="Include" />
                 <e p="PlayerInput.cs" t="Include" />
                 <e p="PlayerMovement.cs" t="Include" />
                 <e p="PlayerSpawner.cs" t="Include" />
@@ -978,6 +984,7 @@
                 <e p="SceneLoader.cs" t="Include" />
                 <e p="SlingString.cs" t="Include" />
                 <e p="TeleportCaster.cs" t="Include" />
+                <e p="UICaster.cs" t="Include" />
                 <e p="Uncovering.cs" t="Include" />
                 <e p="UncoveringObject.cs" t="Include" />
                 <e p="VisibilityController.cs" t="Include" />
@@ -995,6 +1002,9 @@
               <e p="Misc" t="Include">
                 <e p="EmptyClass.cs" t="Include" />
                 <e p="Exit.cs" t="Include" />
+              </e>
+              <e p="Prototyping" t="Include">
+                <e p="RevealerDynamic.cs" t="Include" />
               </e>
               <e p="Tools" t="Include">
                 <e p="LevelDesignSpawner.cs" t="Include" />
@@ -1015,13 +1025,6 @@
             </e>
           </e>
           <e p="Development" t="Include">
-            <e p="BlasterGun" t="Include">
-              <e p="Scripts" t="Include">
-                <e p="BlasterBullet.cs" t="Include" />
-                <e p="EchoBlaster.cs" t="Include" />
-                <e p="OverdriveBullet.cs" t="Include" />
-              </e>
-            </e>
             <e p="LineOfSight" t="Include">
               <e p="Scripts" t="Include">
                 <e p="Revealable.cs" t="Include" />
@@ -1040,8 +1043,6 @@
             </e>
           </e>
         </e>
-        <e p="RevealerDynamic.cs" t="Include" />
-        <e p="ShowcaseRotation.cs" t="Include" />
         <e p="Standard Assets" t="Include">
           <e p="2D" t="Include">
             <e p="Scripts" t="Include">
@@ -1360,7 +1361,6 @@
             <e p="EmojiOne Attribution.txt" t="Include" />
           </e>
         </e>
-        <e p="UICaster.cs" t="Include" />
       </e>
       <e p="obj" t="ExcludeRecursive" />
       <e p="packages" t="ExcludeRecursive" />
