@@ -82,8 +82,10 @@ namespace Echosystem.Resonance.Game
 
             if (other.gameObject.GetComponent<OverdriveBullet>())
                 return;
-
-
+            
+            if (other.gameObject.CompareTag("Player"))
+                return;
+            
             _rb.useGravity = true;
             _objectHit = true;
         }

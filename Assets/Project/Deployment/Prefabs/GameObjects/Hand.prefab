@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 441614358499798773}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.076}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.762, y: 1.762, z: 1.762}
   m_Children: []
   m_Father: {fileID: 2519171740434033417}
@@ -375,10 +375,10 @@ BoxCollider:
   m_GameObject: {fileID: 4784687153115530670}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.1311724, y: 1.9967352, z: 2.0411916}
-  m_Center: {x: 0.00000014901161, y: -0.17215371, z: -0.5205956}
+  m_Size: {x: 2.1648958, y: 1.9300787, z: 1.7746948}
+  m_Center: {x: 0.016673505, y: -0.10541409, z: -0.24245493}
 --- !u!114 &7503980519744871149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -479,18 +479,18 @@ ConfigurableJoint:
   m_XDrive:
     serializedVersion: 3
     positionSpring: 1000
-    positionDamper: 30
-    maximumForce: 1000000
+    positionDamper: 75
+    maximumForce: 1000
   m_YDrive:
     serializedVersion: 3
     positionSpring: 1000
-    positionDamper: 30
-    maximumForce: 1000000
+    positionDamper: 75
+    maximumForce: 1000
   m_ZDrive:
     serializedVersion: 3
     positionSpring: 1000
-    positionDamper: 30
-    maximumForce: 1000000
+    positionDamper: 75
+    maximumForce: 1000
   m_TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   m_TargetAngularVelocity: {x: 0, y: 0, z: 0}
   m_RotationDriveMode: 0
@@ -508,7 +508,7 @@ ConfigurableJoint:
     serializedVersion: 3
     positionSpring: 20
     positionDamper: 0.5
-    maximumForce: 1000000
+    maximumForce: 1000
   m_ProjectionMode: 0
   m_ProjectionDistance: 0.1
   m_ProjectionAngle: 180
@@ -1008,17 +1008,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 72c5d6587fe5f704491f11fd87ab317a,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 15
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 72c5d6587fe5f704491f11fd87ab317a,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 15
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 72c5d6587fe5f704491f11fd87ab317a,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 15
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: -7258311636328011011, guid: 72c5d6587fe5f704491f11fd87ab317a,
         type: 3}

@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Drone_range
-  m_Shader: {fileID: -6465566751694194690, guid: f476dabe44225fd4181fcdafa6991b17,
+  m_Shader: {fileID: -6465566751694194690, guid: 776388b6e3857a348b7beca58e54f76e,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 2
@@ -49,8 +49,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Fresnel: 2.83
+    - Alpha: 0.364
+    - Fresnel: 5.47
     - Noise: 0.251
+    - WobbleStrength: 0.0008
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -74,7 +76,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - AlbedoColor: {r: 0, g: 0, b: 0, a: 0}
-    - EmissionColor: {r: 0, g: 0.87274694, b: 5.3403134, a: 1}
+    - EmissionColor: {r: 1.4797572, g: 0.043916535, b: 0, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

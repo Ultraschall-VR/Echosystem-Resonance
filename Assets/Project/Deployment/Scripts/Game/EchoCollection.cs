@@ -15,11 +15,11 @@ namespace Echosystem.Resonance.Game
             {
                 if (hit.collider.gameObject.GetComponent<Echo>())
                 {
-                    _grabCaster.ShowCast(leftHand.transform.position, hit.collider.transform.position);
+                    //_grabCaster.ShowCast(leftHand.transform.position, hit.collider.transform.position);
                 }
                 else
                 {
-                    _grabCaster.Hide();
+                    //_grabCaster.Hide();
                 }
             }
         }

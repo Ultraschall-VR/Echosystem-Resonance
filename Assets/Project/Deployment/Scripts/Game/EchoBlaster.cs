@@ -10,8 +10,7 @@ namespace Echosystem.Resonance.Game
         [SerializeField] private GameObject _overdrivePrefab;
         [SerializeField] private Transform _muzzleExplosion;
         [SerializeField] private Light _muzzleLight;
-        [SerializeField] private Animator _animator;
-
+        
         private PlayerInput _playerInput;
 
         private bool _charging;
@@ -22,7 +21,7 @@ namespace Echosystem.Resonance.Game
 
         private float _ammo;
         private float _maxAmmo;
-        private float _initialAmmo = 240;
+        private float _initialAmmo = 0;
 
         [SerializeField] private bool _debug;
         [SerializeField] private bool _isAI;
@@ -66,8 +65,10 @@ namespace Echosystem.Resonance.Game
             {
                 _ammo = 1000000f;
             }
-
-            _ammo = _initialAmmo;
+            else
+            {
+                _ammo = amount;
+            }
         }
 
         private void AIInput()
@@ -76,13 +77,13 @@ namespace Echosystem.Resonance.Game
             {
                 if (!_firing)
                 {
-                    StartCoroutine(AIFire());
+                    StartCoroutine(AIFirePattern());
                     _firing = true;
                 }
             }
         }
 
-        private IEnumerator AIFire()
+        private IEnumerator AIFirePattern()
         {
             SpawnBlast();
 
@@ -96,7 +97,7 @@ namespace Echosystem.Resonance.Game
 
             yield return new WaitForSeconds(3f);
 
-            yield return StartCoroutine(AIFire());
+            yield return StartCoroutine(AIFirePattern());
         }
 
         private void VRInput()

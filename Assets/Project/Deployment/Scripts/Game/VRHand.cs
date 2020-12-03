@@ -96,13 +96,13 @@ namespace Echosystem.Resonance.Game
             if (_isRightHand)
             {
                 hapticAction.Execute(0, 0.05f, 70,
-                    Vector3.Distance(transform.position, _inputHand.transform.position) / 2,
+                    Vector3.Distance(transform.position, _inputHand.transform.position) / 4,
                     SteamVR_Input_Sources.RightHand);
             }
             else
             {
                 hapticAction.Execute(0, 0.05f, 70,
-                    Vector3.Distance(transform.position, _inputHand.transform.position) / 2,
+                    Vector3.Distance(transform.position, _inputHand.transform.position) / 4,
                     SteamVR_Input_Sources.LeftHand);
             }
         }

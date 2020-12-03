@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NonVR: 0
+  IsMenu: 0
   _vrPlayerPrefab: {fileID: 6455501167829242766, guid: 3b2ab9df6fec45444b64f5b48fb36a73,
     type: 3}
   _nonVrPlayerPrefab: {fileID: 100000, guid: b5e43b7595b38124aba44858e283c6ef, type: 3}
@@ -52,9 +53,11 @@ MonoBehaviour:
   _joystickMovement: 1
   _joystickMovementSpeed: 6
   _teleportMovement: 1
-  _teleportMaxRange: 10
-  _teleportMovementSpeed: 6
+  _teleportMaxRange: 20
+  _teleportMovementSpeed: 0.5
+  _loadWholeGame: 0
   PlayerInstance: {fileID: 0}
+  _playerVisible: 1
 --- !u!1 &4786295220804956368
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,24 +19,29 @@ namespace Echosystem.Resonance.Game
 
         private void Start()
         {
-            
-            Invoke("InstantiateGhost", 2f);
+            GetComponent<Rigidbody>().detectCollisions = false;
+            GetComponent<Rigidbody>().isKinematic = true;
+            Invoke("InstantiateGhost", 1f);
             HideGhost();
         }
 
         private void InstantiateGhost()
         {
             _ghost = Instantiate(this.gameObject, transform.position, transform.rotation);
+            _ghost.GetComponent<VRInteractable>().enabled = false;
             
             RemoveUnused();
-
-            _ghost.GetComponent<VRInteractable>().enabled = false;
-            _ghost.transform.SetParent(this.transform);
-            _ghost.transform.localScale *= 1.01f;
             
             _ghost.name = "Ghost";
             _ghostRenderer = _ghost.GetComponent<MeshRenderer>();
             _ghostRenderer.material = _ghostMaterial;
+            _ghost.transform.localScale *= 1.05f;
+            
+            _ghost.transform.SetParent(transform);
+
+            GetComponent<Rigidbody>().detectCollisions = true;
+            GetComponent<Rigidbody>().isKinematic = false;
+            
             _ghostInstantiated = true;
         }
 
@@ -50,6 +55,9 @@ namespace Echosystem.Resonance.Game
         {
             if (!_ghostInstantiated)
                 return;
+
+            _ghost.transform.position = transform.position;
+            _ghost.transform.rotation = transform.rotation;
 
             _ghostRenderer.material.SetFloat("Alpha", _alpha);
             
@@ -67,10 +75,10 @@ namespace Echosystem.Resonance.Game
         {
             StartCoroutine(FadeIn());
         }
-        
+
         private IEnumerator FadeIn()
         {
-            float timer = 0.5f;
+            float timer = 2f;
             float t = 0.0f;
 
             while (t <= timer)
@@ -83,7 +91,7 @@ namespace Echosystem.Resonance.Game
                     break;
                 }
                 
-                _alpha = Mathf.Lerp(0, 0.5f, t / timer);
+                _alpha = Mathf.Lerp(0, 0.6f, t / timer);
                 yield return null;
             }
             yield return null;
@@ -91,6 +99,9 @@ namespace Echosystem.Resonance.Game
 
         public void HideGhost()
         {
+            if(!_ghostInstantiated)
+                return;
+
             StopAllCoroutines();
             _alpha = 0;
         }

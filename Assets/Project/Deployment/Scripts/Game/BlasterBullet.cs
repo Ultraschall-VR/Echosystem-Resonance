@@ -81,6 +81,9 @@ namespace Echosystem.Resonance.Game
             if (other.gameObject.GetComponent<OverdriveBullet>())
                 return;
 
+            if (other.gameObject.CompareTag("Player"))
+                return;
+            
             if (other.gameObject.GetComponent<AttackDrone>())
             {
                 other.gameObject.GetComponent<AttackDrone>().Life--;

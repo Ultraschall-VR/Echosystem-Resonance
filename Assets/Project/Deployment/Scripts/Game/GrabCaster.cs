@@ -30,7 +30,7 @@ namespace Echosystem.Resonance.Game
             _lineRenderer.enabled = true;
             _lineRenderer.material = _lineRendererMaterial;
 
-            var direction = ((target - origin).normalized) / 2;
+            var direction = ((target - origin).normalized);
 
             _lineRenderer.SetPosition(0, origin + direction);
             _lineRenderer.SetPosition(1, target - direction);
@@ -38,22 +38,23 @@ namespace Echosystem.Resonance.Game
 
         public void ShowCast(Vector3 origin, Vector3 target)
         {
-            StopAllCoroutines();
-            _alpha = 0.0f;
+            Hide();
             DrawLineRenderer(origin, target);
             StartCoroutine(FadeIn());
         }
 
         private IEnumerator FadeIn()
         {
-            float timer = 2.0f;
+            yield return new WaitForSeconds(0.3f);
+            
+            float timer = 1.5f;
             float t = 0.0f;
 
             while (t <= timer)
             {
                 t += Time.deltaTime;
                 
-                _alpha = Mathf.Lerp(0, 0.2f, t / timer);
+                _alpha = Mathf.Lerp(0, 0.1f, t / timer);
                 yield return null;
             }
             yield return null;
@@ -61,7 +62,8 @@ namespace Echosystem.Resonance.Game
 
         public void Hide()
         {
-            _lineRenderer.enabled = false;
+            _alpha = 0.0f;
+            StopAllCoroutines();
         }
     }
 }

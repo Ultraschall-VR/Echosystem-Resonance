@@ -57,8 +57,8 @@ namespace Echosystem.Resonance.Game
         
         public void Hide()
         {
-            _lineRenderer.enabled = false;
-            _targetRenderer.enabled = false;
+            //_lineRenderer.enabled = false;
+            //_targetRenderer.enabled = false;
         }
     }
 }
