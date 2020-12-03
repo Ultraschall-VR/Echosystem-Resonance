@@ -5,10 +5,19 @@ namespace Echosystem.Resonance.Helper
     public class TriggerEvent : MonoBehaviour
     {
         [SerializeField] private MonoBehaviour _action;
+        [SerializeField] private bool _triggered;
 
-        private void Start()
+        private void Awake()
         {
             _action.enabled = false;
+        }
+
+        private void Update()
+        {
+            if (_triggered)
+            {
+                _action.enabled = true;
+            }
         }
 
         private void OnTriggerEnter(Collider other)
