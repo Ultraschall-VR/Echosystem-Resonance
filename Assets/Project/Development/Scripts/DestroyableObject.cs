@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.VFX;
 
 namespace Echosystem.Resonance.Game
 {
@@ -14,7 +14,7 @@ namespace Echosystem.Resonance.Game
         [SerializeField] private Collider _collider;
         [SerializeField] private Collider _capCollider;
 
-        [SerializeField] private ParticleSystem _particle;
+        [SerializeField] private VisualEffect _particle;
         [SerializeField] private bool _particlesStopped;
 
         private void Start()
@@ -22,13 +22,14 @@ namespace Echosystem.Resonance.Game
             _rigidbody = GetComponent<Rigidbody>();
             _meshRenderer = GetComponent<MeshRenderer>();
             _capCollider.enabled = false;
+            _particlesStopped = false;
+
+            _particle.Stop();
         }
 
         private void Update()
         {
             _speed = _rigidbody.velocity.magnitude;
-            _particlesStopped = false;
-            
         }
 
         private void OnCollisionEnter(Collision collision)
@@ -39,11 +40,8 @@ namespace Echosystem.Resonance.Game
                 _collider.enabled = false;
                 _capCollider.enabled = true;
             }
-        }
 
-        private void OnTriggerEnter(Collider other)
-        {
-            if (_meshRenderer.enabled == false && !_particlesStopped)
+            if (!_meshRenderer.enabled && !_particlesStopped)
             {
                 StartCoroutine(PlayParticles());
             }
@@ -52,10 +50,13 @@ namespace Echosystem.Resonance.Game
         private IEnumerator PlayParticles()
         {
             _particle.Play();
-            yield return new WaitForSeconds(2f);
-            
+            yield return new WaitForSeconds(0.2f);
+
             _particle.Stop();
             yield return _particlesStopped = true;
+            
+            yield return new WaitForSeconds(1f);
+            Destroy(this);
         }
     }
 }
