@@ -2478,6 +2478,7 @@ GameObject:
   - component: {fileID: 26677170906082817}
   - component: {fileID: 8564031942041354891}
   - component: {fileID: 5009712689278214074}
+  - component: {fileID: 5086280722262760057}
   m_Layer: 8
   m_Name: '[VRPlayer]'
   m_TagString: Player
@@ -2664,6 +2665,23 @@ MonoBehaviour:
   EchoBlaster: {fileID: 3262589158023808000}
   SceneLoader: {fileID: 2326239580712778160}
   ObjectInteraction: {fileID: 8596658561524571189}
+--- !u!114 &5086280722262760057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6455501167829242766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab8861d51354b4004958f93a969680ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _noMusic: {fileID: 24500006, guid: dd20e19eaa52f4233bc36f58d830b7c4, type: 2}
+  _music1: {fileID: 8150405545823540618, guid: dd20e19eaa52f4233bc36f58d830b7c4, type: 2}
+  _music2: {fileID: 7163190236437233341, guid: dd20e19eaa52f4233bc36f58d830b7c4, type: 2}
+  _TransitionIn: 2000
+  _TransitionOut: 2000
 --- !u!1 &6455501167829243360
 GameObject:
   m_ObjectHideFlags: 0
@@ -5516,7 +5534,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _meshes.Array.data[1]
       value: 
-      objectReference: {fileID: 3411105044601441699}
+      objectReference: {fileID: 0}
     - target: {fileID: 1226598496463230234, guid: dd5b38a8cae0b4f41934d8ecc7661a49,
         type: 3}
       propertyPath: _meshes.Array.data[2]
@@ -5531,12 +5549,12 @@ PrefabInstance:
         type: 3}
       propertyPath: _meshes.Array.data[4]
       value: 
-      objectReference: {fileID: 1820283612358341359}
+      objectReference: {fileID: 0}
     - target: {fileID: 1226598496463230234, guid: dd5b38a8cae0b4f41934d8ecc7661a49,
         type: 3}
       propertyPath: _meshes.Array.data[5]
       value: 
-      objectReference: {fileID: 8866299277215576162}
+      objectReference: {fileID: 7990337309925654964}
     - target: {fileID: 1226598496463230234, guid: dd5b38a8cae0b4f41934d8ecc7661a49,
         type: 3}
       propertyPath: _meshes.Array.data[6]
@@ -5546,7 +5564,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _meshes.Array.data[7]
       value: 
-      objectReference: {fileID: 7990337309925654964}
+      objectReference: {fileID: 0}
     - target: {fileID: 1226598496463230234, guid: dd5b38a8cae0b4f41934d8ecc7661a49,
         type: 3}
       propertyPath: _meshes.Array.data[8]
@@ -5689,12 +5707,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee43f4dee932156429b677be16e567c6, type: 3}
---- !u!120 &2907927753533506502 stripped
-LineRenderer:
-  m_CorrespondingSourceObject: {fileID: 8528872683694806701, guid: ee43f4dee932156429b677be16e567c6,
-    type: 3}
-  m_PrefabInstance: {fileID: 6775573718957823339}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3575663153969739823 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8041426550855675204, guid: ee43f4dee932156429b677be16e567c6,
@@ -6020,7 +6032,7 @@ LineRenderer:
     type: 3}
   m_PrefabInstance: {fileID: 7632360926598758470}
   m_PrefabAsset: {fileID: 0}
---- !u!23 &1820283612358341359 stripped
+--- !u!23 &996360045334400853 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 8118131533571224233, guid: 96b5f33dd6dfd954d9dec40d3da92fb3,
     type: 3}
