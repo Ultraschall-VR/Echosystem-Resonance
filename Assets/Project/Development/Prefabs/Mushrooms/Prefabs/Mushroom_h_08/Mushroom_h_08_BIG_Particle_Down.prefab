@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &470940201284972447
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6629212463613318397}
+  m_Layer: 0
+  m_Name: Audioreactive
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6629212463613318397
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 470940201284972447}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1361325708512598209}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &609630608415670384
 GameObject:
   m_ObjectHideFlags: 0
@@ -26,7 +56,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 609630608415670384}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 0, y: -0.0505, z: -0.1622}
+  m_LocalPosition: {x: 0, y: -0.0461, z: -0.1614}
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_Children: []
   m_Father: {fileID: 1361325708512598209}
@@ -206,6 +236,7 @@ Transform:
   - {fileID: 4340838584429557764}
   - {fileID: 6141951362436551516}
   - {fileID: 3464505557603827620}
+  - {fileID: 6629212463613318397}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -256,6 +287,45 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &6089599400116142072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3499549790706973163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b97ff0fd8452e43ab8840ab2d2c85e98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioPeer: {fileID: 8860566414493179727}
+  _band: 4
+  _minIntensity: 0.1
+  _maxIntesity: 42
+--- !u!114 &8860566414493179727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3585642295996245835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77a6a51fc04a645978d7e137fd237d05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _useMicrophone: 0
+  _selectedDevice: 
+  _mixerGroupMicrophone: {fileID: 0}
+  _audioBand: []
+  _audioBandBuffer: []
+  _audioBand64: []
+  _audioBandBuffer64: []
+  _Amplitude: 0
+  _AmplitudeBuffer: 0
+  _audioProfile: 0.41
+  channel: 0
 --- !u!1 &6150883544066826400
 GameObject:
   m_ObjectHideFlags: 0
@@ -499,6 +569,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8eae16c8dbe1a534ea2ae6db691e949f, type: 3}
+--- !u!1 &3585642295996245835 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6368617419305024928, guid: 8eae16c8dbe1a534ea2ae6db691e949f,
+    type: 3}
+  m_PrefabInstance: {fileID: 7611960124956121835}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6141951362436551516 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4368356803918121399, guid: 8eae16c8dbe1a534ea2ae6db691e949f,
@@ -624,6 +700,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51845c32ab141d6449f3d7309100bfb6, type: 3}
+--- !u!1 &3499549790706973163 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6810836109866836369, guid: 51845c32ab141d6449f3d7309100bfb6,
+    type: 3}
+  m_PrefabInstance: {fileID: 7931989741848074362}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8782550365138337518 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1726556114690614932, guid: 51845c32ab141d6449f3d7309100bfb6,

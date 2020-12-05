@@ -7,6 +7,9 @@ namespace Echosystem.Resonance.Game
     {
         [SerializeField] private bool _triggered;
         [SerializeField] private GameObject[] _rocks;
+        [SerializeField] AudioSource[] _audiosources;
+
+        private bool audioStarted = false;
 
         private void Start()
         {
@@ -36,6 +39,11 @@ namespace Echosystem.Resonance.Game
             if (other.CompareTag("Whale"))
             {
                 SetRigidbodies();
+                foreach (AudioSource i in _audiosources) {
+                    i.Play();
+                }
+                // Sets audioStarted = true, so Player can't trigger it again
+                audioStarted = true;
             }
             
         }
