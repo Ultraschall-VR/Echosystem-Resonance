@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Echosystem.Resonance.UI
 {
@@ -11,7 +12,74 @@ namespace Echosystem.Resonance.UI
         [SerializeField] private GameObject _echoPull;
         [SerializeField] private GameObject _gravityPull;
         [SerializeField] private GameObject _echoBlaster;
+
+        [SerializeField] private GameObject _textBox;
+
+        [SerializeField] private int _lifeTime;
         
+        private void Start()
+        {
+            DeactivateAll();
+        }
+        
+        public void ShowToolTipp(Tooltip tooltip)
+        {
+            DeactivateAll();
+
+            switch (tooltip)
+            {
+                case Tooltip.Teleport:
+                    
+                    _teleport.SetActive(true);
+                    break;
+                
+                case Tooltip.Uncover:
+
+                    _uncover.SetActive(true);
+                    break;
+                
+                case  Tooltip.TriggerRight:
+
+                    _triggerRight.SetActive(true);
+                    break;
+                
+                case Tooltip.TriggerLeft:
+
+                    _triggerLeft.SetActive(true);
+                    break;
+                
+                case Tooltip.EchoPull:
+
+                    _echoPull.SetActive(true);
+                    break;
+                
+                case Tooltip.GravityPull:
+
+                    _gravityPull.SetActive(true);
+                    break;
+                
+                case Tooltip.EchoBlaster:
+
+                    _echoBlaster.SetActive(true);
+                    break;
+            }
+            
+            _textBox.SetActive(true);
+            
+            Invoke("DeactivateAll", _lifeTime);
+        }
+
+        private void DeactivateAll()
+        {
+            _textBox.SetActive(false);
+            _teleport.SetActive(false);
+            _uncover.SetActive(false);
+            _triggerLeft.SetActive(false);
+            _triggerRight.SetActive(false);
+            _echoPull.SetActive(false);
+            //_gravityPull.SetActive(false);
+            //_echoBlaster.SetActive(false);
+        }
         
         public enum Tooltip
         {
@@ -22,11 +90,6 @@ namespace Echosystem.Resonance.UI
             EchoPull,
             GravityPull,
             EchoBlaster
-        }
-
-        public void ShowToolTipp(Tooltip tooltip)
-        {
-            
         }
     }
 }
