@@ -10,7 +10,13 @@ namespace Echosystem.Resonance.Game
         [SerializeField] private GameObject _overdrivePrefab;
         [SerializeField] private Transform _muzzleExplosion;
         [SerializeField] private Light _muzzleLight;
-        
+
+        [SerializeField] private AudioSource _blastAudioSource;
+        [SerializeField] private AudioSource _overDriveAudioSource;
+        [SerializeField] private AudioClip _blastAudio;
+        [SerializeField] private AudioClip _overDriveLoadingAudio;
+        [SerializeField] private AudioClip _overDriveAudio;
+
         private PlayerInput _playerInput;
 
         private bool _charging;
@@ -21,10 +27,12 @@ namespace Echosystem.Resonance.Game
 
         private float _ammo;
         private float _maxAmmo;
-        private float _initialAmmo = 0;
+        private float _initialAmmo = 120;
 
         [SerializeField] private bool _debug;
         [SerializeField] private bool _isAI;
+
+        private bool _locked;
 
         public bool PlayerInRange;
 
@@ -102,8 +110,31 @@ namespace Echosystem.Resonance.Game
 
         private void VRInput()
         {
-            if (_playerInput.RightTriggerPressed.stateUp)
+            if (_playerInput != null)
             {
+                if (Vector3.Distance(_playerInput.ControllerLeft.transform.position,
+                        _playerInput.ControllerRight.transform.position) < 0.1f)
+                {
+                    _locked = true;
+                    return;
+                }
+                
+                if (!_playerInput.LeftTriggerPressed.state && !_playerInput.RightTriggerPressed.state)
+                {
+                    _locked = false;
+                }
+            }
+            
+            if(_locked)
+                return;
+
+            if (!GameProgress.Instance.LearnedEchoblaster)
+                return;
+
+            if (_playerInput.RightTriggerPressed.stateUp && !_locked)
+            {
+                PlayerStateMachine.Instance.EchoBlasterState = false;
+
                 if (!_charged)
                 {
                     if (_ammo >= 1f)
@@ -126,11 +157,14 @@ namespace Echosystem.Resonance.Game
 
             if (_playerInput.RightTriggerPressed.state)
             {
+                PlayerStateMachine.Instance.EchoBlasterState = true;
                 _charge += Time.deltaTime;
             }
 
             if (_charge >= _chargeThreshold && !_charged)
             {
+                _overDriveAudioSource.volume = 0.1f;
+                _overDriveAudioSource.PlayOneShot(_overDriveLoadingAudio);
                 _charging = true;
             }
 
@@ -173,6 +207,8 @@ namespace Echosystem.Resonance.Game
 
             if (_charge >= _chargeThreshold && !_charged)
             {
+                _overDriveAudioSource.volume = 0.1f;
+                _overDriveAudioSource.PlayOneShot(_overDriveLoadingAudio);
                 _charging = true;
             }
 
@@ -186,6 +222,9 @@ namespace Echosystem.Resonance.Game
 
         private void SpawnOverdrive()
         {
+            _overDriveAudioSource.Stop();
+            _overDriveAudioSource.volume = 1f;
+            _overDriveAudioSource.PlayOneShot(_overDriveAudio);
             _ammo -= 10;
             StartCoroutine(MuzzleExplosion(400));
             Instantiate(_overdrivePrefab, _tip.transform.position, _tip.transform.rotation);
@@ -193,6 +232,7 @@ namespace Echosystem.Resonance.Game
 
         private void SpawnBlast()
         {
+            _blastAudioSource.PlayOneShot(_blastAudio);
             _ammo -= 1;
             StartCoroutine(MuzzleExplosion(250));
             Instantiate(_blastPrefab, _tip.transform.position, _tip.transform.rotation);

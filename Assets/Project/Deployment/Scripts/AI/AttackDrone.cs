@@ -13,17 +13,26 @@ namespace Echosystem.Resonance.AI
         [SerializeField] private AttackDroneRange _attackDroneRange;
         [SerializeField] private EchoBlaster _echoBlaster;
 
+        [SerializeField] private AudioSource _loopAudioSource;
+        [SerializeField] private AudioSource _explosionAudioSource;
+
         private Transform _playerPos;
 
         public int Life = 5;
 
+        private bool _destroyed;
+
         private void Update()
         {
-            if (Life <= 0)
+            if (Life <= 0 && !_destroyed)
             {
                 Destroy();
+                _destroyed = true;
                 return;
             }
+            
+            if(_destroyed)
+                return;
 
             if (_attackDroneRange.PlayerInTrigger)
             {
@@ -65,6 +74,8 @@ namespace Echosystem.Resonance.AI
         private void Destroy()
         {
             StopAllCoroutines();
+            _loopAudioSource.Stop();
+            _explosionAudioSource.PlayOneShot(_explosionAudioSource.clip);
             _rb.useGravity = true;
             _rb.constraints = RigidbodyConstraints.None;
             _range.gameObject.SetActive(false);

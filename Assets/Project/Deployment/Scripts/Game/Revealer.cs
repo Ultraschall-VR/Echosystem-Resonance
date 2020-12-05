@@ -10,6 +10,9 @@ namespace Echosystem.Resonance.Prototyping
 {
     public class Revealer : MonoBehaviour
     {
+        [SerializeField] private List<MeshRenderer> _rings;
+
+
         private List<Revealable> _revealables = new List<Revealable>();
         private List<Revealable> _staticRevealables = new List<Revealable>();
         private List<MeshRenderer> _staticRevealableMeshes = new List<MeshRenderer>();
@@ -30,6 +33,11 @@ namespace Echosystem.Resonance.Prototyping
 
         private void Start()
         {
+            foreach (var ring in _rings)
+            {
+                ring.enabled = false;
+            }
+
             Initialize();
         }
 
@@ -63,7 +71,7 @@ namespace Echosystem.Resonance.Prototyping
                 if (!revealable.Dynamic)
                 {
                     _staticRevealables.Add(revealable);
-                    _staticRevealableMeshes.Add(revealable.GetComponent<MeshRenderer>()); 
+                    _staticRevealableMeshes.Add(revealable.GetComponent<MeshRenderer>());
                 }
             }
         }
@@ -78,6 +86,9 @@ namespace Echosystem.Resonance.Prototyping
 
         private void VRInputHandler()
         {
+            if (!GameProgress.Instance.LearnedUncover)
+                return;
+            
             CheckDistance();
 
             if (_playerInput.LeftTriggerPressed.state && _playerInput.RightTriggerPressed.state)
@@ -96,13 +107,17 @@ namespace Echosystem.Resonance.Prototyping
             {
                 if (_uncoverDone)
                 {
+                    foreach (var ring in _rings)
+                    {
+                        ring.enabled = true;
+                    }
+
                     _animator.SetBool("IsShockwave", true);
                     _uncoverDone = false;
                 }
 
                 _breakConceal = false;
                 StartCoroutine(Conceal());
-                _playerStateMachine.Uncovering = false;
             }
         }
 
@@ -114,11 +129,11 @@ namespace Echosystem.Resonance.Prototyping
                 mesh.material.SetFloat("Radius", _power);
             }
         }
-        
+
         private void CheckDistance()
         {
             if (Vector3.Distance(_playerInput.ControllerRight.transform.position,
-                _playerInput.ControllerLeft.transform.position) < 0.1f)
+                    _playerInput.ControllerLeft.transform.position) < 0.1f)
             {
                 _distanceChecked = true;
             }
@@ -143,13 +158,13 @@ namespace Echosystem.Resonance.Prototyping
                 t += Time.deltaTime;
 
                 float value = Mathf.Lerp(_power, 0, t / timer);
-                
-                    foreach (var mesh in _staticRevealableMeshes)
-                    {
-                        mesh.material.SetFloat("Radius", value);
-                    }
 
-                    yield return null;
+                foreach (var mesh in _staticRevealableMeshes)
+                {
+                    mesh.material.SetFloat("Radius", value);
+                }
+
+                yield return null;
             }
 
             yield return null;

@@ -9,6 +9,8 @@ namespace Echosystem.Resonance.Game
         [SerializeField] private List<MeshRenderer> _meshes;
         [SerializeField] private Light _light;
         [SerializeField] private GameObject _blasterBulletPrefab;
+        [SerializeField] private AudioSource _impactAudioSource;
+        [SerializeField] private AudioSource _loopAudioSource;
 
         private bool _objectHit;
         private Rigidbody _rb;
@@ -33,12 +35,23 @@ namespace Echosystem.Resonance.Game
                 {
                     mesh.enabled = false;
                 }
+                
+                if (!_impactAudioSource.isPlaying)
+                    _impactAudioSource.PlayOneShot(_impactAudioSource.clip);
+                
+                _loopAudioSource.Stop();
 
                 _light.enabled = false;
 
                 InstantiateBullets();
-                Destroy(this.gameObject);
+                Invoke("DestroyBullet", 5f);
+                
             }
+        }
+
+        private void DestroyBullet()
+        {
+            Destroy(this.gameObject);
         }
 
         private void InstantiateBullets()

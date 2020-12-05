@@ -10,6 +10,8 @@ namespace Echosystem.Resonance.Game
         [SerializeField] private GrabCaster _grabCaster;
         public GameObject ActiveObject;
 
+        [SerializeField] private AudioSource _audioSource;
+
         public bool Locked;
 
         private List<VRInteractable> _vrInteractables;
@@ -45,6 +47,9 @@ namespace Echosystem.Resonance.Game
 
         private void VRInput()
         {
+            if(!GameProgress.Instance.LearnedGrab)
+                return;
+            
             RaycastHit hit;
 
             if (Physics.Raycast(PlayerInput.Instance.ControllerLeft.transform.position,
@@ -79,6 +84,8 @@ namespace Echosystem.Resonance.Game
                 {
                     return;
                 }
+                
+                _audioSource.PlayOneShot(_audioSource.clip);
 
                 ActiveObject = hit.collider.gameObject;
                 ActiveObject.GetComponent<VRInteractable>().IsActive = true;

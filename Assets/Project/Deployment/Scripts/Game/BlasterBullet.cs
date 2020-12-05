@@ -13,12 +13,14 @@ namespace Echosystem.Resonance.Game
         [SerializeField] private List<MeshRenderer> _meshes;
         [SerializeField] private Light _light;
         [SerializeField] private VisualEffect _particles;
+        [SerializeField] private AudioSource _impactAudioSource;
+        [SerializeField] private AudioSource _loopAudioSource;
 
         private bool _objectHit;
         private Rigidbody _rb;
         private Vector3 _offset;
 
-        private float _maxLifeTime = 5f;
+        private float _maxLifeTime = 8f;
         private float _lifeTime;
         private bool _maxLifeTimeReached;
 
@@ -28,6 +30,10 @@ namespace Echosystem.Resonance.Game
             _rb.useGravity = false;
             _offset = transform.forward; // +
             new Vector3(Random.Range(-0.02f, 0.02f), Random.Range(-0.02f, 0.02f), Random.Range(-0.02f, 0.02f));
+
+            float tempMax = _maxLifeTime;
+            
+            _maxLifeTime = Random.Range(5, tempMax);
         }
 
         private void Update()
@@ -36,7 +42,6 @@ namespace Echosystem.Resonance.Game
             {
                 Physics.IgnoreCollision(collider.GetComponent<Collider>(), GetComponent<Collider>());
             }
-
 
             _lifeTime += Time.deltaTime;
 
@@ -52,6 +57,11 @@ namespace Echosystem.Resonance.Game
                     mesh.enabled = false;
                 }
 
+                if (!_impactAudioSource.isPlaying)
+                    _impactAudioSource.PlayOneShot(_impactAudioSource.clip);
+                
+                
+                _loopAudioSource.Stop();
                 _particles.SetFloat("SpawnRate", 0f);
                 _light.enabled = false;
 
@@ -83,7 +93,7 @@ namespace Echosystem.Resonance.Game
 
             if (other.gameObject.CompareTag("Player"))
                 return;
-            
+
             if (other.gameObject.GetComponent<AttackDrone>())
             {
                 other.gameObject.GetComponent<AttackDrone>().Life--;

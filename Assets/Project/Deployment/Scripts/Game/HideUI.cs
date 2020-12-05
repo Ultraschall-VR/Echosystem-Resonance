@@ -10,7 +10,7 @@ namespace Echosystem.Resonance.Game
         private void OnEnable()
         {
             _menuController.ToggleMenu();
-            GameProgress.Instance.LearnedBow = true;
+            GameProgress.Instance.LearnedEchoblaster = true;
             GameProgress.Instance.LearnedGrab = true;
             GameProgress.Instance.LearnedTeleport = true;
             GameProgress.Instance.LearnedUncover = true;

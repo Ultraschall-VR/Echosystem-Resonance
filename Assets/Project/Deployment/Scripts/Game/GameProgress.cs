@@ -6,10 +6,15 @@ namespace Echosystem.Resonance.Game
     {
         public static GameProgress Instance;
 
-        public bool LearnedTeleport = false;
-        public bool LearnedGrab = false;
-        public bool LearnedUncover = false;
-        public bool LearnedBow = false;
+        public bool LearnedTeleport;
+        public bool LearnedGrab;
+        public bool LearnedUncover;
+        public bool LearnedEchoblaster;
+        
+        private bool _hasLearnedTeleport;
+        private bool _hasLearnedGrab;
+        private bool _hasLearnedUncover;
+        private bool _hasLearnedEchoblaster;
 
         private void Awake()
         {
@@ -21,6 +26,16 @@ namespace Echosystem.Resonance.Game
             {
                 Destroy(this);
             }
+            
+            SetPower();
+        }
+
+        public void SetPower()
+        {
+            _hasLearnedTeleport = LearnedTeleport;
+            _hasLearnedGrab = LearnedGrab;
+            _hasLearnedUncover = LearnedUncover;
+            _hasLearnedEchoblaster = LearnedEchoblaster;
         }
 
         private void Update()
@@ -30,15 +45,25 @@ namespace Echosystem.Resonance.Game
                 LearnedTeleport = false;
                 LearnedGrab = false;
                 LearnedUncover = false;
-                LearnedBow = false;
+                LearnedEchoblaster = false;
             }
+            
             else
             {
-                LearnedTeleport = true;
-                LearnedGrab = true;
-                LearnedUncover = true;
-                LearnedBow = true;
+                LearnedTeleport = _hasLearnedTeleport;
+                LearnedGrab = _hasLearnedGrab;
+                LearnedUncover = _hasLearnedUncover;
+                LearnedEchoblaster = _hasLearnedEchoblaster;
             }
+        }
+        
+        public enum GameProgressPower
+        {
+            Teleport,
+            Grab,
+            Uncover,
+            Echoblaster,
+            None
         }
     }
 }

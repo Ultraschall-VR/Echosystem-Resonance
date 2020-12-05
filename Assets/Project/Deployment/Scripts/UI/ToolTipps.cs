@@ -77,8 +77,8 @@ namespace Echosystem.Resonance.UI
             _triggerLeft.SetActive(false);
             _triggerRight.SetActive(false);
             _echoPull.SetActive(false);
-            //_gravityPull.SetActive(false);
-            //_echoBlaster.SetActive(false);
+            _gravityPull.SetActive(false);
+            _echoBlaster.SetActive(false);
         }
         
         public enum Tooltip

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Data;
-using TMPro;
+﻿using System.Collections;
 using UnityEngine;
 
 namespace Echosystem.Resonance.Game

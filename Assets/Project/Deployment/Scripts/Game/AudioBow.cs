@@ -24,7 +24,7 @@ namespace Echosystem.Resonance.Game
 
         private void Update()
         {
-            if (!GameProgress.Instance.LearnedBow)
+            if (!GameProgress.Instance.LearnedEchoblaster)
             {
                 return;
             }
