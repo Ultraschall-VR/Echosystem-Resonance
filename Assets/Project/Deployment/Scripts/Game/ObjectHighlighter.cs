@@ -84,6 +84,11 @@ namespace Echosystem.Resonance.Game
                 {
                     return;
                 }
+
+                if (hit.collider.GetComponent<Audiocards>() != null)
+                {
+                    hit.collider.GetComponent<Audiocards>().ShowPlayButton();
+                }
                 
                 _audioSource.PlayOneShot(_audioSource.clip);
 
@@ -98,6 +103,11 @@ namespace Echosystem.Resonance.Game
                 SafeDisable(ActiveObject.GetComponent<VRInteractable>());
 
                 _grabCaster.Hide();
+                
+                if (hit.collider.GetComponent<Audiocards>() != null)
+                {
+                    hit.collider.GetComponent<Audiocards>().HidePlayButton();
+                }
             }
         }
     }

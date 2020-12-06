@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering.UI;
+using Valve.VR;
 
 namespace Echosystem.Resonance.Game
 {
@@ -76,13 +78,23 @@ namespace Echosystem.Resonance.Game
             
             Transform activeObject = _objectHighlighter.ActiveObject.transform;
             Rigidbody rb = _objectHighlighter.ActiveObject.GetComponent<Rigidbody>();
-
+            
             float distance = Vector3.Distance(activeObject.position, target.position);
             float timer = 1.0f * distance / 2 + rb.mass/100;
             float t = 0.0f;
 
             while (t <= timer)
             {
+
+                if (rb == null)
+                    break;
+                
+                if (rb.GetComponent<Audiocards>() != null)
+                {
+                    rb.GetComponent<Audiocards>().PlayAudioCard();
+                    break;
+                }
+                
                 t += Time.deltaTime;
 
                 if (_objectHighlighter.ActiveObject == null)
@@ -94,8 +106,11 @@ namespace Echosystem.Resonance.Game
 
                 if (isEcho)
                 {
-                    rb.transform.localScale = Vector3.Lerp(rb.transform.localScale, Vector3.zero, t / timer);
-
+                    if (rb.transform.localScale.x > 0.01f)
+                    {
+                        rb.transform.localScale = Vector3.Lerp(rb.transform.localScale, Vector3.zero, t / timer);
+                    }
+                    
                     if (t >= 0.98f)
                     {
                         rb.GetComponent<Echo>().AddEnergy();
