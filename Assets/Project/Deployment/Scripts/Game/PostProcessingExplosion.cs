@@ -31,7 +31,7 @@ namespace Echosystem.Resonance.Game
 
         private void Initialize()
         {
-            _bloomLayer.intensity.value = 1f;
+            _bloomLayer.intensity.value = 1.98f;
             _colorAdjustments.postExposure.value = 1f;
         }
 

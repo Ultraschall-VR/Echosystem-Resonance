@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
+using Echosystem.Resonance.Game;
 using UnityEngine;
 
 namespace Echosystem.Resonance.Prototyping
@@ -7,7 +7,11 @@ namespace Echosystem.Resonance.Prototyping
     public class Revealable : MonoBehaviour
     {
         [SerializeField] private Material _coveredMaterial;
+        private Material _initMaterial;
+        private Collider _collider;
 
+        private bool _uncovered;
+            
         public bool Dynamic;
         private bool _routineRunning;
         private bool _break;
@@ -16,12 +20,18 @@ namespace Echosystem.Resonance.Prototyping
 
         private void Awake()
         {
+            _initMaterial = GetComponent<MeshRenderer>().material;
             GetComponent<MeshRenderer>().material = _coveredMaterial;
         }
 
         private void Update()
         {
             GetComponent<MeshRenderer>().material.SetFloat("Radius", _power);
+
+            if (_power > 0.1f || _uncovered)
+            {
+                _collider.enabled = true;
+            }
         }
 
         public void Reveal()
@@ -58,6 +68,18 @@ namespace Echosystem.Resonance.Prototyping
             _routineRunning = false;
 
             yield return null;
+        }
+
+        private void OnCollisionEnter(Collision other)
+        {
+            if(_power < 0.1f)
+                return;
+            
+            if (other.gameObject.GetComponent<BlasterBullet>())
+            {
+                _uncovered = true;
+                GetComponent<MeshRenderer>().material = _initMaterial;
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.ComponentModel.Design;
 using UnityEngine;
 using Valve.VR;
 
@@ -24,7 +25,8 @@ namespace Echosystem.Resonance.Game
             
             GetComponent<Rigidbody>().detectCollisions = false;
             GetComponent<Rigidbody>().isKinematic = true;
-            
+            GetComponent<Rigidbody>().useGravity = false;
+
             Invoke("InstantiateGhost", 1f);
             HideGhost();
         }
@@ -32,25 +34,26 @@ namespace Echosystem.Resonance.Game
         private void InstantiateGhost()
         {
             _ghost = Instantiate(this.gameObject, transform.position, transform.rotation);
-            _ghost.GetComponent<VRInteractable>().enabled = false;
-            
+
             RemoveUnused();
             
             _ghost.name = "Ghost";
             _ghostRenderer = _ghost.GetComponent<MeshRenderer>();
             _ghostRenderer.material = _ghostMaterial;
-            _ghost.transform.localScale *= 1.05f;
             
             _ghost.transform.SetParent(transform);
+            _ghost.transform.localScale = new Vector3(1.01f, 1.01f, 1.01f);
 
             GetComponent<Rigidbody>().detectCollisions = true;
             GetComponent<Rigidbody>().isKinematic = false;
+            GetComponent<Rigidbody>().useGravity = true;
             
             _ghostInstantiated = true;
         }
 
         private void RemoveUnused()
         {
+            Destroy(_ghost.GetComponent<VRInteractable>());
             Destroy(_ghost.GetComponent<Collider>());
             Destroy(_ghost.GetComponent<Rigidbody>());
         }

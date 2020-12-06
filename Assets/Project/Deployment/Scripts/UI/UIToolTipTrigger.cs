@@ -1,4 +1,5 @@
-﻿using Echosystem.Resonance.Game;
+﻿using System.Collections;
+using Echosystem.Resonance.Game;
 using UnityEngine;
 
 namespace Echosystem.Resonance.UI
@@ -12,9 +13,12 @@ namespace Echosystem.Resonance.UI
 
         private bool _isTriggered;
 
+
+        [SerializeField] private float _delay;
+        
         private void Start()
         {
-            Invoke("Initialize", 2f);
+            Invoke("Initialize", 0.01f);
         }
 
         private void Initialize()
@@ -30,12 +34,19 @@ namespace Echosystem.Resonance.UI
                 _isTriggered = true;
                 _toolTipps.ShowToolTipp(_tooltip);
 
-                ActivatePower();
+                ActivatePower(_delay);
             }
         }
 
-        private void ActivatePower()
+        private void ActivatePower(float delay)
         {
+            StartCoroutine(ActivatePowerWithDelay(delay));
+        }
+
+        private IEnumerator ActivatePowerWithDelay(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            
             switch (_learnedPower)
             {
                 case GameProgress.GameProgressPower.Echoblaster:
@@ -65,6 +76,8 @@ namespace Echosystem.Resonance.UI
                 case GameProgress.GameProgressPower.None:
                     break;
             }
+            
+            yield return null;
         }
     }
 }

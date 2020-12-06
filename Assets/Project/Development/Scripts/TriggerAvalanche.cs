@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Echosystem.Resonance.Game
 {
@@ -14,7 +13,6 @@ namespace Echosystem.Resonance.Game
         private void Start()
         {
             _triggered = false;
-            
         }
 
         private void Update()
@@ -39,13 +37,14 @@ namespace Echosystem.Resonance.Game
             if (other.CompareTag("Whale"))
             {
                 SetRigidbodies();
-                foreach (AudioSource i in _audiosources) {
+                foreach (AudioSource i in _audiosources)
+                {
                     i.Play();
                 }
+
                 // Sets audioStarted = true, so Player can't trigger it again
                 audioStarted = true;
             }
-            
         }
     }
 }
