@@ -10,6 +10,7 @@ namespace Echosystem.Resonance.Game
         [SerializeField] private string _loadingSceneName;
         [SerializeField] private string _loadingOceanFloorSceneName;
         [SerializeField] private string _caveSceneName;
+        [SerializeField] private string _introSceneName;
 
 
         public bool MenuOpen;
@@ -48,6 +49,10 @@ namespace Echosystem.Resonance.Game
             {
                 CurrentGameState = Gamestate.Cave;
             }
+            else if (SceneManager.GetActiveScene().name == _introSceneName)
+            {
+                CurrentGameState = Gamestate.Intro;
+            }
             else
             {
                 CurrentGameState = Gamestate.Story;
@@ -61,7 +66,8 @@ namespace Echosystem.Resonance.Game
             Story,
             Loading,
             LoadingOceanFloor,
-            Cave
+            Cave, 
+            Intro
         }
     }
 }

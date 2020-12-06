@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Echosystem.Resonance.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,6 +8,9 @@ namespace Echosystem.Resonance.Game
 {
     public class SceneLoader : MonoBehaviour
     {
+        public static SceneLoader Instance;
+    
+    
         [SerializeField] private TransitionManager _transitionManager;
         [SerializeField] private string _loadingSceneName;
         [SerializeField] private string _orpheusSceneName;
@@ -14,9 +18,22 @@ namespace Echosystem.Resonance.Game
         [SerializeField] private string _playgroundSceneName;
         [SerializeField] private string _caveSceneName;
         [SerializeField] private string _oceanFloorLoadingSceneName;
+        [SerializeField] private string _introSceneName;
 
         [HideInInspector] public bool LoadFirstScene;
 
+        private void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                Destroy(this.gameObject);
+            }
+        }
+        
         private void Start()
         {
             if (LoadFirstScene)
@@ -67,6 +84,11 @@ namespace Echosystem.Resonance.Game
 
                     sceneToLoad = _caveSceneName;
                     break;
+                
+                case Scene.Intro:
+
+                    sceneToLoad = _introSceneName;
+                    break;
             }
 
             if (sceneToLoad == null)
@@ -116,7 +138,8 @@ namespace Echosystem.Resonance.Game
             Loading,
             OceanFloorLoading,
             Playground,
-            Cave
+            Cave, 
+            Intro
         }
     }
 }
