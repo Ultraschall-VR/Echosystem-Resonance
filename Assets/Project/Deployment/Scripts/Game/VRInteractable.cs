@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using Valve.VR;
 
 namespace Echosystem.Resonance.Game
 {
@@ -12,12 +13,18 @@ namespace Echosystem.Resonance.Game
         
         [SerializeField] private Material _ghostMaterial;
 
+        [SerializeField] private bool _hasGhost;
+
         public bool IsActive;
 
         private void Start()
         {
+            if(!_hasGhost)
+                return;
+            
             GetComponent<Rigidbody>().detectCollisions = false;
             GetComponent<Rigidbody>().isKinematic = true;
+            
             Invoke("InstantiateGhost", 1f);
             HideGhost();
         }
@@ -70,6 +77,9 @@ namespace Echosystem.Resonance.Game
         
         public void ShowGhost()
         {
+            if(!_hasGhost)
+                return;
+            
             StartCoroutine(FadeIn());
         }
 

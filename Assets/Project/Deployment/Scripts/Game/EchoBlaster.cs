@@ -17,6 +17,8 @@ namespace Echosystem.Resonance.Game
         [SerializeField] private AudioClip _overDriveLoadingAudio;
         [SerializeField] private AudioClip _overDriveAudio;
 
+        [SerializeField] private CircleHealthBar _circleHealthBar;
+
         private PlayerInput _playerInput;
 
         private bool _charging;
@@ -26,8 +28,8 @@ namespace Echosystem.Resonance.Game
         private float _maxCharge = 2.0f;
 
         private float _ammo;
-        private float _maxAmmo;
-        private float _initialAmmo = 120;
+        private float _maxAmmo = 100;
+        private float _initialAmmo = 0;
 
         [SerializeField] private bool _debug;
         [SerializeField] private bool _isAI;
@@ -63,6 +65,7 @@ namespace Echosystem.Resonance.Game
             }
             else
             {
+                _circleHealthBar._healthValue = _ammo;
                 VRInput();
             }
         }
@@ -75,7 +78,7 @@ namespace Echosystem.Resonance.Game
             }
             else
             {
-                _ammo = amount;
+                _ammo += amount;
             }
         }
 
@@ -113,19 +116,19 @@ namespace Echosystem.Resonance.Game
             if (_playerInput != null)
             {
                 if (Vector3.Distance(_playerInput.ControllerLeft.transform.position,
-                        _playerInput.ControllerRight.transform.position) < 0.1f)
+                    _playerInput.ControllerRight.transform.position) < 0.1f)
                 {
                     _locked = true;
                     return;
                 }
-                
+
                 if (!_playerInput.LeftTriggerPressed.state && !_playerInput.RightTriggerPressed.state)
                 {
                     _locked = false;
                 }
             }
-            
-            if(_locked)
+
+            if (_locked)
                 return;
 
             if (!GameProgress.Instance.LearnedEchoblaster)
