@@ -1,18 +1,22 @@
 ﻿using System.Collections;
-using Echosystem.Resonance.Game;
 using UnityEngine;
 
-namespace Echosystem.Resonance.Prototyping
+namespace Echosystem.Resonance.Game
 {
     public class Revealable : MonoBehaviour
     {
         [SerializeField] private Material _coveredMaterial;
+        
         private Material _initMaterial;
+        
         private Collider _collider;
+        
+        private MeshRenderer _meshRenderer;
 
-        private bool _uncovered;
-            
+        private Animator _animator;
+
         public bool Dynamic;
+        private bool _uncovered;
         private bool _routineRunning;
         private bool _break;
 
@@ -20,18 +24,31 @@ namespace Echosystem.Resonance.Prototyping
 
         private void Awake()
         {
+            Initialize();
+        }
+
+        private void Initialize()
+        {
+            if (GetComponent<Animator>() != null)
+            {
+                _animator = GetComponent<Animator>();
+            }
+            else
+            {
+                _animator = null;
+            }
+            
+            _collider = GetComponent<Collider>();
             _initMaterial = GetComponent<MeshRenderer>().material;
-            GetComponent<MeshRenderer>().material = _coveredMaterial;
+            _meshRenderer = GetComponent<MeshRenderer>();
+
+            _meshRenderer.material = _coveredMaterial;
+            _collider.enabled = false;
         }
 
         private void Update()
         {
-            GetComponent<MeshRenderer>().material.SetFloat("Radius", _power);
-
-            if (_power > 0.1f || _uncovered)
-            {
-                _collider.enabled = true;
-            }
+            _meshRenderer.material.SetFloat("Radius", _power);
         }
 
         public void Reveal()
@@ -77,9 +94,19 @@ namespace Echosystem.Resonance.Prototyping
             
             if (other.gameObject.GetComponent<BlasterBullet>())
             {
-                _uncovered = true;
-                GetComponent<MeshRenderer>().material = _initMaterial;
+                Uncover();
             }
+        }
+
+        private void Uncover()
+        {
+            _uncovered = true;
+            _collider.enabled = true;
+            _meshRenderer.material = _initMaterial;
+
+            if (_animator != null)
+                GetComponent<Animator>().enabled = false;
+            
         }
     }
 }

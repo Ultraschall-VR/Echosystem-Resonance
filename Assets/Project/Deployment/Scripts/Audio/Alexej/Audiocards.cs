@@ -1,36 +1,39 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
-public class Audiocards : MonoBehaviour
+namespace Echosystem.Resonance.Audio
 {
-    [SerializeField] private GameObject _playButton;
-
-    AudioSource _audioSource;
-
-    private bool _hasBeenPlayed;
-
-    void Start()
+    [RequireComponent(typeof(AudioSource))]
+    public class Audiocards : MonoBehaviour
     {
-        _audioSource = GetComponent<AudioSource>();
-    }
+        [SerializeField] private GameObject _playButton;
 
-    public void ShowPlayButton()
-    {
-        _playButton.SetActive(true);
-    }
+        AudioSource _audioSource;
 
-    public void HidePlayButton()
-    {
-        _playButton.SetActive(false);
-    }
+        private bool _hasBeenPlayed;
 
-    public void PlayAudioCard()
-    {
-        if (!_audioSource.isPlaying && !_hasBeenPlayed)
+        void Start()
         {
-            _audioSource.Play();
-            _hasBeenPlayed = true;
-            HidePlayButton();
+            _audioSource = GetComponent<AudioSource>();
+        }
+
+        public void ShowPlayButton()
+        {
+            _playButton.SetActive(true);
+        }
+
+        public void HidePlayButton()
+        {
+            _playButton.SetActive(false);
+        }
+
+        public void PlayAudioCard()
+        {
+            if (!_audioSource.isPlaying && !_hasBeenPlayed)
+            {
+                _audioSource.Play();
+                _hasBeenPlayed = true;
+                HidePlayButton();
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Echosystem.Resonance.Audio;
 using UnityEngine;
 
 namespace Echosystem.Resonance.Game
@@ -89,7 +90,7 @@ namespace Echosystem.Resonance.Game
                 {
                     hit.collider.GetComponent<Audiocards>().ShowPlayButton();
                 }
-                
+
                 _audioSource.PlayOneShot(_audioSource.clip);
 
                 ActiveObject = hit.collider.gameObject;

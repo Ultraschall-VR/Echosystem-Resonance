@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Echosystem.Resonance.Audio;
 using UnityEngine;
 using UnityEngine.Rendering.UI;
 using Valve.VR;

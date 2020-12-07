@@ -1,12 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Echosystem.Resonance.Game;
-using TMPro;
 using UnityEngine;
-using Valve.Newtonsoft.Json.Serialization;
 
-namespace Echosystem.Resonance.Prototyping
+namespace Echosystem.Resonance.Game
 {
     public class Revealer : MonoBehaviour
     {
