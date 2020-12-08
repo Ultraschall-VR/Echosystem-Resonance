@@ -1,27 +1,32 @@
-﻿using System;
+﻿using System.Net.Mime;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Echosystem.Resonance.UI
 {
     public class ToolTipps : MonoBehaviour
     {
-        [SerializeField] private GameObject _teleport;
-        [SerializeField] private GameObject _uncover;
-        [SerializeField] private GameObject _triggerRight;
-        [SerializeField] private GameObject _triggerLeft;
-        [SerializeField] private GameObject _echoPull;
-        [SerializeField] private GameObject _gravityPull;
-        [SerializeField] private GameObject _echoBlaster;
+        [SerializeField] private UIToolTipp _teleport;
+        [SerializeField] private UIToolTipp _uncover;
+        [SerializeField] private UIToolTipp _triggerRight;
+        [SerializeField] private UIToolTipp _triggerLeft;
+        [SerializeField] private UIToolTipp _echoPull;
+        [SerializeField] private UIToolTipp _gravityPull;
+        [SerializeField] private UIToolTipp _echoBlaster;
 
-        [SerializeField] private GameObject _textBox;
+        [SerializeField] private TextMeshProUGUI _textBox;
+
+        [SerializeField] private Image _backGround;
+        
 
         [SerializeField] private int _lifeTime;
-        
+
         private void Start()
         {
             DeactivateAll();
         }
-        
+
         public void ShowToolTipp(Tooltip tooltip)
         {
             DeactivateAll();
@@ -29,58 +34,77 @@ namespace Echosystem.Resonance.UI
             switch (tooltip)
             {
                 case Tooltip.Teleport:
+
+                    ShowContent(_teleport);
                     
-                    _teleport.SetActive(true);
                     break;
-                
+
                 case Tooltip.Uncover:
 
-                    _uncover.SetActive(true);
+                    ShowContent(_uncover);
+                    
                     break;
-                
-                case  Tooltip.TriggerRight:
 
-                    _triggerRight.SetActive(true);
+                case Tooltip.TriggerRight:
+
+                    ShowContent(_triggerRight);
+                    
                     break;
-                
+
                 case Tooltip.TriggerLeft:
 
-                    _triggerLeft.SetActive(true);
+                    ShowContent(_triggerLeft);
+                    
                     break;
-                
+
                 case Tooltip.EchoPull:
 
-                    _echoPull.SetActive(true);
+                    ShowContent(_echoPull);
+                    
                     break;
-                
+
                 case Tooltip.GravityPull:
 
-                    _gravityPull.SetActive(true);
+                    ShowContent(_gravityPull);
+                    
                     break;
-                
+
                 case Tooltip.EchoBlaster:
 
-                    _echoBlaster.SetActive(true);
+                    ShowContent(_echoBlaster);
+                    
                     break;
             }
-            
-            _textBox.SetActive(true);
             
             Invoke("DeactivateAll", _lifeTime);
         }
 
+        private void ShowContent(UIToolTipp toolTipp)
+        {
+            toolTipp.Show();
+
+            _backGround.enabled = true;
+
+            if (toolTipp.Text == null)
+                return;
+
+            _textBox.text = toolTipp.Text;
+            _textBox.enabled = true;
+        }
+
         private void DeactivateAll()
         {
-            _textBox.SetActive(false);
-            _teleport.SetActive(false);
-            _uncover.SetActive(false);
-            _triggerLeft.SetActive(false);
-            _triggerRight.SetActive(false);
-            _echoPull.SetActive(false);
-            _gravityPull.SetActive(false);
-            _echoBlaster.SetActive(false);
+            _backGround.enabled = false;
+            _textBox.enabled = false;
+            _teleport.Hide();
+            _uncover.Hide();
+            _triggerLeft.Hide();
+            _triggerRight.Hide();
+            _echoPull.Hide();
+            _gravityPull.Hide();
+            _echoBlaster.Hide();
         }
-        
+
         public enum Tooltip
         {
             Teleport,
