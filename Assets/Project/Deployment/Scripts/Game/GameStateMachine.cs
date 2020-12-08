@@ -47,7 +47,7 @@ namespace Echosystem.Resonance.Game
             }
             else if (SceneManager.GetActiveScene().name == _caveSceneName)
             {
-                CurrentGameState = Gamestate.Cave;
+                CurrentGameState = Gamestate.Core;
             }
             else if (SceneManager.GetActiveScene().name == _introSceneName)
             {
@@ -55,7 +55,7 @@ namespace Echosystem.Resonance.Game
             }
             else
             {
-                CurrentGameState = Gamestate.Story;
+                CurrentGameState = Gamestate.OceanFloor;
             }
         }
 
@@ -63,10 +63,10 @@ namespace Echosystem.Resonance.Game
         public enum Gamestate
         {
             Orpheus,
-            Story,
+            OceanFloor,
             Loading,
             LoadingOceanFloor,
-            Cave, 
+            Core, 
             Intro
         }
     }

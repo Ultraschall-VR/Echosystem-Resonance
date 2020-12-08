@@ -1,5 +1,4 @@
-﻿using System.Net.Mime;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,6 +24,17 @@ namespace Echosystem.Resonance.UI
         private void Start()
         {
             DeactivateAll();
+        }
+
+        private void Update()
+        {
+            FixRotation();
+        }
+
+        private void FixRotation()
+        {
+            var rot = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
+            transform.eulerAngles = rot;
         }
 
         public void ShowToolTipp(Tooltip tooltip)

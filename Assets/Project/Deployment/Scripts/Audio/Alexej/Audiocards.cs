@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Echosystem.Resonance.ObjectiveManagement;
+using UnityEngine;
 
 namespace Echosystem.Resonance.Audio
 {
@@ -30,6 +31,11 @@ namespace Echosystem.Resonance.Audio
         {
             if (!_audioSource.isPlaying && !_hasBeenPlayed)
             {
+                if (GetComponent<ObjectiveItem>() != null)
+                {
+                    GetComponent<ObjectiveItem>().SetObjective();
+                }
+                
                 _audioSource.Play();
                 _hasBeenPlayed = true;
                 HidePlayButton();
