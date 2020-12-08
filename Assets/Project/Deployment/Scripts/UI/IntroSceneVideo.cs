@@ -1,22 +1,21 @@
 ﻿using Echosystem.Resonance.Game;
 using UnityEngine;
-using UnityEngine.Video;
 
 namespace Echosystem.Resonance.UI
 {
     public class IntroSceneVideo : MonoBehaviour
     {
-        [SerializeField] private VideoPlayer _videoPlayer;
+        [SerializeField] private GameObject _curvedUI;
 
         void Update()
         {
             if (GameStateMachine.Instance.CurrentGameState == GameStateMachine.Gamestate.Intro)
             {
-                _videoPlayer.enabled = true;
+                _curvedUI.SetActive(true);
             }
             else
             {
-                _videoPlayer.enabled = false;
+                _curvedUI.SetActive(false);
             }
         }
     }
