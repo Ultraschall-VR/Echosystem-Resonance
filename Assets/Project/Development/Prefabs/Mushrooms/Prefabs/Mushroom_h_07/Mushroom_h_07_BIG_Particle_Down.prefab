@@ -190,7 +190,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1916609234680251323}
   m_Layer: 0
-  m_Name: Audioreactive
+  m_Name: Audioreactive ohne Doppler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -285,7 +285,7 @@ AudioSource:
   Spatialize: 1
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
@@ -663,6 +663,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1626792675279628008}
     m_Modifications:
+    - target: {fileID: 863110521243757008, guid: 8eae16c8dbe1a534ea2ae6db691e949f,
+        type: 3}
+      propertyPath: DopplerLevel
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1802926987371679524, guid: 8eae16c8dbe1a534ea2ae6db691e949f,
         type: 3}
       propertyPath: m_LocalPosition.x
