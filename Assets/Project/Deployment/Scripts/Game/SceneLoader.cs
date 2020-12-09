@@ -9,8 +9,7 @@ namespace Echosystem.Resonance.Game
     public class SceneLoader : MonoBehaviour
     {
         public static SceneLoader Instance;
-    
-    
+        
         [SerializeField] private TransitionManager _transitionManager;
         [SerializeField] private string _loadingSceneName;
         [SerializeField] private string _orpheusSceneName;
@@ -19,6 +18,9 @@ namespace Echosystem.Resonance.Game
         [SerializeField] private string _caveSceneName;
         [SerializeField] private string _oceanFloorLoadingSceneName;
         [SerializeField] private string _introSceneName;
+
+        private UIHUD _uihud;
+        private ToolTipps _toolTipps;
 
         [HideInInspector] public bool LoadFirstScene;
 
@@ -38,6 +40,11 @@ namespace Echosystem.Resonance.Game
         {
             if (LoadFirstScene)
                 LoadScene(Scene.Orpheus, Scene.Loading, 10f);
+
+            _uihud = FindObjectOfType<UIHUD>();
+            _toolTipps = FindObjectOfType<ToolTipps>();
+
+
         }
 
         public void LoadScene(Scene scene, Scene loaderScene, float loaderSceneDuration)
@@ -106,11 +113,13 @@ namespace Echosystem.Resonance.Game
 
         private IEnumerator WaitForTransition(string scene, string loaderScene, float duration)
         {
+            _toolTipps.HideAll();
+            
             _transitionManager.FadeOut(Color.black);
             yield return new WaitForSeconds(_transitionManager.CurrentAnimationLength);
 
             var loadingScene = SceneManager.LoadSceneAsync(loaderScene);
-
+            
             _transitionManager.FadeIn(Color.black);
 
             UnloadScene(SceneManager.GetActiveScene().name);
@@ -127,8 +136,15 @@ namespace Echosystem.Resonance.Game
             {
                 yield return null;
             }
-
+            
             _transitionManager.FadeIn(Color.black);
+            
+            Invoke("InitializeHUD", 2f);
+        }
+
+        private void InitializeHUD()
+        {
+            _uihud.Initialize();
         }
 
         public enum Scene

@@ -453,7 +453,7 @@ MonoBehaviour:
   _audioPeer: {fileID: 1426538526}
   _band: 4
   _minIntensity: 0
-  _maxIntesity: 20000
+  _maxIntesity: 2000
 --- !u!108 &108082708
 Light:
   m_ObjectHideFlags: 0
@@ -466,7 +466,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.9716981, g: 0.9716981, b: 0.9716981, a: 1}
-  m_Intensity: 20000
+  m_Intensity: 2000
   m_Range: 163.87
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -2365,7 +2365,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &715090031
 Transform:
   m_ObjectHideFlags: 0
@@ -2466,7 +2466,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &787533862
 Light:
   m_ObjectHideFlags: 0
@@ -2972,6 +2972,86 @@ Transform:
   m_Father: {fileID: 1776536882}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &949094928
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1598607567}
+    m_Modifications:
+    - target: {fileID: 7623543109634610056, guid: 948d9110f870d2646ace01b155ed8288,
+        type: 3}
+      propertyPath: Objectives.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7623543109634610057, guid: 948d9110f870d2646ace01b155ed8288,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7623543109634610057, guid: 948d9110f870d2646ace01b155ed8288,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7623543109634610057, guid: 948d9110f870d2646ace01b155ed8288,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7623543109634610057, guid: 948d9110f870d2646ace01b155ed8288,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7623543109634610057, guid: 948d9110f870d2646ace01b155ed8288,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7623543109634610057, guid: 948d9110f870d2646ace01b155ed8288,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7623543109634610057, guid: 948d9110f870d2646ace01b155ed8288,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7623543109634610057, guid: 948d9110f870d2646ace01b155ed8288,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7623543109634610057, guid: 948d9110f870d2646ace01b155ed8288,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7623543109634610057, guid: 948d9110f870d2646ace01b155ed8288,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7623543109634610057, guid: 948d9110f870d2646ace01b155ed8288,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7623543109634610059, guid: 948d9110f870d2646ace01b155ed8288,
+        type: 3}
+      propertyPath: m_Name
+      value: '[ObjectiveManager]'
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 948d9110f870d2646ace01b155ed8288, type: 3}
+--- !u!4 &949094929 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7623543109634610057, guid: 948d9110f870d2646ace01b155ed8288,
+    type: 3}
+  m_PrefabInstance: {fileID: 949094928}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &958721803
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3804,7 +3884,7 @@ MonoBehaviour:
   _audioPeer: {fileID: 1426538526}
   _band: 3
   _minIntensity: 0
-  _maxIntesity: 60
+  _maxIntesity: 20
 --- !u!108 &1511561145
 Light:
   m_ObjectHideFlags: 0
@@ -3817,8 +3897,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.9716981, g: 0.9716981, b: 0.9716981, a: 1}
-  m_Intensity: 60
-  m_Range: 54.38
+  m_Intensity: 20
+  m_Range: 55.58
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -4028,6 +4108,7 @@ Transform:
   - {fileID: 422842782}
   - {fileID: 1163443763}
   - {fileID: 1591020347}
+  - {fileID: 949094929}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

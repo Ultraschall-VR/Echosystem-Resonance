@@ -29,7 +29,7 @@ namespace Echosystem.Resonance.Game
 
         private float _ammo;
         private float _maxAmmo = 100;
-        private float _initialAmmo = 100;
+        private float _initialAmmo = 10;
 
         [SerializeField] private bool _debug;
         [SerializeField] private bool _isAI;

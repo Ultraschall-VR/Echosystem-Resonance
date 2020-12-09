@@ -43,7 +43,7 @@ namespace Echosystem.Resonance.Game
             _meshRenderer = GetComponent<MeshRenderer>();
 
             _meshRenderer.material = _coveredMaterial;
-            _collider.enabled = false;
+            //_collider.enabled = false;
         }
 
         private void Update()

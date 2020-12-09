@@ -9,6 +9,8 @@ namespace Echosystem.Resonance.Game
         [SerializeField] private List<MeshRenderer> _meshes;
         [SerializeField] private List<Canvas> _canvases;
         [SerializeField] private List<LineRenderer> _lineRenderers;
+
+        [SerializeField] private List<GameObject> _miscObjects;
         
         private void Awake()
         {
@@ -38,6 +40,11 @@ namespace Echosystem.Resonance.Game
             {
                 lineRenderer.enabled = false;
             }
+
+            foreach (var miscObject in _miscObjects)
+            {
+                miscObject.SetActive(false);
+            }
         }
 
         public void RevealPlayer()
@@ -55,6 +62,11 @@ namespace Echosystem.Resonance.Game
             foreach (var lineRenderer in _lineRenderers)
             {
                 lineRenderer.enabled = true;
+            }
+            
+            foreach (var miscObject in _miscObjects)
+            {
+                miscObject.SetActive(true);
             }
         }
     }

@@ -13,6 +13,7 @@ namespace Echosystem.Resonance.UI
         [SerializeField] private UIToolTipp _echoPull;
         [SerializeField] private UIToolTipp _gravityPull;
         [SerializeField] private UIToolTipp _echoBlaster;
+        [SerializeField] private UIToolTipp _audioCards;
 
         [SerializeField] private TextMeshProUGUI _textBox;
 
@@ -84,6 +85,12 @@ namespace Echosystem.Resonance.UI
                     ShowContent(_echoBlaster);
                     
                     break;
+                
+                case Tooltip.AudioCards:
+                    
+                    ShowContent(_audioCards);
+
+                    break;
             }
             
             Invoke("DeactivateAll", _lifeTime);
@@ -100,6 +107,11 @@ namespace Echosystem.Resonance.UI
 
             _textBox.text = toolTipp.Text;
             _textBox.enabled = true;
+        }
+
+        public void HideAll()
+        {
+            DeactivateAll();
         }
 
         private void DeactivateAll()
@@ -123,7 +135,8 @@ namespace Echosystem.Resonance.UI
             TriggerLeft,
             EchoPull,
             GravityPull,
-            EchoBlaster
+            EchoBlaster,
+            AudioCards
         }
     }
 }

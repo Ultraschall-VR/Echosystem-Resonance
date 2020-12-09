@@ -12,9 +12,16 @@ namespace Echosystem.Resonance.Audio
 
         private bool _hasBeenPlayed;
 
+        private ObjectiveItem _objectiveItem;
+
         void Start()
         {
             _audioSource = GetComponent<AudioSource>();
+            
+            if (GetComponent<ObjectiveItem>() != null)
+            {
+                _objectiveItem = GetComponent<ObjectiveItem>();
+            }
         }
 
         public void ShowPlayButton()
@@ -31,11 +38,11 @@ namespace Echosystem.Resonance.Audio
         {
             if (!_audioSource.isPlaying && !_hasBeenPlayed)
             {
-                if (GetComponent<ObjectiveItem>() != null)
+                if (_objectiveItem != null)
                 {
-                    GetComponent<ObjectiveItem>().SetObjective();
+                    _objectiveItem.UpdateObjective();
                 }
-                
+
                 _audioSource.Play();
                 _hasBeenPlayed = true;
                 HidePlayButton();
