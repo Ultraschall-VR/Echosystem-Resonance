@@ -1,7 +1,7 @@
 {
    "action_manifest_version" : 0,
    "alias_info" : {},
-   "app_key" : "application.generated.unity.ultraschall.exe",
+   "app_key" : "application.generated.unity.ultraschallvr.exe",
    "bindings" : {
       "/actions/buggy" : {
          "chords" : [],
@@ -134,6 +134,15 @@
                },
                "mode" : "force_sensor",
                "path" : "/user/hand/right/input/grip"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/ultraschallvr/in/bbuttonpressed"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/right/input/b"
             }
          ]
       }
