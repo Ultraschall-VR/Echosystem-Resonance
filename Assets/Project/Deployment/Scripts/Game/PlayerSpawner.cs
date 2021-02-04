@@ -84,7 +84,7 @@ namespace Echosystem.Resonance.Game
                 VisibilityController.Instance.HidePlayer();
             }
             
-            Observer.Instance.Player = PlayerInstance;
+            Observer.Player = PlayerInstance;
         }
 
 
@@ -102,7 +102,7 @@ namespace Echosystem.Resonance.Game
                 PlayerInstance.transform.rotation = rotation;
             }
 
-            Observer.Instance.Player = PlayerInstance;
+            Observer.Player = PlayerInstance;
         }
 
         public void MovePlayer(Vector3 position, Quaternion rotation)
