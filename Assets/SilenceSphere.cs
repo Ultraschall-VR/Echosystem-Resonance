@@ -43,12 +43,18 @@ namespace Echosystem.Resonance.Prototyping
             if (_innerSphereTrigger.Triggered)
             {
                 _distanceToPlayer = Vector3.Distance(Observer.Player.transform.position, _innerSphereTrigger.transform.position) / (_innerSphere.transform.localScale.x/2);
-
-                Mathf.Clamp(_distanceToPlayer, 0.2f, 1f);
                 
                 Debug.Log(_distanceToPlayer);
                 
                 _outerSphere.transform.localScale = _outerSphereSize / (_distanceToPlayer*2);
+
+                if (_outerSphere.transform.localScale.x >= _innerSphere.transform.localScale.x * 2)
+                {
+                    _outerSphere.transform.localScale = _innerSphere.transform.localScale * 2;
+                } else if (_outerSphere.transform.localScale.x <= _innerSphere.transform.localScale.x *1.1f)
+                {
+                    _outerSphere.transform.localScale = _innerSphere.transform.localScale * 1.1f;
+                }
             }
 
             _outerSphereMesh.enabled = _innerSphereTrigger.Triggered;
