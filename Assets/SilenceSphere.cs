@@ -6,14 +6,13 @@ namespace Echosystem.Resonance.Prototyping
     public class SilenceSphere : MonoBehaviour
     {
         [SerializeField] private GameObject _innerSphere;
-        private MeshRenderer _innerSphereMesh;
-        [SerializeField] private int _innerSphereSize;
-        
         [SerializeField] private GameObject _outerSphere;
         private MeshRenderer _outerSphereMesh;
-        [SerializeField] private int _outerSphereSize;
-        
+
         private TriggerEvent _innerSphereTrigger;
+        private float _distanceToPlayer;
+
+        private Vector3 _outerSphereSize;
 
         private bool _isInitalized = false;
 
@@ -25,12 +24,12 @@ namespace Echosystem.Resonance.Prototyping
         private void Initialize()
         {
             _innerSphereTrigger = _innerSphere.GetComponent<TriggerEvent>();
-
-            _innerSphereMesh = _innerSphere.GetComponent<MeshRenderer>();
+            
             _outerSphereMesh = _outerSphere.GetComponent<MeshRenderer>();
             
-            _innerSphere.transform.localScale = new Vector3(_innerSphereSize, _innerSphereSize, _innerSphereSize);
-            _outerSphere.transform.localScale = new Vector3(_outerSphereSize, _outerSphereSize, _outerSphereSize);
+            _outerSphere.transform.localScale = _innerSphere.transform.localScale * 2;
+
+            _outerSphereSize = _outerSphere.transform.localScale;
             
             _isInitalized = true;
 
@@ -41,8 +40,18 @@ namespace Echosystem.Resonance.Prototyping
             if(!_isInitalized)
                 return;
 
+            if (_innerSphereTrigger.Triggered)
+            {
+                _distanceToPlayer = Vector3.Distance(Observer.Player.transform.position, _innerSphereTrigger.transform.position) / (_innerSphere.transform.localScale.x/2);
+
+                Mathf.Clamp(_distanceToPlayer, 0.2f, 1f);
+                
+                Debug.Log(_distanceToPlayer);
+                
+                _outerSphere.transform.localScale = _outerSphereSize / (_distanceToPlayer*2);
+            }
+
             _outerSphereMesh.enabled = _innerSphereTrigger.Triggered;
-            _innerSphereMesh.enabled = !_innerSphereTrigger.Triggered;
 
             if(Observer.Player == null)
                 return;
