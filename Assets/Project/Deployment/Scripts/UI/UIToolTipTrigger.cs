@@ -32,7 +32,7 @@ namespace Echosystem.Resonance.UI
             if (other.CompareTag("Player") && !_isTriggered)
             {
                 _isTriggered = true;
-                _toolTipps.ShowToolTipp(_tooltip);
+                _toolTipps.ShowToolTipp(_tooltip, _delay);
 
                 ActivatePower(_delay);
             }
