@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -38,7 +39,7 @@ namespace Echosystem.Resonance.UI
             transform.eulerAngles = rot;
         }
 
-        public void ShowToolTipp(Tooltip tooltip)
+        public void ShowToolTipp(Tooltip tooltip, float delay)
         {
             DeactivateAll();
 
@@ -46,67 +47,84 @@ namespace Echosystem.Resonance.UI
             {
                 case Tooltip.Teleport:
 
-                    ShowContent(_teleport);
+                    ShowContent(_teleport, delay);
                     
                     break;
 
                 case Tooltip.Uncover:
 
-                    ShowContent(_uncover);
+                    ShowContent(_uncover, delay);
                     
                     break;
 
                 case Tooltip.TriggerRight:
 
-                    ShowContent(_triggerRight);
+                    ShowContent(_triggerRight, delay);
                     
                     break;
 
                 case Tooltip.TriggerLeft:
 
-                    ShowContent(_triggerLeft);
+                    ShowContent(_triggerLeft,delay);
                     
                     break;
 
                 case Tooltip.EchoPull:
 
-                    ShowContent(_echoPull);
+                    ShowContent(_echoPull,delay);
                     
                     break;
 
                 case Tooltip.GravityPull:
 
-                    ShowContent(_gravityPull);
+                    ShowContent(_gravityPull,delay);
                     
                     break;
 
                 case Tooltip.EchoBlaster:
 
-                    ShowContent(_echoBlaster);
+                    ShowContent(_echoBlaster,delay);
                     
                     break;
                 
                 case Tooltip.AudioCards:
                     
-                    ShowContent(_audioCards);
+                    ShowContent(_audioCards,delay);
 
                     break;
             }
             
-            Invoke("DeactivateAll", _lifeTime);
+            
         }
 
-        private void ShowContent(UIToolTipp toolTipp)
+        private void ShowContent(UIToolTipp toolTipp, float delay)
         {
+            StopAllCoroutines();
+            StartCoroutine(ShowContentDelayed(toolTipp, delay));
+        }
+
+        private IEnumerator ShowContentDelayed(UIToolTipp toolTipp, float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            
             toolTipp.Show();
 
             _backGround.enabled = true;
 
-            if (toolTipp.Text == null)
-                return;
-
-            _textBox.text = toolTipp.Text;
-            _textBox.enabled = true;
+            if (toolTipp.Text != null)
+            {
+                _textBox.text = toolTipp.Text;
+                _textBox.enabled = true;
+            }
+            else
+            {
+                _textBox.text = null;
+                _textBox.enabled = false;
+            }
+            
+            Invoke("DeactivateAll", _lifeTime);
+            
+            yield return null;
         }
 
         public void HideAll()
@@ -125,6 +143,7 @@ namespace Echosystem.Resonance.UI
             _echoPull.Hide();
             _gravityPull.Hide();
             _echoBlaster.Hide();
+            _audioCards.Hide();
         }
 
         public enum Tooltip
