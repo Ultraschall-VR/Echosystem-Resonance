@@ -41,7 +41,7 @@ namespace Echosystem.Resonance.Game
         {
             if (NonVR)
             {
-                InstantiatePlayer(_nonVrPlayerPrefab, _playerSpawn.position, _playerSpawn.rotation);
+                InstantiateNonVrPlayer(_nonVrPlayerPrefab, _playerSpawn.position, _playerSpawn.rotation);
             }
             else
             {
@@ -83,10 +83,12 @@ namespace Echosystem.Resonance.Game
             {
                 VisibilityController.Instance.HidePlayer();
             }
+            
+            Observer.Player = PlayerInstance;
         }
 
 
-        public void InstantiatePlayer(GameObject playerPrefab, Vector3 position, Quaternion rotation)
+        public void InstantiateNonVrPlayer(GameObject playerPrefab, Vector3 position, Quaternion rotation)
         {
             if (!FindObjectOfType<PlayerMovement>())
             {
@@ -100,17 +102,7 @@ namespace Echosystem.Resonance.Game
                 PlayerInstance.transform.rotation = rotation;
             }
 
-            if (NonVR)
-            {
-                return;
-            }
-
-            PlayerInstance.GetComponent<ControllerManager>().SceneLoader.LoadFirstScene = _loadWholeGame;
-            PlayerInstance.GetComponent<PlayerMovement>().JoystickMovement = _joystickMovement;
-            PlayerInstance.GetComponent<PlayerMovement>().TeleportEnabled = _teleportMovement;
-            PlayerInstance.GetComponent<PlayerMovement>().JoystickMovementSpeed = _joystickMovementSpeed;
-            PlayerInstance.GetComponent<PlayerMovement>().TeleportMovementSpeed = _teleportMovementSpeed;
-            PlayerInstance.GetComponent<PlayerMovement>().TeleportMaxRange = _teleportMaxRange;
+            Observer.Player = PlayerInstance;
         }
 
         public void MovePlayer(Vector3 position, Quaternion rotation)
