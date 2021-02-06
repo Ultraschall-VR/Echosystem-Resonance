@@ -26,7 +26,7 @@ namespace Echosystem.Resonance.Prototyping
             _innerSphereTrigger = _innerSphere.GetComponent<TriggerEvent>();
             
             _outerSphereMesh = _outerSphere.GetComponent<MeshRenderer>();
-            
+
             _outerSphere.transform.localScale = _innerSphere.transform.localScale * 2;
 
             _outerSphereSize = _outerSphere.transform.localScale;
@@ -42,27 +42,40 @@ namespace Echosystem.Resonance.Prototyping
 
             if (_innerSphereTrigger.Triggered)
             {
+                Observer.ActiveSilenceSphere = this;
+                
                 _distanceToPlayer = Vector3.Distance(Observer.Player.transform.position, _innerSphereTrigger.transform.position) / (_innerSphere.transform.localScale.x/2);
-                
-                Debug.Log(_distanceToPlayer);
-                
+
                 _outerSphere.transform.localScale = _outerSphereSize / (_distanceToPlayer*2);
 
-                if (_outerSphere.transform.localScale.x >= _innerSphere.transform.localScale.x * 2)
-                {
-                    _outerSphere.transform.localScale = _innerSphere.transform.localScale * 2;
-                } else if (_outerSphere.transform.localScale.x <= _innerSphere.transform.localScale.x *1.1f)
-                {
-                    _outerSphere.transform.localScale = _innerSphere.transform.localScale * 1.1f;
-                }
+                DefineBoundaries();
             }
 
             _outerSphereMesh.enabled = _innerSphereTrigger.Triggered;
 
             if(Observer.Player == null)
                 return;
-            
+
+            if (Observer.ActiveSilenceSphere != this)
+                return;
+
             Observer.Player.GetComponent<LineOfSight>().SightCylinder.SetActive(!_innerSphereTrigger.Triggered);
+        }
+
+        private void DefineBoundaries()
+        {
+            
+            // Outer Boundary
+            if (_outerSphere.transform.localScale.x >= _innerSphere.transform.localScale.x * 3)
+            {
+                _outerSphere.transform.localScale = _innerSphere.transform.localScale * 3;
+            }
+
+            // Inner Boundary
+            else if (_outerSphere.transform.localScale.x <= _innerSphere.transform.localScale.x * 1.15f)
+            {
+                _outerSphere.transform.localScale = _innerSphere.transform.localScale * 1.15f;
+            }
         }
     }
 }
