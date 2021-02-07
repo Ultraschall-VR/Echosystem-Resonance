@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Echosystem.Resonance.Prototyping;
+using UnityEngine;
 
 namespace Echosystem.Resonance.Game
 {

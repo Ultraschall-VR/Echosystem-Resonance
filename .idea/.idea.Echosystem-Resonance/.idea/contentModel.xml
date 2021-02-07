@@ -16,6 +16,48 @@
           <e p="PlayerHand.cs" t="Include" />
           <e p="ShowToolTipp.cs" t="Include" />
         </e>
+        <e p="dearVR" t="Include">
+          <e p="Components" t="Include">
+            <e p="DearVRAudioPlugin.cs" t="Include" />
+            <e p="DearVRManager.cs" t="Include" />
+            <e p="DearVRManagerState.cs" t="Include" />
+            <e p="DearVRParameter.cs" t="Include" />
+            <e p="DearVRSerializedReverb.cs" t="Include" />
+            <e p="DearVRSource.cs" t="Include" />
+            <e p="DearVRVersionInfo.cs" t="Include" />
+            <e p="Editor" t="Include">
+              <e p="DearVRManagerEditor.cs" t="Include" />
+              <e p="DearVRReverbEditor.cs" t="Include" />
+              <e p="DearVRSourceEditor.cs" t="Include" />
+            </e>
+          </e>
+          <e p="dear_importer" t="Include">
+            <e p="dataModel" t="Include">
+              <e p="AnimationClipConverter.cs" t="Include" />
+              <e p="Editor" t="Include">
+                <e p="AnimatedSourcePrefabBuilder.cs" t="Include" />
+                <e p="ChannelAutomationImporter.cs" t="Include" />
+                <e p="UnitTest_AnimationClipConverter.cs" t="Include" />
+                <e p="UnitTest_PositionAutomation.cs" t="Include" />
+              </e>
+              <e p="PositionAutomation.cs" t="Include" />
+              <e p="SerializableList.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Documentation" t="Include">
+            <e p="dearVR_quick_start_guide.txt" t="Include" />
+          </e>
+          <e p="Scene" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="DearVRScriptLoad.cs" t="Include" />
+              <e p="DearVRSwitchClipsAndPresets.cs" t="Include" />
+              <e p="DearVRSwitchPresets.cs" t="Include" />
+              <e p="DearVRUIController.cs" t="Include" />
+              <e p="FlyCam.cs" t="Include" />
+              <e p="SnapshotSelector.cs" t="Include" />
+            </e>
+          </e>
+        </e>
         <e p="Dependencies" t="Include">
           <e p="Bakery" t="Include">
             <e p="BakeryAlwaysRender.cs" t="Include" />
@@ -1018,9 +1060,6 @@
             </e>
           </e>
         </e>
-        <e p="FindableAudioSource.cs" t="Include" />
-        <e p="LineOfSight.cs" t="Include" />
-        <e p="Observer.cs" t="Include" />
         <e p="Plugins" t="Include">
           <e p="ScreenshotCompanion" t="Include">
             <e p="Editor" t="Include">
@@ -1188,9 +1227,22 @@
               </e>
             </e>
           </e>
+          <e p="Prototyping" t="Include">
+            <e p="Loudness x Silence" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="CurrentSilenceSphere.cs" t="Include" />
+                <e p="DebugUI.cs" t="Include" />
+                <e p="DebugUIObject.cs" t="Include" />
+                <e p="FindableAudioSource.cs" t="Include" />
+                <e p="GameTime.cs" t="Include" />
+                <e p="LineOfSight.cs" t="Include" />
+                <e p="Observer.cs" t="Include" />
+                <e p="SceneLoadCountdown.cs" t="Include" />
+                <e p="SilenceSphere.cs" t="Include" />
+              </e>
+            </e>
+          </e>
         </e>
-        <e p="SceneLoadCountdown.cs" t="Include" />
-        <e p="SilenceSphere.cs" t="Include" />
         <e p="Standard Assets" t="Include">
           <e p="2D" t="Include">
             <e p="Scripts" t="Include">
