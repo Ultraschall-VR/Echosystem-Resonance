@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Echosystem.Resonance.Game
 {
-    public class GameTime : MonoBehaviour
+    public class DebugUi_GameTime : MonoBehaviour
     {
         public float _time;
 

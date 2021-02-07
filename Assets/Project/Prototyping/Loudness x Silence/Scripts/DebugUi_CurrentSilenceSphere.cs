@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Echosystem.Resonance.Prototyping
 {
-    public class CurrentSilenceSphere : MonoBehaviour
+    public class DebugUi_CurrentSilenceSphere : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI _text;
         void Update()
