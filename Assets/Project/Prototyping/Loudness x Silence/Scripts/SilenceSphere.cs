@@ -42,7 +42,7 @@ namespace Echosystem.Resonance.Prototyping
 
             if (_innerSphereTrigger.Triggered)
             {
-                Observer.ActiveSilenceSphere = this;
+                Observer.CurrentSilenceSphere = this;
                 
                 _distanceToPlayer = Vector3.Distance(Observer.Player.transform.position, _innerSphereTrigger.transform.position) / (_innerSphere.transform.localScale.x/2);
 
@@ -50,16 +50,25 @@ namespace Echosystem.Resonance.Prototyping
 
                 DefineBoundaries();
             }
+            else if(Observer.CurrentSilenceSphere == this && !_innerSphereTrigger.Triggered)
+            {
+                Observer.CurrentSilenceSphere = null;
+            }
 
             _outerSphereMesh.enabled = _innerSphereTrigger.Triggered;
 
             if(Observer.Player == null)
                 return;
 
-            if (Observer.ActiveSilenceSphere != this)
-                return;
-
-            Observer.Player.GetComponent<LineOfSight>().SightCylinder.SetActive(!_innerSphereTrigger.Triggered);
+            if (Observer.CurrentSilenceSphere == this)
+            {
+                Observer.Player.GetComponent<LineOfSight>().SightCylinder.SetActive(false);
+            }
+            else if (Observer.CurrentSilenceSphere == null)
+            {
+                Observer.Player.GetComponent<LineOfSight>().SightCylinder.SetActive(true);
+            }
+            
         }
 
         private void DefineBoundaries()
