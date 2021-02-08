@@ -1,0 +1,163 @@
+{
+  "app_key": "application.generated.unity.ultraschallvr.exe",
+  "bindings": {
+    "/actions/buggy": {
+      "chords": [],
+      "poses": [],
+      "haptics": [],
+      "sources": [],
+      "skeleton": []
+    },
+    "/actions/default": {
+      "chords": [],
+      "poses": [],
+      "haptics": [],
+      "sources": [],
+      "skeleton": []
+    },
+    "/actions/platformer": {
+      "chords": [],
+      "poses": [],
+      "haptics": [],
+      "sources": [],
+      "skeleton": []
+    },
+    "/actions/ultraschallvr": {
+      "chords": [],
+      "poses": [
+        {
+          "output": "/actions/ultraschallvr/in/pose",
+          "path": "/user/hand/left/pose/tip"
+        },
+        {
+          "output": "/actions/ultraschallvr/in/pose",
+          "path": "/user/hand/right/pose/tip"
+        }
+      ],
+      "haptics": [
+        {
+          "output": "/actions/ultraschallvr/out/haptic",
+          "path": "/user/hand/left/output/haptic"
+        },
+        {
+          "output": "/actions/ultraschallvr/out/haptic",
+          "path": "/user/hand/right/output/haptic"
+        }
+      ],
+      "sources": [
+        {
+          "path": "/user/hand/left/input/trigger",
+          "mode": "trigger",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/ultraschallvr/in/anytriggerpressed"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/trigger",
+          "mode": "trigger",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/ultraschallvr/in/anytriggerpressed"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/trackpad",
+          "mode": "trackpad",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/ultraschallvr/in/touchpadpressed"
+            },
+            "position": {
+              "output": "/actions/ultraschallvr/in/touchpadposition"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/trackpad",
+          "mode": "trackpad",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/ultraschallvr/in/touchpadpressed"
+            },
+            "position": {
+              "output": "/actions/ultraschallvr/in/touchpadposition"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/trigger",
+          "mode": "trigger",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/ultraschallvr/in/lefttriggerpressed"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/trigger",
+          "mode": "trigger",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/ultraschallvr/in/righttriggerpressed"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/grip",
+          "mode": "button",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/ultraschallvr/in/leftgrippressed"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/grip",
+          "mode": "scalar_constant",
+          "parameters": {},
+          "inputs": {
+            "value": {
+              "output": "/actions/ultraschallvr/in/leftgripforce"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/trackpad",
+          "mode": "dpad",
+          "parameters": {
+            "sub_mode": "click"
+          },
+          "inputs": {
+            "north": {
+              "output": "/actions/ultraschallvr/in/rightapressed"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/application_menu",
+          "mode": "button",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/ultraschallvr/in/bbuttonpressed"
+            }
+          }
+        }
+      ],
+      "skeleton": []
+    }
+  },
+  "controller_type": "vive_controller",
+  "description": "",
+  "name": "vive_controller"
+}
