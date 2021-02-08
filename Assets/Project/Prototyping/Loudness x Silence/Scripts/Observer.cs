@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Echosystem.Resonance.Prototyping
 {
@@ -7,6 +6,7 @@ namespace Echosystem.Resonance.Prototyping
     {
         public static GameObject Player;
         public static SilenceSphere CurrentSilenceSphere;
+        public static float LoudnessValue;
     }
 }
 
