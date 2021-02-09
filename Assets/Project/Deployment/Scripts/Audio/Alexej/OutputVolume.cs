@@ -197,9 +197,7 @@ public class OutputVolume : MonoBehaviour
             mat.SetColor("_Color2", MaxColor);
         }
 
-#if WEB_MODE
-        sampleAmount = SSWebInteract.SetFFTSize(sampleAmount);
-#endif
+
     }
 
     void Update () {
@@ -291,9 +289,7 @@ public class OutputVolume : MonoBehaviour
     /// <param name="channelUsed">The audio channel to take data from.</param>
     public static float GetRMS(int sampleSize, int channelUsed = 0)
     {
-#if WEB_MODE
-        return SSWebInteract.GetLoudness();
-#else
+
         sampleSize = Mathf.ClosestPowerOfTwo(sampleSize);
         float[] outputSamples = new float[sampleSize];
         AudioListener.GetOutputData(outputSamples, channelUsed);
@@ -304,6 +300,6 @@ public class OutputVolume : MonoBehaviour
             rms += f * f; //sum of squares
         }
         return Mathf.Sqrt(rms / (outputSamples.Length)); //mean and root
-#endif
+
     }
 }

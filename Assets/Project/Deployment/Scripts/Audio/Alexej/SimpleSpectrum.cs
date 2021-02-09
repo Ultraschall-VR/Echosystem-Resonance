@@ -264,9 +264,7 @@ public class SimpleSpectrum : MonoBehaviour {
 
         numSamples = Mathf.ClosestPowerOfTwo(numSamples);
 
-#if WEB_MODE
-        numSamples = SSWebInteract.SetFFTSize(numSamples);
-#endif
+
 
         //initialise arrays
         spectrum = new float[numSamples];
@@ -416,12 +414,10 @@ public class SimpleSpectrum : MonoBehaviour {
             {
                 if (sourceType == SourceType.AudioListener)
                 {
-#if WEB_MODE
-                    SSWebInteract.GetSpectrumData(spectrum); //get the spectrum data from the JS lib
-#else
+
                     AudioListener.GetSpectrumData(spectrum, sampleChannel, windowUsed); //get the spectrum data
                     //Debug.Log(spectrum[0]);
-#endif
+
                 }
                 else
                 {
@@ -632,20 +628,16 @@ public class SimpleSpectrum : MonoBehaviour {
     /// <returns>A logarithmically scaled and proportionate array of spectrum data from the AudioListener.</returns>
     public static float[] GetLogarithmicSpectrumData(int spectrumSize, int sampleSize, FFTWindow windowUsed = FFTWindow.BlackmanHarris, int channelUsed = 0)
     {
-#if WEB_MODE
-        sampleSize = SSWebInteract.SetFFTSize(sampleSize); //set the WebGL sampleSize if not already done, otherwise get the current sample size.
-#endif
+
         float[] spectrum = new float[spectrumSize];
 
         channelUsed = Mathf.Clamp(channelUsed, 0, 1);
 
         float[] samples = new float[Mathf.ClosestPowerOfTwo(sampleSize)];
 
-#if WEB_MODE
-        SSWebInteract.GetSpectrumData(samples); //get the spectrum data from the JS lib
-#else
+
         AudioListener.GetSpectrumData(samples, channelUsed, windowUsed);
-#endif
+
 
         float highestLogSampleFreq = Mathf.Log(spectrum.Length + 1, 2); //gets the highest possible logged frequency, used to calculate which sample of the spectrum to use for a bar
 
