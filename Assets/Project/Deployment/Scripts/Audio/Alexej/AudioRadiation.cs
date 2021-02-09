@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.Audio;
+using Echosystem.Resonance.Prototyping;
 
 public class AudioRadiation : MonoBehaviour
 {
-    public AudioMixerSnapshot _hub;
+    public AudioMixerSnapshot _zero;
     public AudioMixerSnapshot _phase1;
     public AudioMixerSnapshot _phase2;
     public AudioMixerSnapshot _phase3;
@@ -16,19 +17,12 @@ public class AudioRadiation : MonoBehaviour
     [Range (0.0f,1f)]
     [SerializeField] private float _Loudness = 0f;
 
-    private bool switched = false;
-    //private float m_QuarterNote;
-
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
     private void Update()
     {
+        _Loudness = Observer.LoudnessValue;
+
         if (_Loudness == 0f) {
-            _hub.TransitionTo(_TransitionIn);
+            _zero.TransitionTo(_TransitionIn);
         }
         else if (_Loudness > 0f && _Loudness < 0.5) {
             _phase1.TransitionTo(_TransitionIn);
@@ -41,13 +35,4 @@ public class AudioRadiation : MonoBehaviour
         }
 
     }
-
-
-    /*
-    void PlaySting() {
-        int randClip = Random.Range(0, stings.Length);
-        stingSource.clip = stings[randClip];
-        stingSource.Play();
-    }
-    */
 }
