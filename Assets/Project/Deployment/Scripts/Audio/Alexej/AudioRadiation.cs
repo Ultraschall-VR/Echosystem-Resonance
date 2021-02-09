@@ -21,9 +21,14 @@ public class AudioRadiation : MonoBehaviour
     {
         _Loudness = Observer.LoudnessValue;
 
-        if (_Loudness == 0f) {
+        if (Observer.CurrentSilenceSphere != null) {
             _zero.TransitionTo(_TransitionIn);
         }
+        /*
+        else if (_Loudness == 0f) {
+            _zero.TransitionTo(_TransitionIn);
+        }
+        */
         else if (_Loudness > 0f && _Loudness < 0.5) {
             _phase1.TransitionTo(_TransitionIn);
         }

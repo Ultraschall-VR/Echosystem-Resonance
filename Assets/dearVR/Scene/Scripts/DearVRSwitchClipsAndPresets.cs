@@ -16,7 +16,7 @@ public class DearVRSwitchClipsAndPresets : MonoBehaviour {
 
 	void Start () {
 		
-		Debug.Log("DEARVR Demo Scene: press F or G to switch AudioClips");
+	//	Debug.Log("DEARVR Demo Scene: press F or G to switch AudioClips");
 
 		Source = GetComponent<AudioSource>();
 

@@ -8,13 +8,12 @@ public class SnapshotChange : MonoBehaviour
     public AudioMixerSnapshot _3D;
     public AudioMixerSnapshot _NO3D;
 
-    public AudioMixer _hubVol;
+    public AudioMixer _hubMixer;
 
     [SerializeField] private float _TransitionIn;
-    [SerializeField] private bool _hub = true;
 
     [Range(-80f, 0f)]
-    [SerializeField] private float _hubDistance = -80f;
+    [SerializeField] private float _hubVol = -80f;
     [SerializeField] private float _mixTimer;
     private bool _startedMixing = false;
     //private float volMin = -80f, volMax = 0f;
@@ -32,7 +31,6 @@ public class SnapshotChange : MonoBehaviour
         if (Observer.CurrentSilenceSphere != null && !_startedMixing)
         {
             HandleMixer(true, true);
-            _hub = true;
             _3D.TransitionTo(_TransitionIn);
         }
 
@@ -40,7 +38,6 @@ public class SnapshotChange : MonoBehaviour
         {
 
             HandleMixer(false, false);
-            _hub = false;
             _NO3D.TransitionTo(_TransitionIn);
 
         }
@@ -63,10 +60,10 @@ public class SnapshotChange : MonoBehaviour
 
         if(isGoingUp) {
             target = 0;
-            origin = _hubDistance;
+            origin = _hubVol;
         } else {
             target = -80;
-            origin = _hubDistance;
+            origin = _hubVol;
 
         }
 
@@ -75,8 +72,8 @@ public class SnapshotChange : MonoBehaviour
 
             var value = Mathf.Lerp(origin, target, t/_mixTimer);
 
-            _hubDistance = value;
-            _hubVol.SetFloat("hubVol", _hubDistance);
+            _hubVol = value;
+            _hubMixer.SetFloat("hubVol", _hubVol);
             yield return null;
         }
 
