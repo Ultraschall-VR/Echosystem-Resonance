@@ -94,6 +94,58 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2348472669741308928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 496071665582257890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b51e54047889f1c4dac64a27f85a09c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  occlusionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  obstructionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  occlusionRayUpdateTime: 1
+  obstructionRayUpdateTime: 1
+  clipIsPlaying: 0
+  gainLevel: 0
+  directLevel: 0
+  reflectionLevel: 0
+  reverbLevel: 0
+  azimuthCorrection: 1
+  distanceCorrection: 1
+  useUnityDistance: 1
+  auralization: 0
+  roomPreset: 7
+  internalReverb: 0
+  performanceMode: 0
+  dearVRPlayOnAwake: 0
+  bypass: 0
+  bypassPerformance: 0
+  reverbStopOverlap: 1
+  inputChannel: 0
+  reflectionLP: 20000
+  reverbLP: 20000
+  roomSize: 100
+  bassBoost: 0
+  occlusionLevel: 0.6
+  obsturctionLevel: 0.6
+  occlusionActive: 0
+  obstructionActive: 0
+  forceOcclusion: 0
+  forceObstruction: 0
+  occlusionDebugRayCast: 0
+  occlusionRayUpdateFreq: 0.2
+  obstructionRayUpdateFreq: 0.2
+  obstructionDebugRayCast: 0
+  reverbSends: []
 --- !u!1001 &8052770644290191123
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -107,6 +159,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4154995922250985053, guid: dd20e19eaa52f4233bc36f58d830b7c4,
         type: 2}
+    - target: {fileID: -1936807775954355558, guid: e4f085b3bc9875248b5843a791d54327,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7091065076266226507, guid: e4f085b3bc9875248b5843a791d54327,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -189,7 +246,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -1541047049802119464, guid: e4f085b3bc9875248b5843a791d54327, type: 3}
+    - {fileID: -1172310260210758770, guid: e4f085b3bc9875248b5843a791d54327, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e4f085b3bc9875248b5843a791d54327, type: 3}
+--- !u!1 &496071665582257890 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7575994318468844017, guid: e4f085b3bc9875248b5843a791d54327,
+    type: 3}
+  m_PrefabInstance: {fileID: 8052770644290191123}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &984518249236065368 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7091065076266226507, guid: e4f085b3bc9875248b5843a791d54327,
