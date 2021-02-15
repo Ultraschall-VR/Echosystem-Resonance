@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3197898670929374029}
   - component: {fileID: 2695781914794474598}
-  - component: {fileID: 8846466576699478125}
+  - component: {fileID: 6269388428255197659}
   m_Layer: 0
   m_Name: Mushroom_Audio
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4959108045272689954}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 270.01978, y: -0, z: 0}
 --- !u!82 &2695781914794474598
 AudioSource:
   m_ObjectHideFlags: 0
@@ -89,7 +89,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -129,7 +129,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8846466576699478125
+--- !u!114 &6269388428255197659
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,40 +138,49 @@ MonoBehaviour:
   m_GameObject: {fileID: 2259628774254638038}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cc64aca77a4bc84f9a15ccd92d26878, type: 3}
+  m_Script: {fileID: 11500000, guid: b51e54047889f1c4dac64a27f85a09c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directBinaural: 1
-  interpolation: 0
-  physicsBasedAttenuation: 1
-  airAbsorption: 0
-  dipoleWeight: 0
-  dipolePower: 0
-  occlusionMode: 0
-  occlusionMethod: 0
-  sourceRadius: 1
-  occlusionSamples: 16
-  directMixLevel: 1
-  reflections: 0
-  indirectBinaural: 0
-  physicsBasedAttenuationForIndirect: 1
-  indirectMixLevel: 1
-  simulationType: 0
-  uniqueIdentifier: 
-  avoidSilenceDuringInit: 0
-  overrideHRTFIndex: 0
-  hrtfIndex: 0
-  bakingRadius: 16
-  useAllProbeBoxes: 0
-  probeBoxes: []
-  bakedProbeNames: []
-  bakedProbeDataSizes: 
-  bakedDataSize: 0
-  bakedStatsFoldout: 0
-  bakeToggle: 0
-  bakedDataIdentifier:
-    identifier: 0
-    type: 0
+  occlusionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  obstructionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  occlusionRayUpdateTime: 1
+  obstructionRayUpdateTime: 1
+  clipIsPlaying: 0
+  gainLevel: 0
+  directLevel: 0
+  reflectionLevel: 0
+  reverbLevel: 0
+  azimuthCorrection: 1
+  distanceCorrection: 1
+  useUnityDistance: 0
+  auralization: 0
+  roomPreset: 7
+  internalReverb: 0
+  performanceMode: 0
+  dearVRPlayOnAwake: 0
+  bypass: 0
+  bypassPerformance: 0
+  reverbStopOverlap: 1
+  inputChannel: 0
+  reflectionLP: 20000
+  reverbLP: 20000
+  roomSize: 100
+  bassBoost: 0
+  occlusionLevel: 0.6
+  obsturctionLevel: 0.6
+  occlusionActive: 0
+  obstructionActive: 0
+  forceOcclusion: 0
+  forceObstruction: 0
+  occlusionDebugRayCast: 0
+  occlusionRayUpdateFreq: 0.2
+  obstructionRayUpdateFreq: 0.2
+  obstructionDebugRayCast: 0
+  reverbSends: []
 --- !u!1 &3793042341701795658
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,36 +260,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!1 &5524240637121911804
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3600768787088403598}
-  m_Layer: 0
-  m_Name: Audioreactive ohne Doppler
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3600768787088403598
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5524240637121911804}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4959108045272689954}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5735785830320109464
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,7 +272,7 @@ GameObject:
   - component: {fileID: 8321968126687027847}
   - component: {fileID: 6096016418965116493}
   m_Layer: 0
-  m_Name: Mushroom_d_07_BIG_Particle_Down_Up
+  m_Name: D7RedMushroom3_UpParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -315,7 +294,6 @@ Transform:
   - {fileID: 3197898670929374029}
   - {fileID: 677012009152977196}
   - {fileID: 725657422859864716}
-  - {fileID: 3600768787088403598}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
@@ -391,7 +369,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7119992437477674727}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77a6a51fc04a645978d7e137fd237d05, type: 3}
+  m_Script: {fileID: 11500000, guid: 58e3dbc4f6344ad418cd74fe9b8c3c01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _useMicrophone: 0
@@ -405,6 +383,58 @@ MonoBehaviour:
   _AmplitudeBuffer: 0
   _audioProfile: 0.4
   channel: 0
+--- !u!114 &4529227177755587154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7119992437477674727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b51e54047889f1c4dac64a27f85a09c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  occlusionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  obstructionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  occlusionRayUpdateTime: 1
+  obstructionRayUpdateTime: 1
+  clipIsPlaying: 0
+  gainLevel: 0
+  directLevel: 0
+  reflectionLevel: 0
+  reverbLevel: 0
+  azimuthCorrection: 1
+  distanceCorrection: 1
+  useUnityDistance: 0
+  auralization: 0
+  roomPreset: 7
+  internalReverb: 0
+  performanceMode: 0
+  dearVRPlayOnAwake: 0
+  bypass: 0
+  bypassPerformance: 0
+  reverbStopOverlap: 1
+  inputChannel: 0
+  reflectionLP: 20000
+  reverbLP: 20000
+  roomSize: 100
+  bassBoost: 0
+  occlusionLevel: 0.6
+  obsturctionLevel: 0.6
+  occlusionActive: 0
+  obstructionActive: 0
+  forceOcclusion: 0
+  forceObstruction: 0
+  occlusionDebugRayCast: 0
+  occlusionRayUpdateFreq: 0.2
+  obstructionRayUpdateFreq: 0.2
+  obstructionDebugRayCast: 0
+  reverbSends: []
 --- !u!1 &8229667675007056137
 GameObject:
   m_ObjectHideFlags: 0
@@ -5209,12 +5239,12 @@ PrefabInstance:
     - target: {fileID: 1726556114690614932, guid: 6ef0800c8f88c7e43a07d860912f52a6,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 270.01978
       objectReference: {fileID: 0}
     - target: {fileID: 1726556114690614932, guid: 6ef0800c8f88c7e43a07d860912f52a6,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1726556114690614932, guid: 6ef0800c8f88c7e43a07d860912f52a6,
         type: 3}
@@ -5327,6 +5357,11 @@ PrefabInstance:
       propertyPath: DopplerLevel
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3289997591405228322, guid: 9e27feec9d547a74894440e4b22e8533,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4272106797188115532, guid: 9e27feec9d547a74894440e4b22e8533,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5370,12 +5405,12 @@ PrefabInstance:
     - target: {fileID: 4272106797188115532, guid: 9e27feec9d547a74894440e4b22e8533,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 270.01978
       objectReference: {fileID: 0}
     - target: {fileID: 4272106797188115532, guid: 9e27feec9d547a74894440e4b22e8533,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4272106797188115532, guid: 9e27feec9d547a74894440e4b22e8533,
         type: 3}
@@ -5387,7 +5422,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mushroom_Ping_Audio
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2644979966597192722, guid: 9e27feec9d547a74894440e4b22e8533, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9e27feec9d547a74894440e4b22e8533, type: 3}
 --- !u!1 &7119992437477674727 stripped
 GameObject:
