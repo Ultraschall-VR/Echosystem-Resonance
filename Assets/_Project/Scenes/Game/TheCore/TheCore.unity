@@ -181,7 +181,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 19f7a363806de4e9796e1a8a5e0cc66d, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.359
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -343,6 +343,16 @@ PrefabInstance:
       propertyPath: MaxDistance
       value: 94.3
       objectReference: {fileID: 0}
+    - target: {fileID: 3054405735749965923, guid: a113e3db5e65647a1923d3308720dfe7,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3054405735749965923, guid: a113e3db5e65647a1923d3308720dfe7,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3054405735749965925, guid: a113e3db5e65647a1923d3308720dfe7,
         type: 3}
       propertyPath: m_Enabled
@@ -439,6 +449,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -8699602196325415563, guid: c6e98bfc99b62427d956896adf02ddb8,
         type: 2}
+    - target: {fileID: 3054405735749965923, guid: a113e3db5e65647a1923d3308720dfe7,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3054405735749965925, guid: a113e3db5e65647a1923d3308720dfe7,
         type: 3}
       propertyPath: m_Enabled
@@ -479,6 +494,60 @@ MonoBehaviour:
   pitchMax: 1
   volumeMin: 0.7
   volumeMax: 1
+--- !u!114 &26803954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 26803952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b51e54047889f1c4dac64a27f85a09c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  occlusionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  obstructionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  occlusionRayUpdateTime: 1
+  obstructionRayUpdateTime: 1
+  clipIsPlaying: 0
+  gainLevel: 0
+  directLevel: 0
+  reflectionLevel: 0
+  reverbLevel: 0
+  azimuthCorrection: 1
+  distanceCorrection: 1
+  useUnityDistance: 1
+  auralization: 0
+  roomPreset: 7
+  internalReverb: 0
+  performanceMode: 0
+  dearVRPlayOnAwake: 0
+  bypass: 0
+  bypassPerformance: 0
+  reverbStopOverlap: 1
+  inputChannel: 0
+  reflectionLP: 20000
+  reverbLP: 20000
+  roomSize: 100
+  bassBoost: 0
+  occlusionLevel: 0.6
+  obsturctionLevel: 0.6
+  occlusionActive: 1
+  obstructionActive: 1
+  forceOcclusion: 0
+  forceObstruction: 0
+  occlusionDebugRayCast: 0
+  occlusionRayUpdateFreq: 0.2
+  obstructionRayUpdateFreq: 0.2
+  obstructionDebugRayCast: 0
+  reverbSends:
+  - roomIndex: 1
+    send: 0
 --- !u!1 &35210062
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,40 +589,51 @@ MonoBehaviour:
   m_GameObject: {fileID: 35210062}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cc64aca77a4bc84f9a15ccd92d26878, type: 3}
+  m_Script: {fileID: 11500000, guid: b51e54047889f1c4dac64a27f85a09c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directBinaural: 1
-  interpolation: 0
-  physicsBasedAttenuation: 0
-  airAbsorption: 0
-  dipoleWeight: 0
-  dipolePower: 0
-  occlusionMode: 3
-  occlusionMethod: 1
-  sourceRadius: 10
-  occlusionSamples: 16
-  directMixLevel: 1
-  reflections: 1
-  indirectBinaural: 0
-  physicsBasedAttenuationForIndirect: 1
-  indirectMixLevel: 1
-  simulationType: 0
-  uniqueIdentifier: 
-  avoidSilenceDuringInit: 0
-  overrideHRTFIndex: 0
-  hrtfIndex: 0
-  bakingRadius: 16
-  useAllProbeBoxes: 0
-  probeBoxes: []
-  bakedProbeNames: []
-  bakedProbeDataSizes: 
-  bakedDataSize: 0
-  bakedStatsFoldout: 0
-  bakeToggle: 0
-  bakedDataIdentifier:
-    identifier: 0
-    type: 0
+  occlusionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  obstructionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  occlusionRayUpdateTime: 1
+  obstructionRayUpdateTime: 1
+  clipIsPlaying: 0
+  gainLevel: 0
+  directLevel: 0
+  reflectionLevel: 0
+  reverbLevel: 0
+  azimuthCorrection: 1
+  distanceCorrection: 1
+  useUnityDistance: 1
+  auralization: 0
+  roomPreset: 7
+  internalReverb: 0
+  performanceMode: 0
+  dearVRPlayOnAwake: 0
+  bypass: 0
+  bypassPerformance: 0
+  reverbStopOverlap: 1
+  inputChannel: 0
+  reflectionLP: 20000
+  reverbLP: 20000
+  roomSize: 100
+  bassBoost: 0
+  occlusionLevel: 0.6
+  obsturctionLevel: 0.6
+  occlusionActive: 0
+  obstructionActive: 0
+  forceOcclusion: 0
+  forceObstruction: 0
+  occlusionDebugRayCast: 0
+  occlusionRayUpdateFreq: 0.2
+  obstructionRayUpdateFreq: 0.2
+  obstructionDebugRayCast: 0
+  reverbSends:
+  - roomIndex: 1
+    send: 0
 --- !u!82 &35210065
 AudioSource:
   m_ObjectHideFlags: 0
@@ -611,7 +691,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -893,8 +973,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _action: {fileID: 77646763}
-  _audioAction: []
-  _triggered: 0
+  _audioSources: []
+  Triggered: 0
 --- !u!82 &77646765
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1404,135 +1484,66 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8454785883149252529}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &420002793
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 20738081}
-    m_Modifications:
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 5.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.14
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -3.17
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965923, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: c5cd78a44092b4579ad1179defd2bc02, type: 3}
-    - target: {fileID: 3054405735749965923, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: -7075406551094455129, guid: c6e98bfc99b62427d956896adf02ddb8,
-        type: 2}
-    - target: {fileID: 3054405735749965923, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: MaxDistance
-      value: 94.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965923, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965925, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965934, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_Name
-      value: Core_Walls_c (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a113e3db5e65647a1923d3308720dfe7, type: 3}
---- !u!1 &420002794 stripped
+--- !u!1 &417017469 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3054405735749965934, guid: a113e3db5e65647a1923d3308720dfe7,
     type: 3}
-  m_PrefabInstance: {fileID: 420002793}
+  m_PrefabInstance: {fileID: 1524522982}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &420002795
+--- !u!114 &417017470
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 420002794}
+  m_GameObject: {fileID: 417017469}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da523d79ad7124616921ca5a4d7cbe06, type: 3}
+  m_Script: {fileID: 11500000, guid: b51e54047889f1c4dac64a27f85a09c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DelayTime: 2.58
+  occlusionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  obstructionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  occlusionRayUpdateTime: 1
+  obstructionRayUpdateTime: 1
+  clipIsPlaying: 0
+  gainLevel: 0
+  directLevel: 0
+  reflectionLevel: 0
+  reverbLevel: 0
+  azimuthCorrection: 1
+  distanceCorrection: 1
+  useUnityDistance: 1
+  auralization: 0
+  roomPreset: 7
+  internalReverb: 0
+  performanceMode: 0
+  dearVRPlayOnAwake: 0
+  bypass: 0
+  bypassPerformance: 0
+  reverbStopOverlap: 1
+  inputChannel: 0
+  reflectionLP: 20000
+  reverbLP: 20000
+  roomSize: 100
+  bassBoost: 0
+  occlusionLevel: 0.6
+  obsturctionLevel: 0.6
+  occlusionActive: 1
+  obstructionActive: 1
+  forceOcclusion: 0
+  forceObstruction: 0
+  occlusionDebugRayCast: 0
+  occlusionRayUpdateFreq: 0.2
+  obstructionRayUpdateFreq: 0.2
+  obstructionDebugRayCast: 0
+  reverbSends:
+  - roomIndex: 1
+    send: 0
 --- !u!1001 &488603719
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1616,6 +1627,11 @@ PrefabInstance:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3054405735749965923, guid: a113e3db5e65647a1923d3308720dfe7,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3054405735749965925, guid: a113e3db5e65647a1923d3308720dfe7,
         type: 3}
       propertyPath: m_Enabled
@@ -1653,6 +1669,60 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DelayTime: 1.27
+--- !u!114 &488603723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 488603721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b51e54047889f1c4dac64a27f85a09c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  occlusionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  obstructionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  occlusionRayUpdateTime: 1
+  obstructionRayUpdateTime: 1
+  clipIsPlaying: 0
+  gainLevel: 0
+  directLevel: 0
+  reflectionLevel: 0
+  reverbLevel: 0
+  azimuthCorrection: 1
+  distanceCorrection: 1
+  useUnityDistance: 1
+  auralization: 0
+  roomPreset: 7
+  internalReverb: 0
+  performanceMode: 0
+  dearVRPlayOnAwake: 0
+  bypass: 0
+  bypassPerformance: 0
+  reverbStopOverlap: 1
+  inputChannel: 0
+  reflectionLP: 20000
+  reverbLP: 20000
+  roomSize: 100
+  bassBoost: 0
+  occlusionLevel: 0.6
+  obsturctionLevel: 0.6
+  occlusionActive: 1
+  obstructionActive: 1
+  forceOcclusion: 0
+  forceObstruction: 0
+  occlusionDebugRayCast: 0
+  occlusionRayUpdateFreq: 0.2
+  obstructionRayUpdateFreq: 0.2
+  obstructionDebugRayCast: 0
+  reverbSends:
+  - roomIndex: 1
+    send: 0
 --- !u!1001 &494251224
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1731,6 +1801,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -8699602196325415563, guid: c6e98bfc99b62427d956896adf02ddb8,
         type: 2}
+    - target: {fileID: 3054405735749965923, guid: a113e3db5e65647a1923d3308720dfe7,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3054405735749965925, guid: a113e3db5e65647a1923d3308720dfe7,
         type: 3}
       propertyPath: m_Enabled
@@ -1771,6 +1846,60 @@ MonoBehaviour:
   pitchMax: 1
   volumeMin: 0.7
   volumeMax: 1
+--- !u!114 &494251228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494251226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b51e54047889f1c4dac64a27f85a09c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  occlusionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  obstructionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  occlusionRayUpdateTime: 1
+  obstructionRayUpdateTime: 1
+  clipIsPlaying: 0
+  gainLevel: 0
+  directLevel: 0
+  reflectionLevel: 0
+  reverbLevel: 0
+  azimuthCorrection: 1
+  distanceCorrection: 1
+  useUnityDistance: 1
+  auralization: 0
+  roomPreset: 7
+  internalReverb: 0
+  performanceMode: 0
+  dearVRPlayOnAwake: 0
+  bypass: 0
+  bypassPerformance: 0
+  reverbStopOverlap: 1
+  inputChannel: 0
+  reflectionLP: 20000
+  reverbLP: 20000
+  roomSize: 100
+  bassBoost: 0
+  occlusionLevel: 0.6
+  obsturctionLevel: 0.6
+  occlusionActive: 1
+  obstructionActive: 1
+  forceOcclusion: 0
+  forceObstruction: 0
+  occlusionDebugRayCast: 0
+  occlusionRayUpdateFreq: 0.2
+  obstructionRayUpdateFreq: 0.2
+  obstructionDebugRayCast: 0
+  reverbSends:
+  - roomIndex: 1
+    send: 0
 --- !u!1001 &502718416
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1849,6 +1978,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -7075406551094455129, guid: c6e98bfc99b62427d956896adf02ddb8,
         type: 2}
+    - target: {fileID: 3054405735749965923, guid: a113e3db5e65647a1923d3308720dfe7,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3054405735749965925, guid: a113e3db5e65647a1923d3308720dfe7,
         type: 3}
       propertyPath: m_Enabled
@@ -1898,7 +2032,7 @@ Transform:
   - {fileID: 1641331913}
   - {fileID: 358495489}
   - {fileID: 871858732}
-  - {fileID: 1885525168}
+  - {fileID: 1273324704}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2183,6 +2317,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -8699602196325415563, guid: c6e98bfc99b62427d956896adf02ddb8,
         type: 2}
+    - target: {fileID: 3054405735749965923, guid: a113e3db5e65647a1923d3308720dfe7,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3054405735749965925, guid: a113e3db5e65647a1923d3308720dfe7,
         type: 3}
       propertyPath: m_Enabled
@@ -2223,6 +2362,60 @@ MonoBehaviour:
   pitchMax: 1
   volumeMin: 0.7
   volumeMax: 1
+--- !u!114 &823587973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823587971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b51e54047889f1c4dac64a27f85a09c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  occlusionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  obstructionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  occlusionRayUpdateTime: 1
+  obstructionRayUpdateTime: 1
+  clipIsPlaying: 0
+  gainLevel: 0
+  directLevel: 0
+  reflectionLevel: 0
+  reverbLevel: 0
+  azimuthCorrection: 1
+  distanceCorrection: 1
+  useUnityDistance: 1
+  auralization: 0
+  roomPreset: 7
+  internalReverb: 0
+  performanceMode: 0
+  dearVRPlayOnAwake: 0
+  bypass: 0
+  bypassPerformance: 0
+  reverbStopOverlap: 1
+  inputChannel: 0
+  reflectionLP: 20000
+  reverbLP: 20000
+  roomSize: 100
+  bassBoost: 0
+  occlusionLevel: 0.6
+  obsturctionLevel: 0.6
+  occlusionActive: 1
+  obstructionActive: 1
+  forceOcclusion: 0
+  forceObstruction: 0
+  occlusionDebugRayCast: 0
+  occlusionRayUpdateFreq: 0.2
+  obstructionRayUpdateFreq: 0.2
+  obstructionDebugRayCast: 0
+  reverbSends:
+  - roomIndex: 1
+    send: 0
 --- !u!4 &842182237 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 406246, guid: f3aa9140057851b4fb32409a70515db9,
@@ -2436,6 +2629,16 @@ PrefabInstance:
       propertyPath: MaxDistance
       value: 94.3
       objectReference: {fileID: 0}
+    - target: {fileID: 3054405735749965923, guid: a113e3db5e65647a1923d3308720dfe7,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3054405735749965923, guid: a113e3db5e65647a1923d3308720dfe7,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3054405735749965925, guid: a113e3db5e65647a1923d3308720dfe7,
         type: 3}
       propertyPath: m_Enabled
@@ -2454,135 +2657,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1138112304}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1180043028
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1524522983}
-    m_Modifications:
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.301
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.174
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 4.679
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965923, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: cf07c6b5bf12b4ce9b52f17d9ec99dd3, type: 3}
-    - target: {fileID: 3054405735749965923, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: -7075406551094455129, guid: c6e98bfc99b62427d956896adf02ddb8,
-        type: 2}
-    - target: {fileID: 3054405735749965923, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: MaxDistance
-      value: 94.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965923, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965925, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965934, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_Name
-      value: Core_Walls_a (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a113e3db5e65647a1923d3308720dfe7, type: 3}
---- !u!1 &1180043029 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3054405735749965934, guid: a113e3db5e65647a1923d3308720dfe7,
-    type: 3}
-  m_PrefabInstance: {fileID: 1180043028}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1180043030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1180043029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da523d79ad7124616921ca5a4d7cbe06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DelayTime: 1.64
 --- !u!1001 &1198327575
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2862,6 +2936,11 @@ PrefabInstance:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3054405735749965923, guid: a113e3db5e65647a1923d3308720dfe7,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3054405735749965925, guid: a113e3db5e65647a1923d3308720dfe7,
         type: 3}
       propertyPath: m_Enabled
@@ -2899,6 +2978,60 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DelayTime: 1.46
+--- !u!114 &1212151831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1212151829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b51e54047889f1c4dac64a27f85a09c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  occlusionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  obstructionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  occlusionRayUpdateTime: 1
+  obstructionRayUpdateTime: 1
+  clipIsPlaying: 0
+  gainLevel: 0
+  directLevel: 0
+  reflectionLevel: 0
+  reverbLevel: 0
+  azimuthCorrection: 1
+  distanceCorrection: 1
+  useUnityDistance: 1
+  auralization: 0
+  roomPreset: 7
+  internalReverb: 0
+  performanceMode: 0
+  dearVRPlayOnAwake: 0
+  bypass: 0
+  bypassPerformance: 0
+  reverbStopOverlap: 1
+  inputChannel: 0
+  reflectionLP: 20000
+  reverbLP: 20000
+  roomSize: 100
+  bassBoost: 0
+  occlusionLevel: 0.6
+  obsturctionLevel: 0.6
+  occlusionActive: 1
+  obstructionActive: 1
+  forceOcclusion: 0
+  forceObstruction: 0
+  occlusionDebugRayCast: 0
+  occlusionRayUpdateFreq: 0.2
+  obstructionRayUpdateFreq: 0.2
+  obstructionDebugRayCast: 0
+  reverbSends:
+  - roomIndex: 1
+    send: 0
 --- !u!1001 &1220143480
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3000,6 +3133,66 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7baa736c49265754395039a70fe8bef9, type: 3}
+--- !u!1 &1226590275 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3054405735749965934, guid: a113e3db5e65647a1923d3308720dfe7,
+    type: 3}
+  m_PrefabInstance: {fileID: 502718416}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1226590276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226590275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b51e54047889f1c4dac64a27f85a09c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  occlusionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  obstructionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  occlusionRayUpdateTime: 1
+  obstructionRayUpdateTime: 1
+  clipIsPlaying: 0
+  gainLevel: 0
+  directLevel: 0
+  reflectionLevel: 0
+  reverbLevel: 0
+  azimuthCorrection: 1
+  distanceCorrection: 1
+  useUnityDistance: 1
+  auralization: 0
+  roomPreset: 7
+  internalReverb: 0
+  performanceMode: 0
+  dearVRPlayOnAwake: 0
+  bypass: 0
+  bypassPerformance: 0
+  reverbStopOverlap: 1
+  inputChannel: 0
+  reflectionLP: 20000
+  reverbLP: 20000
+  roomSize: 100
+  bassBoost: 0
+  occlusionLevel: 0.6
+  obsturctionLevel: 0.6
+  occlusionActive: 1
+  obstructionActive: 1
+  forceOcclusion: 0
+  forceObstruction: 0
+  occlusionDebugRayCast: 0
+  occlusionRayUpdateFreq: 0.2
+  obstructionRayUpdateFreq: 0.2
+  obstructionDebugRayCast: 0
+  reverbSends:
+  - roomIndex: 1
+    send: 0
 --- !u!1001 &1242150575
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3089,6 +3282,49 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51a4835a269ad0e44813435dfaff07d8, type: 3}
+--- !u!1 &1273324703
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1273324704}
+  - component: {fileID: 1273324705}
+  m_Layer: 0
+  m_Name: Dear VR Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1273324704
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273324703}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 573856911}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1273324705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273324703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 497c625f05c190b478129f9cecc739f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1315054745
 GameObject:
   m_ObjectHideFlags: 0
@@ -20981,6 +21217,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -8699602196325415563, guid: c6e98bfc99b62427d956896adf02ddb8,
         type: 2}
+    - target: {fileID: 3054405735749965923, guid: a113e3db5e65647a1923d3308720dfe7,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3054405735749965925, guid: a113e3db5e65647a1923d3308720dfe7,
         type: 3}
       propertyPath: m_Enabled
@@ -21021,6 +21262,60 @@ MonoBehaviour:
   pitchMax: 1
   volumeMin: 0.7
   volumeMax: 1
+--- !u!114 &1394616126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394616124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b51e54047889f1c4dac64a27f85a09c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  occlusionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  obstructionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  occlusionRayUpdateTime: 1
+  obstructionRayUpdateTime: 1
+  clipIsPlaying: 0
+  gainLevel: 0
+  directLevel: 0
+  reflectionLevel: 0
+  reverbLevel: 0
+  azimuthCorrection: 1
+  distanceCorrection: 1
+  useUnityDistance: 1
+  auralization: 0
+  roomPreset: 7
+  internalReverb: 0
+  performanceMode: 0
+  dearVRPlayOnAwake: 0
+  bypass: 0
+  bypassPerformance: 0
+  reverbStopOverlap: 1
+  inputChannel: 0
+  reflectionLP: 20000
+  reverbLP: 20000
+  roomSize: 100
+  bassBoost: 0
+  occlusionLevel: 0.6
+  obsturctionLevel: 0.6
+  occlusionActive: 1
+  obstructionActive: 1
+  forceOcclusion: 0
+  forceObstruction: 0
+  occlusionDebugRayCast: 0
+  occlusionRayUpdateFreq: 0.2
+  obstructionRayUpdateFreq: 0.2
+  obstructionDebugRayCast: 0
+  reverbSends:
+  - roomIndex: 1
+    send: 0
 --- !u!1 &1398282028
 GameObject:
   m_ObjectHideFlags: 0
@@ -21135,104 +21430,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _actionClass: {fileID: 0}
   Power: 0
---- !u!82 &1402320102
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1402320097}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -6196585243766728516, guid: c6e98bfc99b62427d956896adf02ddb8,
-    type: 2}
-  m_audioClip: {fileID: 8300000, guid: 7259f790901ac495ab1f2e8f7c300aec, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 1
-  Mute: 0
-  Spatialize: 1
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 0.37
-  MinDistance: 22.37
-  MaxDistance: 72.1
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!114 &1402320103
+--- !u!114 &1402320100
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -21241,60 +21439,51 @@ MonoBehaviour:
   m_GameObject: {fileID: 1402320097}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cc64aca77a4bc84f9a15ccd92d26878, type: 3}
+  m_Script: {fileID: 11500000, guid: b51e54047889f1c4dac64a27f85a09c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directBinaural: 1
-  interpolation: 0
-  physicsBasedAttenuation: 0
-  airAbsorption: 0
-  dipoleWeight: 0
-  dipolePower: 0
-  occlusionMode: 0
-  occlusionMethod: 0
-  sourceRadius: 1
-  occlusionSamples: 16
-  directMixLevel: 1
-  reflections: 0
-  indirectBinaural: 0
-  physicsBasedAttenuationForIndirect: 1
-  indirectMixLevel: 1
-  simulationType: 0
-  uniqueIdentifier: 
-  avoidSilenceDuringInit: 0
-  overrideHRTFIndex: 0
-  hrtfIndex: 0
-  bakingRadius: 16
-  useAllProbeBoxes: 0
-  probeBoxes: []
-  bakedProbeNames: []
-  bakedProbeDataSizes: 
-  bakedDataSize: 0
-  bakedStatsFoldout: 0
-  bakeToggle: 0
-  bakedDataIdentifier:
-    identifier: 0
-    type: 0
---- !u!1 &1414422540 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2884396781320029627, guid: 59ebc5303a9d77948be5a9fe5b37904d,
-    type: 3}
-  m_PrefabInstance: {fileID: 2390568697335317436}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1414422543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1414422540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a79e99846fd75c4438917229c144155a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TerrainSimplificationLevel: 0
-  exportAllChildren: 1
+  occlusionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  obstructionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  occlusionRayUpdateTime: 1
+  obstructionRayUpdateTime: 1
+  clipIsPlaying: 0
+  gainLevel: 0
+  directLevel: 0
+  reflectionLevel: 0
+  reverbLevel: 0
+  azimuthCorrection: 1
+  distanceCorrection: 1
+  useUnityDistance: 0
+  auralization: 0
+  roomPreset: 7
+  internalReverb: 0
+  performanceMode: 0
+  dearVRPlayOnAwake: 0
+  bypass: 0
+  bypassPerformance: 0
+  reverbStopOverlap: 1
+  inputChannel: 0
+  reflectionLP: 20000
+  reverbLP: 20000
+  roomSize: 100
+  bassBoost: 0
+  occlusionLevel: 0.6
+  obsturctionLevel: 0.6
+  occlusionActive: 0
+  obstructionActive: 0
+  forceOcclusion: 0
+  forceObstruction: 0
+  occlusionDebugRayCast: 0
+  occlusionRayUpdateFreq: 0.2
+  obstructionRayUpdateFreq: 0.2
+  obstructionDebugRayCast: 0
+  reverbSends:
+  - roomIndex: 1
+    send: 0
 --- !u!1001 &1426894885
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21490,6 +21679,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -8699602196325415563, guid: c6e98bfc99b62427d956896adf02ddb8,
         type: 2}
+    - target: {fileID: 3054405735749965923, guid: a113e3db5e65647a1923d3308720dfe7,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3054405735749965925, guid: a113e3db5e65647a1923d3308720dfe7,
         type: 3}
       propertyPath: m_Enabled
@@ -21530,6 +21724,60 @@ MonoBehaviour:
   pitchMax: 1
   volumeMin: 0.7
   volumeMax: 1
+--- !u!114 &1442294343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1442294341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b51e54047889f1c4dac64a27f85a09c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  occlusionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  obstructionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  occlusionRayUpdateTime: 1
+  obstructionRayUpdateTime: 1
+  clipIsPlaying: 0
+  gainLevel: 0
+  directLevel: 0
+  reflectionLevel: 0
+  reverbLevel: 0
+  azimuthCorrection: 1
+  distanceCorrection: 1
+  useUnityDistance: 1
+  auralization: 0
+  roomPreset: 7
+  internalReverb: 0
+  performanceMode: 0
+  dearVRPlayOnAwake: 0
+  bypass: 0
+  bypassPerformance: 0
+  reverbStopOverlap: 1
+  inputChannel: 0
+  reflectionLP: 20000
+  reverbLP: 20000
+  roomSize: 100
+  bassBoost: 0
+  occlusionLevel: 0.6
+  obsturctionLevel: 0.6
+  occlusionActive: 1
+  obstructionActive: 1
+  forceOcclusion: 0
+  forceObstruction: 0
+  occlusionDebugRayCast: 0
+  occlusionRayUpdateFreq: 0.2
+  obstructionRayUpdateFreq: 0.2
+  obstructionDebugRayCast: 0
+  reverbSends:
+  - roomIndex: 1
+    send: 0
 --- !u!1001 &1472634437
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21709,6 +21957,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -8699602196325415563, guid: c6e98bfc99b62427d956896adf02ddb8,
         type: 2}
+    - target: {fileID: 3054405735749965923, guid: a113e3db5e65647a1923d3308720dfe7,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3054405735749965925, guid: a113e3db5e65647a1923d3308720dfe7,
         type: 3}
       propertyPath: m_Enabled
@@ -21749,6 +22002,60 @@ MonoBehaviour:
   pitchMax: 1
   volumeMin: 0.7
   volumeMax: 1
+--- !u!114 &1482986378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1482986376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b51e54047889f1c4dac64a27f85a09c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  occlusionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  obstructionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  occlusionRayUpdateTime: 1
+  obstructionRayUpdateTime: 1
+  clipIsPlaying: 0
+  gainLevel: 0
+  directLevel: 0
+  reflectionLevel: 0
+  reverbLevel: 0
+  azimuthCorrection: 1
+  distanceCorrection: 1
+  useUnityDistance: 1
+  auralization: 0
+  roomPreset: 7
+  internalReverb: 0
+  performanceMode: 0
+  dearVRPlayOnAwake: 0
+  bypass: 0
+  bypassPerformance: 0
+  reverbStopOverlap: 1
+  inputChannel: 0
+  reflectionLP: 20000
+  reverbLP: 20000
+  roomSize: 100
+  bassBoost: 0
+  occlusionLevel: 0.6
+  obsturctionLevel: 0.6
+  occlusionActive: 1
+  obstructionActive: 1
+  forceOcclusion: 0
+  forceObstruction: 0
+  occlusionDebugRayCast: 0
+  occlusionRayUpdateFreq: 0.2
+  obstructionRayUpdateFreq: 0.2
+  obstructionDebugRayCast: 0
+  reverbSends:
+  - roomIndex: 1
+    send: 0
 --- !u!1001 &1504966346
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21922,6 +22229,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -8699602196325415563, guid: c6e98bfc99b62427d956896adf02ddb8,
         type: 2}
+    - target: {fileID: 3054405735749965923, guid: a113e3db5e65647a1923d3308720dfe7,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3054405735749965925, guid: a113e3db5e65647a1923d3308720dfe7,
         type: 3}
       propertyPath: m_Enabled
@@ -21962,6 +22274,60 @@ MonoBehaviour:
   pitchMax: 1
   volumeMin: 0.7
   volumeMax: 1
+--- !u!114 &1505474792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1505474790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b51e54047889f1c4dac64a27f85a09c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  occlusionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  obstructionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  occlusionRayUpdateTime: 1
+  obstructionRayUpdateTime: 1
+  clipIsPlaying: 0
+  gainLevel: 0
+  directLevel: 0
+  reflectionLevel: 0
+  reverbLevel: 0
+  azimuthCorrection: 1
+  distanceCorrection: 1
+  useUnityDistance: 1
+  auralization: 0
+  roomPreset: 7
+  internalReverb: 0
+  performanceMode: 0
+  dearVRPlayOnAwake: 0
+  bypass: 0
+  bypassPerformance: 0
+  reverbStopOverlap: 1
+  inputChannel: 0
+  reflectionLP: 20000
+  reverbLP: 20000
+  roomSize: 100
+  bassBoost: 0
+  occlusionLevel: 0.6
+  obsturctionLevel: 0.6
+  occlusionActive: 1
+  obstructionActive: 1
+  forceOcclusion: 0
+  forceObstruction: 0
+  occlusionDebugRayCast: 0
+  occlusionRayUpdateFreq: 0.2
+  obstructionRayUpdateFreq: 0.2
+  obstructionDebugRayCast: 0
+  reverbSends:
+  - roomIndex: 1
+    send: 0
 --- !u!1001 &1524522982
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22039,6 +22405,11 @@ PrefabInstance:
         type: 3}
       propertyPath: MaxDistance
       value: 94.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3054405735749965923, guid: a113e3db5e65647a1923d3308720dfe7,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3054405735749965925, guid: a113e3db5e65647a1923d3308720dfe7,
         type: 3}
@@ -22402,6 +22773,152 @@ Transform:
   m_Father: {fileID: 1839894394}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1740102253 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3054405735749965934, guid: a113e3db5e65647a1923d3308720dfe7,
+    type: 3}
+  m_PrefabInstance: {fileID: 20738080}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1740102254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1740102253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da523d79ad7124616921ca5a4d7cbe06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DelayTime: 3.07
+--- !u!114 &1740102255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1740102253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b51e54047889f1c4dac64a27f85a09c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  occlusionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  obstructionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  occlusionRayUpdateTime: 1
+  obstructionRayUpdateTime: 1
+  clipIsPlaying: 0
+  gainLevel: 0
+  directLevel: 0
+  reflectionLevel: 0
+  reverbLevel: 0
+  azimuthCorrection: 1
+  distanceCorrection: 1
+  useUnityDistance: 1
+  auralization: 0
+  roomPreset: 7
+  internalReverb: 0
+  performanceMode: 0
+  dearVRPlayOnAwake: 0
+  bypass: 0
+  bypassPerformance: 0
+  reverbStopOverlap: 1
+  inputChannel: 0
+  reflectionLP: 20000
+  reverbLP: 20000
+  roomSize: 100
+  bassBoost: 0
+  occlusionLevel: 0.6
+  obsturctionLevel: 0.6
+  occlusionActive: 1
+  obstructionActive: 1
+  forceOcclusion: 0
+  forceObstruction: 0
+  occlusionDebugRayCast: 0
+  occlusionRayUpdateFreq: 0.2
+  obstructionRayUpdateFreq: 0.2
+  obstructionDebugRayCast: 0
+  reverbSends:
+  - roomIndex: 1
+    send: 0
+--- !u!1 &1756484133 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3054405735749965934, guid: a113e3db5e65647a1923d3308720dfe7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1138112304}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1756484134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756484133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da523d79ad7124616921ca5a4d7cbe06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DelayTime: 2
+--- !u!114 &1756484135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756484133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b51e54047889f1c4dac64a27f85a09c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  occlusionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  obstructionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  occlusionRayUpdateTime: 1
+  obstructionRayUpdateTime: 1
+  clipIsPlaying: 0
+  gainLevel: 0
+  directLevel: 0
+  reflectionLevel: 0
+  reverbLevel: 0
+  azimuthCorrection: 1
+  distanceCorrection: 1
+  useUnityDistance: 1
+  auralization: 0
+  roomPreset: 7
+  internalReverb: 0
+  performanceMode: 0
+  dearVRPlayOnAwake: 0
+  bypass: 0
+  bypassPerformance: 0
+  reverbStopOverlap: 1
+  inputChannel: 0
+  reflectionLP: 20000
+  reverbLP: 20000
+  roomSize: 100
+  bassBoost: 0
+  occlusionLevel: 0.6
+  obsturctionLevel: 0.6
+  occlusionActive: 1
+  obstructionActive: 1
+  forceOcclusion: 0
+  forceObstruction: 0
+  occlusionDebugRayCast: 0
+  occlusionRayUpdateFreq: 0.2
+  obstructionRayUpdateFreq: 0.2
+  obstructionDebugRayCast: 0
+  reverbSends:
+  - roomIndex: 1
+    send: 0
 --- !u!1001 &1782089021
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22660,6 +23177,11 @@ PrefabInstance:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3054405735749965923, guid: a113e3db5e65647a1923d3308720dfe7,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3054405735749965925, guid: a113e3db5e65647a1923d3308720dfe7,
         type: 3}
       propertyPath: m_Enabled
@@ -22697,6 +23219,60 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DelayTime: 1.5
+--- !u!114 &1877494896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877494894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b51e54047889f1c4dac64a27f85a09c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  occlusionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  obstructionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  occlusionRayUpdateTime: 1
+  obstructionRayUpdateTime: 1
+  clipIsPlaying: 0
+  gainLevel: 0
+  directLevel: 0
+  reflectionLevel: 0
+  reverbLevel: 0
+  azimuthCorrection: 1
+  distanceCorrection: 1
+  useUnityDistance: 1
+  auralization: 0
+  roomPreset: 7
+  internalReverb: 0
+  performanceMode: 0
+  dearVRPlayOnAwake: 0
+  bypass: 0
+  bypassPerformance: 0
+  reverbStopOverlap: 1
+  inputChannel: 0
+  reflectionLP: 20000
+  reverbLP: 20000
+  roomSize: 100
+  bassBoost: 0
+  occlusionLevel: 0.6
+  obsturctionLevel: 0.6
+  occlusionActive: 1
+  obstructionActive: 1
+  forceOcclusion: 0
+  forceObstruction: 0
+  occlusionDebugRayCast: 0
+  occlusionRayUpdateFreq: 0.2
+  obstructionRayUpdateFreq: 0.2
+  obstructionDebugRayCast: 0
+  reverbSends:
+  - roomIndex: 1
+    send: 0
 --- !u!1 &1882048627
 GameObject:
   m_ObjectHideFlags: 0
@@ -22738,40 +23314,51 @@ MonoBehaviour:
   m_GameObject: {fileID: 1882048627}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cc64aca77a4bc84f9a15ccd92d26878, type: 3}
+  m_Script: {fileID: 11500000, guid: b51e54047889f1c4dac64a27f85a09c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directBinaural: 1
-  interpolation: 0
-  physicsBasedAttenuation: 0
-  airAbsorption: 0
-  dipoleWeight: 0
-  dipolePower: 0
-  occlusionMode: 3
-  occlusionMethod: 1
-  sourceRadius: 10
-  occlusionSamples: 16
-  directMixLevel: 1
-  reflections: 1
-  indirectBinaural: 0
-  physicsBasedAttenuationForIndirect: 1
-  indirectMixLevel: 1
-  simulationType: 0
-  uniqueIdentifier: 
-  avoidSilenceDuringInit: 0
-  overrideHRTFIndex: 0
-  hrtfIndex: 0
-  bakingRadius: 16
-  useAllProbeBoxes: 0
-  probeBoxes: []
-  bakedProbeNames: []
-  bakedProbeDataSizes: 
-  bakedDataSize: 0
-  bakedStatsFoldout: 0
-  bakeToggle: 0
-  bakedDataIdentifier:
-    identifier: 0
-    type: 0
+  occlusionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  obstructionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  occlusionRayUpdateTime: 1
+  obstructionRayUpdateTime: 1
+  clipIsPlaying: 0
+  gainLevel: 0
+  directLevel: 0
+  reflectionLevel: 0
+  reverbLevel: 0
+  azimuthCorrection: 1
+  distanceCorrection: 1
+  useUnityDistance: 1
+  auralization: 0
+  roomPreset: 7
+  internalReverb: 0
+  performanceMode: 0
+  dearVRPlayOnAwake: 0
+  bypass: 0
+  bypassPerformance: 0
+  reverbStopOverlap: 1
+  inputChannel: 0
+  reflectionLP: 20000
+  reverbLP: 20000
+  roomSize: 100
+  bassBoost: 0
+  occlusionLevel: 0.6
+  obsturctionLevel: 0.6
+  occlusionActive: 0
+  obstructionActive: 0
+  forceOcclusion: 0
+  forceObstruction: 0
+  occlusionDebugRayCast: 0
+  occlusionRayUpdateFreq: 0.2
+  obstructionRayUpdateFreq: 0.2
+  obstructionDebugRayCast: 0
+  reverbSends:
+  - roomIndex: 1
+    send: 0
 --- !u!82 &1882048630
 AudioSource:
   m_ObjectHideFlags: 0
@@ -22829,7 +23416,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -22869,83 +23456,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &1885525166
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1885525168}
-  - component: {fileID: 1885525167}
-  m_Layer: 0
-  m_Name: Steam Audio Manager Settings
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1885525167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1885525166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4576053e6ac4964287500815ebc2f7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioEngine: 0
-  sofaFiles: []
-  currentSOFAFile: 0
-  materialPreset: 10
-  materialValue:
-    LowFreqAbsorption: 0.13
-    MidFreqAbsorption: 0.2
-    HighFreqAbsorption: 0.24
-    Scattering: 0.05
-    LowFreqTransmission: 0.015
-    MidFreqTransmission: 0.002
-    HighFreqTransmission: 0.001
-  simulationPreset: 3
-  simulationValue:
-    MaxOcclusionSamples: 128
-    RealtimeRays: 16384
-    RealtimeSecondaryRays: 1024
-    RealtimeBounces: 8
-    RealtimeThreadsPercentage: 5
-    BakeRays: 65536
-    BakeSecondaryRays: 4096
-    BakeBounces: 128
-    BakeThreadsPercentage: 5
-    Duration: 1
-    AmbisonicsOrder: 3
-    MaxSources: 32
-    IrradianceMinDistance: 1
-  updateComponents: 1
-  currentAudioListener: {fileID: 0}
-  showLoadTimeOptions: 0
-  showMassBakingOptions: 0
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 0
---- !u!4 &1885525168
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1885525166}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 573856911}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1902794027
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23024,6 +23534,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -8699602196325415563, guid: c6e98bfc99b62427d956896adf02ddb8,
         type: 2}
+    - target: {fileID: 3054405735749965923, guid: a113e3db5e65647a1923d3308720dfe7,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3054405735749965925, guid: a113e3db5e65647a1923d3308720dfe7,
         type: 3}
       propertyPath: m_Enabled
@@ -23064,135 +23579,60 @@ MonoBehaviour:
   pitchMax: 1
   volumeMin: 0.7
   volumeMax: 1
---- !u!1001 &1926376101
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1138112305}
-    m_Modifications:
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -6.273
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.571
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -3.52
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965921, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965923, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 0067fc6ebfb744cdbb761e1041cb02f8, type: 3}
-    - target: {fileID: 3054405735749965923, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: -7075406551094455129, guid: c6e98bfc99b62427d956896adf02ddb8,
-        type: 2}
-    - target: {fileID: 3054405735749965923, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: MaxDistance
-      value: 94.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965923, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965925, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054405735749965934, guid: a113e3db5e65647a1923d3308720dfe7,
-        type: 3}
-      propertyPath: m_Name
-      value: Core_Walls_b (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a113e3db5e65647a1923d3308720dfe7, type: 3}
---- !u!1 &1926376102 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3054405735749965934, guid: a113e3db5e65647a1923d3308720dfe7,
-    type: 3}
-  m_PrefabInstance: {fileID: 1926376101}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1926376103
+--- !u!114 &1902794031
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1926376102}
+  m_GameObject: {fileID: 1902794029}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da523d79ad7124616921ca5a4d7cbe06, type: 3}
+  m_Script: {fileID: 11500000, guid: b51e54047889f1c4dac64a27f85a09c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DelayTime: 2.32
+  occlusionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  obstructionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  occlusionRayUpdateTime: 1
+  obstructionRayUpdateTime: 1
+  clipIsPlaying: 0
+  gainLevel: 0
+  directLevel: 0
+  reflectionLevel: 0
+  reverbLevel: 0
+  azimuthCorrection: 1
+  distanceCorrection: 1
+  useUnityDistance: 1
+  auralization: 0
+  roomPreset: 7
+  internalReverb: 0
+  performanceMode: 0
+  dearVRPlayOnAwake: 0
+  bypass: 0
+  bypassPerformance: 0
+  reverbStopOverlap: 1
+  inputChannel: 0
+  reflectionLP: 20000
+  reverbLP: 20000
+  roomSize: 100
+  bassBoost: 0
+  occlusionLevel: 0.6
+  obsturctionLevel: 0.6
+  occlusionActive: 1
+  obstructionActive: 1
+  forceOcclusion: 0
+  forceObstruction: 0
+  occlusionDebugRayCast: 0
+  occlusionRayUpdateFreq: 0.2
+  obstructionRayUpdateFreq: 0.2
+  obstructionDebugRayCast: 0
+  reverbSends:
+  - roomIndex: 1
+    send: 0
 --- !u!1 &1933934865
 GameObject:
   m_ObjectHideFlags: 0
@@ -23833,6 +24273,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -8699602196325415563, guid: c6e98bfc99b62427d956896adf02ddb8,
         type: 2}
+    - target: {fileID: 3054405735749965923, guid: a113e3db5e65647a1923d3308720dfe7,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3054405735749965925, guid: a113e3db5e65647a1923d3308720dfe7,
         type: 3}
       propertyPath: m_Enabled
@@ -23873,6 +24318,60 @@ MonoBehaviour:
   pitchMax: 1
   volumeMin: 0.7
   volumeMax: 1
+--- !u!114 &2027160323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2027160321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b51e54047889f1c4dac64a27f85a09c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  occlusionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  obstructionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  occlusionRayUpdateTime: 1
+  obstructionRayUpdateTime: 1
+  clipIsPlaying: 0
+  gainLevel: 0
+  directLevel: 0
+  reflectionLevel: 0
+  reverbLevel: 0
+  azimuthCorrection: 1
+  distanceCorrection: 1
+  useUnityDistance: 1
+  auralization: 0
+  roomPreset: 7
+  internalReverb: 0
+  performanceMode: 0
+  dearVRPlayOnAwake: 0
+  bypass: 0
+  bypassPerformance: 0
+  reverbStopOverlap: 1
+  inputChannel: 0
+  reflectionLP: 20000
+  reverbLP: 20000
+  roomSize: 100
+  bassBoost: 0
+  occlusionLevel: 0.6
+  obsturctionLevel: 0.6
+  occlusionActive: 1
+  obstructionActive: 1
+  forceOcclusion: 0
+  forceObstruction: 0
+  occlusionDebugRayCast: 0
+  occlusionRayUpdateFreq: 0.2
+  obstructionRayUpdateFreq: 0.2
+  obstructionDebugRayCast: 0
+  reverbSends:
+  - roomIndex: 1
+    send: 0
 --- !u!1001 &2087987306
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23951,6 +24450,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -8699602196325415563, guid: c6e98bfc99b62427d956896adf02ddb8,
         type: 2}
+    - target: {fileID: 3054405735749965923, guid: a113e3db5e65647a1923d3308720dfe7,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3054405735749965925, guid: a113e3db5e65647a1923d3308720dfe7,
         type: 3}
       propertyPath: m_Enabled
@@ -23991,6 +24495,60 @@ MonoBehaviour:
   pitchMax: 1
   volumeMin: 0.7
   volumeMax: 1
+--- !u!114 &2087987310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087987308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b51e54047889f1c4dac64a27f85a09c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  occlusionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  obstructionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  occlusionRayUpdateTime: 1
+  obstructionRayUpdateTime: 1
+  clipIsPlaying: 0
+  gainLevel: 0
+  directLevel: 0
+  reflectionLevel: 0
+  reverbLevel: 0
+  azimuthCorrection: 1
+  distanceCorrection: 1
+  useUnityDistance: 1
+  auralization: 0
+  roomPreset: 7
+  internalReverb: 0
+  performanceMode: 0
+  dearVRPlayOnAwake: 0
+  bypass: 0
+  bypassPerformance: 0
+  reverbStopOverlap: 1
+  inputChannel: 0
+  reflectionLP: 20000
+  reverbLP: 20000
+  roomSize: 100
+  bassBoost: 0
+  occlusionLevel: 0.6
+  obsturctionLevel: 0.6
+  occlusionActive: 1
+  obstructionActive: 1
+  forceOcclusion: 0
+  forceObstruction: 0
+  occlusionDebugRayCast: 0
+  occlusionRayUpdateFreq: 0.2
+  obstructionRayUpdateFreq: 0.2
+  obstructionDebugRayCast: 0
+  reverbSends:
+  - roomIndex: 1
+    send: 0
 --- !u!1001 &2092372699
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24069,6 +24627,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -8699602196325415563, guid: c6e98bfc99b62427d956896adf02ddb8,
         type: 2}
+    - target: {fileID: 3054405735749965923, guid: a113e3db5e65647a1923d3308720dfe7,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3054405735749965925, guid: a113e3db5e65647a1923d3308720dfe7,
         type: 3}
       propertyPath: m_Enabled
@@ -24109,6 +24672,60 @@ MonoBehaviour:
   pitchMax: 1
   volumeMin: 0.7
   volumeMax: 1
+--- !u!114 &2092372703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092372701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b51e54047889f1c4dac64a27f85a09c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  occlusionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  obstructionWallMask:
+    serializedVersion: 2
+    m_Bits: 130871
+  occlusionRayUpdateTime: 1
+  obstructionRayUpdateTime: 1
+  clipIsPlaying: 0
+  gainLevel: 0
+  directLevel: 0
+  reflectionLevel: 0
+  reverbLevel: 0
+  azimuthCorrection: 1
+  distanceCorrection: 1
+  useUnityDistance: 1
+  auralization: 0
+  roomPreset: 7
+  internalReverb: 0
+  performanceMode: 0
+  dearVRPlayOnAwake: 0
+  bypass: 0
+  bypassPerformance: 0
+  reverbStopOverlap: 1
+  inputChannel: 0
+  reflectionLP: 20000
+  reverbLP: 20000
+  roomSize: 100
+  bassBoost: 0
+  occlusionLevel: 0.6
+  obsturctionLevel: 0.6
+  occlusionActive: 1
+  obstructionActive: 1
+  forceOcclusion: 0
+  forceObstruction: 0
+  occlusionDebugRayCast: 0
+  occlusionRayUpdateFreq: 0.2
+  obstructionRayUpdateFreq: 0.2
+  obstructionDebugRayCast: 0
+  reverbSends:
+  - roomIndex: 1
+    send: 0
 --- !u!1001 &2109693100
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24338,6 +24955,10 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1402320102, guid: 59ebc5303a9d77948be5a9fe5b37904d, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2543618152892997377, guid: 59ebc5303a9d77948be5a9fe5b37904d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -24448,7 +25069,8 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1402320103, guid: 59ebc5303a9d77948be5a9fe5b37904d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 59ebc5303a9d77948be5a9fe5b37904d, type: 3}
 --- !u!1001 &8454785883149252529
 PrefabInstance:
