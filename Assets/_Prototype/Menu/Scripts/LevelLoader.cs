@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
-public class MainMenu : MonoBehaviour
+public class LevelLoader : MonoBehaviour
 {
-    /*
     public Animator transition;
     public float transitionTime;
+    public AudioMixer audioMixer;
 
-    public void LoadLevel (int sceneNumber)
+    public void LoadLevel(int sceneNumber)
     {
         Debug.Log("sceneBuildIndex to load:" + sceneNumber);
         StartCoroutine(LoadLevelTransition(sceneNumber));
+      //  StartCoroutine(FadeMixerGroupFromBack.StartFadeFrom(audioMixer, "masterVol", transitionTime, 1, 0));
+      //  StartCoroutine(FadeMixerGroupFrom.StartFadeFrom(audioMixer, "masterVol", transitionTime, 0, 1, 0));
     }
 
     IEnumerator LoadLevelTransition(int sceneNumber)
@@ -23,12 +26,4 @@ public class MainMenu : MonoBehaviour
 
         SceneManager.LoadScene(sceneNumber);
     }
-    */
-
-    public void QuitGame()
-    {
-        Debug.Log("QUIT!");
-        Application.Quit();
-    }
-
 }
