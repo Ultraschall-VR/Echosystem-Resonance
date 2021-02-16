@@ -4,9 +4,8 @@ public class SceneSettings : MonoBehaviour
 {
     public float LoudnessIncreaseTime;
     public float LoudnessDecreaseTime;
-
-    public static SceneSettings Instance;
     
+    public static SceneSettings Instance;
     
     private void Awake() 
     {

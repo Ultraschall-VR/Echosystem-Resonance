@@ -11,7 +11,7 @@ namespace Echosystem.Resonance.Prototyping
         {
             if (Observer.CurrentSilenceSphere == null)
             {
-                _currentLoudness += Time.deltaTime / 10;
+                _currentLoudness += Time.deltaTime / SceneSettings.Instance.LoudnessIncreaseTime;
                 
                 if(_currentLoudness >= 1.0f)
                 {
@@ -21,7 +21,7 @@ namespace Echosystem.Resonance.Prototyping
             
             else
             {
-                _currentLoudness -= Time.deltaTime / 5;
+                _currentLoudness -= Time.deltaTime / SceneSettings.Instance.LoudnessDecreaseTime;
                 
                 if (_currentLoudness <= 0.0f)
                 {
