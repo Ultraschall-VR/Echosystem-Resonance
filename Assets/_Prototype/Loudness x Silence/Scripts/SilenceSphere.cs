@@ -68,7 +68,6 @@ namespace Echosystem.Resonance.Prototyping
             {
                 Observer.Player.GetComponent<LineOfSight>().SightCylinder.SetActive(true);
             }
-            
         }
 
         private void DefineBoundaries()
