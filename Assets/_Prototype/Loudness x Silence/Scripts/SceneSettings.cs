@@ -4,10 +4,13 @@ public class SceneSettings : MonoBehaviour
 {
     public float LoudnessIncreaseTime;
     public float LoudnessDecreaseTime;
+    public float EchoDropLifetime;
+
+    public bool NonVr;
     
     public static SceneSettings Instance;
-    
-    private void Awake() 
+
+    private void Awake()
     {
         if (Instance == null)
         {
@@ -17,16 +20,5 @@ public class SceneSettings : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-    }
-    
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
