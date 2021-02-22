@@ -1,4 +1,5 @@
-﻿using Echosystem.Resonance.Helper;
+﻿using System.Collections;
+using Echosystem.Resonance.Helper;
 using UnityEngine;
 
 namespace Echosystem.Resonance.Prototyping
@@ -15,6 +16,8 @@ namespace Echosystem.Resonance.Prototyping
         private Vector3 _outerSphereSize;
 
         private bool _isInitalized = false;
+
+        private bool _isDecreasing;
 
         private void Start()
         {
@@ -44,12 +47,10 @@ namespace Echosystem.Resonance.Prototyping
             {
                 Observer.CurrentSilenceSphere = this;
                 
-                _distanceToPlayer = Vector3.Distance(Observer.Player.transform.position, _innerSphereTrigger.transform.position) / (_innerSphere.transform.localScale.x/2);
-
-                _outerSphere.transform.localScale = _outerSphereSize / (_distanceToPlayer*2);
-
-                DefineBoundaries();
+                if(!_isDecreasing)
+                    DefineBoundaries();
             }
+            
             else if(Observer.CurrentSilenceSphere == this && !_innerSphereTrigger.Triggered)
             {
                 Observer.CurrentSilenceSphere = null;
@@ -70,8 +71,37 @@ namespace Echosystem.Resonance.Prototyping
             }
         }
 
+        public void DecreaseSize()
+        {
+            _isDecreasing = true;
+            StartCoroutine(DecreaseRoutine());
+        }
+
+        private IEnumerator DecreaseRoutine()
+        {
+            float f = 0.0f;
+
+            Vector3 currentSize = _innerSphere.transform.localScale;
+
+            while (f < SceneSettings.Instance.EchoDropLifetime)
+            {
+                f += Time.deltaTime;
+
+                _innerSphere.transform.localScale = Vector3.Lerp(currentSize, Vector3.zero,
+                    f / SceneSettings.Instance.EchoDropLifetime);
+
+                _outerSphere.transform.localScale = _innerSphere.transform.localScale;
+                
+                yield return null;
+            }
+
+            yield return null;
+        }
+
         private void DefineBoundaries()
         {
+            _distanceToPlayer = Vector3.Distance(Observer.Player.transform.position, _innerSphereTrigger.transform.position) / (_innerSphere.transform.localScale.x/2);
+            _outerSphere.transform.localScale = _outerSphereSize / (_distanceToPlayer*2);
             
             // Outer Boundary
             if (_outerSphere.transform.localScale.x >= _innerSphere.transform.localScale.x * 3)

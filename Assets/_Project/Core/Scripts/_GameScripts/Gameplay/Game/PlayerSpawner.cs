@@ -104,6 +104,7 @@ namespace Echosystem.Resonance.Game
             }
 
             Observer.Player = PlayerInstance;
+            Observer.PlayerHead = PlayerInstance.GetComponent<NonVRPlayer>().PlayerHead.gameObject;
         }
 
         public void MovePlayer(Vector3 position, Quaternion rotation)
