@@ -17,6 +17,8 @@ public class FocusedObject : MonoBehaviour
 
         if (Physics.Raycast(Observer.PlayerHead.transform.position, Observer.PlayerHead.transform.forward, out hit, 5f, ~LayerMask.GetMask("SilenceSphere")))
         {
+            Observer.FocusedGameObject = hit.collider.gameObject;
+            
             if (hit.collider.CompareTag("Player") || hit.collider.gameObject.isStatic)
             {
                 _text.text = null;
@@ -27,6 +29,7 @@ public class FocusedObject : MonoBehaviour
         }
         else
         {
+            Observer.FocusedGameObject = null;
             _text.text = null;
         }
     }
