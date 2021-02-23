@@ -1645,72 +1645,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _time: 0
   _text: {fileID: 8387529848141784330}
---- !u!1 &8387529848231410442
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8387529848231410441}
-  - component: {fileID: 8387529848231410440}
-  - component: {fileID: 8387529848231410443}
-  m_Layer: 0
-  m_Name: EventSystem
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8387529848231410441
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8387529848231410442}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -400.00003, y: -417.6796, z: 0}
-  m_LocalScale: {x: 1.1049725, y: 1.1049725, z: 1.1049725}
-  m_Children: []
-  m_Father: {fileID: 8387529848603953693}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8387529848231410440
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8387529848231410442}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
---- !u!114 &8387529848231410443
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8387529848231410442}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
 --- !u!1 &8387529848603953692
 GameObject:
   m_ObjectHideFlags: 0
@@ -1723,7 +1657,6 @@ GameObject:
   - component: {fileID: 8387529848603953688}
   - component: {fileID: 8387529848603953691}
   - component: {fileID: 8387529848603953690}
-  - component: {fileID: 8387529848603953689}
   m_Layer: 0
   m_Name: Debug UI
   m_TagString: Untagged
@@ -1746,7 +1679,6 @@ RectTransform:
   - {fileID: 8387529847392357317}
   - {fileID: 8387529848002703281}
   - {fileID: 1050422470226369142}
-  - {fileID: 8387529848231410441}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1815,22 +1747,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &8387529848603953689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8387529848603953692}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adf856fa70df15a4d89b314cfa88f20a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _debugUiObjects:
-  - {fileID: 8387529848141784328}
-  - {fileID: 8387529847529735995}
-  - {fileID: 8387529847604413273}
 --- !u!1 &8766909540021779556
 GameObject:
   m_ObjectHideFlags: 0
