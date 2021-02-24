@@ -1,25 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class ButtonSounds : MonoBehaviour
+namespace Echosystem.Resonance.Prototyping
 {
-    private AudioSource myFx;
-    public AudioClip hoverFx;
-    public AudioClip clickFx;
-
-    public void Start()
+    public class ButtonSounds : MonoBehaviour
     {
-        myFx = GetComponent<AudioSource>();
-    }
+        private AudioSource _myFx;
+        public AudioClip hoverFx;
+        public AudioClip clickFx;
 
-    public void HoverSound()
-    {
-        myFx.PlayOneShot(hoverFx);
-    }
+        public void Start()
+        {
+            _myFx = GetComponent<AudioSource>();
+        }
 
-    public void ClickSound()
-    {
-        myFx.PlayOneShot(clickFx);
+        public void HoverSound()
+        {
+            _myFx.PlayOneShot(hoverFx);
+        }
+
+        public void ClickSound()
+        {
+            _myFx.PlayOneShot(clickFx);
+        }
     }
 }

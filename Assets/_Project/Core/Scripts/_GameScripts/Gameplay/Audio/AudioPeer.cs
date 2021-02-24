@@ -76,7 +76,7 @@ public class AudioPeer : MonoBehaviour
             _audioSource = GetComponent<AudioSource>();
         }
 
-        _audioSource.Play();
+       // _audioSource.Play();
     }
 
     // Update is called once per frame

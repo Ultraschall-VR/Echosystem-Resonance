@@ -1,20 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Audio;
 
-public class OptionsMenu : MonoBehaviour
+namespace Echosystem.Resonance.Prototyping
 {
-
-    public AudioMixer audioMixer;
-
-public void SetVolume (float volume)
+    public class OptionsMenu : MonoBehaviour
     {
-        audioMixer.SetFloat("masterVol", volume);
-    }
+        public AudioMixer audioMixer;
 
-    public void SetFullscreen (bool isFullscreen)
-    {
-        Screen.fullScreen = isFullscreen;
+        public void SetVolume(float volume)
+        {
+            audioMixer.SetFloat("masterVol", volume);
+        }
+
+        public void SetFullscreen(bool isFullscreen)
+        {
+            Screen.fullScreen = isFullscreen;
+        }
     }
 }

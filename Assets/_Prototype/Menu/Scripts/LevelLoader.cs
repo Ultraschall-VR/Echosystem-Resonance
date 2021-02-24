@@ -1,34 +1,33 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelLoader : MonoBehaviour
+namespace Echosystem.Resonance.Prototyping
 {
-
-    public Animator transition;
-    public float transitionTime;
-    [SerializeField] private GameObject _pauseManager;
-
-    public void LoadLevel(int sceneNumber)
+    public class LevelLoader : MonoBehaviour
     {
-        Debug.Log("sceneBuildIndex to load:" + sceneNumber);
-        StartCoroutine(LoadLevelTransition(sceneNumber));
-    }
+        public Animator transition;
+        public float transitionTime;
+        [SerializeField] private GameObject _pauseManager;
 
-    IEnumerator LoadLevelTransition(int sceneNumber)
-    {
-        if (PauseMenuEchosystem.GameIsPaused == true)
+        public void LoadLevel(int sceneNumber)
         {
-            _pauseManager.GetComponent<PauseMenuEchosystem>().ResumeToGame();
+            Debug.Log("sceneBuildIndex to load:" + sceneNumber);
+            StartCoroutine(LoadLevelTransition(sceneNumber));
         }
 
-        transition.SetTrigger("Start");
+        IEnumerator LoadLevelTransition(int sceneNumber)
+        {
+            if (PauseMenuEchosystem.GameIsPaused == true)
+            {
+                _pauseManager.GetComponent<PauseMenuEchosystem>().ResumeToGame();
+            }
 
-        yield return new WaitForSeconds(transitionTime);
+            transition.SetTrigger("Start");
 
-        SceneManager.LoadScene(sceneNumber);
-        
+            yield return new WaitForSeconds(transitionTime);
+
+            SceneManager.LoadScene(sceneNumber);
+        }
     }
-   
 }
