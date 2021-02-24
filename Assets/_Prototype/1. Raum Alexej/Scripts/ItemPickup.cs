@@ -27,8 +27,12 @@ namespace Echosystem.Resonance.Prototyping
             if (other.CompareTag("Player") && !_triggered)
             {
                 _triggered = true;
-                CollectibleManager.Index++;
-                Debug.Log("Index is: " + CollectibleManager.Index);
+                if (CollectibleManager.Index < CollectibleManager.ListCount)
+                {
+                    CollectibleManager.Index++;
+                  //  Debug.Log("Index is: " + CollectibleManager.Index);
+                }
+
                 Pickup();
             }
         }
