@@ -6,6 +6,7 @@ using UnityEngine;
 public class LightOnAudio : MonoBehaviour
 {
     public AudioPeer _audioPeer;
+    [Range(0,8)]
     public int _band;
     public float _minIntensity, _maxIntesity;
     Light _light;
@@ -13,6 +14,7 @@ public class LightOnAudio : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _audioPeer = GetComponent<AudioPeer>();
         _light = GetComponent<Light>();
     }
 

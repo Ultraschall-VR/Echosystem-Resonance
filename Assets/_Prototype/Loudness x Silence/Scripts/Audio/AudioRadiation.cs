@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Serialization;
 
 //using Echosystem.Resonance.Prototyping;
 
@@ -11,14 +12,16 @@ namespace Echosystem.Resonance.Prototyping
         public AudioMixerSnapshot _phase1;
         public AudioMixerSnapshot _phase2;
         public AudioMixerSnapshot _phase3;
-
-        // public AudioClip[] stings;
-        // public AudioSource stingSource;
-        //public float bpm = 128;
-        [SerializeField] private float _TransitionIn;
+        
+        [SerializeField] private float transitionZeroIn;
+        [SerializeField] private float transitionOneIn;
+        [Range(0.0f, 1f)] [SerializeField] private float transitionPointTwo;
+        [SerializeField] private float transitionTwoIn;
+        [Range(0.0f, 1f)] [SerializeField] private float transitionPointThree;
+        [SerializeField] private float transitionThreeIn;
 
         //   [SerializeField] private float _TransitionOut;
-        [Range(0.0f, 1f)] [SerializeField] private float _Loudness = 0f;
+        private float _Loudness = 0f;
 
         private void Update()
         {
@@ -26,24 +29,24 @@ namespace Echosystem.Resonance.Prototyping
 
             if (Observer.CurrentSilenceSphere != null)
             {
-                _zero.TransitionTo(_TransitionIn);
+                _zero.TransitionTo(transitionZeroIn);
             }
             /*
             else if (_Loudness == 0f) {
                 _zero.TransitionTo(_TransitionIn);
             }
             */
-            else if (_Loudness > 0f && _Loudness < 0.5)
+            else if (_Loudness > 0f && _Loudness < transitionPointTwo)
             {
-                _phase1.TransitionTo(_TransitionIn);
+                _phase1.TransitionTo(transitionOneIn);
             }
-            else if (_Loudness > 0.5 && _Loudness <= 0.8)
+            else if (_Loudness > transitionPointTwo && _Loudness <= transitionPointThree)
             {
-                _phase2.TransitionTo(_TransitionIn);
+                _phase2.TransitionTo(transitionTwoIn);
             }
-            else if (_Loudness > 0.8 && _Loudness <= 0.9)
+            else if (_Loudness > transitionPointThree)
             {
-                _phase3.TransitionTo(_TransitionIn);
+                _phase3.TransitionTo(transitionThreeIn);
             }
         }
     }
