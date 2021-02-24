@@ -8,7 +8,6 @@ namespace Echosystem.Resonance.Prototyping
     {
         [SerializeField] private GameObject _innerSphere;
         [SerializeField] private GameObject _outerSphere;
-        private MeshRenderer _outerSphereMesh;
 
         private TriggerEvent _innerSphereTrigger;
         private float _distanceToPlayer;
@@ -28,7 +27,7 @@ namespace Echosystem.Resonance.Prototyping
         {
             _innerSphereTrigger = _innerSphere.GetComponent<TriggerEvent>();
             
-            _outerSphereMesh = _outerSphere.GetComponent<MeshRenderer>();
+            //_outerSphereMesh = _outerSphere.GetComponent<MeshRenderer>();
 
             _outerSphere.transform.localScale = _innerSphere.transform.localScale * 2;
 
@@ -56,7 +55,7 @@ namespace Echosystem.Resonance.Prototyping
                 Observer.CurrentSilenceSphere = null;
             }
 
-            _outerSphereMesh.enabled = _innerSphereTrigger.Triggered;
+            _outerSphere.SetActive(_innerSphereTrigger.Triggered);
 
             if(Observer.Player == null)
                 return;
