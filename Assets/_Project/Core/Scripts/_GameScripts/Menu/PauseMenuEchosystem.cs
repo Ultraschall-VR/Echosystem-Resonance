@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityStandardAssets.Characters.FirstPerson;
 using Echosystem.Resonance.Prototyping;
 
 
@@ -9,7 +10,7 @@ public class PauseMenuEchosystem : MonoBehaviour
     [SerializeField] private GameObject _pauseCamera;
     public GameObject pauseMenuUI;
 
-    // Update is called once per frame
+
     void Update()
     {
         Input();
@@ -17,7 +18,7 @@ public class PauseMenuEchosystem : MonoBehaviour
 
     private void Input()
     {
-        if (UnityEngine.Input.GetKeyDown(KeyCode.Escape))
+        if (UnityEngine.Input.GetKeyDown(KeyCode.Tab))
         {
             if (GameIsPaused)
             {
@@ -34,22 +35,22 @@ public class PauseMenuEchosystem : MonoBehaviour
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
-       // Observer.Player.GetComponent<FirstPersonController>().enabled = true;
-       Observer.Player.SetActive(true);
-       _pauseCamera.SetActive(false);
+        //   Observer.Player.GetComponent<FirstPersonController>().enabled = true;
+        Observer.Player.SetActive(true);
+         _pauseCamera.SetActive(false);
         GameIsPaused = false;
-
     }
 
-    void Pause ()
+    void Pause()
     {
+        Time.timeScale = 0f;
         pauseMenuUI.SetActive(true);
-        Time.timeScale = 0f; 
-     //   Observer.Player.GetComponent<FirstPersonController>().enabled = false;
-        Observer.Player.SetActive(false);
-        _pauseCamera.SetActive(true);
+        
+        //   Observer.Player.GetComponent<FirstPersonController>().enabled = false;
+            Observer.Player.SetActive(false);
+           _pauseCamera.SetActive(true);
         GameIsPaused = true;
-        Cursor.lockState = CursorLockMode.None;
+        Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
     }
 }

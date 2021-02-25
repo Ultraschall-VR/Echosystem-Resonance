@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 namespace Echosystem.Resonance.Prototyping
@@ -9,10 +11,16 @@ namespace Echosystem.Resonance.Prototyping
         public Animator transition;
         public float transitionTime;
         [SerializeField] private GameObject _pauseManager;
+        
+        // AUDIO
+        [SerializeField] private AudioMixer _audioMixer;
+        [SerializeField] private string _exposedParameter;
 
         public void LoadLevel(int sceneNumber)
         {
             Debug.Log("sceneBuildIndex to load:" + sceneNumber);
+            StartCoroutine(FadeMixerGroupFrom.StartFadeFrom(_audioMixer, _exposedParameter, transitionTime, 1,
+                0, 0));
             StartCoroutine(LoadLevelTransition(sceneNumber));
         }
 
