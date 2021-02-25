@@ -11,33 +11,48 @@ public class PitchShifter : MonoBehaviour
 
     void Update()
     {
-        HandleTransform();
-        HandleFocus();
+        if(!SceneSettings.Instance.PitchShifter)
+            return;
+
+        if(SceneSettings.Instance.NonVr)
+            NonVrInput();
+        else
+            VrInput();
         
+
         if (_focusedObject != null)
         {
             if (_focusedObject.GetComponent<Pillar>())
             {
                 var pillar = _focusedObject.GetComponent<Pillar>();
                 
-                
-                
             }
         }
     }
 
-    private void HandleTransform()
+    private void VrInput()
+    {
+        // Implement
+    }
+
+    private void NonVrInput()
+    {
+        HandleTransformNonVr();
+        HandleFocusNonVr();
+    }
+
+    private void HandleTransformNonVr()
     {
         transform.position = Observer.PlayerHead.transform.position;
         transform.eulerAngles = Observer.PlayerHead.transform.eulerAngles;
     }
 
-    private void HandleFocus()
+    private void HandleFocusNonVr()
     {
         if (Observer.FocusedGameObject == null)
         {
             _lineRenderer.enabled = false;
-            DeactivateLock();
+            DeactivateLockNonVr();
             return;
         }
         
@@ -61,7 +76,7 @@ public class PitchShifter : MonoBehaviour
         }
     }
 
-    private void DeactivateLock()
+    private void DeactivateLockNonVr()
     {
         if (!Input.GetMouseButton(0))
         {

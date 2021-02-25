@@ -7,6 +7,9 @@ public class EchoDropThrower : MonoBehaviour
 
     private void Update()
     {
+        if(!SceneSettings.Instance.EchoDrops)
+            return;
+        
         if (SceneSettings.Instance.NonVr)
         {
             NonVrInput();

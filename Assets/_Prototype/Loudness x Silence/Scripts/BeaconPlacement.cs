@@ -6,8 +6,19 @@ public class BeaconPlacement : MonoBehaviour
 
     private void Update()
     {
-        RaycastHit hit;
+        if(!SceneSettings.Instance.Beacons)
+            return;
         
+        if(SceneSettings.Instance.NonVr)
+            NonVrInput();
+        else
+            VRInput();
+    }
+
+    private void NonVrInput()
+    {
+        RaycastHit hit;
+
         if (Input.GetKeyDown(KeyCode.B))
         {
             if (Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity))
@@ -15,20 +26,25 @@ public class BeaconPlacement : MonoBehaviour
                 if (hit.collider.GetComponent<BeaconSocket>())
                 {
                     BeaconSocket beaconSocket = hit.collider.GetComponent<BeaconSocket>();
-                    
-                    if(beaconSocket.IsOccupied)
+
+                    if (beaconSocket.IsOccupied)
                         return;
-                    
+
                     var beacon = Instantiate(_beaconPrefab, beaconSocket.transform.position, Quaternion.identity);
                     var parent = hit.collider.transform;
 
                     beacon.name = _beaconPrefab.name;
-                    
+
                     beacon.transform.SetParent(parent.transform);
 
                     beaconSocket.IsOccupied = true;
                 }
             }
         }
+    }
+
+    private void VRInput()
+    {
+        // Implement
     }
 }
