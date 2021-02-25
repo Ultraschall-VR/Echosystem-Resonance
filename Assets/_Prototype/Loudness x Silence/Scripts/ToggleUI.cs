@@ -3,7 +3,6 @@
 public class ToggleUI : MonoBehaviour
 {
     [SerializeField] private Canvas _canvas;
-    
     [SerializeField] private KeyCode _toggleKey;
 
     void Update()

@@ -8,6 +8,7 @@ namespace Echosystem.Resonance.Prototyping
         public static GameObject PlayerHead;
         public static SilenceSphere CurrentSilenceSphere;
         public static float LoudnessValue;
+        public static GameObject FocusedGameObject;
     }
 }
 

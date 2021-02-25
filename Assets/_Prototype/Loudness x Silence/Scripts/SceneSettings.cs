@@ -7,6 +7,10 @@ public class SceneSettings : MonoBehaviour
     public float EchoDropLifetime;
 
     public bool NonVr;
+
+    public bool Beacons;
+    public bool EchoDrops;
+    public bool PitchShifter;
     
     public static SceneSettings Instance;
 
