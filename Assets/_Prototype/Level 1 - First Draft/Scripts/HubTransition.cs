@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Echosystem.Resonance.Prototyping
 {
@@ -14,24 +12,23 @@ namespace Echosystem.Resonance.Prototyping
         void Start()
         {
             _audioSource = GetComponent<AudioSource>();
-
         }
 
         void Update()
         {
-            if (Observer.CurrentSilenceSphere != null && !_switched)
+            if (Observer.CurrentSilenceSphere != null && !_switched && Observer.SilenceSphereExited)
             {
-                HandleMixer(true);
+                PlayTransitionSound(true);
             }
 
-            else if (Observer.CurrentSilenceSphere == null && _switched)
+            else if (Observer.CurrentSilenceSphere == null && _switched && Observer.SilenceSphereExited)
             {
-                HandleMixer(false);
+                PlayTransitionSound(false);
             }
         }
-        
 
-        private void HandleMixer(bool started)
+
+        private void PlayTransitionSound(bool started)
         {
             _switched = started;
             _audioSource.PlayOneShot(_transitionSound);
