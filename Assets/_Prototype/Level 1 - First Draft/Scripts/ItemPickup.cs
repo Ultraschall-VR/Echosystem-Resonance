@@ -11,14 +11,16 @@ namespace Echosystem.Resonance.Prototyping
         [SerializeField] private AudioClip _pickupSound;
 
         private bool _triggered = false;
-        //  [HideInInspector]
-        //  public bool IsCollected;
-        //  [HideInInspector]
-        //  public bool IsAvailable;
 
         private void Start()
         {
             _audioSource = GetComponent<AudioSource>();
+
+            if (SceneSettings.Instance.GodMode)
+            {
+                Pickup();
+                _triggered = true;
+            }
         }
 
         // Start is called before the first frame update
@@ -30,7 +32,6 @@ namespace Echosystem.Resonance.Prototyping
                 if (CollectibleManager.Index < CollectibleManager.ListCount)
                 {
                     CollectibleManager.Index++;
-                  //  Debug.Log("Index is: " + CollectibleManager.Index);
                 }
 
                 Pickup();
