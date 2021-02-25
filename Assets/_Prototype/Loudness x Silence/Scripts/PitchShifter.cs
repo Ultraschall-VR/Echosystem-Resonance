@@ -25,7 +25,9 @@ public class PitchShifter : MonoBehaviour
             if (_focusedObject.GetComponent<Pillar>())
             {
                 var pillar = _focusedObject.GetComponent<Pillar>();
-                
+
+                pillar.Pitch = Observer.Player.transform.eulerAngles.y/90;
+
             }
         }
     }
