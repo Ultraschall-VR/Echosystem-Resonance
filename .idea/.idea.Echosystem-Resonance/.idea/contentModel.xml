@@ -184,7 +184,7 @@
           </e>
         </e>
         <e p="_Prototype" t="Include">
-          <e p="1. Raum Alexej" t="Include">
+          <e p="Level 1 - First Draft" t="Include">
             <e p="Scripts" t="Include">
               <e p="AudioSourceExtensions.cs" t="Include" />
               <e p="CollectibleManager.cs" t="Include" />
@@ -201,6 +201,9 @@
               </e>
               <e p="BeaconPlacement.cs" t="Include" />
               <e p="BeaconSocket.cs" t="Include" />
+              <e p="ControlsUI" t="Include">
+                <e p="InputCheck.cs" t="Include" />
+              </e>
               <e p="DebugUI" t="Include">
                 <e p="DebugUI.cs" t="Include" />
                 <e p="DebugUi_CurrentSilenceSphere.cs" t="Include" />
@@ -233,7 +236,133 @@
             </e>
           </e>
         </e>
+        <e p="CanvasCheck.cs" t="Include" />
+        <e p="DebugMode.cs" t="Include" />
         <e p="Dependencies" t="Include">
+          <e p="Amazing Assets" t="Include">
+            <e p="Dynamic Radial Masks" t="Include">
+              <e p="Editor" t="Include">
+                <e p="DRMAnimatableObjectDrawer.cs" t="Include" />
+                <e p="DRMAnimatableObjectsPoolEditor.cs" t="Include" />
+                <e p="DRMControllerEditor.cs" t="Include" />
+                <e p="DRMEditorWindow.cs" t="Include" />
+                <e p="DRMReadOnlyAttributePropertyDrawer.cs" t="Include" />
+              </e>
+              <e p="Example scenes" t="Include">
+                <e p="Example Scenes (Packages)" t="Include">
+                  <e p="Readme.txt" t="Include" />
+                </e>
+                <e p="Files" t="Include">
+                  <e p="Scripts" t="Include">
+                    <e p="Canon.cs" t="Include" />
+                    <e p="Follow.cs" t="Include" />
+                    <e p="KillZone.cs" t="Include" />
+                    <e p="MeshFragmenter.cs" t="Include" />
+                    <e p="TreeAnimation.cs" t="Include" />
+                  </e>
+                </e>
+                <e p="Tutorial" t="Include">
+                  <e p="Tutorial (Amplify Shader Editor).shader" t="Include" />
+                  <e p="Tutorial (Hand Written).shader" t="Include" />
+                </e>
+              </e>
+              <e p="Scripts" t="Include">
+                <e p="DRMAnimatableObject.cs" t="Include" />
+                <e p="DRMAnimatableObjectsPool.cs" t="Include" />
+                <e p="DRMAnimatableProperty.cs" t="Include" />
+                <e p="DRMController.cs" t="Include" />
+                <e p="DRMGameObject.cs" t="Include" />
+                <e p="DRMGameObjectsPool.cs" t="Include" />
+                <e p="DRMOnCollision.cs" t="Include" />
+                <e p="DRMOnImpulse.cs" t="Include" />
+                <e p="DRMOnMouseRaycast.cs" t="Include" />
+                <e p="DRMOnParticleCollision.cs" t="Include" />
+                <e p="DRMReadOnlyAttribute.cs" t="Include" />
+                <e p="DRMUtility.cs" t="Include" />
+              </e>
+              <e p="Shaders" t="Include">
+                <e p="CGINC" t="Include">
+                  <e p="Dot" t="Include">
+                    <e p="DynamicRadialMasks_Dot_16_Advanced_Additive_ID1_Local.cginc" t="Include" />
+                    <e p="DynamicRadialMasks_Dot_1_Advanced_Additive_ID1_Local.cginc" t="Include" />
+                    <e p="DynamicRadialMasks_Dot_64_Advanced_Additive_ID1_Local.cginc" t="Include" />
+                  </e>
+                  <e p="HeightField" t="Include">
+                    <e p="DynamicRadialMasks_HeightField_1_Advanced_Additive_ID1_Local.cginc" t="Include" />
+                    <e p="DynamicRadialMasks_HeightField_1_Advanced_Normalized_ID1_Global.cginc" t="Include" />
+                    <e p="DynamicRadialMasks_HeightField_4_Advanced_Additive_ID1_Local.cginc" t="Include" />
+                    <e p="DynamicRadialMasks_HeightField_4_Advanced_Normalized_ID1_Global.cginc" t="Include" />
+                    <e p="DynamicRadialMasks_HeightField_4_Advanced_Normalized_ID1_Local.cginc" t="Include" />
+                    <e p="DynamicRadialMasks_HeightField_64_Advanced_Additive_ID1_Local.cginc" t="Include" />
+                  </e>
+                  <e p="Rings" t="Include">
+                    <e p="DynamicRadialMasks_Rings_1_Advanced_Additive_ID1_Local.cginc" t="Include" />
+                  </e>
+                  <e p="Ripple" t="Include">
+                    <e p="DynamicRadialMasks_Ripple_1_Advanced_Additive_ID1_Local.cginc" t="Include" />
+                  </e>
+                  <e p="Shockwave" t="Include">
+                    <e p="DynamicRadialMasks_Shockwave_1_Advanced_Additive_ID1_Local.cginc" t="Include" />
+                    <e p="DynamicRadialMasks_Shockwave_4_Advanced_Additive_ID1_Local.cginc" t="Include" />
+                    <e p="DynamicRadialMasks_Shockwave_64_Advanced_Additive_ID1_Local.cginc" t="Include" />
+                  </e>
+                  <e p="Torus" t="Include">
+                    <e p="DynamicRadialMasks_Torus_128_Advanced_Additive_ID1_Local.cginc" t="Include" />
+                    <e p="DynamicRadialMasks_Torus_150_Advanced_Additive_ID1_Local.cginc" t="Include" />
+                    <e p="DynamicRadialMasks_Torus_1_Advanced_Additive_ID1_Local.cginc" t="Include" />
+                    <e p="DynamicRadialMasks_Torus_4_Advanced_Additive_ID1_Global.cginc" t="Include" />
+                    <e p="DynamicRadialMasks_Torus_4_Advanced_Additive_ID1_Local.cginc" t="Include" />
+                    <e p="DynamicRadialMasks_Torus_64_Advanced_Normalized_ID1_Local.cginc" t="Include" />
+                  </e>
+                  <e p="Tube" t="Include">
+                    <e p="DynamicRadialMasks_Tube_1_Advanced_Additive_ID1_Local.cginc" t="Include" />
+                    <e p="DynamicRadialMasks_Tube_64_Advanced_Additive_ID1_Local.cginc" t="Include" />
+                  </e>
+                </e>
+                <e p="Core" t="Include">
+                  <e p="Core.cginc" t="Include" />
+                </e>
+                <e p="Templates" t="Include">
+                  <e p="Template_AmplifyShaderEditor_Advanced_Additive.txt" t="Include" />
+                  <e p="Template_AmplifyShaderEditor_Advanced_Normalized.txt" t="Include" />
+                  <e p="Template_AmplifyShaderEditor_Simple_Additive.txt" t="Include" />
+                  <e p="Template_AmplifyShaderEditor_Simple_Normalized.txt" t="Include" />
+                  <e p="Template_Dot_Advanced_Additive.txt" t="Include" />
+                  <e p="Template_Dot_Advanced_Normalized.txt" t="Include" />
+                  <e p="Template_Dot_Simple_Additive.txt" t="Include" />
+                  <e p="Template_Dot_Simple_Normalized.txt" t="Include" />
+                  <e p="Template_HeightField_Advanced_Additive.txt" t="Include" />
+                  <e p="Template_HeightField_Advanced_Normalized.txt" t="Include" />
+                  <e p="Template_HeightField_Simple_Additive.txt" t="Include" />
+                  <e p="Template_HeightField_Simple_Normalized.txt" t="Include" />
+                  <e p="Template_Rings_Advanced_Additive.txt" t="Include" />
+                  <e p="Template_Rings_Advanced_Normalized.txt" t="Include" />
+                  <e p="Template_Rings_Simple_Additive.txt" t="Include" />
+                  <e p="Template_Rings_Simple_Normalized.txt" t="Include" />
+                  <e p="Template_Ripple_Advanced_Additive.txt" t="Include" />
+                  <e p="Template_Ripple_Advanced_Normalized.txt" t="Include" />
+                  <e p="Template_Ripple_Simple_Additive.txt" t="Include" />
+                  <e p="Template_Ripple_Simple_Normalized.txt" t="Include" />
+                  <e p="Template_Shockwave_Advanced_Additive.txt" t="Include" />
+                  <e p="Template_Shockwave_Advanced_Normalized.txt" t="Include" />
+                  <e p="Template_Shockwave_Simple_Additive.txt" t="Include" />
+                  <e p="Template_Shockwave_Simple_Normalized.txt" t="Include" />
+                  <e p="Template_Torus_Advanced_Additive.txt" t="Include" />
+                  <e p="Template_Torus_Advanced_Normalized.txt" t="Include" />
+                  <e p="Template_Torus_Simple_Additive.txt" t="Include" />
+                  <e p="Template_Torus_Simple_Normalized.txt" t="Include" />
+                  <e p="Template_Tube_Advanced_Additive.txt" t="Include" />
+                  <e p="Template_Tube_Advanced_Normalized.txt" t="Include" />
+                  <e p="Template_Tube_Simple_Additive.txt" t="Include" />
+                  <e p="Template_Tube_Simple_Normalized.txt" t="Include" />
+                  <e p="Template_UnityShaderGraph_Advanced_Additive.txt" t="Include" />
+                  <e p="Template_UnityShaderGraph_Advanced_Normalized.txt" t="Include" />
+                  <e p="Template_UnityShaderGraph_Simple_Additive.txt" t="Include" />
+                  <e p="Template_UnityShaderGraph_Simple_Normalized.txt" t="Include" />
+                </e>
+              </e>
+            </e>
+          </e>
           <e p="Bakery" t="Include">
             <e p="BakeryAlwaysRender.cs" t="Include" />
             <e p="BakeryDirectLight.cs" t="Include" />
@@ -1662,6 +1791,8 @@
             <e p="EmojiOne Attribution.txt" t="Include" />
           </e>
         </e>
+        <e p="UICollectibles.cs" t="Include" />
+        <e p="UiManager.cs" t="Include" />
       </e>
       <e p="BakeryEditorAssembly.csproj" t="IncludeRecursive" />
       <e p="BakeryRuntimeAssembly.csproj" t="IncludeRecursive" />

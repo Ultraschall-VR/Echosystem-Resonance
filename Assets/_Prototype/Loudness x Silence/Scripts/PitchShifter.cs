@@ -11,9 +11,12 @@ public class PitchShifter : MonoBehaviour
 
     void Update()
     {
-        if(!SceneSettings.Instance.PitchShifter)
+        if (!SceneSettings.Instance.PitchShifter)
+        {
+            gameObject.SetActive(false);
             return;
-
+        }
+        
         if(SceneSettings.Instance.NonVr)
             NonVrInput();
         else
