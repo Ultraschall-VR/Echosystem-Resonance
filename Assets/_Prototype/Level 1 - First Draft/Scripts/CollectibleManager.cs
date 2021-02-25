@@ -13,7 +13,7 @@ namespace Echosystem.Resonance.Prototyping
         private AudioSource _audioSource;
         public static int Index = 0;
         public static int ListCount;
-        private bool _allCollected = false;
+        public static bool _allCollected = false;
 
         private void Start()
         {
