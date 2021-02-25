@@ -11,6 +11,9 @@ public class SceneSettings : MonoBehaviour
     public bool Beacons;
     public bool EchoDrops;
     public bool PitchShifter;
+
+    public bool DebugMode;
+    public bool GodMode;
     
     public static SceneSettings Instance;
 

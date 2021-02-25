@@ -13,7 +13,7 @@ namespace Echosystem.Resonance.Prototyping
         private AudioSource _audioSource;
         public static int Index = 0;
         public static int ListCount;
-        private bool _allCollected = false;
+        public static bool _allCollected = false;
 
         private void Start()
         {
@@ -25,6 +25,8 @@ namespace Echosystem.Resonance.Prototyping
             _audioSource = GetComponent<AudioSource>();
             ListCount = _collectableMelodies.Count;
 
+            Observer.MaxCollectibleObjects = ListCount;
+
             _allCollected = false;
 
             foreach (var i in _collectableMelodies)
@@ -35,6 +37,13 @@ namespace Echosystem.Resonance.Prototyping
 
         private void Update()
         {
+            if (SceneSettings.Instance.GodMode)
+            {
+                if(Index < ListCount)
+                    Index++;
+            }
+            
+            
             if (Index < ListCount)
             {
                 if (!_collectableMelodies[Index].GetComponent<AudioSource>().isPlaying)
@@ -42,6 +51,8 @@ namespace Echosystem.Resonance.Prototyping
                     Play();
                 }
             }
+
+            Observer.CollectedObjects = Index;
 
             if (Index == ListCount && !_allCollected)
             {
