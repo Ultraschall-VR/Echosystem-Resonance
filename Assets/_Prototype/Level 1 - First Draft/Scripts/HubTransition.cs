@@ -1,16 +1,20 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Echosystem.Resonance.Prototyping
 {
     public class HubTransition : MonoBehaviour
     {
         [SerializeField] private AudioClip _transitionSound;
-        private bool _switched = false;
+        private bool _switched = true;
         private AudioSource _audioSource;
+
 
         void Start()
         {
             _audioSource = GetComponent<AudioSource>();
+
         }
 
         void Update()
@@ -25,6 +29,7 @@ namespace Echosystem.Resonance.Prototyping
                 HandleMixer(false);
             }
         }
+        
 
         private void HandleMixer(bool started)
         {
