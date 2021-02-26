@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using AmazingAssets.DynamicRadialMasks;
 using Echosystem.Resonance.Helper;
 using UnityEngine;
 
@@ -9,7 +8,6 @@ namespace Echosystem.Resonance.Prototyping
     {
         [SerializeField] private GameObject _innerSphere;
         [SerializeField] private GameObject _outerSphere;
-        [SerializeField] private DRMGameObject _drmGameObject;
 
         private TriggerEvent _innerSphereTrigger;
         private float _distanceToPlayer;
@@ -20,8 +18,6 @@ namespace Echosystem.Resonance.Prototyping
 
         private bool _isDecreasing;
 
-        private bool _isIncreasing;
-
         private void Start()
         {
             Initialize();
@@ -30,19 +26,15 @@ namespace Echosystem.Resonance.Prototyping
         private void Initialize()
         {
             _innerSphereTrigger = _innerSphere.GetComponent<TriggerEvent>();
+            
+            //_outerSphereMesh = _outerSphere.GetComponent<MeshRenderer>();
 
             _outerSphere.transform.localScale = _innerSphere.transform.localScale * 2;
-            _drmGameObject.radius = _innerSphere.transform.localScale.x / 2;
 
             _outerSphereSize = _outerSphere.transform.localScale;
-
+            
             _isInitalized = true;
 
-        }
-
-        public void IncreasSphere()
-        {
-            
         }
 
         private void Update()
@@ -50,8 +42,6 @@ namespace Echosystem.Resonance.Prototyping
             if(!_isInitalized)
                 return;
 
-            _drmGameObject.radius = _outerSphere.transform.localScale.x / 2;
-            
             if (_innerSphereTrigger.Triggered)
             {
                 Observer.CurrentSilenceSphere = this;
@@ -119,9 +109,9 @@ namespace Echosystem.Resonance.Prototyping
             }
 
             // Inner Boundary
-            else if (_outerSphere.transform.localScale.x <= _innerSphere.transform.localScale.x * 1f)
+            else if (_outerSphere.transform.localScale.x <= _innerSphere.transform.localScale.x * 1.15f)
             {
-                _outerSphere.transform.localScale = _innerSphere.transform.localScale * 1f;
+                _outerSphere.transform.localScale = _innerSphere.transform.localScale * 1.15f;
             }
         }
     }

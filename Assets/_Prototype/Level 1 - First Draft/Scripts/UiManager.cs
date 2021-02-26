@@ -42,6 +42,8 @@ namespace Echosystem.Resonance.UI
 
         private void Update()
         {
+            Debug.Log("Is Fading: " + _isFading);
+            
             if (Observer.SilenceSphereExited)
             {
                 LoadCanvas(1);

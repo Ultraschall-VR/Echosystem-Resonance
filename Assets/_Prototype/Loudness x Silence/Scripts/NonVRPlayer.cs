@@ -1,8 +1,6 @@
-﻿using AmazingAssets.DynamicRadialMasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class NonVRPlayer : MonoBehaviour
 {
     public Camera PlayerHead;
-    public DRMGameObject DrmGameObject;
 }
