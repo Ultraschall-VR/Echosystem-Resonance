@@ -49,8 +49,10 @@ namespace Echosystem.Resonance.UI
 
             if (Observer.CollectedObjects == Observer.MaxCollectibleObjects)
             {
-                FadeOut();
+                LoadCanvas(2);
             }
+            
+            
         }
 
         #endregion

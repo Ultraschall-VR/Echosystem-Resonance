@@ -161,8 +161,7 @@ GameObject:
   - component: {fileID: 4274248190199655366}
   - component: {fileID: 4274248190199655365}
   - component: {fileID: 4274248190199655364}
-  - component: {fileID: 4274248190199655367}
-  - component: {fileID: 4996143704987759835}
+  - component: {fileID: 7003492567298858210}
   m_Layer: 0
   m_Name: Persistent UI
   m_TagString: Untagged
@@ -252,7 +251,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &4274248190199655367
+--- !u!114 &7003492567298858210
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -261,27 +260,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4274248190199655362}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adf856fa70df15a4d89b314cfa88f20a, type: 3}
+  m_Script: {fileID: 11500000, guid: 35047b6d55506cd4d9fec55ae32a56d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _debugUiObjects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
---- !u!114 &4996143704987759835
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4274248190199655362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6655cde3ef8da5549b991551fcd059b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _canvas: {fileID: 0}
-  _toggleKey: 0
+  _componentsToDisable:
+  - {fileID: 4274248190199655366}
 --- !u!1 &5401627953289298370
 GameObject:
   m_ObjectHideFlags: 0
