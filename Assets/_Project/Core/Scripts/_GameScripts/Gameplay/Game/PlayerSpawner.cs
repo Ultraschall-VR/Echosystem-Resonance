@@ -1,4 +1,5 @@
-﻿using Echosystem.Resonance.Prototyping;
+﻿using AmazingAssets.DynamicRadialMasks;
+using Echosystem.Resonance.Prototyping;
 using UnityEngine;
 
 namespace Echosystem.Resonance.Game
