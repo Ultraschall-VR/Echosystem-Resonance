@@ -8,7 +8,7 @@ namespace Echosystem.Resonance.Prototyping
 
         void Update()
         {
-            if (CollectibleManager._allCollected == true)
+            if (CollectibleManager.AllCollected == true)
             {
                 _openDoor.SetBool("AllCollected", true);
             }
