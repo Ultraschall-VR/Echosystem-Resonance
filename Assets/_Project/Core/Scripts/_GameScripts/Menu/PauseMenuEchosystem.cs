@@ -18,7 +18,7 @@ public class PauseMenuEchosystem : MonoBehaviour
 
     private void Input()
     {
-        if (UnityEngine.Input.GetKeyDown(KeyCode.Tab))
+        if (UnityEngine.Input.GetKeyUp(KeyCode.Escape))
         {
             if (GameIsPaused)
             {
