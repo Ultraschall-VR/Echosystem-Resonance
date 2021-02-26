@@ -184,12 +184,22 @@
           </e>
         </e>
         <e p="_Prototype" t="Include">
+          <e p="Blockmeshing" t="Include">
+            <e p="Level1" t="Include">
+              <e p="CollectableTrigger.cs" t="Include" />
+            </e>
+          </e>
           <e p="Level 1 - First Draft" t="Include">
             <e p="Scripts" t="Include">
               <e p="AudioSourceExtensions.cs" t="Include" />
+              <e p="CanvasCheck.cs" t="Include" />
               <e p="CollectibleManager.cs" t="Include" />
+              <e p="DebugMode.cs" t="Include" />
               <e p="HubTransition.cs" t="Include" />
               <e p="ItemPickup.cs" t="Include" />
+              <e p="PitchShifterable.cs" t="Include" />
+              <e p="UICollectibles.cs" t="Include" />
+              <e p="UiManager.cs" t="Include" />
             </e>
           </e>
           <e p="Loudness x Silence" t="Include">
@@ -236,8 +246,6 @@
             </e>
           </e>
         </e>
-        <e p="CanvasCheck.cs" t="Include" />
-        <e p="DebugMode.cs" t="Include" />
         <e p="Dependencies" t="Include">
           <e p="Amazing Assets" t="Include">
             <e p="Dynamic Radial Masks" t="Include">
@@ -1477,7 +1485,7 @@
             </e>
           </e>
         </e>
-        <e p="PitchShifterable.cs" t="Include" />
+        <e p="LoadLevel.cs" t="Include" />
         <e p="Plugins" t="Include">
           <e p="ScreenshotCompanion" t="Include">
             <e p="Editor" t="Include">
@@ -1791,8 +1799,6 @@
             <e p="EmojiOne Attribution.txt" t="Include" />
           </e>
         </e>
-        <e p="UICollectibles.cs" t="Include" />
-        <e p="UiManager.cs" t="Include" />
       </e>
       <e p="BakeryEditorAssembly.csproj" t="IncludeRecursive" />
       <e p="BakeryRuntimeAssembly.csproj" t="IncludeRecursive" />

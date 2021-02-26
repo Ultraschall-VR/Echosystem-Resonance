@@ -13,7 +13,7 @@ namespace Echosystem.Resonance.Prototyping
         private AudioSource _audioSource;
         public static int Index = 0;
         public static int ListCount;
-        public static bool _allCollected = false;
+        public static bool AllCollected = false;
 
         private void Start()
         {
@@ -27,7 +27,7 @@ namespace Echosystem.Resonance.Prototyping
 
             Observer.MaxCollectibleObjects = ListCount;
 
-            _allCollected = false;
+            AllCollected = false;
 
             foreach (var i in _collectableMelodies)
             {
@@ -43,7 +43,6 @@ namespace Echosystem.Resonance.Prototyping
                     Index++;
             }
             
-            
             if (Index < ListCount)
             {
                 if (!_collectableMelodies[Index].GetComponent<AudioSource>().isPlaying)
@@ -54,9 +53,9 @@ namespace Echosystem.Resonance.Prototyping
 
             Observer.CollectedObjects = Index;
 
-            if (Index == ListCount && !_allCollected)
+            if (Index == ListCount && !AllCollected)
             {
-                _allCollected = true;
+                AllCollected = true;
                 StartCoroutine(PlayCompletionSound(_pause));
             }
         }
