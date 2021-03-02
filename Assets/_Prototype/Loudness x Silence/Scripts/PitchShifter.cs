@@ -29,7 +29,17 @@ public class PitchShifter : MonoBehaviour
             {
                 var pillar = _focusedObject.GetComponent<Pillar>();
 
-                pillar.Pitch = Observer.Player.transform.eulerAngles.y/90;
+                var scrollWheelDelta = Input.mouseScrollDelta.y;
+
+                if (scrollWheelDelta < 0)
+                {
+                    pillar.Pitch -= 0.05f;
+                }
+
+                if (scrollWheelDelta > 0)
+                {
+                    pillar.Pitch += 0.05f;
+                }
 
             }
         }
