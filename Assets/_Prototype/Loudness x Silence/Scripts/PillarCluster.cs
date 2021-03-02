@@ -15,6 +15,12 @@ public class PillarCluster : MonoBehaviour
 
     private void Start()
     {
+        if (_actionToExecute != null)
+        {
+            _actionToExecute.enabled = false;
+        }
+
+        
         foreach (Transform child in transform)
         {
             if (child.GetComponent<Pillar>().IsReference)
@@ -58,6 +64,11 @@ public class PillarCluster : MonoBehaviour
                 pillar.LineRenderer.enabled = true;
                 pillar.LineRenderer.SetPosition(0, pillar.Grip.transform.position);
                 pillar.LineRenderer.SetPosition(1, ReferencePillar.Grip.transform.position);
+
+                if (_actionToExecute != null)
+                {
+                    _actionToExecute.enabled = true;
+                }
             }
         } 
     }
