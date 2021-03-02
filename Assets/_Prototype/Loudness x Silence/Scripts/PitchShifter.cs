@@ -76,6 +76,9 @@ public class PitchShifter : MonoBehaviour
         
         if (Observer.FocusedGameObject.GetComponent<PitchShifterable>())
         {
+            if(!Observer.FocusedGameObject.GetComponent<PitchShifterable>().Active)
+                return;
+            
             if (!_lockedTarget)
             {
                 var pitchShifterable = Observer.FocusedGameObject.GetComponent<PitchShifterable>();
@@ -88,6 +91,19 @@ public class PitchShifter : MonoBehaviour
                 {
                     _lockedTarget = true;
                     _focusedObject = Observer.FocusedGameObject;
+                }
+            }
+        }
+
+        if (_focusedObject != null)
+        {
+            if (Input.GetMouseButtonUp(0))
+            {
+                if (_focusedObject.GetComponent<Pillar>())
+                {
+                    var pillar = _focusedObject.GetComponent<Pillar>();
+                    pillar.CheckPitch();
+                    DeactivateLockNonVr();
                 }
             }
         }
