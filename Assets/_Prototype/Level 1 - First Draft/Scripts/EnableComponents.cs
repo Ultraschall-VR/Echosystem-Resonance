@@ -5,7 +5,7 @@ namespace Echosystem.Resonance.Prototyping
     public class EnableComponents : MonoBehaviour
     {
         private Light _light;
-        [SerializeField] private float _distance;
+       // [SerializeField] private float _distance;
 
         void Start()
         {
@@ -14,7 +14,7 @@ namespace Echosystem.Resonance.Prototyping
 
         void Update()
         {
-            if (Vector3.Distance(transform.position, Observer.Player.transform.position) > _distance)
+            if (Vector3.Distance(transform.position, Observer.Player.transform.position) > SceneSettings.Instance.LightsourceRadius)
             {
                 _light.enabled = false;
             }
