@@ -1,50 +1,54 @@
 ﻿using UnityEngine;
 
-public class BeaconPlacement : MonoBehaviour
+namespace Echosystem.Resonance.Prototyping
 {
-    [SerializeField] private GameObject _beaconPrefab;
-
-    private void Update()
+    public class BeaconPlacement : MonoBehaviour
     {
-        if(!SceneSettings.Instance.Beacons)
-            return;
-        
-        if(SceneSettings.Instance.NonVr)
-            NonVrInput();
-        else
-            VRInput();
-    }
+        [SerializeField] private GameObject _beaconPrefab;
 
-    private void NonVrInput()
-    {
-        RaycastHit hit;
-
-        if (Input.GetKeyDown(KeyCode.B))
+        private void Update()
         {
-            if (Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity))
+            if(!SceneSettings.Instance.Beacons)
+                return;
+        
+            if(SceneSettings.Instance.NonVr)
+                NonVrInput();
+            else
+                VRInput();
+        }
+
+        private void NonVrInput()
+        {
+            RaycastHit hit;
+
+            if (Input.GetKeyDown(KeyCode.B))
             {
-                if (hit.collider.GetComponent<BeaconSocket>())
+                if (Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity))
                 {
-                    BeaconSocket beaconSocket = hit.collider.GetComponent<BeaconSocket>();
+                    if (hit.collider.GetComponent<BeaconSocket>())
+                    {
+                        BeaconSocket beaconSocket = hit.collider.GetComponent<BeaconSocket>();
 
-                    if (beaconSocket.IsOccupied)
-                        return;
+                        if (beaconSocket.IsOccupied)
+                            return;
 
-                    var beacon = Instantiate(_beaconPrefab, beaconSocket.transform.position, Quaternion.identity);
-                    var parent = hit.collider.transform;
+                        var beacon = Instantiate(_beaconPrefab, beaconSocket.transform.position, Quaternion.identity);
+                        var parent = hit.collider.transform;
 
-                    beacon.name = _beaconPrefab.name;
+                        beacon.name = _beaconPrefab.name;
 
-                    beacon.transform.SetParent(parent.transform);
+                        beacon.transform.SetParent(parent.transform);
 
-                    beaconSocket.IsOccupied = true;
+                        beaconSocket.IsOccupied = true;
+                    }
                 }
             }
         }
-    }
 
-    private void VRInput()
-    {
-        // Implement
+        private void VRInput()
+        {
+            // Implement
+        }
     }
+  
 }
