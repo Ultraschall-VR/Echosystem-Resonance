@@ -30,6 +30,9 @@ public class PitchShifter : MonoBehaviour
                 var pillar = _focusedObject.GetComponent<Pillar>();
 
                 var scrollWheelDelta = Input.mouseScrollDelta.y;
+                
+                _lineRenderer.SetPosition(0, _tip.position);
+                _lineRenderer.SetPosition(1, pillar.GetComponent<PitchShifterable>().Grip.position);
 
                 if (scrollWheelDelta < 0)
                 {
@@ -80,10 +83,9 @@ public class PitchShifter : MonoBehaviour
                 _lineRenderer.enabled = true;
                 _lineRenderer.SetPosition(0, _tip.position);
                 _lineRenderer.SetPosition(1, pitchShifterable.Grip.position);
-                
+
                 if (Input.GetMouseButton(0))
                 {
-                    _lineRenderer.enabled = false;
                     _lockedTarget = true;
                     _focusedObject = Observer.FocusedGameObject;
                 }
@@ -95,6 +97,7 @@ public class PitchShifter : MonoBehaviour
     {
         if (!Input.GetMouseButton(0))
         {
+            _lineRenderer.enabled = false;
             _lockedTarget = false;
             _focusedObject = null;
         }
