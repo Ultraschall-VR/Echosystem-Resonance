@@ -9,6 +9,8 @@ namespace Echosystem.Resonance.Prototyping
 
         private AudioSource _audioSource;
         [SerializeField] private AudioClip _placementSound;
+        [Range(0,1)]
+        [SerializeField] private float _volume;
         private bool _triggered = false;
 
         private void Start()
@@ -28,7 +30,8 @@ namespace Echosystem.Resonance.Prototyping
 
         private void Placement()
         {
-            AudioSource.PlayClipAtPoint(_placementSound, transform.position);
+           // AudioSource.PlayClipAtPoint(_placementSound, transform.position);
+           AudioSourceExtensions.PlayClip2D(_placementSound, _volume);
             StartCoroutine(FadeOut(1f));
         }
 
