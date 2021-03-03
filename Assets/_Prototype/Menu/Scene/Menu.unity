@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -231,6 +231,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 497473728180285717, guid: 17192ba363d4243b08a150764487c430,
         type: 3}
+      propertyPath: duration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 497473728180285717, guid: 17192ba363d4243b08a150764487c430,
+        type: 3}
       propertyPath: audioMixer
       value: 
       objectReference: {fileID: 24100000, guid: fda9214ce9b1346cdb2844990b7c9aa1,
@@ -240,10 +245,10 @@ PrefabInstance:
       propertyPath: exposedParameter
       value: masterVol
       objectReference: {fileID: 0}
-    - target: {fileID: 497473728180285717, guid: 17192ba363d4243b08a150764487c430,
+    - target: {fileID: 497473728180285719, guid: 17192ba363d4243b08a150764487c430,
         type: 3}
-      propertyPath: duration
-      value: 0.5
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 497473728180285719, guid: 17192ba363d4243b08a150764487c430,
         type: 3}
@@ -262,6 +267,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 497473728180285719, guid: 17192ba363d4243b08a150764487c430,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 497473728180285719, guid: 17192ba363d4243b08a150764487c430,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -274,16 +284,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 497473728180285719, guid: 17192ba363d4243b08a150764487c430,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 497473728180285719, guid: 17192ba363d4243b08a150764487c430,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 497473728180285719, guid: 17192ba363d4243b08a150764487c430,
         type: 3}
@@ -367,16 +367,16 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 38c9b0136a54e2c40a961f27ca05f67b, type: 2}
-  m_sharedMaterial: {fileID: 1419574179767894924, guid: 38c9b0136a54e2c40a961f27ca05f67b,
+  m_fontAsset: {fileID: 11400000, guid: ef66318e8bb69dd448f7b0c5b399805d, type: 2}
+  m_sharedMaterial: {fileID: 4270013700963562539, guid: ef66318e8bb69dd448f7b0c5b399805d,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281735430
-  m_fontColor: {r: 0.023529414, g: 0.098039225, b: 0.21176472, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -503,7 +503,7 @@ VideoPlayer:
   m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
-  m_Looping: 0
+  m_Looping: 1
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
 --- !u!1 &256671906
@@ -630,16 +630,16 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 38c9b0136a54e2c40a961f27ca05f67b, type: 2}
-  m_sharedMaterial: {fileID: 1419574179767894924, guid: 38c9b0136a54e2c40a961f27ca05f67b,
+  m_fontAsset: {fileID: 11400000, guid: ef66318e8bb69dd448f7b0c5b399805d, type: 2}
+  m_sharedMaterial: {fileID: 4270013700963562539, guid: ef66318e8bb69dd448f7b0c5b399805d,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281735430
-  m_fontColor: {r: 0.023529414, g: 0.098039225, b: 0.21176472, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1469,7 +1469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.023529414, g: 0.098039225, b: 0.21176472, a: 0.99215686}
+  m_Color: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 0.99215686}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2616,8 +2616,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281735430
-  m_fontColor: {r: 0.023529414, g: 0.098039225, b: 0.21176472, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3055,15 +3055,15 @@ RectTransform:
   m_GameObject: {fileID: 1221126284}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 1368063903}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -343, y: -193}
-  m_SizeDelta: {x: 422.45563, y: 316.42905}
+  m_AnchoredPosition: {x: -270, y: -208}
+  m_SizeDelta: {x: 840.0329, y: 629.20404}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1221126286
 MonoBehaviour:
@@ -3110,7 +3110,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1221126284}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: a6d27d5a06e9f3c44934e4b32850f89a, type: 2}
   m_CullingMode: 0
@@ -4380,8 +4380,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Level 2: Coming soon...'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ce46258c6bf23654b8c79bca343fe3cf, type: 2}
-  m_sharedMaterial: {fileID: 6323309413397793776, guid: ce46258c6bf23654b8c79bca343fe3cf,
+  m_fontAsset: {fileID: 11400000, guid: ef66318e8bb69dd448f7b0c5b399805d, type: 2}
+  m_sharedMaterial: {fileID: 4270013700963562539, guid: ef66318e8bb69dd448f7b0c5b399805d,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -4406,8 +4406,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45
-  m_fontSizeBase: 45
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5135,8 +5135,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281735430
-  m_fontColor: {r: 0.023529414, g: 0.098039225, b: 0.21176472, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5327,8 +5327,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Level 1: Find all melodies and don''t die!'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ce46258c6bf23654b8c79bca343fe3cf, type: 2}
-  m_sharedMaterial: {fileID: 6323309413397793776, guid: ce46258c6bf23654b8c79bca343fe3cf,
+  m_fontAsset: {fileID: 11400000, guid: ef66318e8bb69dd448f7b0c5b399805d, type: 2}
+  m_sharedMaterial: {fileID: 4270013700963562539, guid: ef66318e8bb69dd448f7b0c5b399805d,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -5353,8 +5353,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45
-  m_fontSizeBase: 45
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5389,7 +5389,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -0.7338867, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5846,6 +5846,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 956718853522191562, guid: 8e82a6755cdcc41bbacc743d3e1c2927,
         type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 956718853522191562, guid: 8e82a6755cdcc41bbacc743d3e1c2927,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 481.21426
       objectReference: {fileID: 0}
@@ -5861,6 +5866,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 956718853522191562, guid: 8e82a6755cdcc41bbacc743d3e1c2927,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 956718853522191562, guid: 8e82a6755cdcc41bbacc743d3e1c2927,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
@@ -5873,16 +5883,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 956718853522191562, guid: 8e82a6755cdcc41bbacc743d3e1c2927,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 956718853522191562, guid: 8e82a6755cdcc41bbacc743d3e1c2927,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 956718853522191562, guid: 8e82a6755cdcc41bbacc743d3e1c2927,
         type: 3}
