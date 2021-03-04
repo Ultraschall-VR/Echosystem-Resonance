@@ -55,6 +55,7 @@ namespace Echosystem.Resonance.Prototyping
             if (_innerSphereTrigger.Triggered)
             {
                 Observer.CurrentSilenceSphere = this;
+                Observer.LastSilenceSphere = this;
                 
                 if(!_isDecreasing)
                     DefineBoundaries();
@@ -66,18 +67,7 @@ namespace Echosystem.Resonance.Prototyping
             }
 
             _outerSphere.SetActive(_innerSphereTrigger.Triggered);
-
-            if(Observer.Player == null)
-                return;
-
-            if (Observer.CurrentSilenceSphere == this)
-            {
-                Observer.Player.GetComponent<LineOfSight>().SightCylinder.SetActive(false);
-            }
-            else if (Observer.CurrentSilenceSphere == null)
-            {
-                Observer.Player.GetComponent<LineOfSight>().SightCylinder.SetActive(true);
-            }
+            
         }
 
         public void DecreaseSize()
