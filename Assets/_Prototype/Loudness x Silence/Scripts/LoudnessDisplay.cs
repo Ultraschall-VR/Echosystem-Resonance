@@ -15,12 +15,14 @@ public class LoudnessDisplay : MonoBehaviour
 
     [SerializeField] private CanvasGroup _blackFade;
     [SerializeField] private CanvasGroup _deathText;
+    [SerializeField] private CanvasGroup _subText;
 
     private void Start()
     {
         _slider = GetComponent<Slider>();
         _blackFade.alpha = 0.0f;
         _deathText.alpha = 0.0f;
+        _subText.alpha = 0.0f;
     }
 
     private void Update()
@@ -46,7 +48,7 @@ public class LoudnessDisplay : MonoBehaviour
     private IEnumerator FadeToBlack()
     {
         float t = 0.0f;
-        float timer = SceneSettings.Instance.RespawnTime / 4;
+        float timer = SceneSettings.Instance.RespawnTime / 5;
 
         while (t < timer)
         {
@@ -72,6 +74,16 @@ public class LoudnessDisplay : MonoBehaviour
         {
             t += Time.deltaTime;
 
+            _subText.alpha = Mathf.Lerp(0, 1, t / timer);
+            yield return null;
+        }
+        
+        t = 0.0f;
+        
+        while (t < timer)
+        {
+            t += Time.deltaTime;
+
             _deathText.alpha = Mathf.Lerp(1, 0, t / timer);
             yield return null;
         }
@@ -83,6 +95,7 @@ public class LoudnessDisplay : MonoBehaviour
             t += Time.deltaTime;
 
             _blackFade.alpha = Mathf.Lerp(1, 0, t / timer);
+            _subText.alpha = Mathf.Lerp(1, 0, t / timer);
             yield return null;
         }
 
