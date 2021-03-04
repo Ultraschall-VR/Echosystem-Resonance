@@ -52,7 +52,7 @@ MonoBehaviour:
   phaseSpeed: 2
   smooth: 3
   drawInEditor: 1
-  currentPhase: 0.24000001
+  currentPhase: 0.4
 --- !u!1 &669752779665563010
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,7 +210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _innerSphere: {fileID: 669752779665563010}
   _outerSphere: {fileID: 6409684167802253930}
-  _drmGameObject: {fileID: 619203336830692612}
+  DrmGameObject: {fileID: 619203336830692612}
 --- !u!1001 &2448688301085159357
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -218,6 +218,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 669752780566557099}
     m_Modifications:
+    - target: {fileID: 8721423827530784213, guid: 14269f2f0433085489828361965a5fe1,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8721423827530784213, guid: 14269f2f0433085489828361965a5fe1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -235,6 +240,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8721423827530784213, guid: 14269f2f0433085489828361965a5fe1,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8721423827530784213, guid: 14269f2f0433085489828361965a5fe1,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -247,16 +257,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8721423827530784213, guid: 14269f2f0433085489828361965a5fe1,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8721423827530784213, guid: 14269f2f0433085489828361965a5fe1,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8721423827530784213, guid: 14269f2f0433085489828361965a5fe1,
         type: 3}

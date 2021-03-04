@@ -7,6 +7,8 @@ namespace Echosystem.Resonance.Prototyping
         public static GameObject Player;
         public static GameObject PlayerHead;
         public static SilenceSphere CurrentSilenceSphere;
+        public static SilenceSphere LastSilenceSphere;
+        public static bool IsRespawning;
         public static bool SilenceSphereExited;
         public static float LoudnessValue;
         public static GameObject FocusedGameObject;

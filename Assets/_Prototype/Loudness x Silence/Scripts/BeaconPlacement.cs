@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using AmazingAssets.DynamicRadialMasks;
+using UnityEngine;
 
 namespace Echosystem.Resonance.Prototyping
 {
@@ -34,6 +35,8 @@ namespace Echosystem.Resonance.Prototyping
 
                         var beacon = Instantiate(_beaconPrefab, beaconSocket.transform.position, Quaternion.identity);
                         var parent = hit.collider.transform;
+
+
 
                         beacon.name = _beaconPrefab.name;
 
