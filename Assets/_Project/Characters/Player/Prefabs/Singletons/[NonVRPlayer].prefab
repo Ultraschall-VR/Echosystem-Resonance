@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 11400000}
   - component: {fileID: 5400000}
   - component: {fileID: 8200000}
-  - component: {fileID: 1562883441304746962}
   - component: {fileID: 6949215050401687868}
   m_Layer: 8
   m_Name: '[NonVRPlayer]'
@@ -295,19 +294,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &1562883441304746962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 373cbb0732d206443b126f2da68a88a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SightCylinder: {fileID: 8522892416170874172}
 --- !u!114 &6949215050401687868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -498,7 +484,7 @@ MonoBehaviour:
   phaseSpeed: 2
   smooth: 3
   drawInEditor: 1
-  currentPhase: 0.4
+  currentPhase: 1
 --- !u!1 &4658215362913724876
 GameObject:
   m_ObjectHideFlags: 0
@@ -755,6 +741,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3230658776065873288, guid: c9edab398f82ce74b8a204bfef6765a4,
         type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3230658776065873288, guid: c9edab398f82ce74b8a204bfef6765a4,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -770,6 +761,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3230658776065873288, guid: c9edab398f82ce74b8a204bfef6765a4,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3230658776065873288, guid: c9edab398f82ce74b8a204bfef6765a4,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -782,16 +778,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3230658776065873288, guid: c9edab398f82ce74b8a204bfef6765a4,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3230658776065873288, guid: c9edab398f82ce74b8a204bfef6765a4,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3230658776065873288, guid: c9edab398f82ce74b8a204bfef6765a4,
         type: 3}
@@ -840,6 +826,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8178594083894092840, guid: 3e4a8e1166da74148b2fd4ba2953faa6,
         type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8178594083894092840, guid: 3e4a8e1166da74148b2fd4ba2953faa6,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -855,6 +846,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8178594083894092840, guid: 3e4a8e1166da74148b2fd4ba2953faa6,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8178594083894092840, guid: 3e4a8e1166da74148b2fd4ba2953faa6,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -867,16 +863,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8178594083894092840, guid: 3e4a8e1166da74148b2fd4ba2953faa6,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8178594083894092840, guid: 3e4a8e1166da74148b2fd4ba2953faa6,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8178594083894092840, guid: 3e4a8e1166da74148b2fd4ba2953faa6,
         type: 3}

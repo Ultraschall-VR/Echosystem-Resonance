@@ -15,6 +15,10 @@ public class SceneSettings : MonoBehaviour
 
     public bool DebugMode;
     public bool GodMode;
+
+    public bool LoudnessMechanic;
+    public float RespawnTime;
+    public bool PlayerCanDie;
     
     public static SceneSettings Instance;
 
