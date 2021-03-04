@@ -8,12 +8,15 @@ namespace Echosystem.Resonance.Prototyping
     public class CollectibleManager : MonoBehaviour
     {
         [SerializeField] private AudioClip _completionSound;
+        [SerializeField] private AudioClip _midAchievementSound;
         [SerializeField] private float _pause = 1;
+        [SerializeField] private int _midAchievementAfter;
         [SerializeField] private List<GameObject> _collectableMelodies;
         private AudioSource _audioSource;
         public static int Index = 0;
         public static int ListCount;
-        public static bool AllCollected = false;
+        public static bool AllCollected;
+        private bool _midGoal;
 
         private void Start()
         {
@@ -28,6 +31,7 @@ namespace Echosystem.Resonance.Prototyping
             Observer.MaxCollectibleObjects = ListCount;
 
             AllCollected = false;
+            _midGoal = false;
 
             foreach (var i in _collectableMelodies)
             {
@@ -58,6 +62,12 @@ namespace Echosystem.Resonance.Prototyping
                 AllCollected = true;
                 StartCoroutine(PlayCompletionSound(_pause));
             }
+
+            if (Index == _midAchievementAfter && !_midGoal)
+            {
+                _midGoal = true;
+                StartCoroutine(PlayMidAchievementSound(_pause));
+            }
         }
 
         private void Play()
@@ -71,6 +81,13 @@ namespace Echosystem.Resonance.Prototyping
         {
             yield return new WaitForSeconds(duration);
             _audioSource.PlayOneShot(_completionSound);
+            yield return null;
+        }
+        
+        private IEnumerator PlayMidAchievementSound(float duration)
+        {
+            yield return new WaitForSeconds(duration);
+            _audioSource.PlayOneShot(_midAchievementSound);
             yield return null;
         }
     }
