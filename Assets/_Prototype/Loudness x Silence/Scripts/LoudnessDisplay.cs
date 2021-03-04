@@ -50,6 +50,8 @@ public class LoudnessDisplay : MonoBehaviour
         float t = 0.0f;
         float timer = SceneSettings.Instance.RespawnTime / 5;
 
+        Observer.IsRespawning = true;
+
         while (t < timer)
         {
             t += Time.deltaTime;
@@ -98,6 +100,8 @@ public class LoudnessDisplay : MonoBehaviour
             _subText.alpha = Mathf.Lerp(1, 0, t / timer);
             yield return null;
         }
+        
+        Observer.IsRespawning = false;
 
         yield return null;
     }

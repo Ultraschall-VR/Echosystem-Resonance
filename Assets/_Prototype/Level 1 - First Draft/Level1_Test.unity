@@ -4987,6 +4987,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD
       objectReference: {fileID: 0}
+    - target: {fileID: 5041424352006551074, guid: 48e198e2b4759874e81f3d058fb810f0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5041424352006551085, guid: 48e198e2b4759874e81f3d058fb810f0,
         type: 3}
       propertyPath: m_Pivot.x
@@ -9529,8 +9534,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drmController: {fileID: 619203336845894392}
-  drmGameObjects:
-  - {fileID: 619203336830692612}
+  drmGameObjects: []
 --- !u!4 &619203336441138396
 Transform:
   m_ObjectHideFlags: 0
@@ -9562,18 +9566,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
---- !u!114 &619203336830692612 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 619203336830692612, guid: 6e3f39e12dfec8d4a8c34a074c5b5bb7,
-    type: 3}
-  m_PrefabInstance: {fileID: 669752779679698049}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92de4220c61c9f6449f2a9668f90cd1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &619203336845894391
 Transform:
   m_ObjectHideFlags: 0
@@ -9611,19 +9603,19 @@ MonoBehaviour:
   shaderData_Position:
   - {x: 0, y: 0, z: 0, w: 0}
   shaderData_Radius:
-  - 10
+  - 0
   shaderData_Intensity:
-  - 1
+  - 0
   shaderData_NoiseStrength:
-  - 5
+  - 0
   shaderData_EdgeSize:
-  - 3.88
+  - 0
   shaderData_RingCount:
-  - 3
+  - 0
   shaderData_Phase:
   - 0
   shaderData_Frequency:
-  - 10
+  - 0
   shaderData_Smooth:
   - 0
 --- !u!1 &619203336845894393
@@ -14167,7 +14159,7 @@ PrefabInstance:
     - target: {fileID: 669752780566557099, guid: 6e3f39e12dfec8d4a8c34a074c5b5bb7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.39
       objectReference: {fileID: 0}
     - target: {fileID: 669752780566557099, guid: 6e3f39e12dfec8d4a8c34a074c5b5bb7,
         type: 3}
@@ -14286,16 +14278,6 @@ PrefabInstance:
     - target: {fileID: 3099005785148247067, guid: 8679c09ff22bc5547b6511399eaa7e74,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5076075257894665006, guid: 8679c09ff22bc5547b6511399eaa7e74,
-        type: 3}
-      propertyPath: RespawnTime
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5076075257894665006, guid: 8679c09ff22bc5547b6511399eaa7e74,
-        type: 3}
-      propertyPath: PlayerCanDie
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6194393673456226716, guid: 8679c09ff22bc5547b6511399eaa7e74,
