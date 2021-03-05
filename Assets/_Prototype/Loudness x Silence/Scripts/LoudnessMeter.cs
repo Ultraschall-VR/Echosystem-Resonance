@@ -64,7 +64,7 @@ namespace Echosystem.Resonance.Prototyping
             }
             
             Observer.Player.GetComponent<CharacterController>().enabled = false;
-            Observer.Player.transform.position = Observer.LastSilenceSphere.transform.position;
+            Observer.Player.transform.position = Observer.LastSilenceSphere.transform.position + new Vector3(0, 0.5f,0);
             
             Observer.Player.GetComponent<CharacterController>().enabled = true;
 

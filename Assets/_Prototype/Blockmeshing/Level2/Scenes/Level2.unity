@@ -1209,13 +1209,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 114375175}
-  m_LocalRotation: {x: 0.4823081, y: -0.51648486, z: 0.45675075, w: 0.5403713}
+  m_LocalRotation: {x: 0.5768159, y: -0.296983, z: -0.2100918, w: 0.7314001}
   m_LocalPosition: {x: 0, y: 40.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 942646496}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 96.754, y: 90.605995, z: 177.768}
+  m_LocalEulerAnglesHint: {x: 134.03, y: 103.154, z: 110.754}
 --- !u!108 &114375177
 Light:
   m_ObjectHideFlags: 0
@@ -1227,7 +1227,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7877358, g: 0.88265884, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -14479,7 +14479,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1327185130}
   m_LocalRotation: {x: -0, y: -0.73064345, z: -0, w: 0.68275917}
-  m_LocalPosition: {x: -204.44, y: 5.85, z: 48.02}
+  m_LocalPosition: {x: -202.021, y: 5.53, z: 48.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 942646496}
@@ -14496,7 +14496,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0, g: 0.52386, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 5
   m_Range: 30
   m_SpotAngle: 30
@@ -16407,7 +16407,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0, g: 0.52386, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 5
   m_Range: 30
   m_SpotAngle: 30
@@ -22110,6 +22110,54 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1771921561}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1775808031
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1775808033}
+  - component: {fileID: 1775808032}
+  m_Layer: 0
+  m_Name: '[PostProcessing]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1775808032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1775808031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 3e894475b977b0d4b8f222a4aec27cb8, type: 2}
+--- !u!4 &1775808033
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1775808031}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 23.429998, y: 10.376999, z: -3.966}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1780273804
 GameObject:
   m_ObjectHideFlags: 0
@@ -22468,7 +22516,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0, g: 0.52386, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 5
   m_Range: 30
   m_SpotAngle: 30
@@ -26480,7 +26528,7 @@ MonoBehaviour:
   shaderData_RingCount:
   - 3
   shaderData_Phase:
-  - 0
+  - 0.24000001
   shaderData_Frequency:
   - 10
   shaderData_Smooth:
@@ -26706,7 +26754,7 @@ PrefabInstance:
     - target: {fileID: 5076075257894665006, guid: 8679c09ff22bc5547b6511399eaa7e74,
         type: 3}
       propertyPath: RespawnTime
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5076075257894665006, guid: 8679c09ff22bc5547b6511399eaa7e74,
         type: 3}
@@ -26721,7 +26769,7 @@ PrefabInstance:
     - target: {fileID: 5076075257894665006, guid: 8679c09ff22bc5547b6511399eaa7e74,
         type: 3}
       propertyPath: LoudnessIncreaseTime
-      value: 20
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 6194393673456226716, guid: 8679c09ff22bc5547b6511399eaa7e74,
         type: 3}

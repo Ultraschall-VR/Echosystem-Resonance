@@ -70,6 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05ec5cf00ca181d45a42ba1870e148c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Enabled: 0
   m_IsWalking: 0
   m_WalkSpeed: 5
   m_RunSpeed: 10
@@ -321,7 +322,7 @@ GameObject:
   - component: {fileID: 8100000}
   - component: {fileID: 12474086}
   - component: {fileID: 2463171267640877933}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: FirstPersonCharacter
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -423,7 +424,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -484,7 +485,7 @@ MonoBehaviour:
   phaseSpeed: 2
   smooth: 3
   drawInEditor: 1
-  currentPhase: 1
+  currentPhase: 1.2
 --- !u!1 &4658215362913724876
 GameObject:
   m_ObjectHideFlags: 0
@@ -618,7 +619,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0483dc2eea0807d44a8439d3f37eb83f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentLoudness: 0
 --- !u!1 &8522892416170874172
 GameObject:
   m_ObjectHideFlags: 0
