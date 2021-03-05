@@ -33,7 +33,7 @@ namespace Echosystem.Resonance.Prototyping
                         if (beaconSocket.IsOccupied)
                             return;
 
-                        var beacon = Instantiate(_beaconPrefab, beaconSocket.transform.position, Quaternion.identity);
+                        var beacon = Instantiate(_beaconPrefab, beaconSocket.transform.position+new Vector3(0, 0.5f, 0), Quaternion.identity);
                         var parent = hit.collider.transform;
 
 

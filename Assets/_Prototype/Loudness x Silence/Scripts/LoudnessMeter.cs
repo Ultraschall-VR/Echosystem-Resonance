@@ -54,7 +54,7 @@ namespace Echosystem.Resonance.Prototyping
             yield return new WaitForSeconds(SceneSettings.Instance.RespawnTime/5);
             
             float t = 0.0f;
-            float timer = SceneSettings.Instance.RespawnTime / 3;
+            float timer = SceneSettings.Instance.RespawnTime / 5;
 
             while (t < timer)
             {

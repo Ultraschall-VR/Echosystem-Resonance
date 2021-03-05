@@ -18,12 +18,9 @@ namespace Echosystem.Resonance.UI
 
         private bool _isFading;
 
-        #region UnityEvents
+        public int Index;
 
-        private void Awake()
-        {
-            
-        }
+        #region UnityEvents
 
         private void Start()
         {
@@ -84,6 +81,8 @@ namespace Echosystem.Resonance.UI
         {
             HideAll();
             _canvases[index].enabled = true;
+
+            Index = index;
         }
 
         private IEnumerator Fade(bool isFadeOut)
