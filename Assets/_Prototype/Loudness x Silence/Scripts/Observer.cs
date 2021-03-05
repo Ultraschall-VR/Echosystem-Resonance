@@ -15,6 +15,20 @@ namespace Echosystem.Resonance.Prototyping
         public static int CollectedObjects;
         public static int MaxCollectibleObjects;
 
+        private void Awake()
+        {
+            Player = null;
+            PlayerHead = null;
+            CurrentSilenceSphere = null;
+            LastSilenceSphere = null;
+            IsRespawning = false;
+            SilenceSphereExited = false;
+            LoudnessValue = 0.0f;
+            FocusedGameObject = null;
+            CollectedObjects = 0;
+            MaxCollectibleObjects = 0;
+        }
+
         private void Update()
         {
             CheckForFirstSilenceSphereExit();

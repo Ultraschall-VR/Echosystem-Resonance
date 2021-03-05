@@ -55,11 +55,11 @@ public class LoudnessDisplay : MonoBehaviour
 
     private IEnumerator FadeToBlack()
     {
-        float t = 0.0f;
-        float timer = SceneSettings.Instance.RespawnTime / 5;
-
         Observer.IsRespawning = true;
 
+        float t = 0.0f;
+        float timer = SceneSettings.Instance.RespawnTime / 5;
+        
         while (t < timer)
         {
             t += Time.deltaTime;

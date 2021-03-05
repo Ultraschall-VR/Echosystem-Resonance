@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,6 +18,13 @@ namespace Echosystem.Resonance.Prototyping
         public static int ListCount;
         public static bool AllCollected;
         public static bool MidGoal;
+
+        private void Awake()
+        {
+            Index = 0;
+            ListCount = 0;
+            AllCollected = false;
+        }
 
         private void Start()
         {
