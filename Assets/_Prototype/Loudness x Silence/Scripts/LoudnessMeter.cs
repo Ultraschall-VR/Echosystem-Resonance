@@ -51,17 +51,24 @@ namespace Echosystem.Resonance.Prototyping
 
         private IEnumerator ResetPlayer()
         {
+            yield return new WaitForSeconds(SceneSettings.Instance.RespawnTime/5);
+            
+            float t = 0.0f;
+            float timer = SceneSettings.Instance.RespawnTime / 3;
+
+            while (t < timer)
+            {
+                t += Time.deltaTime;
+                _currentLoudness = Mathf.Lerp(1, 0, t / timer);
+                yield return null;
+            }
+            
             Observer.Player.GetComponent<CharacterController>().enabled = false;
-
-            float time = SceneSettings.Instance.RespawnTime / 2;
-            
-            yield return new WaitForSeconds(time);
-            
-            _currentLoudness = 0.0f;
-
             Observer.Player.transform.position = Observer.LastSilenceSphere.transform.position;
             
             Observer.Player.GetComponent<CharacterController>().enabled = true;
+
+            yield return null;
         }
     }
 }
