@@ -51,8 +51,6 @@ namespace Echosystem.Resonance.UI
             {
                 LoadCanvas(2);
             }
-            
-            
         }
 
         #endregion
