@@ -1,18 +1,26 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Echosystem.Resonance.Prototyping
 {
     public class CollectableTrigger : MonoBehaviour
     {
-        [SerializeField] private Animator _openDoor;
+        private Animator _openDoor;
+        [SerializeField] private bool _midGoalDoor;
+
+
+        private void Start()
+        {
+            _openDoor = GetComponent<Animator>();
+        }
 
         void Update()
         {
-            if (CollectibleManager.MidGoal == true)
-                _openDoor.SetBool("MidGoal", true);
-            
-            if (CollectibleManager.AllCollected == true)
-                _openDoor.SetBool("AllCollected", true);
+            if (CollectibleManager.MidGoal == true && _midGoalDoor)
+                _openDoor.SetBool("OpenDoor", true);
+
+            if (Observer.CollectedObjects == Observer.MaxCollectibleObjects && !_midGoalDoor)
+                _openDoor.SetBool("OpenDoor", true);
         }
     }
 }

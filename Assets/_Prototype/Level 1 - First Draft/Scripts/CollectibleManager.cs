@@ -11,6 +11,7 @@ namespace Echosystem.Resonance.Prototyping
         [SerializeField] private AudioClip _completionSound;
         [SerializeField] private AudioClip _midAchievementSound;
         [SerializeField] private float _pause = 1;
+        [SerializeField] private bool _midAchievement;
         [SerializeField] private int _midAchievementAfter;
         [SerializeField] private List<GameObject> _collectableMelodies;
         private AudioSource _audioSource;
@@ -71,7 +72,7 @@ namespace Echosystem.Resonance.Prototyping
                 StartCoroutine(PlayCompletionSound(_pause));
             }
 
-            if (Index == _midAchievementAfter && !MidGoal)
+            if (Index == _midAchievementAfter && !MidGoal && _midAchievement)
             {
                 MidGoal = true;
                 StartCoroutine(PlayMidAchievementSound(_pause));
