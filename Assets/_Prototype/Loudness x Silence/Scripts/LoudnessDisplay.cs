@@ -34,11 +34,11 @@ public class LoudnessDisplay : MonoBehaviour
         if(!SceneSettings.Instance.PlayerCanDie) 
             return;
         
-        
         if (_slider.value > 0.50f)
         {
-            _damageScreen.alpha = _slider.value;
+            _damageScreen.alpha = (_slider.value - 0.50f) / (1 - 0.50f);
         }
+        
         else
         {
             _damageScreen.alpha = 0.0f;
