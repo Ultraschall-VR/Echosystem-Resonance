@@ -23,10 +23,18 @@ public class LoudnessDisplay : MonoBehaviour
         _blackFade.alpha = 0.0f;
         _deathText.alpha = 0.0f;
         _subText.alpha = 0.0f;
+        _damageScreen.alpha = 0.0f;
+        
+        if(!SceneSettings.Instance.PlayerCanDie) 
+            gameObject.SetActive(false);
     }
 
     private void Update()
     {
+        if(!SceneSettings.Instance.PlayerCanDie) 
+            return;
+        
+        
         if (_slider.value > 0.50f)
         {
             _damageScreen.alpha = _slider.value;
@@ -47,11 +55,11 @@ public class LoudnessDisplay : MonoBehaviour
 
     private IEnumerator FadeToBlack()
     {
-        float t = 0.0f;
-        float timer = SceneSettings.Instance.RespawnTime / 5;
-
         Observer.IsRespawning = true;
 
+        float t = 0.0f;
+        float timer = SceneSettings.Instance.RespawnTime / 5;
+        
         while (t < timer)
         {
             t += Time.deltaTime;

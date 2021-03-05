@@ -286,7 +286,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Feel free to walk around orient yourself
+  m_text: Feel free to walk around and orient yourself
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ef66318e8bb69dd448f7b0c5b399805d, type: 2}
   m_sharedMaterial: {fileID: 4270013700963562539, guid: ef66318e8bb69dd448f7b0c5b399805d,
@@ -777,6 +777,7 @@ GameObject:
   - component: {fileID: 3487296095302000932}
   - component: {fileID: 7369890043161643637}
   - component: {fileID: 4374204144304461599}
+  - component: {fileID: 8549275466608168614}
   m_Layer: 0
   m_Name: FrameText
   m_TagString: Untagged
@@ -849,6 +850,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8549275466608168614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4163657680384811262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 719f00f5187cdaf4e9c6bc5f16dd87a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4908685237566779646
 GameObject:
   m_ObjectHideFlags: 0
@@ -1549,7 +1562,6 @@ GameObject:
   - component: {fileID: 8201199510241152593}
   - component: {fileID: 8201199510241152594}
   - component: {fileID: 8201199510241152596}
-  - component: {fileID: 8968305224740429413}
   - component: {fileID: 1478868129965823892}
   m_Layer: 0
   m_Name: ControlsUI
@@ -1617,22 +1629,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &8968305224740429413
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8201199510241152597}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c45ba20cb606f144ca2c8973902211df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _animators:
-  - {fileID: 4374204144304461599}
-  - {fileID: 8574325781481431164}
-  _animationDelay: 3
 --- !u!114 &1478868129965823892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1666,6 +1662,7 @@ GameObject:
   - component: {fileID: 8201199510400549717}
   - component: {fileID: 8201199510400549716}
   - component: {fileID: 8574325781481431164}
+  - component: {fileID: 5483496249561430758}
   m_Layer: 0
   m_Name: FrameBox
   m_TagString: Untagged
@@ -1738,6 +1735,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5483496249561430758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8201199510400549718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 719f00f5187cdaf4e9c6bc5f16dd87a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8201199511348047134
 GameObject:
   m_ObjectHideFlags: 0

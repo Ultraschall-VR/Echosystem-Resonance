@@ -1,60 +1,54 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using Echosystem.Resonance.Prototyping;
 using UnityEngine;
 
 namespace Echosystem.Resonance.UI
 {
     public class UiManager : MonoBehaviour
     {
-        [SerializeField] private List<Canvas> _canvases;
+        private List<Canvas> _canvases;
         [SerializeField] private float _delayTime;
         [SerializeField] private float _fadeOutTime;
         [SerializeField] private float _fadeInTime;
 
-        [SerializeField] private CanvasGroup _canvasGroup;
+        private CanvasGroup _canvasGroup;
+
+        [SerializeField] private bool _firstCanvasOnStart;
 
         private bool _isFading;
 
-        public static UiManager Instance;
-        
         #region UnityEvents
+
         private void Awake()
         {
-            if (Instance == null)
-            {
-                Instance = this;
-            }
-        
-            else
-            {
-                Destroy(this.gameObject);
-            }
+            
         }
 
         private void Start()
         {
+            _canvases = new List<Canvas>();
+            
+            foreach (Transform child in this.transform)
+            {
+                if (child.GetComponent<Canvas>())
+                {
+                    _canvases.Add(child.GetComponent<Canvas>());
+                }
+            }
+
+            _canvasGroup = GetComponent<CanvasGroup>();
+            
             _canvasGroup.alpha = 0f;
             HideAll();
-            Invoke("Delay", _delayTime);
-            FadeIn();
-        }
-
-        private void Update()
-        {
-            if (Observer.SilenceSphereExited)
-            {
-                LoadCanvas(1);
-            }
-
-            if (Observer.CollectedObjects == Observer.MaxCollectibleObjects)
-            {
-                LoadCanvas(2);
-            }
             
-            
+            if (_firstCanvasOnStart)
+            {
+                Invoke("Delay", _delayTime);
+                FadeIn();
+            }
         }
-
+        
         #endregion
 
         private void Delay()

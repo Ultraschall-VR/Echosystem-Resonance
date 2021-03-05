@@ -8,9 +8,10 @@ public class CanvasCheck : MonoBehaviour
     private bool _isEnabled = true;
     private CanvasGroup _canvasGroup;
 
-        [SerializeField] private List<Animator> _animators;
+    [SerializeField] private List<Animator> _animators;
 
     [SerializeField] private int _animationDelay;
+    [SerializeField] private int _lifeTime;
 
     void Start()
     {
@@ -25,7 +26,7 @@ public class CanvasCheck : MonoBehaviour
         {
             _isEnabled = false;
             Invoke("DelayAnimation", _animationDelay);
-            StartCoroutine("Fade");
+            StartCoroutine("FadeIn");
         }
     }
 
@@ -38,7 +39,7 @@ public class CanvasCheck : MonoBehaviour
         }
     }
 
-    private IEnumerator Fade()
+    private IEnumerator FadeIn()
     {
         float timer = 2f;
         float t = 0.0f;
@@ -49,6 +50,29 @@ public class CanvasCheck : MonoBehaviour
             _canvasGroup.alpha = Mathf.Lerp(0, 1, t / timer);
             yield return null;
         }
+
+        if (_lifeTime > 0)
+        {
+            StartCoroutine("FadeOut");
+        }
+        
+        yield return null;
+    }
+    
+    private IEnumerator FadeOut()
+    {
+        yield return new WaitForSeconds(_lifeTime+_animationDelay);
+        
+        float timer = 2f;
+        float t = 0.0f;
+
+        while (t < timer)
+        {
+            t += Time.deltaTime;
+            _canvasGroup.alpha = Mathf.Lerp(1, 0, t / timer);
+            yield return null;
+        }
+
         yield return null;
     }
 }

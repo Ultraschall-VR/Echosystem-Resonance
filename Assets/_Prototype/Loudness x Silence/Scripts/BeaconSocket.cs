@@ -13,9 +13,15 @@ namespace Echosystem.Resonance.Prototyping
         [SerializeField] private float _volume;
         private bool _triggered = false;
 
+        [SerializeField] private GameObject _geometry;
+
+        [SerializeField] private MeshRenderer _socketGeo;
+
         private void Start()
         {
             _audioSource = GetComponent<AudioSource>();
+            
+            _geometry.SetActive(false);
         }
 
         private void Update()
@@ -25,6 +31,26 @@ namespace Echosystem.Resonance.Prototyping
                 _triggered = true;
 
                 Placement();
+            }
+
+            if (Observer.Player != null && !IsOccupied)
+            {
+                var distanceToPlayer = Vector3.Distance(Observer.Player.transform.position, transform.position);
+
+                if (distanceToPlayer <= 3)
+                {
+                    _geometry.SetActive(true);
+                }
+                else
+                {
+                    _geometry.SetActive(false);
+                }
+            }
+
+            if (IsOccupied)
+            {
+                _geometry.SetActive(false);
+                _socketGeo.enabled = false;
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,7 +17,14 @@ namespace Echosystem.Resonance.Prototyping
         public static int Index = 0;
         public static int ListCount;
         public static bool AllCollected;
-        private bool _midGoal;
+        public static bool MidGoal;
+
+        private void Awake()
+        {
+            Index = 0;
+            ListCount = 0;
+            AllCollected = false;
+        }
 
         private void Start()
         {
@@ -31,7 +39,7 @@ namespace Echosystem.Resonance.Prototyping
             Observer.MaxCollectibleObjects = ListCount;
 
             AllCollected = false;
-            _midGoal = false;
+            MidGoal = false;
 
             foreach (var i in _collectableMelodies)
             {
@@ -63,9 +71,9 @@ namespace Echosystem.Resonance.Prototyping
                 StartCoroutine(PlayCompletionSound(_pause));
             }
 
-            if (Index == _midAchievementAfter && !_midGoal)
+            if (Index == _midAchievementAfter && !MidGoal)
             {
-                _midGoal = true;
+                MidGoal = true;
                 StartCoroutine(PlayMidAchievementSound(_pause));
             }
         }
