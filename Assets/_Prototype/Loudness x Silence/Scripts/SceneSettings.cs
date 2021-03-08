@@ -5,6 +5,7 @@ public class SceneSettings : MonoBehaviour
     public float LoudnessIncreaseTime;
     public float LoudnessDecreaseTime;
     public float EchoDropLifetime;
+    public float LightsourceRadius;
 
     public bool NonVr;
 
@@ -14,6 +15,10 @@ public class SceneSettings : MonoBehaviour
 
     public bool DebugMode;
     public bool GodMode;
+    
+    public bool PlayerCanDie;
+    public float RespawnTime;
+
     
     public static SceneSettings Instance;
 

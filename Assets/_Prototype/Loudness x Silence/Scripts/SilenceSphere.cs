@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using AmazingAssets.DynamicRadialMasks;
 using Echosystem.Resonance.Helper;
 using UnityEngine;
@@ -9,7 +10,7 @@ namespace Echosystem.Resonance.Prototyping
     {
         [SerializeField] private GameObject _innerSphere;
         [SerializeField] private GameObject _outerSphere;
-        [SerializeField] private DRMGameObject _drmGameObject;
+        [SerializeField] public DRMGameObject DrmGameObject;
 
         private TriggerEvent _innerSphereTrigger;
         private float _distanceToPlayer;
@@ -22,6 +23,8 @@ namespace Echosystem.Resonance.Prototyping
 
         private bool _isIncreasing;
 
+        private DRMGameObjectsPool _drmGameObjectsPool;
+
         private void Start()
         {
             Initialize();
@@ -32,17 +35,16 @@ namespace Echosystem.Resonance.Prototyping
             _innerSphereTrigger = _innerSphere.GetComponent<TriggerEvent>();
 
             _outerSphere.transform.localScale = _innerSphere.transform.localScale * 2;
-            _drmGameObject.radius = _innerSphere.transform.localScale.x / 2;
+            DrmGameObject.radius = _innerSphere.transform.localScale.x / 2;
 
             _outerSphereSize = _outerSphere.transform.localScale;
+            
+            _drmGameObjectsPool= FindObjectOfType<DRMGameObjectsPool>();
+            
+            _drmGameObjectsPool.AddObject(DrmGameObject);
 
             _isInitalized = true;
 
-        }
-
-        public void IncreasSphere()
-        {
-            
         }
 
         private void Update()
@@ -50,11 +52,15 @@ namespace Echosystem.Resonance.Prototyping
             if(!_isInitalized)
                 return;
 
-            _drmGameObject.radius = _outerSphere.transform.localScale.x / 2;
+            DrmGameObject.radius = _outerSphere.transform.localScale.x / 2;
             
             if (_innerSphereTrigger.Triggered)
             {
                 Observer.CurrentSilenceSphere = this;
+                Observer.LastSilenceSphere = this;
+                
+                _drmGameObjectsPool.drmGameObjects = new List<DRMGameObject>();
+                _drmGameObjectsPool.AddObject(DrmGameObject);
                 
                 if(!_isDecreasing)
                     DefineBoundaries();
@@ -66,18 +72,7 @@ namespace Echosystem.Resonance.Prototyping
             }
 
             _outerSphere.SetActive(_innerSphereTrigger.Triggered);
-
-            if(Observer.Player == null)
-                return;
-
-            if (Observer.CurrentSilenceSphere == this)
-            {
-                Observer.Player.GetComponent<LineOfSight>().SightCylinder.SetActive(false);
-            }
-            else if (Observer.CurrentSilenceSphere == null)
-            {
-                Observer.Player.GetComponent<LineOfSight>().SightCylinder.SetActive(true);
-            }
+            
         }
 
         public void DecreaseSize()
