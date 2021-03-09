@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 // [RequireComponent(typeof(AudioSource))]
 public class Pillar : MonoBehaviour
@@ -12,6 +13,11 @@ public class Pillar : MonoBehaviour
     private float _pitchMin = 0.33f;
     private float _pitchMax = 1.33f;
 
+    private PillarCluster _pillarCluster;
+    private bool _solved;
+
+    [SerializeField] private AudioClip _correctPitchSound;
+
     public Transform Grip;
 
     public LineRenderer LineRenderer;
@@ -24,18 +30,20 @@ public class Pillar : MonoBehaviour
 
     private void Initialize()
     {
+        _pillarCluster = GetComponentInParent<PillarCluster>();
+
         if (!IsReference)
         {
             LineRenderer.enabled = false;
             _audioSource = GetComponent<AudioSource>();
             Pitch = Random.Range(_pitchMin, _pitchMax);
         }
-        
+
         _initPos = transform.position;
         _initPos.y += Pitch;
         transform.position = _initPos;
         _position = _initPos;
-        
+
         if (IsReference)
             Pitch = 1.0f;
 
@@ -53,6 +61,7 @@ public class Pillar : MonoBehaviour
             Pitch = 1.0f;
             GetComponent<PitchShifterable>().Active = false;
             GetComponent<PitchShifterable>().Grip.gameObject.SetActive(false);
+            AudioSource.PlayClipAtPoint(_correctPitchSound, transform.position);
         }
     }
 
@@ -62,10 +71,16 @@ public class Pillar : MonoBehaviour
         {
             _audioSource.pitch = Pitch;
         }
-        
+
         Pitch = Mathf.Clamp(Pitch, _pitchMin, _pitchMax);
         var posY = _initPos.y + Pitch;
         _position.y = posY;
         transform.position = _position;
+
+        if (_pillarCluster._isDone && !_solved)
+        {
+            _solved = true;
+            _audioSource.FadeOut(10);
+        }
     }
 }

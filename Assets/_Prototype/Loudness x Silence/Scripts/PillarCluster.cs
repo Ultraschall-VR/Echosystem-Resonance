@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ public class PillarCluster : MonoBehaviour
     [HideInInspector] public Pillar ReferencePillar;
     [HideInInspector] public List<Pillar> Pillars;
     private List<Pillar> _correctedPillars;
+    [SerializeField] private AudioClip _completedSound;
+    private AudioSource _audioSource;
 
     public bool _isDone = false;
     private int _listCount;
@@ -15,6 +18,8 @@ public class PillarCluster : MonoBehaviour
 
     private void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
+        
         if (_actionToExecute != null)
         {
             _actionToExecute.enabled = false;
@@ -56,7 +61,7 @@ public class PillarCluster : MonoBehaviour
 
         if (_correctedPillars.Count == _listCount)
             _isDone = true;
-
+        
         if (_isDone)
         {
             foreach (var pillar in _correctedPillars)
@@ -70,6 +75,14 @@ public class PillarCluster : MonoBehaviour
                     _actionToExecute.enabled = true;
                 }
             }
+            StartCoroutine(PlayCompletionSound(1));
         } 
+    }
+    
+    private IEnumerator PlayCompletionSound(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        _audioSource.PlayOneShot(_completedSound);
+        yield return null;
     }
 }
