@@ -13,7 +13,7 @@ namespace VolumetricFogAndMist2 {
             public static int alphaCutoutLayerMask;
 
             const string m_ProfilerTag = "CustomDepthPrePass";
-            const string SKW_DEPTH_PREPASS = "VF2_DEPTH_PREPASS";
+            const string m_DepthOnlyShader = "Hidden/VolumetricFog2/DepthOnly";
 
             FilteringSettings m_FilteringSettings;
             int currentCutoutLayerMask;
@@ -35,9 +35,9 @@ namespace VolumetricFogAndMist2 {
 
             void SetupKeywords() {
                 if (transparentLayerMask != 0 || alphaCutoutLayerMask != 0) {
-                    Shader.EnableKeyword(SKW_DEPTH_PREPASS);
+                    Shader.EnableKeyword(ShaderParams.SKW_DEPTH_PREPASS);
                 } else {
-                    Shader.DisableKeyword(SKW_DEPTH_PREPASS);
+                    Shader.DisableKeyword(ShaderParams.SKW_DEPTH_PREPASS);
                 }
             }
 
@@ -72,7 +72,7 @@ namespace VolumetricFogAndMist2 {
                 depthDesc.msaaSamples = 1;
 
                 cmd.GetTemporaryRT(m_Depth.id, depthDesc, FilterMode.Point);
-                cmd.SetGlobalTexture(VolumetricFog.ShaderParams.CustomDepthTexture, m_Depth.Identifier());
+                cmd.SetGlobalTexture(ShaderParams.CustomDepthTexture, m_Depth.Identifier());
                 ConfigureTarget(m_Depth.Identifier());
                 ConfigureClear(ClearFlag.All, Color.black);
 
@@ -88,7 +88,7 @@ namespace VolumetricFogAndMist2 {
                     VolumetricFogManager manager = VolumetricFogManager.GetManagerIfExists();
                     if (manager != null) {
                         if (depthOnlyMaterialCutOff == null) {
-                            Shader depthOnlyCutOff = Shader.Find("Hidden/VolumetricFog2/DepthOnly");
+                            Shader depthOnlyCutOff = Shader.Find(m_DepthOnlyShader);
                             depthOnlyMaterialCutOff = new Material(depthOnlyCutOff);
                         }
                         int renderersCount = cutOutRenderers.Count;
@@ -102,13 +102,14 @@ namespace VolumetricFogAndMist2 {
                                 if (mat != null) {
                                     if (depthOverrideMaterials[k] == null) {
                                         depthOverrideMaterials[k] = Instantiate(depthOnlyMaterialCutOff);
+                                        depthOverrideMaterials[k].EnableKeyword(ShaderParams.SKW_CUSTOM_DEPTH_ALPHA_TEST);
                                     }
                                     Material overrideMaterial = depthOverrideMaterials[k];
-                                    overrideMaterial.SetFloat(VolumetricFog.ShaderParams.CustomDepthAlphaCutoff, manager.alphaCutOff);
-                                    if (mat.HasProperty(VolumetricFog.ShaderParams.CustomDepthBaseMap)) {
-                                        overrideMaterial.SetTexture(VolumetricFog.ShaderParams.MainTex, mat.GetTexture(VolumetricFog.ShaderParams.CustomDepthBaseMap));
-                                    } else if (mat.HasProperty(VolumetricFog.ShaderParams.MainTex)) {
-                                        overrideMaterial.SetTexture(VolumetricFog.ShaderParams.MainTex, mat.GetTexture(VolumetricFog.ShaderParams.MainTex));
+                                    overrideMaterial.SetFloat(ShaderParams.CustomDepthAlphaCutoff, manager.alphaCutOff);
+                                    if (mat.HasProperty(ShaderParams.CustomDepthBaseMap)) {
+                                        overrideMaterial.SetTexture(ShaderParams.MainTex, mat.GetTexture(ShaderParams.CustomDepthBaseMap));
+                                    } else if (mat.HasProperty(ShaderParams.MainTex)) {
+                                        overrideMaterial.SetTexture(ShaderParams.MainTex, mat.GetTexture(ShaderParams.MainTex));
                                     }
                                     cmd.DrawRenderer(renderer, overrideMaterial);
                                 }
@@ -122,7 +123,7 @@ namespace VolumetricFogAndMist2 {
                     var drawSettings = CreateDrawingSettings(m_ShaderTagIdList, ref renderingData, sortingCriteria);
                     drawSettings.perObjectData = PerObjectData.None;
                     if (depthOnlyMaterial == null) {
-                        Shader depthOnly = Shader.Find("Universal Render Pipeline/Unlit");
+                        Shader depthOnly = Shader.Find(m_DepthOnlyShader);
                         depthOnlyMaterial = new Material(depthOnly);
                     }
                     drawSettings.overrideMaterial = depthOnlyMaterial;

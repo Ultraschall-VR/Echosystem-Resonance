@@ -14,7 +14,7 @@ namespace VolumetricFogAndMist2 {
         SerializedProperty enablePointLights;
         SerializedProperty enableVoids;
         SerializedProperty enableFogOfWar, fogOfWarCenter, fogOfWarSize, fogOfWarTextureSize, fogOfWarRestoreDelay, fogOfWarRestoreDuration, fogOfWarSmoothness, fogOfWarBlur;
-        SerializedProperty enableFade, fadeDistance, fadeController, enableSubVolumes, subVolumes;
+        SerializedProperty enableFade, fadeDistance, fadeOut, fadeController, enableSubVolumes, subVolumes;
         SerializedProperty showBoundary;
 
         static GUIStyle boxStyle;
@@ -43,6 +43,7 @@ namespace VolumetricFogAndMist2 {
 			
 			enableFade = serializedObject.FindProperty("enableFade");
             fadeDistance = serializedObject.FindProperty("fadeDistance");
+            fadeOut = serializedObject.FindProperty("fadeOut");
             fadeController = serializedObject.FindProperty("fadeController");
             enableSubVolumes = serializedObject.FindProperty("enableSubVolumes");
             subVolumes = serializedObject.FindProperty("subVolumes");
@@ -101,6 +102,7 @@ namespace VolumetricFogAndMist2 {
             if (enableFade.boolValue) {
                 EditorGUI.indentLevel++;
                 EditorGUILayout.PropertyField(fadeDistance);
+                EditorGUILayout.PropertyField(fadeOut);
                 EditorGUILayout.PropertyField(fadeController);
                 EditorGUI.indentLevel--;
             }
