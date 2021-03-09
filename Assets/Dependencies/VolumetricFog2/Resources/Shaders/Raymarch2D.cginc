@@ -146,45 +146,37 @@ void AddFog(float3 rayStart, float3 wpos, float rs, half4 baseColor, inout half4
 
 half4 GetFogColor(float3 rayStart, float3 viewDir, float t0, float t1) {
 
-    float rs = MIN_STEPPING + max(log(t1-t0), 0) / FOG_STEPPING;     // stepping ratio with atten detail with distance
-	float t = t0 + jitter * JITTERING;
+    float len = t1 - t0;
+    float rs = MIN_STEPPING + max(log(len), 0) / FOG_STEPPING;     // stepping ratio with atten detail with distance
     half4 sum = half4(0,0,0,0);
     float diffusion = 1.0 + pow(max(dot(viewDir, _SunDir.xyz), 0), _LightDiffusionPower) * _LightDiffusionIntensity;
     half3 diffusionColor = _LightColor.rgb * diffusion;
     half4 lightColor = half4(diffusionColor, 1.0);
 
-    float3 wpos = rayStart + viewDir * t;
+    float3 wpos = rayStart + viewDir * (t0 + jitter * JITTERING);
 
     SurfaceComputeEndPoints(wpos, rayStart + viewDir * t1);
 
     wpos.y -= _BoundsVerticalOffset;
     viewDir *= rs;
 
-    #if V2F_SURFACE
-        float stepEnergy = rs;
-        t /= t1;
-        rs /= t1;
-        // Uncomment the UNITY_UNROLLX line below to support shadows on WebGL 2.0 and also adjust 50 number (increase if needed)
-        // UNITY_UNROLLX(50)
-        while (t < 1.0) {
-            loop_t = t;
-            AddFog(rayStart, wpos, stepEnergy, lightColor, sum);
-            if (sum.a > 0.99) break;
-            t += rs;
-            wpos += viewDir;
-        }
-	    AddFog(rayStart, wpos, t1 * (rs - (t-1.0)), lightColor, sum);
-    #else
-        // Uncomment the UNITY_UNROLLX line below to support shadows on WebGL 2.0 and also adjust 50 number (increase if needed)
-        // UNITY_UNROLLX(50)
-        while (t < t1) {
-            AddFog(rayStart, wpos, rs, lightColor, sum);
-            if (sum.a > 0.99) break;
-            t += rs;
-            wpos += viewDir;
-        }
-	    AddFog(rayStart, wpos, rs - (t-t1), lightColor, sum);
-    #endif
+    float energyStep = rs;
+    rs /= len + 0.001;
+    rs = max(rs, 1.0 / MAX_ITERATIONS);
+    
+    float t = 0;
+
+    // Uncomment this Unroll macro to support WebGL. Increase 50 value if needed.
+    // UNITY_UNROLLX(50)
+    while (t < 1.0) {
+        loop_t = t;
+        AddFog(rayStart, wpos, energyStep, lightColor, sum);
+        if (sum.a > 0.99) break;
+        t += rs;
+        wpos += viewDir;
+    }
+    AddFog(rayStart, wpos, len * (rs - (t-1.0)), lightColor, sum);
+
 	sum += (jitter - 0.5) * DITHERING;
     sum *= _LightColor.a;
     return sum;

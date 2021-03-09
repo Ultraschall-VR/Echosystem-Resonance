@@ -131,8 +131,8 @@ namespace VolumetricFogAndMist2 {
             if (cam != null) {
                 cam.enabled = true;
                 camStartFrameCount = Time.frameCount;
-                if (!fogMat.IsKeywordEnabled(SKW_SURFACE)) {
-                    fogMat.EnableKeyword(SKW_SURFACE);
+                if (!fogMat.IsKeywordEnabled(ShaderParams.SKW_SURFACE)) {
+                    fogMat.EnableKeyword(ShaderParams.SKW_SURFACE);
                 }
 
             }

@@ -25,8 +25,8 @@ Support
 -------
 Please read the documentation PDF and browse/play with the demo scenes and sample source code included before contacting us for support :-)
 
-* Support: contact@kronnect.me
-* Website-Forum: http://kronnect.me
+* Support: contact@kronnect.com
+* Website-Forum: https://kronnect.com/support
 * Twitter: @KronnectGames
 
 
@@ -41,6 +41,18 @@ Of course, all updates of Volumetric Fog & Mist will be eventually available on 
 
 Version history
 ---------------
+
+Current version
+
+v5.2.1
+- Added "Fade Out" option
+- Depth pre-pass now uses an internal shader to avoid dependency on standard urp/unlit
+- [Fix] Fixed a fog foid issue during scene unload
+
+v5.2
+- Optimization: point lights are now excluded if they're behing camera and beyond light range
+- Optimization: faster fog void registration
+- Optimization: added MAX_ITERATIONS global setting to CommonsURP.hlsl
 
 v5.1
 - Fog Voids are now fully 3D

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace VolumetricFogAndMist2 {
@@ -17,7 +18,7 @@ namespace VolumetricFogAndMist2 {
         public Transform trackingCenter;
         public float newFogVoidCheckInterval = 3f;
 
-        FogVoid[] fogVoids;
+        readonly List<FogVoid> fogVoids = new List<FogVoid>();
         Vector4[] fogVoidPositions;
         Vector4[] fogVoidSizes;
         float checkNewFogVoidLastTime;
@@ -43,7 +44,8 @@ namespace VolumetricFogAndMist2 {
         void SubmitFogVoidData() {
 
             int k = 0;
-            for (int i = 0; k < MAX_FOG_VOID && i < fogVoids.Length; i++) {
+            int fogVoidsCount = fogVoids.Count;
+            for (int i = 0; k < MAX_FOG_VOID && i < fogVoidsCount; i++) {
                 FogVoid fogVoid = fogVoids[i];
                 if (fogVoid == null || !fogVoid.isActiveAndEnabled) continue;
                 Transform t = fogVoid.transform;
@@ -71,9 +73,23 @@ namespace VolumetricFogAndMist2 {
 
                 k++;
             }
-            Shader.SetGlobalVectorArray(VolumetricFog.ShaderParams.VoidPositions, fogVoidPositions);
-            Shader.SetGlobalVectorArray(VolumetricFog.ShaderParams.VoidSizes, fogVoidSizes);
-            Shader.SetGlobalInt(VolumetricFog.ShaderParams.VoidCount, k);
+            Shader.SetGlobalVectorArray(ShaderParams.VoidPositions, fogVoidPositions);
+            Shader.SetGlobalVectorArray(ShaderParams.VoidSizes, fogVoidSizes);
+            Shader.SetGlobalInt(ShaderParams.VoidCount, k);
+        }
+
+        public void RegisterFogVoid(FogVoid fogVoid) {
+            if (fogVoid != null) {
+                fogVoids.Add(fogVoid);
+                requireRefresh = true;
+            }
+        }
+
+        public void UnregisterFogVoid(FogVoid fogVoid) {
+            if (fogVoid != null && fogVoids.Contains(fogVoid)) {
+                fogVoids.Remove(fogVoid);
+                requireRefresh = true;
+            }
         }
 
         /// <summary>
@@ -82,10 +98,9 @@ namespace VolumetricFogAndMist2 {
         public void TrackFogVoids(bool forceImmediateUpdate = false) {
 
             // Look for new lights?
-            if (forceImmediateUpdate || fogVoids == null || !Application.isPlaying || (newFogVoidCheckInterval > 0 && Time.time - checkNewFogVoidLastTime > newFogVoidCheckInterval)) {
+            if ((fogVoids != null && fogVoids.Count > 0) && (forceImmediateUpdate || !Application.isPlaying || (newFogVoidCheckInterval > 0 && Time.time - checkNewFogVoidLastTime > newFogVoidCheckInterval))) {
                 checkNewFogVoidLastTime = Time.time;
-                fogVoids = FindObjectsOfType<FogVoid>();
-                System.Array.Sort(fogVoids, fogVoidDistanceComparer);
+                fogVoids.Sort(fogVoidDistanceComparer);
             }
         }
 

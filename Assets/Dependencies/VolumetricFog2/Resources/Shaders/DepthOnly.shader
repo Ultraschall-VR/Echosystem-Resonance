@@ -15,6 +15,7 @@ Shader "Hidden/VolumetricFog2/DepthOnly"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+            #pragma multi_compile_local _ DEPTH_PREPASS_ALPHA_TEST
 
             #include "UnityCG.cginc"
 
@@ -24,27 +25,35 @@ Shader "Hidden/VolumetricFog2/DepthOnly"
             struct appdata
             {
                 float4 vertex : POSITION;
-                float2 uv : TEXCOORD0;
+                #if DEPTH_PREPASS_ALPHA_TEST
+                    float2 uv : TEXCOORD0;
+                #endif
             };
 
             struct v2f
             {
                 float4 vertex : SV_POSITION;
-                float2 uv : TEXCOORD0;
+                #if DEPTH_PREPASS_ALPHA_TEST
+                    float2 uv : TEXCOORD0;
+                #endif
             };
 
             v2f vert (appdata v)
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = v.uv;
+                #if DEPTH_PREPASS_ALPHA_TEST
+                    o.uv = v.uv;
+                #endif
                 return o;
             }
 
             half4 frag (v2f i) : SV_Target
             {
-                half4 color = tex2D(_MainTex, i.uv);
-                clip(color.a - _AlphaCutOff);
+                #if DEPTH_PREPASS_ALPHA_TEST
+                    half4 color = tex2D(_MainTex, i.uv);
+                    clip(color.a - _AlphaCutOff);
+                #endif
                 return 0;
             }
             ENDCG
