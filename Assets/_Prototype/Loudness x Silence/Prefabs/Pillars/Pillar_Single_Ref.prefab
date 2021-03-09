@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 7874094107213008401}
   - component: {fileID: 7874094107213008406}
   m_Layer: 0
-  m_Name: Pillar_reference
+  m_Name: Pillar_Single_Ref
   m_TagString: PitchShifterable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -170,7 +170,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7874094107213008402}
   m_LocalRotation: {x: -0, y: 0.99139374, z: -0, w: 0.1309139}
-  m_LocalPosition: {x: 2.3, y: 1.12, z: 7.811131}
+  m_LocalPosition: {x: 0, y: 1.12, z: 0}
   m_LocalScale: {x: 1, y: 1.5, z: 1}
   m_Children:
   - {fileID: 4190270539664796941}
@@ -193,7 +193,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pitch: 0
   PitchIsCorrect: 0
-  IsReference: 0
+  IsReference: 1
   Grip: {fileID: 7874094107282143923}
   LineRenderer: {fileID: 0}
 --- !u!136 &7874094107213008401
@@ -330,7 +330,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7874094107282143922}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.052, z: 0.162}
+  m_LocalPosition: {x: 0, y: 1.052, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3768468604063106550}
@@ -367,7 +367,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 872fc17b1c4242042827a6f03383d707,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.422
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 872fc17b1c4242042827a6f03383d707,
         type: 3}
