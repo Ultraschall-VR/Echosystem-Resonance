@@ -27,15 +27,15 @@ public class Pillar : MonoBehaviour
         if (!IsReference)
         {
             LineRenderer.enabled = false;
+            _audioSource = GetComponent<AudioSource>();
+            Pitch = Random.Range(_pitchMin, _pitchMax);
         }
         
-        _audioSource = GetComponent<AudioSource>();
-        Pitch = Random.Range(_pitchMin, _pitchMax);
         _initPos = transform.position;
         _initPos.y += Pitch;
         transform.position = _initPos;
         _position = _initPos;
-
+        
         if (IsReference)
             Pitch = 1.0f;
 
@@ -58,9 +58,13 @@ public class Pillar : MonoBehaviour
 
     private void Update()
     {
+        if (!IsReference)
+        {
+            _audioSource.pitch = Pitch;
+        }
+        
         Pitch = Mathf.Clamp(Pitch, _pitchMin, _pitchMax);
         var posY = _initPos.y + Pitch;
-        _audioSource.pitch = Pitch;
         _position.y = posY;
         transform.position = _position;
     }

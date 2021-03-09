@@ -38,11 +38,14 @@ namespace Echosystem.Resonance.Prototyping
             DrmGameObject.radius = _innerSphere.transform.localScale.x / 2;
 
             _outerSphereSize = _outerSphere.transform.localScale;
-            
-            _drmGameObjectsPool= FindObjectOfType<DRMGameObjectsPool>();
-            
-            _drmGameObjectsPool.AddObject(DrmGameObject);
 
+
+            if (FindObjectOfType<DRMGameObjectsPool>())
+            {
+                _drmGameObjectsPool= FindObjectOfType<DRMGameObjectsPool>();
+                _drmGameObjectsPool.AddObject(DrmGameObject);
+            }
+            
             _isInitalized = true;
 
         }
@@ -58,10 +61,13 @@ namespace Echosystem.Resonance.Prototyping
             {
                 Observer.CurrentSilenceSphere = this;
                 Observer.LastSilenceSphere = this;
-                
-                _drmGameObjectsPool.drmGameObjects = new List<DRMGameObject>();
-                _drmGameObjectsPool.AddObject(DrmGameObject);
-                
+
+                if (_drmGameObjectsPool != null)
+                {
+                    _drmGameObjectsPool.drmGameObjects = new List<DRMGameObject>();
+                    _drmGameObjectsPool.AddObject(DrmGameObject);
+                }
+
                 if(!_isDecreasing)
                     DefineBoundaries();
             }
