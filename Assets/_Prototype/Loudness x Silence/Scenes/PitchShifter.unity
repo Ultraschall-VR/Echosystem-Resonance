@@ -749,6 +749,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 455993078}
     m_Modifications:
+    - target: {fileID: 1252085660347265137, guid: a3dda353b8123408c80242d3a042476e,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0cfd8df1ec3794d89810c78e596eebff, type: 3}
     - target: {fileID: 1252085660347265140, guid: a3dda353b8123408c80242d3a042476e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -758,6 +763,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 13.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 1326888659365666267, guid: a3dda353b8123408c80242d3a042476e,
+        type: 3}
+      propertyPath: reverbSends.Array.data[0].roomIndex
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1696432558660342814, guid: a3dda353b8123408c80242d3a042476e,
         type: 3}
@@ -814,10 +824,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2787775907817523480, guid: a3dda353b8123408c80242d3a042476e,
+        type: 3}
+      propertyPath: reverbSends.Array.data[0].roomIndex
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3877895659480077407, guid: a3dda353b8123408c80242d3a042476e,
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227339401048091990, guid: a3dda353b8123408c80242d3a042476e,
+        type: 3}
+      propertyPath: reverbSends.Array.data[0].roomIndex
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4350103474832614286, guid: a3dda353b8123408c80242d3a042476e,
+        type: 3}
+      propertyPath: reverbSends.Array.data[0].roomIndex
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6473159301635523658, guid: a3dda353b8123408c80242d3a042476e,
         type: 3}
@@ -829,6 +854,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6800067857564793449, guid: a3dda353b8123408c80242d3a042476e,
+        type: 3}
+      propertyPath: reverbSends.Array.data[0].roomIndex
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6904389751400768828, guid: a3dda353b8123408c80242d3a042476e,
         type: 3}
       propertyPath: m_Mode
@@ -839,6 +869,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7606253889535574784, guid: a3dda353b8123408c80242d3a042476e,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 10173ef67a6684846bdba24e94db3175, type: 3}
     - target: {fileID: 7606253889535574789, guid: a3dda353b8123408c80242d3a042476e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -848,6 +883,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 20.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 8269628990344629612, guid: a3dda353b8123408c80242d3a042476e,
+        type: 3}
+      propertyPath: _completedSound
+      value: 
+      objectReference: {fileID: 8300000, guid: dbe0b4e09b94f4e1f995cf971642c647, type: 3}
+    - target: {fileID: 8472531212937946958, guid: a3dda353b8123408c80242d3a042476e,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 965319313653c4a50b5c08bc0ea3f787, type: 3}
+    - target: {fileID: 9171687925784069724, guid: a3dda353b8123408c80242d3a042476e,
+        type: 3}
+      propertyPath: reverbSends.Array.data[0].roomIndex
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3dda353b8123408c80242d3a042476e, type: 3}
@@ -2047,6 +2097,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trackingCenter: {fileID: 0}
   newLightsCheckInterval: 3
+  excludeLightsBehind: 1
   inscattering: 1
   intensity: 1
   insideAtten: 0
