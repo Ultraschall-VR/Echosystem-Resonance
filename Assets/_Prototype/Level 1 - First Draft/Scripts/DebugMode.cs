@@ -14,5 +14,12 @@ public class DebugMode : MonoBehaviour
                 comp.enabled = false;
             }
         }
+        else
+        {
+            foreach (var comp in _componentsToDisable)
+            {
+                comp.enabled = true;
+            }
+        }
     }
 }
