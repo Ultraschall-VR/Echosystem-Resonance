@@ -8,7 +8,7 @@
 //#define USE_ALTERNATE_RECONSTRUCT_API
 
 // Specify max raymarch iterations
-#define MAX_ITERATIONS 500
+#define MAX_ITERATIONS 100
 
 // Common URP code
 #define VR_ENABLED defined(UNITY_STEREO_INSTANCING_ENABLED) || defined(UNITY_STEREO_MULTIVIEW_ENABLED) || defined(SINGLE_PASS_STEREO)
