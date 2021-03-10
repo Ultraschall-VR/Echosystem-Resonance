@@ -25,6 +25,8 @@ namespace Echosystem.Resonance.Prototyping
 
         private DRMGameObjectsPool _drmGameObjectsPool;
 
+        private float _animationTime = 2.0f;
+
         private void Start()
         {
             Initialize();
@@ -109,26 +111,14 @@ namespace Echosystem.Resonance.Prototyping
                 Vector3.Distance(Observer.Player.transform.position, _innerSphereTrigger.transform.position) /
                 (_innerSphere.transform.localScale.x / 2);
             _outerSphere.transform.localScale = (_innerSphere.transform.localScale * 2) / (_distanceToPlayer * 2);
-
-            //// Outer Boundary
-            //if (_outerSphere.transform.localScale.x >= _innerSphere.transform.localScale.x * 3)
-            //{
-            //    _outerSphere.transform.localScale = _innerSphere.transform.localScale * 3;
-            //}
-//
-            //// Inner Boundary
-            //else if (_outerSphere.transform.localScale.x <= _innerSphere.transform.localScale.x * 1f)
-            //{
-            //    _outerSphere.transform.localScale = _innerSphere.transform.localScale * 1f;
-            //}
+            
         }
 
         private IEnumerator AnimateScale()
         {
             float t = 0.0f;
-            float timer = 2.0f;
-
-            while (t < timer)
+            
+            while (t < _animationTime)
             {
                 _distanceToPlayer =
                     Vector3.Distance(Observer.Player.transform.position, _innerSphereTrigger.transform.position) /
@@ -138,7 +128,7 @@ namespace Echosystem.Resonance.Prototyping
 
                 _outerSphere.transform.localScale =
                     Vector3.Lerp(Vector3.zero, (_innerSphere.transform.localScale * 2) / (_distanceToPlayer * 2),
-                        t / timer);
+                        t / _animationTime);
 
                 DrmGameObject.radius = _outerSphere.transform.localScale.x / 2;
 
