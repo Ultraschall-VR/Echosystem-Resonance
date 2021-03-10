@@ -34,29 +34,17 @@ namespace Echosystem.Resonance.Prototyping
         {
             _innerSphereTrigger = _innerSphere.GetComponent<TriggerEvent>();
 
-            _outerSphere.transform.localScale = _innerSphere.transform.localScale * 2;
-            DrmGameObject.radius = _innerSphere.transform.localScale.x / 2;
-
-            _outerSphereSize = _outerSphere.transform.localScale;
-
+            StartCoroutine(AnimateScale());
 
             if (FindObjectOfType<DRMGameObjectsPool>())
             {
-                _drmGameObjectsPool= FindObjectOfType<DRMGameObjectsPool>();
+                _drmGameObjectsPool = FindObjectOfType<DRMGameObjectsPool>();
                 _drmGameObjectsPool.AddObject(DrmGameObject);
             }
-            
-            _isInitalized = true;
-
         }
 
         private void Update()
         {
-            if(!_isInitalized)
-                return;
-
-            DrmGameObject.radius = _outerSphere.transform.localScale.x / 2;
-            
             if (_innerSphereTrigger.Triggered)
             {
                 Observer.CurrentSilenceSphere = this;
@@ -67,18 +55,25 @@ namespace Echosystem.Resonance.Prototyping
                     _drmGameObjectsPool.drmGameObjects = new List<DRMGameObject>();
                     _drmGameObjectsPool.AddObject(DrmGameObject);
                 }
+            }
 
-                if(!_isDecreasing)
+            if (!_isInitalized)
+                return;
+
+            DrmGameObject.radius = _outerSphere.transform.localScale.x / 2;
+
+            if (_innerSphereTrigger.Triggered)
+            {
+                if (!_isDecreasing)
                     DefineBoundaries();
             }
-            
-            else if(Observer.CurrentSilenceSphere == this && !_innerSphereTrigger.Triggered)
+
+            else if (Observer.CurrentSilenceSphere == this && !_innerSphereTrigger.Triggered)
             {
                 Observer.CurrentSilenceSphere = null;
             }
 
             _outerSphere.SetActive(_innerSphereTrigger.Triggered);
-            
         }
 
         public void DecreaseSize()
@@ -101,7 +96,7 @@ namespace Echosystem.Resonance.Prototyping
                     f / SceneSettings.Instance.EchoDropLifetime);
 
                 _outerSphere.transform.localScale = _innerSphere.transform.localScale;
-                
+
                 yield return null;
             }
 
@@ -110,21 +105,49 @@ namespace Echosystem.Resonance.Prototyping
 
         private void DefineBoundaries()
         {
-            _distanceToPlayer = Vector3.Distance(Observer.Player.transform.position, _innerSphereTrigger.transform.position) / (_innerSphere.transform.localScale.x/2);
-            _outerSphere.transform.localScale = _outerSphereSize / (_distanceToPlayer*2);
-            
-            // Outer Boundary
-            if (_outerSphere.transform.localScale.x >= _innerSphere.transform.localScale.x * 3)
+            _distanceToPlayer =
+                Vector3.Distance(Observer.Player.transform.position, _innerSphereTrigger.transform.position) /
+                (_innerSphere.transform.localScale.x / 2);
+            _outerSphere.transform.localScale = (_innerSphere.transform.localScale * 2) / (_distanceToPlayer * 2);
+
+            //// Outer Boundary
+            //if (_outerSphere.transform.localScale.x >= _innerSphere.transform.localScale.x * 3)
+            //{
+            //    _outerSphere.transform.localScale = _innerSphere.transform.localScale * 3;
+            //}
+//
+            //// Inner Boundary
+            //else if (_outerSphere.transform.localScale.x <= _innerSphere.transform.localScale.x * 1f)
+            //{
+            //    _outerSphere.transform.localScale = _innerSphere.transform.localScale * 1f;
+            //}
+        }
+
+        private IEnumerator AnimateScale()
+        {
+            float t = 0.0f;
+            float timer = 2.0f;
+
+            while (t < timer)
             {
-                _outerSphere.transform.localScale = _innerSphere.transform.localScale * 3;
+                _distanceToPlayer =
+                    Vector3.Distance(Observer.Player.transform.position, _innerSphereTrigger.transform.position) /
+                    (_innerSphere.transform.localScale.x / 2);
+
+                t += Time.deltaTime;
+
+                _outerSphere.transform.localScale =
+                    Vector3.Lerp(Vector3.zero, (_innerSphere.transform.localScale * 2) / (_distanceToPlayer * 2),
+                        t / timer);
+
+                DrmGameObject.radius = _outerSphere.transform.localScale.x / 2;
+
+                yield return null;
             }
 
-            // Inner Boundary
-            else if (_outerSphere.transform.localScale.x <= _innerSphere.transform.localScale.x * 1f)
-            {
-                _outerSphere.transform.localScale = _innerSphere.transform.localScale * 1f;
-            }
+            _outerSphereSize = _outerSphere.transform.localScale;
+            _isInitalized = true;
+            yield return null;
         }
     }
 }
-
