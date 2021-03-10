@@ -14,6 +14,10 @@ namespace Echosystem.Resonance.Prototyping
         [SerializeField] private bool _midAchievement;
         [SerializeField] private int _midAchievementAfter;
         [SerializeField] private List<GameObject> _collectableMelodies;
+
+        [SerializeField]
+        private BeaconSocket _firstBeaconSocket;
+        
         private AudioSource _audioSource;
         public static int Index = 0;
         public static int ListCount;
@@ -58,7 +62,7 @@ namespace Echosystem.Resonance.Prototyping
             
             if (Index < ListCount)
             {
-                if (!_collectableMelodies[Index].GetComponent<AudioSource>().isPlaying)
+                if (!_collectableMelodies[Index].GetComponent<AudioSource>().isPlaying && _firstBeaconSocket.IsOccupied)
                 {
                     Play();
                 }
