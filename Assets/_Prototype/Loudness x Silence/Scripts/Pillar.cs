@@ -38,11 +38,13 @@ public class Pillar : MonoBehaviour
             _audioSource = GetComponent<AudioSource>();
             Pitch = Random.Range(_pitchMin, _pitchMax);
         }
+        
+            _initPos = transform.position;
+            _initPos.y += Pitch;
+            transform.position = _initPos;
+            _position = _initPos;
 
-        _initPos = transform.position;
-        _initPos.y += Pitch;
-        transform.position = _initPos;
-        _position = _initPos;
+       
 
         if (IsReference)
             Pitch = 1.0f;
@@ -75,7 +77,11 @@ public class Pillar : MonoBehaviour
         Pitch = Mathf.Clamp(Pitch, _pitchMin, _pitchMax);
         var posY = _initPos.y + Pitch;
         _position.y = posY;
-        transform.position = _position;
+
+        if (!IsReference)
+        {
+            transform.position = _position;
+        }
 
         if (_pillarCluster._isDone && !_solved)
         {
