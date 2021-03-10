@@ -45,8 +45,14 @@ public class PillarCluster : MonoBehaviour
     private void Update()
     {
         if (_isDone)
+        {
+            if (_actionToExecute != null)
+            {
+                _actionToExecute.enabled = true;
+            }
             return;
-
+        }
+        
         if (Pillars.Count > 0)
         {
             foreach (var pillar in Pillars.ToList())
@@ -64,16 +70,13 @@ public class PillarCluster : MonoBehaviour
         
         if (_isDone)
         {
+
+            
             foreach (var pillar in _correctedPillars)
             {
                 pillar.LineRenderer.enabled = true;
                 pillar.LineRenderer.SetPosition(0, pillar.Grip.transform.position);
                 pillar.LineRenderer.SetPosition(1, ReferencePillar.Grip.transform.position);
-
-                if (_actionToExecute != null)
-                {
-                    _actionToExecute.enabled = true;
-                }
             }
             StartCoroutine(PlayCompletionSound(1));
         } 
