@@ -9,7 +9,13 @@ namespace VolumetricFogAndMist2 {
         [Range(0, 1)] public float falloff = 0.5f;
 
         private void OnEnable() {
-            VolumetricFogManager.fogVoidManager.Refresh();
+            VolumetricFogManager.fogVoidManager.RegisterFogVoid(this);
+        }
+
+        private void OnDisable() {
+            if (VolumetricFogManager.GetManagerIfExists() != null) {
+                VolumetricFogManager.fogVoidManager.UnregisterFogVoid(this);
+            }
         }
 
         void OnDrawGizmosSelected() {

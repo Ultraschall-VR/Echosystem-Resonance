@@ -21,9 +21,11 @@ namespace VolumetricFogAndMist2 {
         public bool enablePointLights;
         public bool enableVoids;
 
-        [Tooltip("Fades in/out fog effect when reference object enters the fog volume.")]
+        [Tooltip("Fades in/out fog effect when reference controller enters the fog volume.")]
         public bool enableFade;
         public float fadeDistance = 1;
+        [Tooltip("Fades out the fog volume when the reference controller enters the volume. If this option is disabled, the fog appears when the controller enters the vollume.")]
+        public bool fadeOut;
         [Tooltip("The controller (player or camera) to check if enters the fog volume.")]
         public Transform fadeController;
         [Tooltip("Enable sub-volume blending.")]
@@ -32,17 +34,6 @@ namespace VolumetricFogAndMist2 {
         public List<VolumetricFogSubVolume> subVolumes;
         [Tooltip("Shows the fog volume boundary in Game View")]
         public bool showBoundary;
-
-
-        const string SKW_SHAPE_BOX = "V2F_SHAPE_BOX";
-        const string SKW_SHAPE_SPHERE = "V2F_SHAPE_SPHERE";
-        const string SKW_POINT_LIGHTS = "VF2_POINT_LIGHTS";
-        const string SKW_VOIDS = "VF2_VOIDS";
-        const string SKW_FOW = "VF2_FOW";
-        const string SKW_RECEIVE_SHADOWS = "VF2_RECEIVE_SHADOWS";
-        const string SKW_DISTANCE = "VF2_DISTANCE";
-        const string SKW_DETAIL_NOISE = "V2F_DETAIL_NOISE";
-        const string SKW_SURFACE = "V2F_SURFACE";
 
         Renderer r;
         Material fogMat, noiseMat, turbulenceMat;
@@ -180,7 +171,11 @@ namespace VolumetricFogAndMist2 {
             } else {
                 lightColor = Color.white;
             }
-            lightColor.a *= alphaMultiplier;
+            if (fadeOut && Application.isPlaying) {
+                lightColor.a *= 1f - alphaMultiplier;
+            } else {
+                lightColor.a *= alphaMultiplier;
+            }
             fogMat.SetVector(ShaderParams.LightColor, lightColor);
 
             windAcum += Time.deltaTime;
@@ -197,7 +192,7 @@ namespace VolumetricFogAndMist2 {
 
             if (showBoundary) {
                 if (fogDebugMat == null) {
-                    fogDebugMat = new Material(Shader.Find("Hidden/VolumetricFog2/VolumetricFogDebug"));
+                    fogDebugMat = new Material(Shader.Find("Hidden/VolumetricFog2/VolumeDebug"));
                 }
                 if (debugMesh == null) {
                     MeshFilter mf = GetComponent<MeshFilter>();
@@ -419,22 +414,36 @@ namespace VolumetricFogAndMist2 {
 
             if (activeProfile.distance > 0) {
                 fogMat.SetVector(ShaderParams.DistanceData, new Vector4(0, 10f * (1f - activeProfile.distanceFallOff), 0, 1f / (0.0001f + activeProfile.distance * activeProfile.distance)));
-                shaderKeywords.Add(SKW_DISTANCE);
+                shaderKeywords.Add(ShaderParams.SKW_DISTANCE);
             }
-            if (activeProfile.shape == VolumetricFogShape.Box) shaderKeywords.Add(SKW_SHAPE_BOX); else shaderKeywords.Add(SKW_SHAPE_SPHERE);
-            if (enablePointLights) shaderKeywords.Add(SKW_POINT_LIGHTS);
-            if (enableVoids) shaderKeywords.Add(SKW_VOIDS);
-            if (activeProfile.receiveShadows) shaderKeywords.Add(SKW_RECEIVE_SHADOWS);
+            if (activeProfile.shape == VolumetricFogShape.Box) {
+                shaderKeywords.Add(ShaderParams.SKW_SHAPE_BOX);
+            } else {
+                shaderKeywords.Add(ShaderParams.SKW_SHAPE_SPHERE);
+            }
+            if (enablePointLights) {
+                shaderKeywords.Add(ShaderParams.SKW_POINT_LIGHTS);
+            }
+            if (enableVoids) {
+                shaderKeywords.Add(ShaderParams.SKW_VOIDS);
+            }
+            if (activeProfile.receiveShadows) {
+                shaderKeywords.Add(ShaderParams.SKW_RECEIVE_SHADOWS);
+            }
             if (enableFogOfWar) {
                 fogMat.SetTexture(ShaderParams.FogOfWarTexture, fogOfWarTexture);
                 fogMat.SetVector(ShaderParams.FogOfWarCenter, fogOfWarCenter);
                 fogMat.SetVector(ShaderParams.FogOfWarSize, fogOfWarSize);
                 Vector3 ca = fogOfWarCenter - 0.5f * fogOfWarSize;
                 fogMat.SetVector(ShaderParams.FogOfWarCenterAdjusted, new Vector3(ca.x / fogOfWarSize.x, 1f, ca.z / (fogOfWarSize.z + 0.0001f)));
-                shaderKeywords.Add(SKW_FOW);
+                shaderKeywords.Add(ShaderParams.SKW_FOW);
             }
-            if (activeProfile.useDetailNoise) shaderKeywords.Add(SKW_DETAIL_NOISE);
-            if (activeProfile.terrainFit) shaderKeywords.Add(SKW_SURFACE);
+            if (activeProfile.useDetailNoise) {
+                shaderKeywords.Add(ShaderParams.SKW_DETAIL_NOISE);
+            }
+            if (activeProfile.terrainFit) {
+                shaderKeywords.Add(ShaderParams.SKW_SURFACE);
+            }
             fogMat.shaderKeywords = shaderKeywords.ToArray();
         }
 

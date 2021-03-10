@@ -19,6 +19,8 @@ namespace VolumetricFogAndMist2 {
         [Tooltip("Point lights are sorted by distance to tracking center object")]
         public Transform trackingCenter;
         public float newLightsCheckInterval = 3f;
+        [Tooltip("Excludes lights behind camera")]
+        public bool excludeLightsBehind = true;
 
         [Header("Common Settings")]
         [Tooltip("Global inscattering multiplier for point lights")]
@@ -57,11 +59,27 @@ namespace VolumetricFogAndMist2 {
         void SubmitPointLightData() {
 
             int k = 0;
+            bool appIsRunning = Application.isPlaying;
+            Vector3 trackingCenterPosition = trackingCenter.position;
+            Vector3 trackingCenterForward = trackingCenter.forward;
+
             for (int i = 0; k < MAX_POINT_LIGHTS && i < pointLights.Length; i++) {
                 Light light = pointLights[i];
                 if (light == null || !light.isActiveAndEnabled || light.type != LightType.Point) continue;
                 Vector3 pos = light.transform.position;
-                float range = light.range * inscattering / 25f; // note: 25 comes from Unity point light attenuation equation
+                float range = light.range;
+
+                // if point light is behind camera and beyond the range, ignore it
+                if (appIsRunning && excludeLightsBehind) {
+                    Vector3 toLight = pos - trackingCenterPosition;
+                    float dot = Vector3.Dot(trackingCenterForward, pos - trackingCenterPosition);
+                    if (dot < 0 && toLight.sqrMagnitude > range * range) {
+                        continue;
+                    }
+                }
+                
+                // add light to the buffer if intensity is enough
+                range *= inscattering / 25f; // note: 25 comes from Unity point light attenuation equation
                 float multiplier = light.intensity * intensity;
 
                 if (range > 0 && multiplier > 0) {
@@ -78,10 +96,10 @@ namespace VolumetricFogAndMist2 {
                 }
             }
 
-            Shader.SetGlobalVectorArray(VolumetricFog.ShaderParams.PointLightColors, pointLightColorBuffer);
-            Shader.SetGlobalVectorArray(VolumetricFog.ShaderParams.PointLightPositions, pointLightPositionBuffer);
-            Shader.SetGlobalFloat(VolumetricFog.ShaderParams.PointLightInsideAtten, insideAtten);
-            Shader.SetGlobalInt(VolumetricFog.ShaderParams.PointLightCount, k);
+            Shader.SetGlobalVectorArray(ShaderParams.PointLightColors, pointLightColorBuffer);
+            Shader.SetGlobalVectorArray(ShaderParams.PointLightPositions, pointLightPositionBuffer);
+            Shader.SetGlobalFloat(ShaderParams.PointLightInsideAtten, insideAtten);
+            Shader.SetGlobalInt(ShaderParams.PointLightCount, k);
         }
 
         /// <summary>
