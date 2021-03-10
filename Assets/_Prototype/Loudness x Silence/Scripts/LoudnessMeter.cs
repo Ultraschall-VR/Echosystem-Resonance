@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Echosystem.Resonance.Prototyping
@@ -8,9 +9,13 @@ namespace Echosystem.Resonance.Prototyping
         private float _currentLoudness = 0.0f;
 
         private bool _resetPlayer = false;
+        
 
         void Update()
         {
+            if (!SceneSettings.Instance.PlayerCanDie)
+                return;
+            
             if (Observer.CurrentSilenceSphere == null)
             {
                 _currentLoudness += Time.deltaTime / SceneSettings.Instance.LoudnessIncreaseTime;

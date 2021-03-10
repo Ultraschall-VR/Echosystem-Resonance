@@ -17,23 +17,34 @@ public class LoudnessDisplay : MonoBehaviour
     [SerializeField] private CanvasGroup _deathText;
     [SerializeField] private CanvasGroup _subText;
 
+    private CanvasGroup _sliderCanvas;
+
     private void Start()
     {
+        _sliderCanvas = GetComponent<CanvasGroup>();
+        
         _slider = GetComponent<Slider>();
         _blackFade.alpha = 0.0f;
         _deathText.alpha = 0.0f;
         _subText.alpha = 0.0f;
         _damageScreen.alpha = 0.0f;
-        
-        if(!SceneSettings.Instance.PlayerCanDie) 
-            gameObject.SetActive(false);
+        _sliderCanvas.alpha = 0.0f;
     }
 
     private void Update()
     {
-        if(!SceneSettings.Instance.PlayerCanDie) 
+        if (!SceneSettings.Instance.PlayerCanDie)
+        {
+            _blackFade.alpha = 0.0f;
+            _deathText.alpha = 0.0f;
+            _subText.alpha = 0.0f;
+            _damageScreen.alpha = 0.0f;
+            _sliderCanvas.alpha = 0.0f;
             return;
+        }
         
+        _sliderCanvas.alpha = 1.0f;
+
         if (_slider.value > 0.50f)
         {
             _damageScreen.alpha = (_slider.value - 0.50f) / (1 - 0.50f);
