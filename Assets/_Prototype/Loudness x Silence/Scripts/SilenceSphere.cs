@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using AmazingAssets.DynamicRadialMasks;
 using Echosystem.Resonance.Helper;
 using UnityEngine;
@@ -11,6 +12,8 @@ namespace Echosystem.Resonance.Prototyping
         [SerializeField] private GameObject _innerSphere;
         [SerializeField] private GameObject _outerSphere;
         [SerializeField] public DRMGameObject DrmGameObject;
+
+        private Vector3 _initialInnerSphereScale;
 
         private TriggerEvent _innerSphereTrigger;
         private float _distanceToPlayer;
@@ -35,6 +38,8 @@ namespace Echosystem.Resonance.Prototyping
         private void Initialize()
         {
             _innerSphereTrigger = _innerSphere.GetComponent<TriggerEvent>();
+
+            _initialInnerSphereScale = _innerSphere.transform.localScale;
 
             StartCoroutine(AnimateScale());
 
@@ -62,7 +67,6 @@ namespace Echosystem.Resonance.Prototyping
             if (!_isInitalized)
                 return;
 
-            DrmGameObject.radius = _outerSphere.transform.localScale.x / 2;
 
             if (_innerSphereTrigger.Triggered)
             {
@@ -109,9 +113,13 @@ namespace Echosystem.Resonance.Prototyping
         {
             _distanceToPlayer =
                 Vector3.Distance(Observer.Player.transform.position, _innerSphereTrigger.transform.position) /
-                (_innerSphere.transform.localScale.x / 2);
-            _outerSphere.transform.localScale = (_innerSphere.transform.localScale * 2) / (_distanceToPlayer * 2);
+                (_innerSphere.transform.localScale.x/2);
             
+            Vector3 normalizedScale = Vector3.Lerp(_initialInnerSphereScale*2, _initialInnerSphereScale, _distanceToPlayer);
+            
+            _outerSphere.transform.localScale = normalizedScale;
+
+            DrmGameObject.radius = _outerSphere.transform.localScale.x / 2;
         }
 
         private IEnumerator AnimateScale()
@@ -122,12 +130,14 @@ namespace Echosystem.Resonance.Prototyping
             {
                 _distanceToPlayer =
                     Vector3.Distance(Observer.Player.transform.position, _innerSphereTrigger.transform.position) /
-                    (_innerSphere.transform.localScale.x / 2);
+                    (_innerSphere.transform.localScale.x/2);
 
                 t += Time.deltaTime;
+                
+                Vector3 normalizedScale = Vector3.Lerp(_initialInnerSphereScale*2, _initialInnerSphereScale, _distanceToPlayer);
 
                 _outerSphere.transform.localScale =
-                    Vector3.Lerp(Vector3.zero, (_innerSphere.transform.localScale * 2) / (_distanceToPlayer * 2),
+                    Vector3.Lerp(Vector3.zero, normalizedScale,
                         t / _animationTime);
 
                 DrmGameObject.radius = _outerSphere.transform.localScale.x / 2;
