@@ -28,8 +28,7 @@ public class InputCheck : MonoBehaviour
         if (!_animationTriggered && _playerRotated && _keysPressed)
         {
             _animationTriggered = true;
-            _anim.Play("FrameText_UpperLeft");
-            _anim.Play("FrameBox_BottomRight");
+            _anim.Play("UI_task_Animation");
         }
     }
 
