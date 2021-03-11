@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -54,6 +53,8 @@ namespace Echosystem.Resonance.Prototyping
 
         private void Update()
         {
+            Debug.Log(MidGoal);
+            
             if (SceneSettings.Instance.GodMode)
             {
                 if(Index < ListCount)
@@ -62,6 +63,7 @@ namespace Echosystem.Resonance.Prototyping
             
             if (Index < ListCount)
             {
+
                 if (!_collectableMelodies[Index].GetComponent<AudioSource>().isPlaying && _playAfterBeacon && _firstBeaconSocket.IsOccupied)
                 {
                     Play();
