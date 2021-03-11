@@ -15,6 +15,9 @@ public class FocusedObject : MonoBehaviour
     {
         RaycastHit hit;
 
+        if(Observer.Player == null)
+            return;
+
         if (Physics.Raycast(Observer.PlayerHead.transform.position, Observer.PlayerHead.transform.forward, out hit, 5f, ~LayerMask.GetMask("SilenceSphere")))
         {
             Observer.FocusedGameObject = hit.collider.gameObject;
