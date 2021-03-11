@@ -7,15 +7,10 @@ namespace Echosystem.Resonance.Prototyping
     public class LoudnessMeter : MonoBehaviour
     {
         private float _currentLoudness = 0.0f;
-
         private bool _resetPlayer = false;
-        
 
         void Update()
         {
-            if (!SceneSettings.Instance.PlayerCanDie)
-                return;
-            
             if (Observer.CurrentSilenceSphere == null)
             {
                 _currentLoudness += Time.deltaTime / SceneSettings.Instance.LoudnessIncreaseTime;
@@ -23,6 +18,10 @@ namespace Echosystem.Resonance.Prototyping
                 if (_currentLoudness >= 1.0f && Observer.CurrentSilenceSphere == null)
                 {
                     _currentLoudness = 1.0f;
+                    
+                    if (!SceneSettings.Instance.PlayerCanDie)
+                        return;
+                    
                     _resetPlayer = true;
                 }
             }

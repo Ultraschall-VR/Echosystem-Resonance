@@ -34,8 +34,7 @@ public class CanvasCheck : MonoBehaviour
     {
         foreach (var anim in _animators)
         {
-            anim.Play("FrameText_UpperLeft");
-            anim.Play("FrameBox_BottomRight");
+            anim.Play("UI_Task_Animation");
         }
     }
 
