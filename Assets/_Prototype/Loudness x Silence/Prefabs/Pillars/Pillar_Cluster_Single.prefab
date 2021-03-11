@@ -50,7 +50,9 @@ MonoBehaviour:
   Pillars: []
   _completedSound: {fileID: 8300000, guid: c42269801640d490bb3be56e4d6755f7, type: 3}
   _isDone: 0
-  _actionToExecute: {fileID: 0}
+  _anchorPoints: []
+  _actionToExecute:
+  - {fileID: 0}
 --- !u!82 &4801064222843959630
 AudioSource:
   m_ObjectHideFlags: 0
@@ -173,7 +175,7 @@ PrefabInstance:
     - target: {fileID: 7874094107213008403, guid: fa83a7714ef982b43908202b60c209d4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 3.54
       objectReference: {fileID: 0}
     - target: {fileID: 7874094107213008403, guid: fa83a7714ef982b43908202b60c209d4,
         type: 3}
@@ -215,6 +217,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7874094107213008406, guid: fa83a7714ef982b43908202b60c209d4,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 10173ef67a6684846bdba24e94db3175, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa83a7714ef982b43908202b60c209d4, type: 3}
 --- !u!4 &7453951164525140889 stripped
@@ -230,6 +237,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1696432558660342814}
     m_Modifications:
+    - target: {fileID: 561854812660040232, guid: 90b609594a34c48dbb7ad9d92a295405,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 10173ef67a6684846bdba24e94db3175, type: 3}
     - target: {fileID: 561854812660040236, guid: 90b609594a34c48dbb7ad9d92a295405,
         type: 3}
       propertyPath: m_Name
@@ -248,7 +260,7 @@ PrefabInstance:
     - target: {fileID: 561854812660040237, guid: 90b609594a34c48dbb7ad9d92a295405,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.12
       objectReference: {fileID: 0}
     - target: {fileID: 561854812660040237, guid: 90b609594a34c48dbb7ad9d92a295405,
         type: 3}
