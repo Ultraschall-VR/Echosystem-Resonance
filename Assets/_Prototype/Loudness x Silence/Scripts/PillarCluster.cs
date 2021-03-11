@@ -14,7 +14,7 @@ public class PillarCluster : MonoBehaviour
     public bool _isDone = false;
     private int _listCount;
 
-    [SerializeField] private MonoBehaviour _actionToExecute;
+    [SerializeField] private List<MonoBehaviour> _actionToExecute;
 
     private void Start()
     {
@@ -22,7 +22,10 @@ public class PillarCluster : MonoBehaviour
         
         if (_actionToExecute != null)
         {
-            _actionToExecute.enabled = false;
+            foreach (var action in _actionToExecute)
+            {
+                action.enabled = false;
+            }
         }
 
         
@@ -48,7 +51,11 @@ public class PillarCluster : MonoBehaviour
         {
             if (_actionToExecute != null)
             {
-                _actionToExecute.enabled = true;
+                foreach (var action in _actionToExecute)
+                {
+                    action.enabled = true;
+                }
+             
             }
             return;
         }
