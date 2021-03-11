@@ -12,6 +12,10 @@ public class PillarCluster : MonoBehaviour
     private AudioSource _audioSource;
 
     public bool _isDone = false;
+
+    [SerializeField] private List<Transform> _anchorPoints;
+    private List<LineRenderer> _lineRenderers;
+    
     private int _listCount;
 
     [SerializeField] private List<MonoBehaviour> _actionToExecute;
@@ -19,6 +23,7 @@ public class PillarCluster : MonoBehaviour
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
+        _lineRenderers = new List<LineRenderer>();
         
         if (_actionToExecute != null)
         {
@@ -57,6 +62,29 @@ public class PillarCluster : MonoBehaviour
                 }
              
             }
+
+            if (_lineRenderers.Count == _anchorPoints.Count)
+                return;
+            
+            foreach (var anchor in _anchorPoints)
+            {
+                GameObject lineRendererObject = new GameObject();
+                var lineRenderer = lineRendererObject.AddComponent<LineRenderer>();
+
+                lineRendererObject.transform.parent = ReferencePillar.transform;
+                lineRendererObject.name = "LineRenderer";
+                
+                lineRenderer.positionCount = 2;
+                lineRenderer.useWorldSpace = true;
+                lineRenderer.SetPosition(0, ReferencePillar.Grip.transform.position);
+                lineRenderer.SetPosition(1, anchor.position);
+                lineRenderer.material.color = Color.blue;
+                lineRenderer.widthMultiplier = 0.20f;
+                
+                _lineRenderers.Add(lineRenderer);
+                
+            }
+            
             return;
         }
         
@@ -77,8 +105,6 @@ public class PillarCluster : MonoBehaviour
         
         if (_isDone)
         {
-
-            
             foreach (var pillar in _correctedPillars)
             {
                 pillar.LineRenderer.enabled = true;
