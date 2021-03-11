@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
 using Echosystem.Resonance.Prototyping;
+using TMPro;
 
 
 public class PauseMenuEchosystem : MonoBehaviour
@@ -10,10 +12,22 @@ public class PauseMenuEchosystem : MonoBehaviour
     [SerializeField] private GameObject _pauseCamera;
     public GameObject pauseMenuUI;
 
+    [SerializeField] private string _taskHeadlineContent;
 
+    [TextArea(15,20)]
+    [SerializeField] private string _taskTextContent;
+
+    [SerializeField] private TextMeshProUGUI _taskHeadline;
+    [SerializeField] private TextMeshProUGUI _taskText;
     void Update()
     {
         Input();
+    }
+
+    private void Start()
+    {
+        _taskHeadline.text = _taskHeadlineContent;
+        _taskText.text = _taskTextContent;
     }
 
     private void Input()
