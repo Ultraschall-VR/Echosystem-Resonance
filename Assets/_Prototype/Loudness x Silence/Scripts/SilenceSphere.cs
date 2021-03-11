@@ -62,6 +62,10 @@ namespace Echosystem.Resonance.Prototyping
                     _drmGameObjectsPool.drmGameObjects = new List<DRMGameObject>();
                     _drmGameObjectsPool.AddObject(DrmGameObject);
                 }
+            } 
+            else if (Observer.CurrentSilenceSphere != null && !_innerSphereTrigger.Triggered)
+            {
+                Observer.SilenceSphereExited = true;
             }
 
             if (!_isInitalized)

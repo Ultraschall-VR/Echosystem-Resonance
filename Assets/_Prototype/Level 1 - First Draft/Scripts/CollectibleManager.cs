@@ -62,10 +62,10 @@ namespace Echosystem.Resonance.Prototyping
             
             if (Index < ListCount)
             {
-                if (!_collectableMelodies[Index].GetComponent<AudioSource>().isPlaying && _firstBeaconSocket.IsOccupied)
-                {
-                    Play();
-                }
+                //if (!_collectableMelodies[Index].GetComponent<AudioSource>().isPlaying && _firstBeaconSocket.IsOccupied)
+                //{
+                //    Play();
+                //}
             }
 
             Observer.CollectedObjects = Index;
