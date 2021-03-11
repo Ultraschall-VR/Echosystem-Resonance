@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Echosystem.Resonance.UI;
 using UnityEngine;
 
 public class CanvasCheck : MonoBehaviour
@@ -7,6 +8,7 @@ public class CanvasCheck : MonoBehaviour
     private Canvas _canvas;
     private bool _isEnabled = true;
     private CanvasGroup _canvasGroup;
+    private UiManager _uiManager;
 
     [SerializeField] private List<Animator> _animators;
 
@@ -18,6 +20,8 @@ public class CanvasCheck : MonoBehaviour
         _canvas = GetComponent<Canvas>();
         _canvasGroup = GetComponent<CanvasGroup>();
         _canvasGroup.alpha = 0f;
+
+        _uiManager = FindObjectOfType<UiManager>();
     }
 
     void Update()
@@ -71,6 +75,8 @@ public class CanvasCheck : MonoBehaviour
             _canvasGroup.alpha = Mathf.Lerp(1, 0, t / timer);
             yield return null;
         }
+
+        _uiManager.LoadCanvas(_uiManager.Index+1);
 
         yield return null;
     }
