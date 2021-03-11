@@ -18,9 +18,9 @@ public class UI_Level_01 : MonoBehaviour
             _uiManager.LoadCanvas(1);
         }
 
-        //if (Observer.CollectedObjects == Observer.MaxCollectibleObjects)
-        //{
-        //    _uiManager.LoadCanvas(2);
-        //}
+        if (Observer.CollectedObjects == Observer.MaxCollectibleObjects)
+        {
+            _uiManager.LoadCanvas(2);
+        }
     }
 }
