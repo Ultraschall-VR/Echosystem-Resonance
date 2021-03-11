@@ -28,6 +28,19 @@ namespace Echosystem.Resonance.Prototyping
             CollectedObjects = 0;
             MaxCollectibleObjects = 0;
         }
+
+        private void Update()
+        {
+            CheckForFirstSilenceSphereExit();
+        }
+
+        private void CheckForFirstSilenceSphereExit()
+        {
+            if (LoudnessValue > 0.0f)
+            {
+                SilenceSphereExited = true;
+            }
+        }
     }
 }
 
