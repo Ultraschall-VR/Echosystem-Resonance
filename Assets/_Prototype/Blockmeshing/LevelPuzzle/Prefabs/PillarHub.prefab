@@ -52,7 +52,7 @@ MonoBehaviour:
   phaseSpeed: 2
   smooth: 0
   drawInEditor: 1
-  currentPhase: 3.6000006
+  currentPhase: 0.6
 --- !u!1 &4859317312513498956
 GameObject:
   m_ObjectHideFlags: 0
@@ -64,7 +64,7 @@ GameObject:
   - component: {fileID: 4859317312513498958}
   - component: {fileID: 4859317312513498957}
   m_Layer: 17
-  m_Name: __PillarHub
+  m_Name: PillarHub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -102,6 +102,7 @@ MonoBehaviour:
   _innerSphere: {fileID: 4859317312877097831}
   _outerSphere: {fileID: 1357683593768754319}
   DrmGameObject: {fileID: 4806301655781704673}
+  _dontAnimate: 1
 --- !u!1 &4859317312877097831
 GameObject:
   m_ObjectHideFlags: 0
@@ -114,6 +115,7 @@ GameObject:
   - component: {fileID: 4859317312877097826}
   - component: {fileID: 4859317312877097825}
   - component: {fileID: 4859317312877097824}
+  - component: {fileID: 5434398630743804048}
   m_Layer: 17
   m_Name: Inner Radius
   m_TagString: Untagged
@@ -195,6 +197,21 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5434398630743804048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4859317312877097831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 045bd96eb03ea2645b612b4a4b0bdfa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _action: {fileID: 0}
+  _audioSources: []
+  Triggered: 0
 --- !u!1001 &7773158850260091224
 PrefabInstance:
   m_ObjectHideFlags: 0
