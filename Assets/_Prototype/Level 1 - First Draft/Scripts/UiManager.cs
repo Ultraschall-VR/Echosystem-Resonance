@@ -18,7 +18,7 @@ namespace Echosystem.Resonance.UI
 
         private bool _isFading;
 
-        public int Index;
+        [HideInInspector] public int Index;
 
         #region UnityEvents
 

@@ -19,6 +19,8 @@ public class SceneSettings : MonoBehaviour
     public bool PlayerCanDie;
     public float RespawnTime;
 
+    public float SpawnDelay;
+
     
     public static SceneSettings Instance;
 

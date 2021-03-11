@@ -13,6 +13,8 @@ namespace Echosystem.Resonance.Prototyping
         [SerializeField] private GameObject _outerSphere;
         [SerializeField] public DRMGameObject DrmGameObject;
 
+        [SerializeField] private bool _dontAnimate;
+
         private Vector3 _initialInnerSphereScale;
 
         private TriggerEvent _innerSphereTrigger;
@@ -29,6 +31,8 @@ namespace Echosystem.Resonance.Prototyping
         private DRMGameObjectsPool _drmGameObjectsPool;
 
         private float _animationTime = 2.0f;
+        
+        
 
         private void Start()
         {
@@ -41,7 +45,16 @@ namespace Echosystem.Resonance.Prototyping
 
             _initialInnerSphereScale = _innerSphere.transform.localScale;
 
-            StartCoroutine(AnimateScale());
+            if (_dontAnimate)
+            {
+                _isInitalized = true;
+            }
+            else
+            {
+                StartCoroutine(AnimateScale());
+            }
+            
+            
 
             if (FindObjectOfType<DRMGameObjectsPool>())
             {
@@ -128,6 +141,10 @@ namespace Echosystem.Resonance.Prototyping
             
             while (t < _animationTime)
             {
+                
+                if (Observer.Player == null)
+                    break;
+                
                 _distanceToPlayer =
                     Vector3.Distance(Observer.Player.transform.position, _innerSphereTrigger.transform.position) /
                     (_innerSphere.transform.localScale.x/2);

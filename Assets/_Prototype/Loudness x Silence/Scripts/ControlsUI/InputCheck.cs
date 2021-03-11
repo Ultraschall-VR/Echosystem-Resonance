@@ -43,6 +43,9 @@ public class InputCheck : MonoBehaviour
 
     private void CheckPlayerRot()
     {
+        if(Observer.Player == null)
+            return;
+        
         _currentPlayerRotation = Observer.Player.transform.eulerAngles;
 
         if (_lastPlayerRotation != Vector3.zero && _lastPlayerRotation != _currentPlayerRotation)
