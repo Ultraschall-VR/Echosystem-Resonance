@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -13003,6 +13003,24 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &642270513 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6473159301635523658, guid: a3dda353b8123408c80242d3a042476e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1992271188}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &642270514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642270513}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1fb5663a8e83cd4d9c2d2b0c1fac3a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &642996240
 GameObject:
   m_ObjectHideFlags: 0
@@ -14868,24 +14886,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 803925149}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &804561615 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6473159301635523658, guid: a3dda353b8123408c80242d3a042476e,
-    type: 3}
-  m_PrefabInstance: {fileID: 1152779786}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &804561616
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 804561615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1fb5663a8e83cd4d9c2d2b0c1fac3a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &810527759
 GameObject:
   m_ObjectHideFlags: 0
@@ -21183,12 +21183,12 @@ PrefabInstance:
         type: 3}
       propertyPath: _actionToExecute.Array.data[0]
       value: 
-      objectReference: {fileID: 804561616}
+      objectReference: {fileID: 0}
     - target: {fileID: 8269628990344629612, guid: a3dda353b8123408c80242d3a042476e,
         type: 3}
       propertyPath: _actionToExecute.Array.data[1]
       value: 
-      objectReference: {fileID: 804561616}
+      objectReference: {fileID: 0}
     - target: {fileID: 8472531212937946955, guid: a3dda353b8123408c80242d3a042476e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -32938,7 +32938,7 @@ PrefabInstance:
     - target: {fileID: 8269628990344629612, guid: a3dda353b8123408c80242d3a042476e,
         type: 3}
       propertyPath: _actionToExecute.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8269628990344629612, guid: a3dda353b8123408c80242d3a042476e,
         type: 3}
@@ -32959,7 +32959,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _actionToExecute.Array.data[2]
       value: 
-      objectReference: {fileID: 485477020}
+      objectReference: {fileID: 642270514}
     - target: {fileID: 8269628990344629612, guid: a3dda353b8123408c80242d3a042476e,
         type: 3}
       propertyPath: _actionToExecute.Array.data[3]
@@ -35102,7 +35102,7 @@ MonoBehaviour:
   shaderData_RingCount:
   - 3
   shaderData_Phase:
-  - 235.8617
+  - 0.84
   shaderData_Frequency:
   - 10
   shaderData_Smooth:
@@ -36310,6 +36310,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6868965691151940354, guid: 716cd17f88c5a1c4886a28fee758fecf,
+        type: 3}
+      propertyPath: _animationDelay
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6915732453439110870, guid: 716cd17f88c5a1c4886a28fee758fecf,
         type: 3}
