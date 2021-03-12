@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -20,11 +21,9 @@ public class PillarCluster : MonoBehaviour
 
     [SerializeField] private List<MonoBehaviour> _actionToExecute;
 
-    private void Start()
+
+    private void Awake()
     {
-        _audioSource = GetComponent<AudioSource>();
-        _lineRenderers = new List<LineRenderer>();
-        
         if (_actionToExecute != null)
         {
             foreach (var action in _actionToExecute)
@@ -32,6 +31,14 @@ public class PillarCluster : MonoBehaviour
                 action.enabled = false;
             }
         }
+    }
+
+    private void Start()
+    {
+        _audioSource = GetComponent<AudioSource>();
+        _lineRenderers = new List<LineRenderer>();
+        
+
 
         
         foreach (Transform child in transform)
