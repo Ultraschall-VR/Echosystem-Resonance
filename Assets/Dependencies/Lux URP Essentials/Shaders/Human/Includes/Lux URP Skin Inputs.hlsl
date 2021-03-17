@@ -50,6 +50,10 @@
             half _RimFrequency;
             half _RimPerPositionFrequency;
         #endif
+
+        half _Backscatter;
+        half _VertexNormal;
+
     CBUFFER_END
 
 //  Additional textures

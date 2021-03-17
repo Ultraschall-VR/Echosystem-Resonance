@@ -96,6 +96,8 @@ void Lighting_half(
     half3 bitangentWS,
     bool enableNormalMapping,
     bool enableDiffuseNormalMapping,
+    bool enableBackScattering,
+    bool useVertexNormal,
 
 //  Surface description
     half3 albedo,
@@ -113,6 +115,8 @@ void Lighting_half(
     half curvature,
     half skinMask,
     half maskbyshadowstrength,
+
+    half backScattering,
 
     Texture2D normalMap,
     SamplerState sampler_Normal,
@@ -139,6 +143,14 @@ void Lighting_half(
     half3 diffuseNormalWS;
     if (enableNormalMapping) {
         half3x3 ToW = half3x3(tangentWS.xyz, bitangentWS.xyz, normalWS.xyz);
+
+        half4 sampleNormal = SAMPLE_TEXTURE2D(normalMap, sampler_Normal, UV);
+        half3 normalTS = UnpackNormalScale(sampleNormal, bumpScale);
+        
+    //  Get specular normal
+        half3 snormalWS = TransformTangentToWorld(normalTS, ToW);
+        snormalWS = NormalizeNormalPerPixel(snormalWS);
+    //  Get diffuse normal
         if(enableDiffuseNormalMapping) {
             half4 sampleNormalDiffuse = SAMPLE_TEXTURE2D_BIAS(normalMap, sampler_Normal, UV, diffuseBias);
         //  Do not manually unpack the normal map as it might use RGB.
@@ -148,12 +160,11 @@ void Lighting_half(
             diffuseNormalWS = NormalizeNormalPerPixel(diffuseNormalWS);
         }
         else {
-            diffuseNormalWS = normalWS;
+            diffuseNormalWS = (useVertexNormal) ? normalWS : snormalWS;
         }
-        half4 sampleNormal = SAMPLE_TEXTURE2D(normalMap, sampler_Normal, UV);
-        half3 normalTS = UnpackNormalScale(sampleNormal, bumpScale);
-        normalWS = TransformTangentToWorld(normalTS, ToW);
-        normalWS = NormalizeNormalPerPixel(normalWS);
+    //  Set specular normal
+        normalWS = snormalWS;
+        
     }
     else {
        normalWS = NormalizeNormalPerPixel(normalWS);
@@ -176,6 +187,11 @@ void Lighting_half(
     InitializeBRDFData(albedo, metallic, specular, smoothness, alpha, brdfData);
 
     FinalLighting = GlobalIllumination_Lux(brdfData, bakedGI, occlusion, normalWS, viewDirectionWS,     AmbientReflection);
+
+//  Backscattering
+    if (enableBackScattering) {
+        FinalLighting += backScattering * SampleSH(-diffuseNormalWS) * albedo * occlusion * translucency.x * subsurfaceColor * skinMask;
+    }
 
 //  Get Shadow Sampling Coords
     #if SHADOWS_SCREEN
@@ -201,8 +217,8 @@ void Lighting_half(
 
 
     #ifdef _ADDITIONAL_LIGHTS
-        int pixelLightCount = GetAdditionalLightsCount();
-        for (int i = 0; i < pixelLightCount; ++i)
+        uint pixelLightCount = GetAdditionalLightsCount();
+        for (uint i = 0u; i < pixelLightCount; ++i)
         {
             //Light light = GetAdditionalLight(i, inputData.positionWS);
         //  Get index upfront as we need it for GetAdditionalLightShadowParams();
@@ -257,6 +273,8 @@ void Lighting_float(
     half3 bitangentWS,
     bool enableNormalMapping,
     bool enableDiffuseNormalMapping,
+    bool enableBackScattering,
+    bool useVertexNormal,
 
 //  Surface description
     half3 albedo,
@@ -275,6 +293,8 @@ void Lighting_float(
     half skinMask,
     half maskbyshadowstrength,
 
+    half backScattering,
+
     Texture2D normalMap,
     SamplerState sampler_Normal,
     float2 UV,
@@ -291,9 +311,10 @@ void Lighting_float(
 )
 {
     Lighting_half(
-        positionWS, viewDirectionWS, normalWS, tangentWS, bitangentWS, enableNormalMapping, enableDiffuseNormalMapping,
+        positionWS, viewDirectionWS, normalWS, tangentWS, bitangentWS, enableNormalMapping, enableDiffuseNormalMapping, enableBackScattering, useVertexNormal,
         albedo, metallic, specular, smoothness, occlusion, emission, alpha,
         translucency, AmbientReflection, subsurfaceColor, curvature, skinMask, maskbyshadowstrength,
+        backScattering,
         normalMap, sampler_Normal, UV, bumpScale, diffuseBias,
         lightMapUV, MetaAlbedo, FinalLighting, MetaSpecular
     );

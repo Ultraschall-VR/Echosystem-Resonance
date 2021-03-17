@@ -278,11 +278,17 @@ Shader "Lux URP/FX/Lightbeam"
 
             //  Surface fade
                 float fade = saturate (_far * ((sceneZ - _near) - thisZ));
+
+//  Poor man's anti aliasing in case we only rely on the depth sample (Ztest = Always): Adjust fade according to change in depth
+float change = fwidth(fade);
+//fade = lerp(fade, 0, (saturate(change)) * .5);
+
             //  Camera fade
                 fade *= saturate( (thisZ - _CameraFadeDistances.x) * _CameraFadeDistances.y);
             //  Combine
                 col.a *= mask01 * mask02 * fade * input.distFade;
                 col.rgb = MixFog(_Color.rgb, input.fogCoord);
+
                 return half4(col);
             }
             ENDHLSL

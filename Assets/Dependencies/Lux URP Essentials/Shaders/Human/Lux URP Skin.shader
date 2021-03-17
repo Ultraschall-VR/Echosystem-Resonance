@@ -35,6 +35,7 @@ Shader "Lux URP/Human/Skin"
         [Toggle(_NORMALMAPDIFFUSE)]
         _ApplyNormalDiffuse         ("     Enable Diffuse Normal Sample", Float) = 0.0
         _Bias                       ("     Bias", Range(0.0, 8.0)) = 3.0
+        [Toggle]_VertexNormal       ("          Use Vertex Normal for Diffuse", Float) = 1
 
         [Header(Skin Lighting)]
         [Space(5)]
@@ -53,6 +54,12 @@ Shader "Lux URP/Human/Skin"
         _MaskByShadowStrength       ("Mask by incoming Shadow Strength", Range(0.0, 1.0)) = 1.0
         _Distortion                 ("Transmission Distortion", Range(0.0, 0.1)) = 0.01
 
+        [Space(5)]
+        [Toggle(_BACKSCATTER)]
+        _EnableBackscatter          ("Enable Ambient Back Scattering", Float) = 0
+        _Backscatter                ("Ambient Back Scattering", Range(0.0, 8.0)) = 1
+
+        [Space(5)]
         _AmbientReflectionStrength  ("Ambient Reflection Strength", Range(0.0, 1)) = 1
 
         [Space(5)]
@@ -150,6 +157,7 @@ Shader "Lux URP/Human/Skin"
             #pragma shader_feature_local _NORMALMAPDIFFUSE
             #pragma shader_feature_local _DISTANCEFADE
             #pragma shader_feature_local _RIMLIGHTING
+            #pragma shader_feature_local _BACKSCATTER
 
             #pragma shader_feature _SPECULARHIGHLIGHTS_OFF
             #pragma shader_feature _ENVIRONMENTREFLECTIONS_OFF
@@ -298,7 +306,8 @@ Shader "Lux URP/Human/Skin"
                         diffuseNormalWS = TransformTangentToWorld(diffuseNormalTS, ToW);
                         diffuseNormalWS = NormalizeNormalPerPixel(diffuseNormalWS);
                     #else
-                        diffuseNormalWS = NormalizeNormalPerPixel(input.normalWS.xyz);
+                //  Here we let the user decide to use the per vertex or the specular normal.
+                        diffuseNormalWS = (_VertexNormal) ? NormalizeNormalPerPixel(input.normalWS.xyz) : inputData.normalWS;
                     #endif
                 #else
                     inputData.normalWS = NormalizeNormalPerPixel(input.normalWS);
@@ -353,7 +362,7 @@ Shader "Lux URP/Human/Skin"
                 #endif
 
             //  Apply lighting
-                half4 color = LuxLWRPSkinFragmentPBR(
+                half4 color = LuxURPSkinFragmentPBR(
                     inputData, 
                     surfaceData.albedo, 
                     surfaceData.metallic, 
@@ -377,7 +386,8 @@ Shader "Lux URP/Human/Skin"
                     (_SampleCurvature) ? surfaceData.curvature * _Curvature : lerp(surfaceData.translucency, 1, _Curvature),
                 //  Lerp lighting towards standard according the distance fade
                     surfaceData.skinMask * input.fade,
-                    _MaskByShadowStrength
+                    _MaskByShadowStrength,
+                    _Backscatter
                     );    
 
             //  Add fog

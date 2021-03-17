@@ -469,7 +469,11 @@
         o.uvMainAndLM.xy = v.texcoord;
         o.uvMainAndLM.zw = v.texcoord * unity_LightmapST.xy + unity_LightmapST.zw;
     #ifndef TERRAIN_SPLAT_BASEPASS
-        o.uvSplat01.xy = TRANSFORM_TEX(v.texcoord, _Splat0);
+        #if defined(_PROCEDURALTEXTURING)
+            o.uvSplat01.xy = Attributes.positionWS.xz / _ProceduralTiling;       
+        #else
+            o.uvSplat01.xy = TRANSFORM_TEX(v.texcoord, _Splat0);
+        #endif
         o.uvSplat01.zw = TRANSFORM_TEX(v.texcoord, _Splat1);
         o.uvSplat23.xy = TRANSFORM_TEX(v.texcoord, _Splat2);
         o.uvSplat23.zw = TRANSFORM_TEX(v.texcoord, _Splat3);
@@ -508,8 +512,8 @@
 
     // Used in Standard Terrain shader
     half4 SplatmapFragment(Varyings IN) : SV_TARGET {
-        //UNITY_SETUP_INSTANCE_ID(input);
-        UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
+        //UNITY_SETUP_INSTANCE_ID(IN);
+        UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(IN);
 
         #ifdef _ALPHATEST_ON
             half hole = SAMPLE_TEXTURE2D(_TerrainHolesTexture, sampler_TerrainHolesTexture, IN.uvMainAndLM.xy).r;

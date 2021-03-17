@@ -464,7 +464,7 @@ Shader "Lux URP/Glass"
                 #endif
 
             //  Apply lighting
-                half4 color = LuxLWRPTransparentFragmentPBR (
+                half4 color = LuxURPTransparentFragmentPBR (
                     inputData, 
                     surfaceData.albedo,
                     surfaceData.metallic, 
