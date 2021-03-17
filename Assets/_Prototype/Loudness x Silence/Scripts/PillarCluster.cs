@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -38,8 +37,6 @@ public class PillarCluster : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         _lineRenderers = new List<LineRenderer>();
         
-
-
         
         foreach (Transform child in transform)
         {
@@ -106,11 +103,8 @@ public class PillarCluster : MonoBehaviour
                 }
             }
         }
-
-        if (_correctedPillars.Count == _listCount)
-            _isDone = true;
         
-        if (_isDone)
+        if (_correctedPillars.Count > 0)
         {
             foreach (var pillar in _correctedPillars)
             {
@@ -118,6 +112,13 @@ public class PillarCluster : MonoBehaviour
                 pillar.LineRenderer.SetPosition(0, pillar.Grip.transform.position);
                 pillar.LineRenderer.SetPosition(1, ReferencePillar.Grip.transform.position);
             }
+        }
+        
+        if (_correctedPillars.Count == _listCount)
+            _isDone = true;
+        
+        if (_isDone)
+        {
             StartCoroutine(PlayCompletionSound(1));
         } 
     }
