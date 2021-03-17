@@ -21,6 +21,8 @@ public class SceneSettings : MonoBehaviour
 
     public float SpawnDelay;
 
+    public bool VREnabled;
+
     
     public static SceneSettings Instance;
 
