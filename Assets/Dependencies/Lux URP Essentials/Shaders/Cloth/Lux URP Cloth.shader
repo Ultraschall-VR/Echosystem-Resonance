@@ -228,7 +228,7 @@ Shader "Lux URP/Cloth"
                 // already normalized from normal transform to WS.
                 output.normalWS = normalInput.normalWS;
                 output.viewDirWS = viewDirWS;
-                #ifdef _NORMALMAP
+                #if defined(_NORMALMAP) || !defined(_COTTONWOOL)
                     float sign = input.tangentOS.w * GetOddNegativeScale();
                     output.tangentWS = float4(normalInput.tangentWS.xyz, sign);
                 #endif
@@ -351,38 +351,30 @@ Shader "Lux URP/Cloth"
                     surfaceData.emission += pow(rim, power) * _RimColor.rgb * _RimColor.a;
                 #endif
 
-                #if !defined(_COTTONWOOL)
-                    float sgn = input.tangentWS.w;      // should be either +1 or -1
-                    float3 bitangent = sgn * cross(input.normalWS.xyz, input.tangentWS.xyz);
-                #endif
-
             //  Apply lighting
-                half4 color = LuxLWRPClothFragmentPBR(
-                        inputData, 
-                        surfaceData.albedo,
-                        surfaceData.metallic, 
-                        surfaceData.specular, 
-                        surfaceData.smoothness, 
-                        surfaceData.occlusion, 
-                        surfaceData.emission, 
-                        surfaceData.alpha,
-                        #if !defined(_COTTONWOOL)
-                            input.tangentWS.xyz,
-                            bitangent,
-                        #else
-                            half3(0,0,0),
-                            half3(0,0,0),
-                        #endif
-                        _Anisotropy,
-                        _SheenColor,
-
-                        #if defined(_SCATTERING)
-                            half4(surfaceData.translucency * _TranslucencyStrength, _TranslucencyPower, _ShadowStrength, _Distortion)
-                        #else
-                            half4(0,0,0,0)
-                        #endif
-
+                half4 color = LuxURPClothFragmentPBR(
+                    inputData, 
+                    surfaceData.albedo,
+                    surfaceData.metallic, 
+                    surfaceData.specular, 
+                    surfaceData.smoothness, 
+                    surfaceData.occlusion, 
+                    surfaceData.emission, 
+                    surfaceData.alpha,
+                    #if !defined(_COTTONWOOL)
+                        input.tangentWS.xyz,
+                    #else
+                        half3(0,0,0),
+                    #endif
+                    _Anisotropy,
+                    _SheenColor,
+                    #if defined(_SCATTERING)
+                        half4(surfaceData.translucency * _TranslucencyStrength, _TranslucencyPower, _ShadowStrength, _Distortion)
+                    #else
+                        half4(0,0,0,0)
+                    #endif
                 );    
+            
             //  Add fog
                 color.rgb = MixFog(color.rgb, inputData.fogCoord);
                 return color;
@@ -457,7 +449,7 @@ Shader "Lux URP/Cloth"
                 UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
 
                 #if defined(_ALPHATEST_ON) && defined(_MASKMAP)
-                    half mask = SAMPLE_TEXTURE2D(_MaskMap, sampler_MaskMap, input.uv).a;
+                    half mask = SAMPLE_TEXTURE2D(_MaskMap, sampler_MaskMap, input.uv.xy).a;
                     clip (mask - _Cutoff);
                 #endif
 

@@ -126,8 +126,8 @@
             #pragma prefer_hlslcc gles
             #pragma exclude_renderers d3d11_9x
 
-        //  Shader target needs to be 3.0 due to tex2Dlod in the vertex shader and VFACE
-            #pragma target 2.0
+        //  Shader target needs to be 3.0 due to tex2Dlod in the vertex shader or VFACE
+            #pragma target 3.0
 
             // -------------------------------------
             // Material Keywords
@@ -316,12 +316,7 @@
                 InitializeSurfaceData(input.uv, surfaceData);
 
             //  Create cutom per vertex normal
-                #if defined(_NORMALMAP)
-                //  Here the normal must be normalized!
-                    float3 tnormal = SafeNormalize( cross(ddy(input.positionWS), ddx(input.positionWS)) );
-                #else
-                    float3 tnormal = cross(ddy(input.positionWS), ddx(input.positionWS));
-                #endif
+                half3 tnormal = normalize( cross(ddy(input.positionWS), ddx(input.positionWS)) );
 
             //  Prepare surface data (like bring normal into world space and get missing inputs like gi)
                 InputData inputData;

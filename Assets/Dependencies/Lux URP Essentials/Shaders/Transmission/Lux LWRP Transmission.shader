@@ -330,7 +330,7 @@ Shader "Lux URP/Transmission"
                 #endif
 
             //  Apply lighting
-                half4 color = LuxLWRPTranslucentFragmentPBR (
+                half4 color = LuxURPTranslucentFragmentPBR (
                         inputData, 
                         
                         surfaceData.albedo,

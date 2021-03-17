@@ -52,7 +52,7 @@ Shader "Lux URP/Vegetation/Foliage"
 
         [Header(Distance Fading)]
         [Space(5)]
-        [LuxLWRPDistanceFadeDrawer]
+        [LuxURPDistanceFadeDrawer]
         _DistanceFade               ("Distance Fade Params", Vector) = (2500, 0.001, 0, 0)
 
         [Header(Advanced)]
@@ -303,7 +303,7 @@ Shader "Lux URP/Vegetation/Foliage"
                 InitializeInputData(input, surfaceData.normalTS, facing, inputData);
 
             //  Apply lighting
-                half4 color = LuxLWRPTranslucentFragmentPBR(
+                half4 color = LuxURPTranslucentFragmentPBR(
                     inputData, 
                     surfaceData.albedo, 
                     surfaceData.metallic, 
