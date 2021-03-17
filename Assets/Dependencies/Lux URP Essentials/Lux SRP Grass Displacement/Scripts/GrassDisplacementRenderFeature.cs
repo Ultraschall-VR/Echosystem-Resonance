@@ -189,7 +189,8 @@ namespace Lux_SRP_GrassDisplacement
 //cmd.SetGlobalTexture("_Lux_DisplacementRT", m_GrassDisplacementFX.Identifier() );
                     //}
                     //else {
-                        cmd.SetSinglePassStereo(SinglePassStereoMode.SideBySide);   
+                        //cmd.SetSinglePassStereo(SinglePassStereoMode.SideBySide);
+                        cmd.SetSinglePassStereo(SinglePassStereoMode.None);   
                     //}
                 }
             }

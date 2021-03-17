@@ -26,6 +26,7 @@ half _Parallax;
 
 half _ProceduralBlend;
 half _ProceduralScale;
+float _ProceduralTiling;
 
 CBUFFER_END
 

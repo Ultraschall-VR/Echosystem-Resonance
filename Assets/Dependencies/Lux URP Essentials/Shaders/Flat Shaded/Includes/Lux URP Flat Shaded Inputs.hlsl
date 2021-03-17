@@ -18,15 +18,10 @@
     CBUFFER_START(UnityPerMaterial)
 
         half4   _BaseColor;
-
         half    _Cutoff;
-
         float4  _BaseMap_ST;
         half    _Smoothness;
         half3   _SpecColor;
-
-        half    _OcclusionStrength;
-
         half    _BumpScale;
 
         half4   _RimColor;

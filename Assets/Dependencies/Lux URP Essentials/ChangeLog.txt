@@ -2,6 +2,79 @@
 https://docs.google.com/document/d/1ck3hmPzKUdewHfwsvmPYwSPCP8azwtpzN7aOLJHvMq
 
 
+## Version 1.65
+
+### Fixed:
+Toon shader: Fixed support for the SRP batcher.
+Flat shading shaders: Fixed for mobile.
+
+### Changed:
+URP 10 preview: Updated to URP 10.3.2.
+Toon shader: Improved specular on mobile.
+ 
+
+## Version 1.64
+
+### Fixed:
+URP 10.2.2.: Skin distance fade fixed.
+URP 10.2.2.: Skin / transmission: Transmission fixed for add lights.
+Terrain shader: Fixed stereo rendering add pass.
+
+
+## Version 1.63
+
+### Changed:
+- Terrain Shader: Procedurally tiled detail texture now gets sampled in world space.
+
+### Fixed:
+- Fixed Lux URP Lit Extended shader for URP 7.5.2 
+- Fixed foliage shader going nuts on mobile after a while.
+- Fixed DistanceFadeDrawer in grass, foliage and decal shader.
+
+
+## Version 1.62
+
+### Added:
+- URP 10.2.2 - Decal lit shader:
+- - Support for sampling the SSAO normal buffer to get smoother normals added.
+- - Full support for SSAO added.
+
+### Fixed:
+- URP 10.2.2 - Mesh Terrain shader: Fixed vertex colors support.
+
+
+## Version 1.61
+
+### Fixed:
+- Toon Lighting Version 2: Shader Graph lighting fixed.
+- Box Volume shader: Fixed error when gradient texture was enabled.
+- Tree Creator Leaves Optimized shader: Fixed DepthNormal pass (URP 10.2.2.).
+- Various shaders: Fixed anisotropic tangent.
+
+### Added:
+- Toon Lighting Version 2: Anisotropic specular added.
+
+
+## Version 1.6
+
+### Added:
+- Toon Lighting Version 2: Support form multiple steps, custom ramps and gradients.
+
+
+## Version 1.51
+
+### Added:
+- Skin Lighting: Lets you choose between vertex normal and specular normal for the diffuse if diffuse normal sample is disabled.
+
+
+## Version 1.5
+
+### Added:
+- Decals: HQ sampling added to avoid artifacts at depth discontinuities.
+- Skin: Ambient back scattering added.
+- URP 10.2. preview package added which supports SSAO and Shadowmasks.
+
+
 ## Version 1.471
 
 ### Fixed:

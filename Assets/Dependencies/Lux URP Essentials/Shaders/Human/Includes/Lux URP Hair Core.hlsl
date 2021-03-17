@@ -100,7 +100,7 @@
                 outSurfaceData.emission = 0;
             }
 
-            void InitializeInputData(VertexOutput input, half3 normalTS, out InputData inputData, out float3 bitangent)
+            void InitializeInputData(VertexOutput input, half3 normalTS, out InputData inputData)
             {
                 inputData = (InputData)0;
                 #if defined(REQUIRES_WORLD_SPACE_POS_INTERPOLATOR)
@@ -108,7 +108,7 @@
                 #endif
                 half3 viewDirWS = SafeNormalize(input.viewDirWS);
                 float sgn = input.tangentWS.w;      // should be either +1 or -1
-                bitangent = sgn * cross(input.normalWS.xyz, input.tangentWS.xyz);
+                float3 bitangent = sgn * cross(input.normalWS.xyz, input.tangentWS.xyz);
                 inputData.normalWS = TransformTangentToWorld(normalTS, half3x3(input.tangentWS.xyz, bitangent, input.normalWS.xyz));
             
                 inputData.normalWS = NormalizeNormalPerPixel(inputData.normalWS);
@@ -149,7 +149,7 @@
             //  Prepare surface data (like bring normal into world space and get missing inputs like gi
                 InputData inputData;
                 float3 bitangent;
-                InitializeInputData(input, surfaceData.normalTS, inputData,     bitangent);
+                InitializeInputData(input, surfaceData.normalTS, inputData);
 
                 #if defined(_RIMLIGHTING)
                     half rim = saturate(1.0h - saturate( dot(inputData.normalWS, inputData.viewDirectionWS) ) );
@@ -162,11 +162,9 @@
                 #endif
 
             //  Apply lighting
-                half4 color = LuxLWRPHairFragment(
+                half4 color = LuxURPHairFragment(
                     inputData,
                     input.tangentWS.xyz,
-                    //(_StrandDir == 0) ? input.bitangentWS.xyz : input.tangentWS.xyz,
-                    bitangent,
                     surfaceData.albedo * lerp(_SecondaryColor.rgb, _BaseColor.rgb, input.color.a), //_BaseColor.rgb,
                     surfaceData.specular,
                     surfaceData.occlusion,
@@ -178,7 +176,6 @@
                     _SecondarySpecularShift * surfaceData.shift,
                     _SecondarySpecularTint,
                     _SecondarySpecularExponent * surfaceData.smoothness,
-
                     _RimTransmissionIntensity,
                     _AmbientReflection
                 );

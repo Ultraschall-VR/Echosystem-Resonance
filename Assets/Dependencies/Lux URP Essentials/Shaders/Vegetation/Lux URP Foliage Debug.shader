@@ -53,7 +53,7 @@ Shader "Lux URP/Vegetation/Foliage Debug"
 
         [Header(Distance Fading)]
         [Space(5)]
-        [LuxLWRPDistanceFadeDrawer]
+        [LuxURPDistanceFadeDrawer]
         _DistanceFade               ("Distance Fade Params", Vector) = (2500, 0.001, 0, 0)
 
         [Header(Advanced)]
@@ -310,7 +310,7 @@ bend.y = 0; //input.color.b * 0.3; // * fBranchAmp;
                 inputData.viewDirectionWS = viewDirWS;
                 
                 #if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR)
-                    inputData.shadowCoord = input.shadowCDDDDDDDDDDDDDDDDDDDoord;
+                    inputData.shadowCoord = input.shadowCoord;
                 #elif defined(MAIN_LIGHT_CALCULATE_SHADOWS)
                     inputData.shadowCoord = TransformWorldToShadowCoord(inputData.positionWS);
                 #else

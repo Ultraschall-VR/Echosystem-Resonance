@@ -44,6 +44,9 @@ CBUFFER_START(UnityPerMaterial)
     float _CameraFadeDist;
     float _CameraShadowFadeDist;
 
+//  Needed by URP 7.5.2 and above
+    float _Surface;
+
 CBUFFER_END
 
 TEXTURE2D(_OcclusionMap);       SAMPLER(sampler_OcclusionMap);

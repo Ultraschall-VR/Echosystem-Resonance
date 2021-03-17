@@ -46,7 +46,7 @@ Shader "Lux URP/Vegetation/Grass"
 
         [Header(Distance Fading)]
         [Space(5)]
-        [LuxLWRPDistanceFadeDrawer]
+        [LuxURPDistanceFadeDrawer]
         _DistanceFade               ("Distance Fade Params", Vector) = (900, 0.005, 0, 0)
 
         [Header(Advanced)]

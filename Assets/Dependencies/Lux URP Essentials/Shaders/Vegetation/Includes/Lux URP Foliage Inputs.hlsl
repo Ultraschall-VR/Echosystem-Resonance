@@ -33,10 +33,10 @@
         half _ShadowStrength;
         half _MaskByShadowStrength;
         half _Distortion;
-        #if defined(DEBUG)
+        //#if defined(DEBUG)
             half _DebugColor;
             half _Brightness;
-        #endif
+        //#endif
     CBUFFER_END
 
 //  Additional textures
@@ -105,7 +105,7 @@
 
 
     half4 SmoothCurve( half4 x ) {   
-    return x * x *( 3.0h - 2.0h * x );   
+        return x * x *( 3.0h - 2.0h * x );   
     }
     half4 TriangleWave( half4 x ) {   
         return abs( frac( x + 0.5h ) * 2.0h - 1.0h );   
@@ -115,7 +115,7 @@
     }
 
     half2 SmoothCurve( half2 x ) {   
-    return x * x *( 3.0h - 2.0h * x );   
+        return x * x *( 3.0h - 2.0h * x );   
     }
     half2 TriangleWave( half2 x ) {   
         return abs( frac( x + 0.5h ) * 2.0h - 1.0h );   
@@ -178,9 +178,9 @@
         animParams.abg *= _WindMultiplier.xyz;
 
         // x is used for edges; y is used for branches
-        half2 vWavesIn = _Time.yy + half2(fVtxPhase, fBranchPhase);
+        float2 vWavesIn = _Time.yy + half2(fVtxPhase, fBranchPhase); // changed to float (android issues)
         // 1.975, 0.793, 0.375, 0.193 are good frequencies
-        half4 vWaves = (frac( vWavesIn.xxyy * half4(1.975h, 0.793h, 0.375h, 0.193h) ) * 2.0h - 1.0h);
+        half4 vWaves = frac( vWavesIn.xxyy * float4(1.975f, 0.793f, 0.375f, 0.193f) ) * 2.0f - 1.0f; // changed to float (android issues)
         vWaves = SmoothTriangleWave( vWaves );
         half2 vWavesSum = vWaves.xz + vWaves.yw;
 

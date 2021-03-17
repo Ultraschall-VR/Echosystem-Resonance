@@ -36,7 +36,7 @@
 
         [Toggle(_BENTNORMAL)]
         _EnableBentNormal ("Enable Bent Normal Map", Float) = 0
-        _BentNormalMap                         ("Bent Normal Map", 2D) = "bump" {}
+        _BentNormalMap                      ("Bent Normal Map", 2D) = "bump" {}
 
         [Space(5)]
         [Toggle(_PARALLAX)]
