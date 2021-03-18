@@ -7,6 +7,8 @@ public class WorldspaceMarker : MonoBehaviour
     void Start()
     {
         _initPos = transform.localScale/4;
+
+        gameObject.layer = 18;
     }
 
     void Update()
