@@ -6,9 +6,7 @@ public class SceneSettings : MonoBehaviour
     public float LoudnessDecreaseTime;
     public float EchoDropLifetime;
     public float LightsourceRadius;
-
-    public bool NonVr;
-
+    
     public bool Beacons;
     public bool EchoDrops;
     public bool PitchShifter;

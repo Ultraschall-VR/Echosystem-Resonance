@@ -12,7 +12,7 @@ namespace Echosystem.Resonance.Prototyping
             if(!SceneSettings.Instance.Beacons)
                 return;
         
-            if(SceneSettings.Instance.NonVr)
+            if(!SceneSettings.Instance.VREnabled)
                 NonVrInput();
             else
                 VRInput();

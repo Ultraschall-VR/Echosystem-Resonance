@@ -100,9 +100,6 @@ Shader "Lux URP/Simple Fuzz"
         _SpecularHighlights         ("Enable Specular Highlights", Float) = 1.0
         [ToggleOff]
         _EnvironmentReflections     ("Environment Reflections", Float) = 1.0
-        [Space(5)]
-        [Toggle(_RECEIVE_SHADOWS_OFF)]
-        _Shadows                    ("Disable Receive Shadows", Float) = 0.0
 
 
         [Header(Render Queue)]

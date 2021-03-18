@@ -10,7 +10,7 @@ public class EchoDropThrower : MonoBehaviour
         if(!SceneSettings.Instance.EchoDrops)
             return;
         
-        if (SceneSettings.Instance.NonVr)
+        if (!SceneSettings.Instance.VREnabled)
         {
             NonVrInput();
         }

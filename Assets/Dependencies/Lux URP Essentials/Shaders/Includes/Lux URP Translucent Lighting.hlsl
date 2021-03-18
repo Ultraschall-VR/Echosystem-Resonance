@@ -76,7 +76,7 @@ half3 LightingPhysicallyBasedWrapped(BRDFData brdfData, Light light, half3 norma
 
 
 
-half4 LuxLWRPTranslucentFragmentPBR(InputData inputData, half3 albedo, half metallic, half3 specular,
+half4 LuxURPTranslucentFragmentPBR(InputData inputData, half3 albedo, half metallic, half3 specular,
     half smoothness, half occlusion, half3 emission, half alpha, half4 translucency, half AmbientReflection
     #if defined(_CUSTOMWRAP)
         , half wrap
@@ -121,8 +121,8 @@ half4 LuxLWRPTranslucentFragmentPBR(InputData inputData, half3 albedo, half meta
 
 
     #ifdef _ADDITIONAL_LIGHTS
-        int pixelLightCount = GetAdditionalLightsCount();
-        for (int i = 0; i < pixelLightCount; ++i)
+        uint pixelLightCount = GetAdditionalLightsCount();
+        for (uint i = 0u; i < pixelLightCount; ++i)
         {
             //Light light = GetAdditionalLight(i, inputData.positionWS);
             //  Get index upfront as we need it for GetAdditionalLightShadowParams();
