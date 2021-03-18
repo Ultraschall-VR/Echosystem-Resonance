@@ -40,12 +40,6 @@ namespace Echosystem.Resonance.Game
             _audioReactives = FindObjectsOfType<AudioReactive>().ToList();
             _audioReactiveEnvironments = new List<AudioReactiveEnvironment>();
             _audioReactiveEnvironments = FindObjectsOfType<AudioReactiveEnvironment>().ToList();
-
-            if (PlayerSpawner.Instance.NonVR)
-            {
-                return;
-            }
-
             _leftHand = _playerInput.ControllerLeft.transform;
             _rightHand = _playerInput.ControllerRight.transform;
         }
