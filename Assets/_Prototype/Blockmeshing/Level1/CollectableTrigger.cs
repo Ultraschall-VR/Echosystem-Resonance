@@ -7,6 +7,8 @@ namespace Echosystem.Resonance.Prototyping
     {
         private Animator _openDoor;
         [SerializeField] private bool _midGoalDoor;
+        [SerializeField] private bool _pillarRelated;
+        [SerializeField] private PillarCluster _pillarCluster;
 
 
         private void Start()
@@ -16,11 +18,16 @@ namespace Echosystem.Resonance.Prototyping
 
         void Update()
         {
-            if (CollectibleManager.MidGoal == true && _midGoalDoor)
+            if (CollectibleManager.MidGoal == true && _midGoalDoor && !_pillarRelated)
                 _openDoor.SetBool("OpenDoor", true);
 
-            if (Observer.CollectedObjects == Observer.MaxCollectibleObjects && !_midGoalDoor)
+            if (Observer.CollectedObjects == Observer.MaxCollectibleObjects && !_midGoalDoor && !_pillarRelated)
                 _openDoor.SetBool("OpenDoor", true);
+            
+            if (_pillarCluster._isDone && _pillarRelated)
+            {
+                _openDoor.SetBool("OpenDoor", true);
+            }
         }
     }
 }
