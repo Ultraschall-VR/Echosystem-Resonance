@@ -5,9 +5,6 @@ namespace Echosystem.Resonance.Game
 {
     public class PlayerSpawner : MonoBehaviour
     {
-        public bool NonVR;
-        public bool IsMenu;
-
         [SerializeField] private GameObject _vrPlayerPrefab;
         [SerializeField] private GameObject _nonVrPlayerPrefab;
         [SerializeField] private Transform _playerSpawn;
@@ -17,12 +14,9 @@ namespace Echosystem.Resonance.Game
         [SerializeField] private bool _teleportMovement;
         [SerializeField] private float _teleportMaxRange;
         [SerializeField] private float _teleportMovementSpeed;
-        [SerializeField] private bool _loadWholeGame;
-
+        
         [HideInInspector] public GameObject PlayerInstance = null;
-
-        [SerializeField] private bool _playerVisible;
-
+        
         public static PlayerSpawner Instance;
 
 
@@ -40,7 +34,7 @@ namespace Echosystem.Resonance.Game
 
         void Start()
         {
-            if (NonVR)
+            if (!SceneSettings.Instance.VREnabled)
             {
                 InstantiateNonVrPlayer(_nonVrPlayerPrefab, _playerSpawn.position, _playerSpawn.rotation);
             }
@@ -63,29 +57,31 @@ namespace Echosystem.Resonance.Game
                 PlayerInstance.transform.position = _playerSpawn.position;
                 PlayerInstance.transform.rotation = _playerSpawn.rotation;
             }
-
-            if (NonVR)
-            {
-                return;
-            }
-
-            PlayerInstance.GetComponent<ControllerManager>().SceneLoader.LoadFirstScene = _loadWholeGame;
-            PlayerInstance.GetComponent<PlayerMovement>().JoystickMovement = _joystickMovement;
-            PlayerInstance.GetComponent<PlayerMovement>().TeleportEnabled = _teleportMovement;
-            PlayerInstance.GetComponent<PlayerMovement>().JoystickMovementSpeed = _joystickMovementSpeed;
-            PlayerInstance.GetComponent<PlayerMovement>().TeleportMovementSpeed = _teleportMovementSpeed;
-            PlayerInstance.GetComponent<PlayerMovement>().TeleportMaxRange = _teleportMaxRange;
-
-            if (_playerVisible)
-            {
-                VisibilityController.Instance.RevealPlayer();
-            }
-            else
-            {
-                VisibilityController.Instance.HidePlayer();
-            }
             
             Observer.Player = PlayerInstance;
+            Observer.PlayerHead = PlayerInstance.GetComponent<PlayerInput>().Head;
+
+            //if (!SceneSettings.Instance.VREnabled)
+            //{
+            //    return;
+            //}
+//
+            //PlayerInstance.GetComponent<ControllerManager>().SceneLoader.LoadFirstScene = _loadWholeGame;
+            //PlayerInstance.GetComponent<PlayerMovement>().JoystickMovement = _joystickMovement;
+            //PlayerInstance.GetComponent<PlayerMovement>().TeleportEnabled = _teleportMovement;
+            //PlayerInstance.GetComponent<PlayerMovement>().JoystickMovementSpeed = _joystickMovementSpeed;
+            //PlayerInstance.GetComponent<PlayerMovement>().TeleportMovementSpeed = _teleportMovementSpeed;
+            //PlayerInstance.GetComponent<PlayerMovement>().TeleportMaxRange = _teleportMaxRange;
+//
+            //if (_playerVisible)
+            //{
+            //    VisibilityController.Instance.RevealPlayer();
+            //}
+            //else
+            //{
+            //    VisibilityController.Instance.HidePlayer();
+            //}
+            
         }
 
 

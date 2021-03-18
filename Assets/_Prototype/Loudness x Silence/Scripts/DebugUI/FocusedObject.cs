@@ -1,16 +1,9 @@
-﻿using Echosystem.Resonance.Prototyping;
-using TMPro;
+﻿using Echosystem.Resonance.Game;
+using Echosystem.Resonance.Prototyping;
 using UnityEngine;
 
 public class FocusedObject : MonoBehaviour
 {
-    private TextMeshProUGUI _text;
-
-    void Start()
-    {
-        _text = GetComponent<TextMeshProUGUI>();
-    }
-
     void Update()
     {
         RaycastHit hit;
@@ -18,22 +11,28 @@ public class FocusedObject : MonoBehaviour
         if(Observer.Player == null)
             return;
 
-        if (Physics.Raycast(Observer.PlayerHead.transform.position, Observer.PlayerHead.transform.forward, out hit, 5f, ~LayerMask.GetMask("SilenceSphere")))
+        Vector3 origin;
+        Vector3 forward;
+
+        if (SceneSettings.Instance.VREnabled)
         {
-            Observer.FocusedGameObject = hit.collider.gameObject;
-            
-            if (hit.collider.CompareTag("Player") || hit.collider.gameObject.isStatic)
-            {
-                _text.text = null;
-                return;
-            }
-            
-            _text.text = hit.collider.name;
+            origin = Observer.Player.GetComponent<PlayerInput>().ControllerRight.transform.position;
+            forward = Observer.Player.GetComponent<PlayerInput>().ControllerRight.transform.forward;
         }
         else
         {
+            origin = Observer.PlayerHead.transform.position;
+            forward = Observer.PlayerHead.transform.forward;
+        }
+
+        if (Physics.Raycast(origin, forward, out hit, 5f))
+        {
+            Observer.FocusedGameObject = hit.collider.gameObject;
+        }
+        
+        else
+        {
             Observer.FocusedGameObject = null;
-            _text.text = null;
         }
     }
 }

@@ -17,7 +17,7 @@ public class PitchShifter : MonoBehaviour
             return;
         }
         
-        if(SceneSettings.Instance.NonVr)
+        if(!SceneSettings.Instance.VREnabled)
             NonVrInput();
         else
             VrInput();

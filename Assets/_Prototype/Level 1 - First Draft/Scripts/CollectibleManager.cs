@@ -53,8 +53,6 @@ namespace Echosystem.Resonance.Prototyping
 
         private void Update()
         {
-            Debug.Log(MidGoal);
-            
             if (SceneSettings.Instance.GodMode)
             {
                 if(Index < ListCount)

@@ -1,13 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Echosystem.Resonance.Audio;
 
 namespace Echosystem.Resonance.Game
 {
     public class PlayerMovement : MonoBehaviour
     {
         [SerializeField] private PlayerInput _playerInput;
-        [SerializeField] private PlayerStateMachine _playerStateMachine;
         [SerializeField] private TeleportCaster teleportCaster;
         [SerializeField] private LayerMask _teleportIgnoreLayer;
 
@@ -32,9 +30,7 @@ namespace Echosystem.Resonance.Game
 
         private Vector3 _teleportTarget;
         private bool _teleportCooldownDone;
-        
-        [SerializeField] private AudioEnvelope _audioEnvelope;
-        
+
         void Start()
         {
             Initialize();
@@ -53,16 +49,6 @@ namespace Echosystem.Resonance.Game
 
         private void Update()
         {
-            if (PlayerSpawner.Instance.IsMenu)
-            {
-                return;
-            }
-
-            if (!GameProgress.Instance.LearnedTeleport)
-            {
-                return;
-            }
-
             if (JoystickMovement)
             {
                 CalculateJoystickMovement();
@@ -72,12 +58,7 @@ namespace Echosystem.Resonance.Game
             {
                 CalculateTeleportation();
             }
-
-            if (PlayerSpawner.Instance.IsMenu)
-            {
-                return;
-            }
-
+            
             CalculateCollider();
             CalculatePhysics();
             FixRotation();
@@ -107,17 +88,10 @@ namespace Echosystem.Resonance.Game
             {
                 return;
             }
-
-            if (_playerStateMachine.GrabState || _playerStateMachine.Uncovering)
-            {
-                return;
-            }
-
+            
             if (_playerInput.RightAPressed.state)
             {
                 _isTeleporting = false;
-
-                _playerStateMachine.TeleportState = true;
 
                 RaycastHit hit;
 
@@ -136,8 +110,6 @@ namespace Echosystem.Resonance.Game
                                 hit.point,
                                 1);
                             
-                            _audioEnvelope.Attack();
-
                             var offsetPos = _playerInput.Head.transform.position - transform.position;
 
                             _teleportTarget = hit.point - offsetPos;
@@ -163,11 +135,8 @@ namespace Echosystem.Resonance.Game
             }
             else
             {
-                _playerStateMachine.TeleportState = false;
                 teleportCaster.Hide();
                 
-                _audioEnvelope.Release();
-
                 if (_teleportTarget != Vector3.zero && !_isTeleporting)
                 {
                     var cooldown = Vector3.Distance(_playerInput.transform.position, _teleportTarget);
