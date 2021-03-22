@@ -48,6 +48,7 @@ namespace Echosystem.Resonance.Game
             {
                 FindObjectOfType<FogVoidManager>().trackingCenter = Observer.PlayerHead.transform;
                 FindObjectOfType<PointLightManager>().trackingCenter = Observer.PlayerHead.transform;
+                FindObjectOfType<VolumetricFogManager>().mainCamera = Observer.PlayerHead.GetComponent<Camera>();
             }
         }
 
