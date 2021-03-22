@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Echosystem.Resonance.Prototyping
 {
@@ -15,6 +16,8 @@ namespace Echosystem.Resonance.Prototyping
         public static int CollectedObjects;
         public static int MaxCollectibleObjects;
 
+        public static List<SilenceSphere> SilenceSpheres;
+
         private void Awake()
         {
             Player = null;
@@ -27,6 +30,7 @@ namespace Echosystem.Resonance.Prototyping
             FocusedGameObject = null;
             CollectedObjects = 0;
             MaxCollectibleObjects = 0;
+            SilenceSpheres = new List<SilenceSphere>();
         }
 
         private void Update()

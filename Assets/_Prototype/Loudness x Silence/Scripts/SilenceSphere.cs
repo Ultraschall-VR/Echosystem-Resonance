@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using AmazingAssets.DynamicRadialMasks;
 using Echosystem.Resonance.Helper;
 using UnityEngine;
@@ -12,8 +11,9 @@ namespace Echosystem.Resonance.Prototyping
         [SerializeField] private GameObject _innerSphere;
         [SerializeField] private GameObject _outerSphere;
         [SerializeField] public DRMGameObject DrmGameObject;
-
         [SerializeField] private bool _dontAnimate;
+
+        [HideInInspector] public Collider SphereCollider;
 
         private Vector3 _initialInnerSphereScale;
 
@@ -42,8 +42,11 @@ namespace Echosystem.Resonance.Prototyping
         private void Initialize()
         {
             _innerSphereTrigger = _innerSphere.GetComponent<TriggerEvent>();
+            SphereCollider = _innerSphere.GetComponent<Collider>();
 
             _initialInnerSphereScale = _innerSphere.transform.localScale;
+            
+            Observer.SilenceSpheres.Add(gameObject.GetComponent<SilenceSphere>());
 
             if (_dontAnimate)
             {
@@ -53,6 +56,7 @@ namespace Echosystem.Resonance.Prototyping
             {
                 StartCoroutine(AnimateScale());
             }
+            
             
             
 
