@@ -58,6 +58,9 @@ namespace VolumetricFogAndMist2 {
 
         void SubmitPointLightData() {
 
+            if(trackingCenter == null)
+                return;
+            
             int k = 0;
             bool appIsRunning = Application.isPlaying;
             Vector3 trackingCenterPosition = trackingCenter.position;
@@ -107,6 +110,9 @@ namespace VolumetricFogAndMist2 {
         /// </summary>
         public void TrackPointLights(bool forceImmediateUpdate = false) {
 
+            if(trackingCenter == null)
+                return;
+            
             // Look for new lights?
             if (forceImmediateUpdate || pointLights == null || !Application.isPlaying || (newLightsCheckInterval > 0 && Time.time - checkNewLightsLastTime > newLightsCheckInterval)) {
                 checkNewLightsLastTime = Time.time;
