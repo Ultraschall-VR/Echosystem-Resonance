@@ -24,6 +24,9 @@ namespace Echosystem.Resonance.Prototyping
             if (Observer.CollectedObjects == Observer.MaxCollectibleObjects && !_midGoalDoor && !_pillarRelated)
                 _openDoor.SetBool("OpenDoor", true);
             
+            if(_pillarCluster == null)
+                return;
+            
             if (_pillarCluster._isDone && _pillarRelated)
             {
                 _openDoor.SetBool("OpenDoor", true);

@@ -15,5 +15,6 @@ public class WorldspaceMarker : MonoBehaviour
     {
         float distance = Vector3.Distance(transform.position, Observer.Player.transform.position);
         transform.localScale = _initPos * distance;
+        transform.eulerAngles = Observer.PlayerHead.transform.eulerAngles;
     }
 }

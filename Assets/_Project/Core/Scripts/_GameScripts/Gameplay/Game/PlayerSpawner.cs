@@ -1,5 +1,6 @@
 ﻿using Echosystem.Resonance.Prototyping;
 using UnityEngine;
+using VolumetricFogAndMist2;
 
 namespace Echosystem.Resonance.Game
 {
@@ -41,6 +42,12 @@ namespace Echosystem.Resonance.Game
             else
             {
                 InstantiateVRPlayer();
+            }
+
+            if (FindObjectOfType<FogVoidManager>())
+            {
+                FindObjectOfType<FogVoidManager>().trackingCenter = Observer.PlayerHead.transform;
+                FindObjectOfType<PointLightManager>().trackingCenter = Observer.PlayerHead.transform;
             }
         }
 
