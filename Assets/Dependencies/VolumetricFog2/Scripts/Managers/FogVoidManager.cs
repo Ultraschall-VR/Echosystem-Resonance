@@ -104,7 +104,11 @@ namespace VolumetricFogAndMist2 {
             }
         }
 
-        int fogVoidDistanceComparer(FogVoid v1, FogVoid v2) {
+        int fogVoidDistanceComparer(FogVoid v1, FogVoid v2)
+        {
+            if (trackingCenter == null)
+                return 0;
+            
             float dist1 = (v1.transform.position - trackingCenter.position).sqrMagnitude;
             float dist2 = (v2.transform.position - trackingCenter.position).sqrMagnitude;
             if (dist1 < dist2) return -1;
