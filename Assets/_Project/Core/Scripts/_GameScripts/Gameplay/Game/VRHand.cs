@@ -37,10 +37,6 @@ namespace Echosystem.Resonance.Game
         private void Start()
         {
             Invoke("Initialize", 0.5f);
-            if (_isRightHand)
-            {
-                CrossHair.SetActive(true);
-            }
         }
 
         private void Initialize()
