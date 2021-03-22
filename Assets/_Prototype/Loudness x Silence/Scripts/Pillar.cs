@@ -17,7 +17,7 @@ public class Pillar : MonoBehaviour
     private bool _solved;
 
     [SerializeField] private AudioClip _correctPitchSound;
-    [SerializeField] private GameObject _sphere;
+    [SerializeField] private GameObject _lightSphere;
 
     public Transform Grip;
 
@@ -94,11 +94,11 @@ public class Pillar : MonoBehaviour
         }
     }
 
-    public void DeactivateSphere()
+    public void DeactivateLightSphere()
     {
-        if (_sphere != null)
+        if (_lightSphere != null)
         {
-            _sphere.SetActive(false);
+            _lightSphere.SetActive(false);
         }
     }
 }

@@ -112,7 +112,7 @@ public class PillarCluster : MonoBehaviour
                 pillar.LineRenderer.SetPosition(0, pillar.Grip.transform.position);
                 pillar.LineRenderer.SetPosition(1, ReferencePillar.Grip.transform.position);
                 
-                pillar.DeactivateSphere();
+                pillar.DeactivateLightSphere();
             }
         }
         
