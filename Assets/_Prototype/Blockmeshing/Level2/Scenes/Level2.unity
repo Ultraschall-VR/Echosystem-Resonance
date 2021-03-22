@@ -6026,6 +6026,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &406335341
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 406335342}
+  m_Layer: 0
+  m_Name: HHERRBST_17_UHR_GOLDEN_HOUR
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &406335342
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406335341}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -33.658962, y: 20.463585, z: 35.81289}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &406837246 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2657306947386497294, guid: 6a9a3a9c98e2d4d16932c963f61c7841,
@@ -9944,7 +9974,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c47ea1fc2b1db4059aa6e41febfaa9de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackingCenter: {fileID: 1116698159}
+  trackingCenter: {fileID: 0}
   newFogVoidCheckInterval: 3
 --- !u!1 &719984108
 GameObject:
@@ -11104,7 +11134,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1497492259}
   - {fileID: 513230240}
   m_Father: {fileID: 1642145740}
   m_RootOrder: 0
@@ -12323,7 +12352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac162c46ffa0a491299b8cd2f86d548c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 1116698163}
+  mainCamera: {fileID: 0}
   sun: {fileID: 114375177}
   fogLayer: 1
   flipDepthTexture: 0
@@ -13262,7 +13291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc58c00b7f7924fe8a2a9d5b5d592111, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackingCenter: {fileID: 1116698159}
+  trackingCenter: {fileID: 0}
   newLightsCheckInterval: 3
   excludeLightsBehind: 1
   inscattering: 0.34
@@ -13491,72 +13520,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!1001 &928786644
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 813009478}
-    m_Modifications:
-    - target: {fileID: 100000, guid: b5e43b7595b38124aba44858e283c6ef, type: 3}
-      propertyPath: m_Name
-      value: '[NonVRPlayer]'
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: b5e43b7595b38124aba44858e283c6ef, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: b5e43b7595b38124aba44858e283c6ef, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: b5e43b7595b38124aba44858e283c6ef, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -193.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: b5e43b7595b38124aba44858e283c6ef, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.796
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: b5e43b7595b38124aba44858e283c6ef, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: b5e43b7595b38124aba44858e283c6ef, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: b5e43b7595b38124aba44858e283c6ef, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: b5e43b7595b38124aba44858e283c6ef, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: b5e43b7595b38124aba44858e283c6ef, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: b5e43b7595b38124aba44858e283c6ef, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: b5e43b7595b38124aba44858e283c6ef, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: b5e43b7595b38124aba44858e283c6ef, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8522892416170874172, guid: b5e43b7595b38124aba44858e283c6ef,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b5e43b7595b38124aba44858e283c6ef, type: 3}
 --- !u!1001 &933754904
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16835,18 +16798,6 @@ Transform:
   m_Father: {fileID: 363587145}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1116698159 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400002, guid: b5e43b7595b38124aba44858e283c6ef,
-    type: 3}
-  m_PrefabInstance: {fileID: 928786644}
-  m_PrefabAsset: {fileID: 0}
---- !u!20 &1116698163 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 2000000, guid: b5e43b7595b38124aba44858e283c6ef,
-    type: 3}
-  m_PrefabInstance: {fileID: 928786644}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1127673067
 GameObject:
   m_ObjectHideFlags: 0
@@ -22698,12 +22649,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!4 &1497492259 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400000, guid: b5e43b7595b38124aba44858e283c6ef,
-    type: 3}
-  m_PrefabInstance: {fileID: 928786644}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1500279494
 GameObject:
   m_ObjectHideFlags: 0
@@ -35417,7 +35362,7 @@ MonoBehaviour:
   shaderData_RingCount:
   - 3
   shaderData_Phase:
-  - 27.869015
+  - 21.40142
   shaderData_Frequency:
   - 10
   shaderData_Smooth:

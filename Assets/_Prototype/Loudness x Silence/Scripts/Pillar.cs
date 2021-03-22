@@ -17,6 +17,7 @@ public class Pillar : MonoBehaviour
     private bool _solved;
 
     [SerializeField] private AudioClip _correctPitchSound;
+    [SerializeField] private GameObject _lightSphere;
 
     public Transform Grip;
 
@@ -63,7 +64,10 @@ public class Pillar : MonoBehaviour
             Pitch = 1.0f;
             GetComponent<PitchShifterable>().Active = false;
             GetComponent<PitchShifterable>().Grip.gameObject.SetActive(false);
-            AudioSource.PlayClipAtPoint(_correctPitchSound, transform.position);
+            if (_correctPitchSound != null)
+            {
+                AudioSource.PlayClipAtPoint(_correctPitchSound, transform.position);
+            }
         }
     }
 
@@ -87,6 +91,14 @@ public class Pillar : MonoBehaviour
         {
             _solved = true;
             _audioSource.FadeOut(10);
+        }
+    }
+
+    public void DeactivateLightSphere()
+    {
+        if (_lightSphere != null)
+        {
+            _lightSphere.SetActive(false);
         }
     }
 }
