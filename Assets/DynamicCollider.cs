@@ -1,31 +1,43 @@
-﻿using UnityEngine;
+﻿using Echosystem.Resonance.Prototyping;
+using UnityEngine;
 
 public class DynamicCollider : MonoBehaviour
 {
-    private MeshRenderer _meshRenderer;
-
-    private float _alpha;
+    [SerializeField] private bool _dead;
     private Collider _collider;
-
+    
     private void Start()
     {
-        _meshRenderer = GetComponent<MeshRenderer>();
         _collider = GetComponent<Collider>();
     }
 
     private void Update()
     {
-        _alpha = _meshRenderer.material.GetFloat("_AlphaClip");
+        if(Observer.CurrentSilenceSphere == null)
+            return;
         
-        Debug.Log(_alpha);
+        if (_collider.bounds.Intersects(Observer.CurrentSilenceSphere.SphereCollider.bounds))
+        {
+            if (_dead)
+            {
+                GetComponent<Rigidbody>().detectCollisions = false;
+            }
+            else
+            {
+                GetComponent<Rigidbody>().detectCollisions = true;
+            }
+        }
 
-        //if (_alpha > 0.5f)
-        //{
-        //    _collider.enabled = true;
-        //}
-        //else
-        //{
-        //    _collider.enabled = false;
-        //}
+        if (!_collider.bounds.Intersects(Observer.CurrentSilenceSphere.SphereCollider.bounds))
+        {
+            if (_dead)
+            {
+                GetComponent<Rigidbody>().detectCollisions = true;
+            }
+            else
+            {
+                GetComponent<Rigidbody>().detectCollisions = false;
+            }
+        }
     }
 }
