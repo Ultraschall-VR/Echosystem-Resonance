@@ -13,6 +13,9 @@ public class DynamicCollider : MonoBehaviour
 
     private void Update()
     {
+        if(Observer.CurrentSilenceSphere == null)
+            return;
+        
         if (_collider.bounds.Intersects(Observer.CurrentSilenceSphere.SphereCollider.bounds))
         {
             if (_dead)
