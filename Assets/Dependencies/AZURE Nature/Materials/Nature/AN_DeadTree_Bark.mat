@@ -8,7 +8,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: AN_DeadTree_Bark
-  m_Shader: {fileID: 4800000, guid: c61194769c49566439e564fcdf2deff8, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 7c3f78935ff08d34fac6bfa736acaea8,
+    type: 3}
   m_ShaderKeywords: _COVERAGEOVERLAYTYPE_VERTEX_POSITION
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,6 +20,18 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_2BEB139:
+        m_Texture: {fileID: 2800000, guid: f4495fae5db0744d29286a5d443ae57e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_9BDB4EC1:
+        m_Texture: {fileID: 2800000, guid: d05a31efd9dc7c6488fb918108b5550a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_FDCD52B:
+        m_Texture: {fileID: 2800000, guid: 483ab17773087af4aa1652661dd09df7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BarkAlbedo:
         m_Texture: {fileID: 2800000, guid: d05a31efd9dc7c6488fb918108b5550a, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -112,6 +125,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Boolean_ED434919: 0
+    - Normal_Strength: 4
+    - Vector1_31AADB69: 0
+    - Vector1_AF4E674E: 1
+    - Vector1_DAFD8602: 0
+    - _AlphaCutoff: 0.5
     - _BlendNormals: 0
     - _BlendNormals1: 1
     - _BottomCoverage: 0
@@ -147,12 +166,27 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SurfaceSmoothness: 0.3
+    - _TessEdgeLength: 16
+    - _TessMax: 25
+    - _TessMaxDisp: 25
+    - _TessMin: 10
+    - _TessPhongStrength: 0.5
+    - _TessValue: 16
     - _ThicknessLevel: 1
     - _ThicknessLevel1: 1
+    - _TransAmbient: 0.1
+    - _TransDirect: 0.9
+    - _TransNormal: 0.5
+    - _TransScattering: 2
+    - _TransShadow: 0.5
+    - _TransStrength: 1
+    - _TransmissionShadow: 0.5
     - _UVSec: 0
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
+    - Color_2D97BF0F: {r: 0.3490566, g: 0.28938517, b: 0.09385012, a: 1}
+    - Color_6D4C4192: {r: 0, g: 16.083767, b: 31.999996, a: 1}
     - _BarkColor: {r: 0.4716981, g: 0.4246699, b: 0.40272337, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _CoverageColor: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 0}
