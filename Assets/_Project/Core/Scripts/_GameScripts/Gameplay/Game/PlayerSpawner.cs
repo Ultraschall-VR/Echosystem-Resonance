@@ -68,6 +68,7 @@ namespace Echosystem.Resonance.Game
             
             Observer.Player = PlayerInstance;
             Observer.PlayerHead = PlayerInstance.GetComponent<PlayerInput>().Head;
+            Observer.PlayerInput = PlayerInstance.GetComponent<PlayerInput>();
 
             //if (!SceneSettings.Instance.VREnabled)
             //{
@@ -89,7 +90,7 @@ namespace Echosystem.Resonance.Game
             //{
             //    VisibilityController.Instance.HidePlayer();
             //}
-            
+
         }
 
 
