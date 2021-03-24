@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Echosystem.Resonance.Game;
 using UnityEngine;
 
 namespace Echosystem.Resonance.Prototyping
@@ -7,6 +8,7 @@ namespace Echosystem.Resonance.Prototyping
     {
         public static GameObject Player;
         public static GameObject PlayerHead;
+        public static PlayerInput PlayerInput;
         public static SilenceSphere CurrentSilenceSphere;
         public static SilenceSphere LastSilenceSphere;
         public static bool IsRespawning;

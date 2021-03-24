@@ -25,7 +25,7 @@ public class FocusedObject : MonoBehaviour
             forward = Observer.PlayerHead.transform.forward;
         }
 
-        if (Physics.Raycast(origin, forward, out hit, 5f))
+        if (Physics.Raycast(origin, forward, out hit, 10f))
         {
             Observer.FocusedGameObject = hit.collider.gameObject;
         }
