@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Echosystem.Resonance.Prototyping
 {
-    public class Observer: MonoBehaviour
+    public class Observer : MonoBehaviour
     {
         public static GameObject Player;
         public static GameObject PlayerHead;
@@ -15,6 +15,7 @@ namespace Echosystem.Resonance.Prototyping
         public static GameObject FocusedGameObject;
         public static int CollectedObjects;
         public static int MaxCollectibleObjects;
+        public static int AreaIndex;
 
         public static List<SilenceSphere> SilenceSpheres;
 
@@ -31,6 +32,7 @@ namespace Echosystem.Resonance.Prototyping
             CollectedObjects = 0;
             MaxCollectibleObjects = 0;
             SilenceSpheres = new List<SilenceSphere>();
+            AreaIndex = 0;
         }
 
         private void Update()
@@ -47,5 +49,3 @@ namespace Echosystem.Resonance.Prototyping
         }
     }
 }
-
-
