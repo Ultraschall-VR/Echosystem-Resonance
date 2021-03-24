@@ -1,4 +1,5 @@
-﻿using AmazingAssets.DynamicRadialMasks;
+﻿using System;
+using AmazingAssets.DynamicRadialMasks;
 using UnityEngine;
 
 namespace Echosystem.Resonance.Prototyping
@@ -6,7 +7,7 @@ namespace Echosystem.Resonance.Prototyping
     public class BeaconPlacement : MonoBehaviour
     {
         [SerializeField] private GameObject _beaconPrefab;
-
+        
         private void Update()
         {
             if(!SceneSettings.Instance.Beacons)
@@ -24,7 +25,7 @@ namespace Echosystem.Resonance.Prototyping
 
             if (Input.GetKeyDown(KeyCode.B))
             {
-                if (Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity))
+                if (Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity, ~14))
                 {
                     if (hit.collider.GetComponent<BeaconSocket>())
                     {
