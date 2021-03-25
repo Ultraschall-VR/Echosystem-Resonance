@@ -1,6 +1,4 @@
-﻿using System;
-using AmazingAssets.DynamicRadialMasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Echosystem.Resonance.Prototyping
 {
@@ -51,8 +49,32 @@ namespace Echosystem.Resonance.Prototyping
 
         private void VRInput()
         {
-            // Implement
+            RaycastHit hit;
+
+            if (Observer.PlayerInput.RightAPressed.stateDown)
+            {
+                if (Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity, ~14))
+                {
+                    if (hit.collider.GetComponent<BeaconSocket>())
+                    {
+                        BeaconSocket beaconSocket = hit.collider.GetComponent<BeaconSocket>();
+
+                        if (beaconSocket.IsOccupied)
+                            return;
+
+                        var beacon = Instantiate(_beaconPrefab, beaconSocket.transform.position, Quaternion.identity);
+                        var parent = hit.collider.transform;
+
+
+
+                        beacon.name = _beaconPrefab.name;
+
+                        beacon.transform.SetParent(parent.transform);
+
+                        beaconSocket.IsOccupied = true;
+                    }
+                }
+            }
         }
     }
-  
 }
