@@ -6,6 +6,7 @@ public class PitchShifter : MonoBehaviour
 {
     [SerializeField] private LineRenderer _lineRenderer;
     [SerializeField] private Transform _tip;
+    [SerializeField] private Transform _geo;
     private Vector3 _lastPos;
 
     public bool _lockedTarget;
@@ -132,8 +133,8 @@ public class PitchShifter : MonoBehaviour
 
     private void HandleTransformNonVr()
     {
-        transform.position = Observer.PlayerHead.transform.position;
-        transform.eulerAngles = Observer.PlayerHead.transform.eulerAngles;
+        _geo.position = Observer.PlayerHead.transform.position;
+        _geo.eulerAngles = Observer.PlayerHead.transform.eulerAngles;
     }
 
     private void HandleFocusNonVr()
