@@ -6,19 +6,30 @@ namespace Echosystem.Resonance.Prototyping
 {
     public class LevelChecker : MonoBehaviour
     {
-        // Liste der freischaltbaren Tafeln   
-        [SerializeField] private GameObject[] _levelPads;
+        [SerializeField] private LevelLock[] _levelPads;
 
         void Start()
         {
-            int levelUnlocked = PlayerPrefs.GetInt("levelUnlocked", 1);
+            if (SceneSettings.Instance.ResetProgress == true)
+            {
+                PlayerPrefs.SetInt("levelUnlocked", 1);
+            }
+
+            if (PlayerPrefs.GetInt("levelUnlocked") == 0)
+            {
+                PlayerPrefs.SetInt("levelUnlocked", 1);
+            }
+
+            int levelUnlocked = PlayerPrefs.GetInt("levelUnlocked");
             Debug.Log("Unlocked Levels:" + PlayerPrefs.GetInt("levelUnlocked"));
+
 
             for (int i = 0; i < _levelPads.Length; i++)
             {
-                if (i + 1 > levelUnlocked)
-                    _levelPads[i].transform.Find("LockSymbol").gameObject.SetActive(true);
-                //       _levelPads[i].transform.Find("......").gameObject.SetActive(false);
+                if (i < levelUnlocked)
+                {
+                    _levelPads[i]._unlocked = true;
+                }
             }
         }
     }

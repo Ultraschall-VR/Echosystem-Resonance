@@ -8,10 +8,14 @@ public class LoadLevel : MonoBehaviour
 
     private void Start()
     {
-        if (PlayerPrefs.GetInt("levelUnlocked") == _currentLevel)
+        if (_currentLevel != null)
         {
-            PlayerPrefs.SetInt("levelUnlocked", _currentLevel++);
+            if (PlayerPrefs.GetInt("levelUnlocked") == _currentLevel)
+            {
+                PlayerPrefs.SetInt("levelUnlocked", _currentLevel++);
+            }  
         }
+       
 
         FindObjectOfType<LevelLoader>().LoadLevel(_levelIndex);
     }
