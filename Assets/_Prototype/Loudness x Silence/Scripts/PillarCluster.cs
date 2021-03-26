@@ -58,6 +58,15 @@ public class PillarCluster : MonoBehaviour
     {
         if (_isDone)
         {
+            if (_lineRenderers.Count != 0)
+            {
+                for (int i = 0; i < _anchorPoints.Count; i++)
+                {
+                    _lineRenderers[i].SetPosition(0, ReferencePillar.Grip.transform.position);
+                    _lineRenderers[i].SetPosition(1, _anchorPoints[i].position);
+                }
+            }
+            
             if (_actionToExecute != null)
             {
                 foreach (var action in _actionToExecute)
@@ -80,18 +89,15 @@ public class PillarCluster : MonoBehaviour
                 
                 lineRenderer.positionCount = 2;
                 lineRenderer.useWorldSpace = true;
-                lineRenderer.SetPosition(0, ReferencePillar.Grip.transform.position);
-                lineRenderer.SetPosition(1, anchor.position);
                 lineRenderer.material.color = Color.blue;
                 lineRenderer.widthMultiplier = 0.20f;
                 
                 _lineRenderers.Add(lineRenderer);
-                
             }
             
             return;
         }
-        
+
         if (Pillars.Count > 0)
         {
             foreach (var pillar in Pillars.ToList())
