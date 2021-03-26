@@ -19,6 +19,8 @@ public class Pillar : MonoBehaviour
     [SerializeField] private AudioClip _correctPitchSound;
     [SerializeField] private GameObject _lightSphere;
 
+    private float _threshould = 0.09f;
+
     public Transform Grip;
 
     public LineRenderer LineRenderer;
@@ -58,7 +60,7 @@ public class Pillar : MonoBehaviour
 
     public void CheckPitch()
     {
-        if (Pitch > 0.94f && Pitch < 1.06f)
+        if (Pitch > 1.00f- _threshould && Pitch < 1.00f + _threshould)
         {
             PitchIsCorrect = true;
             Pitch = 1.0f;
