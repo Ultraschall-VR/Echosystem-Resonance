@@ -7,6 +7,7 @@ namespace Echosystem.Resonance.Prototyping
         [SerializeField] private LevelLock _levelUiPad;
         private Animator _animator;
         private bool _animationTriggered;
+        [SerializeField] private AudioClip _doorSound;
 
         private void Start()
         {
@@ -19,6 +20,7 @@ namespace Echosystem.Resonance.Prototyping
             {
                 _animationTriggered = true;
                 _animator.SetBool("Condition", true);
+                AudioSource.PlayClipAtPoint(_doorSound, transform.position);
             }
         }
     }
