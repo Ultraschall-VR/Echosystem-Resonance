@@ -21,6 +21,10 @@ public class SceneSettings : MonoBehaviour
 
     public bool VREnabled;
 
+    public bool ResetProgress;
+    
+    
+
     
     public static SceneSettings Instance;
 
