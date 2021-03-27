@@ -12,6 +12,7 @@ namespace Echosystem.Resonance.Prototyping
         void Start()
         {
             _beaconSocket = GetComponent<BeaconSocket>();
+            _refPillar.gameObject.SetActive(false);
         }
 
         void Update()

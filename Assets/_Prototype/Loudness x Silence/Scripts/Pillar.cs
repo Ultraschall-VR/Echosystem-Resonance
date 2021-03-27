@@ -12,6 +12,7 @@ public class Pillar : MonoBehaviour
     public bool IsReference;
     private float _pitchMin = 0.33f;
     private float _pitchMax = 1.33f;
+    private float _minPitchOffset = 0.15f;
 
     private PillarCluster _pillarCluster;
     private bool _solved;
@@ -39,7 +40,10 @@ public class Pillar : MonoBehaviour
         {
             LineRenderer.enabled = false;
             _audioSource = GetComponent<AudioSource>();
-            Pitch = Random.Range(_pitchMin, _pitchMax);
+            if (Random.value < 0.5f)
+                Pitch = Random.Range(_pitchMin, 1 - _minPitchOffset);
+            else
+                Pitch = Random.Range(1 + _minPitchOffset, _pitchMax);
         }
         
             _initPos = transform.position;
