@@ -57,9 +57,6 @@ namespace Echosystem.Resonance.Prototyping
                 StartCoroutine(AnimateScale());
             }
             
-            
-            
-
             if (FindObjectOfType<DRMGameObjectsPool>())
             {
                 _drmGameObjectsPool = FindObjectOfType<DRMGameObjectsPool>();
@@ -135,8 +132,9 @@ namespace Echosystem.Resonance.Prototyping
             Vector3 normalizedScale = Vector3.Lerp(_initialInnerSphereScale*2, _initialInnerSphereScale, _distanceToPlayer);
             
             _outerSphere.transform.localScale = normalizedScale;
+            //_innerSphere.transform.localScale = normalizedScale;
 
-            DrmGameObject.radius = _outerSphere.transform.localScale.x / 2;
+            DrmGameObject.radius = _outerSphere.transform.localScale.x / 4;
         }
 
         private IEnumerator AnimateScale()
