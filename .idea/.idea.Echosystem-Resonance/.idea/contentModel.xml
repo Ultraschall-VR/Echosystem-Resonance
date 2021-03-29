@@ -185,62 +185,30 @@
           </e>
         </e>
         <e p="_Prototype" t="Include">
-          <e p="Blockmeshing" t="Include">
-            <e p="Level0" t="Include">
+          <e p="__review" t="Include">
+            <e p="Level 1 - First Draft" t="Include">
               <e p="Scripts" t="Include">
-                <e p="DoorCheck.cs" t="Include" />
-                <e p="LevelLock.cs" t="Include" />
+                <e p="AudioSourceExtensions.cs" t="Include" />
+                <e p="CanvasCheck.cs" t="Include" />
+                <e p="CollectibleManager.cs" t="Include" />
+                <e p="DebugMode.cs" t="Include" />
+                <e p="EnableComponents.cs" t="Include" />
+                <e p="HubTransition.cs" t="Include" />
+                <e p="ItemPickup.cs" t="Include" />
+                <e p="LoadLevel.cs" t="Include" />
+                <e p="PitchShifterable.cs" t="Include" />
+                <e p="UI_Level_01.cs" t="Include" />
+                <e p="UICollectibles.cs" t="Include" />
+                <e p="UiManager.cs" t="Include" />
               </e>
             </e>
-            <e p="Level1" t="Include">
-              <e p="CollectableTrigger.cs" t="Include" />
-            </e>
-            <e p="Level2" t="Include">
-              <e p="Scripts" t="Include">
-                <e p="ActivateLight.cs" t="Include" />
-                <e p="ActivatePlayerCanDie.cs" t="Include" />
-                <e p="ActivateRefPillar.cs" t="Include" />
-              </e>
-            </e>
-            <e p="LevelPuzzle" t="Include">
-              <e p="Scripts" t="Include">
-                <e p="ActivateChordPuzzle.cs" t="Include" />
-                <e p="PlayAnimation.cs" t="Include" />
-                <e p="PlayAudio.cs" t="Include" />
-              </e>
-            </e>
+            <e p="NextUiCanvas.cs" t="Include" />
+            <e p="ToggleUI.cs" t="Include" />
+            <e p="TriggerUiCanvas.cs" t="Include" />
+            <e p="UI_Level_02.cs" t="Include" />
+            <e p="UI_Level_03.cs" t="Include" />
           </e>
-          <e p="General" t="Include">
-            <e p="Scripts" t="Include">
-              <e p="EnableVFX.cs" t="Include" />
-              <e p="LevelChecker.cs" t="Include" />
-              <e p="PlayDoorSound.cs" t="Include" />
-              <e p="SetAreaIndex.cs" t="Include" />
-            </e>
-          </e>
-          <e p="Level 1 - First Draft" t="Include">
-            <e p="Scripts" t="Include">
-              <e p="AudioSourceExtensions.cs" t="Include" />
-              <e p="CanvasCheck.cs" t="Include" />
-              <e p="CollectibleManager.cs" t="Include" />
-              <e p="DebugMode.cs" t="Include" />
-              <e p="EnableComponents.cs" t="Include" />
-              <e p="HubTransition.cs" t="Include" />
-              <e p="ItemPickup.cs" t="Include" />
-              <e p="LoadLevel.cs" t="Include" />
-              <e p="PitchShifterable.cs" t="Include" />
-              <e p="UI_Level_01.cs" t="Include" />
-              <e p="UICollectibles.cs" t="Include" />
-              <e p="UiManager.cs" t="Include" />
-            </e>
-          </e>
-          <e p="Level Tests Alexej" t="Include">
-            <e p="Scripts" t="Include">
-              <e p="AudioreactiveVFX.cs" t="Include" />
-              <e p="AudioreactiveVFXRing.cs" t="Include" />
-            </e>
-          </e>
-          <e p="Loudness x Silence" t="Include">
+          <e p="_shared" t="Include">
             <e p="Scripts" t="Include">
               <e p="Audio" t="Include">
                 <e p="AudioRadiation.cs" t="Include" />
@@ -258,30 +226,57 @@
                 <e p="DebugUi_GameTime.cs" t="Include" />
                 <e p="DebugUiCurrentLoudness.cs" t="Include" />
                 <e p="DebugUIObject.cs" t="Include" />
-                <e p="FocusedObject.cs" t="Include" />
               </e>
-              <e p="EchoDrop.cs" t="Include" />
-              <e p="EchoDropThrower.cs" t="Include" />
               <e p="Editor" t="Include">
                 <e p="EditorSceneSwitch.cs" t="Include" />
               </e>
+              <e p="EnableVFX.cs" t="Include" />
               <e p="FindableAudioSource.cs" t="Include" />
-              <e p="LineOfSight.cs" t="Include" />
+              <e p="FocusedObject.cs" t="Include" />
+              <e p="LevelChecker.cs" t="Include" />
               <e p="LoudnessDisplay.cs" t="Include" />
               <e p="LoudnessMeter.cs" t="Include" />
-              <e p="NextUiCanvas.cs" t="Include" />
               <e p="NonVRPlayer.cs" t="Include" />
               <e p="Observer.cs" t="Include" />
               <e p="Pillar.cs" t="Include" />
               <e p="PillarCluster.cs" t="Include" />
               <e p="PitchShifter.cs" t="Include" />
+              <e p="PlayDoorSound.cs" t="Include" />
               <e p="SceneLoadCountdown.cs" t="Include" />
               <e p="SceneSettings.cs" t="Include" />
+              <e p="SetAreaIndex.cs" t="Include" />
               <e p="SilenceSphere.cs" t="Include" />
-              <e p="ToggleUI.cs" t="Include" />
-              <e p="TriggerUiCanvas.cs" t="Include" />
-              <e p="UI_Level_02.cs" t="Include" />
-              <e p="UI_Level_03.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Level Tests Alexej" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="AudioreactiveVFX.cs" t="Include" />
+              <e p="AudioreactiveVFXRing.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Level0" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="DoorCheck.cs" t="Include" />
+              <e p="LevelLock.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Level1" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="CollectableTrigger.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Level2" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="ActivateChordPuzzle.cs" t="Include" />
+              <e p="PlayAnimation.cs" t="Include" />
+              <e p="PlayAudio.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Level3" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="ActivateLight.cs" t="Include" />
+              <e p="ActivatePlayerCanDie.cs" t="Include" />
+              <e p="ActivateRefPillar.cs" t="Include" />
             </e>
           </e>
           <e p="Menu" t="Include">
