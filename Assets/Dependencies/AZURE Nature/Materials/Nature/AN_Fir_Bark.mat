@@ -11,9 +11,9 @@ Material:
   m_Shader: {fileID: 4800000, guid: c61194769c49566439e564fcdf2deff8, type: 3}
   m_ShaderKeywords: _BLENDNORMALS1_ON _BLENDNORMALS_ON _BOTTOMCOVERAGE_ON _COVERAGEOVERLAYTYPE_VERTEX_POSITION
     _COVERAGETHICKNESS_ON _GROUNDTEXTURE_ON _INVERTCOVERAGE_ON _METALLICGLOSSMAP
-    _NORMALFROMCOVERAGE_ON _NORMALMAP
+    _NORMALFROMCOVERAGE_ON _NORMALMAP _SNOW_ON
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -129,10 +129,10 @@ Material:
     - _BumpScale: 1
     - _COVERAGE: 0
     - _CoverageContrast: 0.1
-    - _CoverageFade: -0.25
+    - _CoverageFade: -0.586
     - _CoverageLevel: -1.1
     - _CoverageOverlayType: 1
-    - _CoverageSmoothness: 0.15
+    - _CoverageSmoothness: 0.077
     - _CoverageThickness: 1
     - _CoverageThicknessLevel: 0.4
     - _Cutoff: 0.5
@@ -151,15 +151,15 @@ Material:
     - _NormalFromCoverage: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _SNOW: 0
+    - _SNOW: 1
     - _Smoothness: 0.35
     - _SmoothnessTextureChannel: 0
     - _Snow: 0
-    - _SnowAmount: 0.7
-    - _SnowFade: 0.3
+    - _SnowAmount: 1
+    - _SnowFade: 0.1
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _SurfaceSmoothness: 0.25
+    - _SurfaceSmoothness: 0.208
     - _TessEdgeLength: 16
     - _TessMax: 25
     - _TessMaxDisp: 25
