@@ -1,4 +1,5 @@
-﻿using Echosystem.Resonance.Prototyping;
+﻿using System.Collections.Generic;
+using Echosystem.Resonance.Prototyping;
 using UnityEngine;
 
 public class Billboard : MonoBehaviour
@@ -8,6 +9,11 @@ public class Billboard : MonoBehaviour
 
     [SerializeField] private bool _rotateToPlayer;
     [SerializeField] private bool _scaleToPlayer;
+
+    [SerializeField] private float _scaleDistance;
+    [SerializeField] private float _hideDistance;
+    [SerializeField] private List <Behaviour> _hideComponents;
+    [SerializeField] private SpriteRenderer _hideRenderer;
     
     private 
 
@@ -26,11 +32,44 @@ public class Billboard : MonoBehaviour
             transform.rotation = Observer.PlayerHead.transform.rotation * _originalRotation;
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
         }
-        
+
 
         if (_scaleToPlayer)
         {
             float distance = Vector3.Distance(transform.position, Observer.Player.transform.position);
+
+            if (_hideDistance > 0)
+            {
+                if (distance > _hideDistance)
+                {
+                    foreach (Behaviour component in _hideComponents)
+                    {
+                        component.enabled = false;
+                        _hideRenderer.enabled = false;
+                    } 
+                }
+                else
+                {
+                    foreach (Behaviour component in _hideComponents)
+                    {
+                        component.enabled = true;
+                        _hideRenderer.enabled = true;
+                    } 
+                }
+            }
+            
+            if (_scaleDistance > 0)
+            {
+                if (distance > _scaleDistance)
+                {
+                    return;
+                }
+            }
+            
+
+
+
+            
             transform.localScale = _initScale * distance;
 
             if (transform.localScale.x <= _initScale.x)
