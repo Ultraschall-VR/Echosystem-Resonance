@@ -69,27 +69,7 @@ namespace Echosystem.Resonance.Game
             Observer.Player = PlayerInstance;
             Observer.PlayerHead = PlayerInstance.GetComponent<PlayerInput>().Head;
             Observer.PlayerInput = PlayerInstance.GetComponent<PlayerInput>();
-
-            //if (!SceneSettings.Instance.VREnabled)
-            //{
-            //    return;
-            //}
-//
-            //PlayerInstance.GetComponent<ControllerManager>().SceneLoader.LoadFirstScene = _loadWholeGame;
-            //PlayerInstance.GetComponent<PlayerMovement>().JoystickMovement = _joystickMovement;
-            //PlayerInstance.GetComponent<PlayerMovement>().TeleportEnabled = _teleportMovement;
-            //PlayerInstance.GetComponent<PlayerMovement>().JoystickMovementSpeed = _joystickMovementSpeed;
-            //PlayerInstance.GetComponent<PlayerMovement>().TeleportMovementSpeed = _teleportMovementSpeed;
-            //PlayerInstance.GetComponent<PlayerMovement>().TeleportMaxRange = _teleportMaxRange;
-//
-            //if (_playerVisible)
-            //{
-            //    VisibilityController.Instance.RevealPlayer();
-            //}
-            //else
-            //{
-            //    VisibilityController.Instance.HidePlayer();
-            //}
+            Observer.HudObjectives = PlayerInstance.GetComponent<VRPlayer>().HudObjectives;
 
         }
 
@@ -110,6 +90,7 @@ namespace Echosystem.Resonance.Game
 
             Observer.Player = PlayerInstance;
             Observer.PlayerHead = PlayerInstance.GetComponent<NonVRPlayer>().PlayerHead.gameObject;
+            Observer.HudObjectives = PlayerInstance.GetComponent<NonVRPlayer>().HudObjectives;
         }
     }
 }

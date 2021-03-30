@@ -18,6 +18,7 @@ namespace Echosystem.Resonance.Prototyping
         public static int CollectedObjects;
         public static int MaxCollectibleObjects;
         public static int AreaIndex;
+        public static HudObjectives HudObjectives;
 
         public static List<SilenceSphere> SilenceSpheres;
 

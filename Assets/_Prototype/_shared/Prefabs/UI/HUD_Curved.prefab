@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2092292167469681209}
   - component: {fileID: 2092292167469681206}
   - component: {fileID: 2092292167469681207}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 2092292167679412059}
   - component: {fileID: 2092292167679412056}
   - component: {fileID: 2092292167679412057}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -274,7 +274,8 @@ GameObject:
   - component: {fileID: 2092292168266346109}
   - component: {fileID: 2092292168266346106}
   - component: {fileID: 2092292168266346104}
-  m_Layer: 0
+  - component: {fileID: 3032890073419359270}
+  m_Layer: 18
   m_Name: HUD_Curved
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -367,6 +368,22 @@ MonoBehaviour:
   ringFill: 0.5
   ringExternalDiamater: 1000
   ringFlipVertical: 0
+--- !u!114 &3032890073419359270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092292168266346102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd77c29ba293fb244b9ddfa0cc73743f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HudObjectivesList:
+  - ObjectiveName: Test Objective
+    ObjectiveText: This is a Objective Text
+  _textBox: {fileID: 2092292167469681209}
 --- !u!1 &2092292169071694800
 GameObject:
   m_ObjectHideFlags: 0
@@ -380,7 +397,7 @@ GameObject:
   - component: {fileID: 2092292169071694805}
   - component: {fileID: 2092292169071694802}
   - component: {fileID: 2092292169071694807}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: ObjectiveBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -429,7 +446,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.09019608, b: 0.21176471, a: 0}
+  m_Color: {r: 0, g: 0.09019608, b: 0.21176471, a: 0.49019608}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -461,7 +478,7 @@ MonoBehaviour:
   savedPos: {x: -30.000002, y: 17, z: 0}
   savedUp: {x: 0, y: 1, z: 0}
   savedRectSize: {x: 130, y: 50}
-  savedColor: {r: 0, g: 0.09019608, b: 0.21176471, a: 0}
+  savedColor: {r: 0, g: 0.09019608, b: 0.21176471, a: 0.49019608}
   savedTextUV0: {x: 0, y: 0}
   savedFill: 1
 --- !u!114 &2092292169071694807

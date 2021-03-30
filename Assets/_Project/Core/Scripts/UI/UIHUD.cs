@@ -8,9 +8,7 @@ namespace Echosystem.Resonance.UI
     public class UIHUD : MonoBehaviour
     {
         [SerializeField] private GameObject _objectivePrefab;
-
-        private List<HUDObjective> _hudObjectives = new List<HUDObjective>();
-
+        
         [SerializeField] private Transform _objectiveParent;
 
         [SerializeField] private CanvasGroup _canvasGroup;
@@ -26,41 +24,11 @@ namespace Echosystem.Resonance.UI
         void Update()
         {
             FixRotation();
-            HandleVisibility();
         }
 
         public void Initialize()
         {
             _objectiveManager = FindObjectOfType<ObjectiveManager>();
-
-            if (_hudObjectives.Count == 0)
-            {
-                if (_objectiveManager.Objectives.Count != 0)
-                {
-                    InstantiateObjectives();
-                }
-            }
-            else
-            {
-                foreach (var hudObjective in _hudObjectives)
-                {
-                    Destroy(hudObjective.gameObject);
-                }
-                
-                InstantiateObjectives();
-            }
-
-            foreach (var hudObjective in _hudObjectives)
-            {
-                if (!_objectiveManager.ShowAll)
-                {
-                    hudObjective.gameObject.SetActive(false);
-                }
-                else
-                {
-                    hudObjective.gameObject.SetActive(true);
-                }
-            }
         }
 
 
@@ -110,30 +78,6 @@ namespace Echosystem.Resonance.UI
             yield return null;
         }
 
-        private void HandleVisibility()
-        {
-            if (_hudObjectives.Count == 0)
-            {
-                FadeOut();
-                return;
-            }
-
-            _hudObjectives[_objectiveManager.CurrentObjectiveIndex].gameObject.SetActive(true);
-
-            //CrossObjectiveText();
-        }
-
-        private void CrossObjectiveText()
-        {
-            foreach (var hudObjective in _hudObjectives)
-            {
-                if (hudObjective.Objective.IsDone)
-                {
-                    hudObjective.CrossObjective();
-                }
-            }
-        }
-
         private void InstantiateObjectives()
         {
             for (var index = 0; index < _objectiveManager.Objectives.Count; index++)
@@ -144,9 +88,6 @@ namespace Echosystem.Resonance.UI
                 var hudObjective = Instantiate(_objectivePrefab, pos, Quaternion.identity);
 
                 hudObjective.transform.SetParent(_objectiveParent, false);
-                hudObjective.GetComponent<HUDObjective>().Objective = _objectiveManager.Objectives[index];
-
-                _hudObjectives.Add(hudObjective.GetComponent<HUDObjective>());
             }
         }
 

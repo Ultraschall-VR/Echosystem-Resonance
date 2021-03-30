@@ -5,4 +5,5 @@ public class NonVRPlayer : MonoBehaviour
 {
     public Camera PlayerHead;
     public DRMGameObject DrmGameObject;
+    public HudObjectives HudObjectives;
 }
