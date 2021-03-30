@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 6910766099650810115}
   - component: {fileID: 6910766099650810113}
   - component: {fileID: 6910766099650810112}
+  - component: {fileID: 2008925360252638697}
+  - component: {fileID: 4160881545164023457}
   m_Layer: 18
   m_Name: Frame
   m_TagString: Untagged
@@ -102,6 +104,33 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2008925360252638697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6910766099650810114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc82c6c91bb422e4092ba8c0de430cb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerAction: {fileID: 4160881545164023457}
+  _triggerObject: {fileID: 0}
+  _triggerDistance: 10
+--- !u!114 &4160881545164023457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6910766099650810114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fb2b356faa15824cb7379b4c62d0f61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6910766100299316088
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,6 +277,7 @@ GameObject:
   - component: {fileID: 6910766100921265272}
   - component: {fileID: 6910766100921265275}
   - component: {fileID: 6910766100921265274}
+  - component: {fileID: 8711791515989654767}
   m_Layer: 18
   m_Name: InfoboxCanvas
   m_TagString: Untagged
@@ -335,3 +365,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &8711791515989654767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6910766100921265276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73b8a6d6e263e1041bbeb0b2430a91b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rotateToPlayer: 1
+  _scaleToPlayer: 1
+  _scaleDistance: 10
+  _hideDistance: 20
+  _hideComponents:
+  - {fileID: 6910766100921265272}
+  _hideRenderer: {fileID: 6910766099650810113}
