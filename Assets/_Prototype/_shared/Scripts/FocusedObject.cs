@@ -28,11 +28,13 @@ public class FocusedObject : MonoBehaviour
         if (Physics.Raycast(origin, forward, out hit, 10f))
         {
             Observer.FocusedGameObject = hit.collider.gameObject;
+            Observer.FocusedPoint = hit.point;
         }
         
         else
         {
             Observer.FocusedGameObject = null;
+            Observer.FocusedPoint = Vector3.zero;
         }
     }
 }
