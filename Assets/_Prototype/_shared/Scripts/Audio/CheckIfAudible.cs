@@ -12,7 +12,7 @@ namespace Echosystem.Resonance.Prototyping
         private AudioSource _audioSource;
         private DearVRSource _dearVRSource;
         private float _maxDistance;
-        float distanceFromPlayer;
+        private float _distanceFromPlayer;
 
         void Start()
         {
@@ -31,9 +31,9 @@ namespace Echosystem.Resonance.Prototyping
 
         void Update()
         {
-            distanceFromPlayer = Vector3.Distance(transform.position, _audioListener.transform.position);
+            _distanceFromPlayer = Vector3.Distance(transform.position, _audioListener.transform.position);
 
-            if (distanceFromPlayer <= _maxDistance)
+            if (_distanceFromPlayer <= _maxDistance)
             {
                 ToggleAudioSource(true);
             }
@@ -43,7 +43,7 @@ namespace Echosystem.Resonance.Prototyping
             }
         }
 
-        void ToggleAudioSource(bool isAudible)
+        private void ToggleAudioSource(bool isAudible)
         {
             if (!isAudible && _audioSource.isPlaying)
             {
