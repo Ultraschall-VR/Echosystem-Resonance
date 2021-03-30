@@ -36,6 +36,7 @@ namespace Echosystem.Resonance.Prototyping
             MaxCollectibleObjects = 0;
             SilenceSpheres = new List<SilenceSphere>();
             AreaIndex = 0;
+            HudObjectives = null;
         }
 
         private void Update()

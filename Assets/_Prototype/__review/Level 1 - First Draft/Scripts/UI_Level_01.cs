@@ -1,26 +1,19 @@
 ﻿using Echosystem.Resonance.Prototyping;
-using Echosystem.Resonance.UI;
 using UnityEngine;
 
 public class UI_Level_01 : MonoBehaviour
 {
-    private UiManager _uiManager;
-    
-    private void Start()
-    {
-        _uiManager = FindObjectOfType<UiManager>();
-    }
+    private bool _objective1 = false;
 
+    [SerializeField] private GameObject _worldmarkerEnd;
+    
     private void Update()
     {
-        if (Observer.SilenceSphereExited)
+        if (CollectibleManager.AllCollected && !_objective1)
         {
-            _uiManager.LoadCanvas(1);
-        }
-
-        if (Observer.CollectedObjects == Observer.MaxCollectibleObjects)
-        {
-            _uiManager.LoadCanvas(2);
+            Observer.HudObjectives.NextObjective();
+            _objective1 = true;
+            _worldmarkerEnd.SetActive(true);
         }
     }
 }
