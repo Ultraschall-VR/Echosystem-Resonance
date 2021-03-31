@@ -30,7 +30,7 @@ namespace VolumetricLights {
 
         bool CheckMesh() {
 
-            if (meshRenderer != null && !profile.autoToggle) {
+            if (meshRenderer != null && (profile != null && !profile.autoToggle)) {
                 bool isEnabled = lightComp.enabled || (profile != null && profile.alwaysOn);
                 meshRenderer.enabled = isEnabled;
             }
@@ -104,7 +104,7 @@ namespace VolumetricLights {
                 meshRenderer = gameObject.AddComponent<MeshRenderer>();
                 meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
                 meshRenderer.receiveShadows = false;
-            } else if (!profile.autoToggle) {
+            } else if (profile != null && !profile.autoToggle) {
                 meshRenderer.enabled = true;
             }
         }

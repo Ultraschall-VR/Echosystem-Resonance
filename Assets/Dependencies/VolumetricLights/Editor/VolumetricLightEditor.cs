@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using System.IO;
+using UnityEditor.SceneManagement;
+using UnityEditor.Experimental.SceneManagement;
 
 namespace VolumetricLights {
 
@@ -133,8 +135,11 @@ namespace VolumetricLights {
                 if (GUILayout.Button(new GUIContent("New Volumetric Light Profile", "Creates a volumetric light profile asset that can also be reused with other lights."))) {
                     CreateFogProfile();
                 }
+                // In prefab mode, profile must be created separately
+                if (!PrefabUtility.IsPartOfAnyPrefab(vl.gameObject) && PrefabStageUtility.GetCurrentPrefabStage() == null) { 
                 if (GUILayout.Button(new GUIContent("Use Automatic Profile", "Uses an internal profile created for this light."))) {
                     vl.CheckProfile();
+                    }
                 }
             }
 
@@ -143,16 +148,36 @@ namespace VolumetricLights {
 
         void CreateFogProfile() {
             string path = "Assets";
-            foreach (Object obj in Selection.GetFiltered(typeof(Object), SelectionMode.Assets)) {
-                path = AssetDatabase.GetAssetPath(obj);
-                if (File.Exists(path)) {
-                    path = Path.GetDirectoryName(path);
+            var prefabStage = PrefabStageUtility.GetCurrentPrefabStage();
+            if (prefabStage != null) {
+#if UNITY_2020_3_OR_NEWER
+                var prefabPath = PrefabStageUtility.GetCurrentPrefabStage().assetPath;
+#else
+                var prefabPath = PrefabStageUtility.GetCurrentPrefabStage().prefabAssetPath;
+#endif
+                if (!string.IsNullOrEmpty(prefabPath)) { 
+                    path = Path.GetDirectoryName(prefabPath);
                 }
-                break;
+            } else {
+                foreach (Object obj in Selection.GetFiltered(typeof(Object), SelectionMode.Assets)) {
+                    path = AssetDatabase.GetAssetPath(obj);
+                    if (File.Exists(path)) {
+                        path = Path.GetDirectoryName(path);
+                    }
+                    break;
+                }
             }
             VolumetricLightProfile fp = CreateInstance<VolumetricLightProfile>();
             fp.name = "New Volumetric Light Profile";
-            AssetDatabase.CreateAsset(fp, path + "/" + fp.name + ".asset");
+            string fullPath;
+            int counter = 0;
+            do {
+                fullPath = path + "/" + fp.name;
+                if (counter > 0) fullPath += " " + counter;
+                fullPath += ".asset";
+                counter++;
+            } while (File.Exists(fullPath));
+            AssetDatabase.CreateAsset(fp, fullPath);
             AssetDatabase.SaveAssets();
             profile.objectReferenceValue = fp;
             EditorGUIUtility.PingObject(fp);
