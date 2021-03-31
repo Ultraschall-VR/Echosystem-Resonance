@@ -51,7 +51,7 @@ namespace Echosystem.Resonance.Prototyping
         {
             RaycastHit hit;
 
-            if (Observer.PlayerInput.RightAPressed.stateDown)
+            if (Observer.PlayerInput.BButtonPressed.stateDown)
             {
                 if (Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity, ~14))
                 {
