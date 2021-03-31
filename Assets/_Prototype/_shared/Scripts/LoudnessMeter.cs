@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 namespace Echosystem.Resonance.Prototyping
@@ -66,11 +65,18 @@ namespace Echosystem.Resonance.Prototyping
                 _currentLoudness = Mathf.Lerp(1, 0, t / timer);
                 yield return null;
             }
+
+            if (!SceneSettings.Instance.VREnabled)
+            {
+                Observer.Player.GetComponent<CharacterController>().enabled = false;
+            }
             
-            Observer.Player.GetComponent<CharacterController>().enabled = false;
             Observer.Player.transform.position = Observer.LastSilenceSphere.transform.position + new Vector3(0, 0.5f,0);
-            
-            Observer.Player.GetComponent<CharacterController>().enabled = true;
+
+            if (!SceneSettings.Instance.VREnabled)
+            {
+                Observer.Player.GetComponent<CharacterController>().enabled = true;
+            }
 
             yield return null;
         }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
@@ -15,6 +14,17 @@ namespace Echosystem.Resonance.Prototyping
         // AUDIO
         [SerializeField] private AudioMixer _audioMixer;
         [SerializeField] private string _exposedParameter;
+
+        [SerializeField] private GameObject _crossfade;
+
+        private void Update()
+        {
+            if(Observer.Player == null)
+                return;
+
+            _crossfade.transform.position = Observer.PlayerHead.transform.position + Observer.PlayerHead.transform.forward;
+            _crossfade.transform.rotation = Observer.PlayerHead.transform.rotation;
+        }
 
         public void LoadLevel(int sceneNumber)
         {

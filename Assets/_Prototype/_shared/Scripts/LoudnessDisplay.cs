@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Echosystem.Resonance.Prototyping;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,12 +18,15 @@ public class LoudnessDisplay : MonoBehaviour
     [SerializeField] private CanvasGroup _deathText;
     [SerializeField] private CanvasGroup _subText;
 
+    [SerializeField] private RectTransform _canvas;
+    [SerializeField] private GameObject _crosshair;
+
     private CanvasGroup _sliderCanvas;
 
     private void Start()
     {
+
         _sliderCanvas = GetComponent<CanvasGroup>();
-        
         _slider = GetComponent<Slider>();
         _blackFade.alpha = 0.0f;
         _deathText.alpha = 0.0f;
@@ -30,9 +34,19 @@ public class LoudnessDisplay : MonoBehaviour
         _damageScreen.alpha = 0.0f;
         _sliderCanvas.alpha = 0.0f;
     }
-
-    private void Update()
+    private void LateUpdate()
     {
+        if(Observer.Player == null)
+            return;
+        
+        _canvas.position = Observer.PlayerHead.transform.position + Observer.PlayerHead.transform.forward*55;
+        _canvas.rotation = Observer.PlayerHead.transform.rotation;
+
+        if (SceneSettings.Instance.VREnabled)
+            _crosshair.SetActive(false);
+        else
+            _crosshair.SetActive(true);
+        
         if (!SceneSettings.Instance.PlayerCanDie)
         {
             _blackFade.alpha = 0.0f;
@@ -43,22 +57,24 @@ public class LoudnessDisplay : MonoBehaviour
             return;
         }
         
-        _sliderCanvas.alpha = 1.0f;
-
-        if (_slider.value > 0.50f)
+        if (!SceneSettings.Instance.VREnabled)
         {
-            _damageScreen.alpha = (_slider.value - 0.50f) / (1 - 0.50f);
+            _sliderCanvas.alpha = 1.0f;
+            _slider.value = Observer.LoudnessValue;
+            _fillImage.color = Color.Lerp(_lowColor, _highColor, _slider.value);
         }
         
+        if (Observer.LoudnessValue > 0.50f)
+        {
+            _damageScreen.alpha = (Observer.LoudnessValue - 0.50f) / (1 - 0.50f);
+        }
         else
         {
             _damageScreen.alpha = 0.0f;
         }
-
-        _slider.value = Observer.LoudnessValue;
-        _fillImage.color = Color.Lerp(_lowColor, _highColor, _slider.value);
-
-        if (_slider.value >= 1.0f && SceneSettings.Instance.PlayerCanDie)
+        
+        
+        if (Observer.LoudnessValue >= 1.0f && SceneSettings.Instance.PlayerCanDie)
         {
             StartCoroutine(FadeToBlack());
         }
