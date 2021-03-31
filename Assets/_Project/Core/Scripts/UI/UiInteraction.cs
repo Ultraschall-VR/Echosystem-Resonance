@@ -1,70 +1,42 @@
-﻿using Echosystem.Resonance.Game;
+﻿using Echosystem.Resonance.Prototyping;
 using UnityEngine;
 
 namespace Echosystem.Resonance.UI
 {
     public class UiInteraction : MonoBehaviour
     {
-        [SerializeField] private PlayerInput _playerInput;
-        [SerializeField] private UICaster _UICaster;
-
-        private MenuElement _selection = null;
-
-        private bool _selectionNull;
-
-        private void CalculateRaycast()
-        {
-            if (_selection != null && !_selectionNull)
-            {
-                _selection.DeHighlight();
-                _selection.Highlighted = false;
-                _selection.Selected = false;
-                _selectionNull = true;
-            }
-
-            RaycastHit hit;
-            _UICaster.Hide();
-
-            if (Physics.Raycast(_playerInput.ControllerRight.transform.position,
-                _playerInput.ControllerRight.transform.forward, out hit,
-                Mathf.Infinity))
-            {
-                if (hit.transform.CompareTag("UI"))
-                {
-                    _UICaster.ShowCast(_playerInput.ControllerRight.transform.position, hit.point, 16);
-
-                    MenuElement menuElement = hit.transform.GetComponent<MenuElement>();
-
-                    if (!menuElement.Highlighted)
-                    {
-                        menuElement.Highlight();
-                        menuElement.Highlighted = true;
-                    }
-
-                    if (_playerInput.RightTriggerPressed.stateDown)
-                    {
-                        menuElement.Select();
-                        menuElement.Selected = true;
-                    }
-
-                    _selection = menuElement;
-                }
-                else
-                {
-                    _selectionNull = false;
-                }
-            }
-            else
-            {
-                _selectionNull = false;
-            }
-        }
+        [SerializeField] private GameObject _cursor;
+        [SerializeField] private LineRenderer _lineRenderer;
+        [SerializeField] private Transform _hand;
 
         private void Update()
         {
-            if (GameStateMachine.Instance.MenuOpen)
+            if (Observer.FocusedGameObject == null)
+                return;
+
+            if (Observer.FocusedGameObject.layer == 20)
             {
-                CalculateRaycast();
+                
+                
+                float distance = Vector3.Distance(transform.position, Observer.FocusedGameObject.transform.position);
+
+                if (distance > 4)
+                    return;
+                
+                Debug.Log("moin");
+                
+                _cursor.SetActive(true);
+                _cursor.transform.position = Observer.FocusedPoint;
+                _cursor.transform.forward = Observer.FocusedGameObject.transform.forward;
+
+                _lineRenderer.enabled = true;
+                _lineRenderer.SetPosition(0, _hand.position);
+                _lineRenderer.SetPosition(1, Observer.FocusedPoint);
+            }
+            else
+            {
+                _lineRenderer.enabled = false;
+                _cursor.SetActive(false);
             }
         }
     }

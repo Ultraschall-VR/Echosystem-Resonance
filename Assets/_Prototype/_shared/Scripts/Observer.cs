@@ -15,6 +15,7 @@ namespace Echosystem.Resonance.Prototyping
         public static bool SilenceSphereExited;
         public static float LoudnessValue;
         public static GameObject FocusedGameObject;
+        public static Vector3 FocusedPoint;
         public static int CollectedObjects;
         public static int MaxCollectibleObjects;
         public static int AreaIndex;
@@ -32,6 +33,7 @@ namespace Echosystem.Resonance.Prototyping
             SilenceSphereExited = false;
             LoudnessValue = 0.0f;
             FocusedGameObject = null;
+            FocusedPoint = Vector3.zero;
             CollectedObjects = 0;
             MaxCollectibleObjects = 0;
             SilenceSpheres = new List<SilenceSphere>();
