@@ -21,7 +21,7 @@ namespace Echosystem.Resonance.Prototyping
         {
             RaycastHit hit;
 
-            if (Input.GetKeyDown(KeyCode.B))
+            if (Input.GetKeyDown(KeyCode.F))
             {
                 if (Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity, ~14))
                 {
