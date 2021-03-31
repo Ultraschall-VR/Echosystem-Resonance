@@ -11,20 +11,19 @@ public class PitchShifter : MonoBehaviour
 
     public bool _lockedTarget;
     public GameObject _focusedObject;
+
     void Update()
     {
-
         if (!SceneSettings.Instance.PitchShifter)
         {
             gameObject.SetActive(false);
             return;
         }
-        
-        if(!SceneSettings.Instance.VREnabled)
+
+        if (!SceneSettings.Instance.VREnabled)
             NonVrInput();
         else
             VrInput();
-        
     }
 
     private void VrInput()
@@ -33,23 +32,21 @@ public class PitchShifter : MonoBehaviour
         {
             _lastPos = transform.position;
         }
-        
+
         HandleFocusVr();
-        
-        
-        
+
         if (_focusedObject != null)
         {
             if (_focusedObject.GetComponent<Pillar>())
             {
                 var pillar = _focusedObject.GetComponent<Pillar>();
-                
+
                 var delta = transform.position - _lastPos;
 
                 _lastPos = transform.position;
-                
+
                 Debug.Log(delta.y);
-                
+
                 _lineRenderer.SetPosition(0, _tip.position);
                 _lineRenderer.SetPosition(1, pillar.GetComponent<PitchShifterable>().Grip.position);
 
@@ -60,45 +57,48 @@ public class PitchShifter : MonoBehaviour
 
     private void HandleFocusVr()
     {
-        if (Observer.FocusedGameObject == null)
-        {
-            _lineRenderer.enabled = false;
-            DeactivateLockVr();
-            return;
-        }
-        
-        if (Observer.FocusedGameObject.GetComponent<PitchShifterable>())
-        {
-            if(!Observer.FocusedGameObject.GetComponent<PitchShifterable>().Active)
-                return;
-            
-            if (!_lockedTarget)
-            {
-                var pitchShifterable = Observer.FocusedGameObject.GetComponent<PitchShifterable>();
-                
-                _lineRenderer.enabled = true;
-                _lineRenderer.SetPosition(0, _tip.position);
-                _lineRenderer.SetPosition(1, pitchShifterable.Grip.position);
-
-                if (Observer.PlayerInput.RightTriggerPressed.state)
-                {
-                    _lockedTarget = true;
-                    _focusedObject = Observer.FocusedGameObject;
-                }
-            }
-        }
-
         if (_focusedObject != null)
         {
+            var pillar = _focusedObject.GetComponent<Pillar>();
+
+            _lineRenderer.enabled = true;
+            _lineRenderer.SetPosition(0, _tip.position);
+            _lineRenderer.SetPosition(1, pillar.GetComponent<PitchShifterable>().Grip.position);
+
             if (Observer.PlayerInput.RightTriggerPressed.stateUp)
             {
-                if (_focusedObject.GetComponent<Pillar>())
+                pillar.CheckPitch();
+                _lineRenderer.enabled = false;
+
+                if (Observer.FocusedGameObject != pillar)
                 {
-                    var pillar = _focusedObject.GetComponent<Pillar>();
-                    pillar.CheckPitch();
-                    DeactivateLockVr();
+                    _focusedObject = null;
                 }
             }
+        }
+
+        if (Observer.FocusedGameObject == null)
+            return;
+
+        if (Observer.FocusedGameObject.GetComponent<PitchShifterable>())
+        {
+            if (!Observer.FocusedGameObject.GetComponent<PitchShifterable>().Active)
+                return;
+
+            var focus = Observer.FocusedGameObject.GetComponent<PitchShifterable>();
+
+            _lineRenderer.enabled = true;
+            _lineRenderer.SetPosition(0, _tip.position);
+            _lineRenderer.SetPosition(1, focus.Grip.position);
+
+            if (Observer.PlayerInput.RightTriggerPressed.state)
+            {
+                _focusedObject = Observer.FocusedGameObject;
+            }
+        }
+        else
+        {
+            _lineRenderer.enabled = false;
         }
     }
 
@@ -106,7 +106,7 @@ public class PitchShifter : MonoBehaviour
     {
         HandleTransformNonVr();
         HandleFocusNonVr();
-        
+
         if (_focusedObject != null)
         {
             if (_focusedObject.GetComponent<Pillar>())
@@ -114,7 +114,7 @@ public class PitchShifter : MonoBehaviour
                 var pillar = _focusedObject.GetComponent<Pillar>();
 
                 var scrollWheelDelta = Input.mouseScrollDelta.y;
-                
+
                 _lineRenderer.SetPosition(0, _tip.position);
                 _lineRenderer.SetPosition(1, pillar.GetComponent<PitchShifterable>().Grip.position);
 
@@ -139,65 +139,48 @@ public class PitchShifter : MonoBehaviour
 
     private void HandleFocusNonVr()
     {
-        if (Observer.FocusedGameObject == null)
-        {
-            _lineRenderer.enabled = false;
-            DeactivateLockNonVr();
-            return;
-        }
-        
-        if (Observer.FocusedGameObject.GetComponent<PitchShifterable>())
-        {
-            if(!Observer.FocusedGameObject.GetComponent<PitchShifterable>().Active)
-                return;
-            
-            if (!_lockedTarget)
-            {
-                var pitchShifterable = Observer.FocusedGameObject.GetComponent<PitchShifterable>();
-                
-                _lineRenderer.enabled = true;
-                _lineRenderer.SetPosition(0, _tip.position);
-                _lineRenderer.SetPosition(1, pitchShifterable.Grip.position);
-
-                if (Input.GetMouseButton(0))
-                {
-                    _lockedTarget = true;
-                    _focusedObject = Observer.FocusedGameObject;
-                }
-            }
-        }
-
         if (_focusedObject != null)
         {
+            var pillar = _focusedObject.GetComponent<Pillar>();
+
+            _lineRenderer.enabled = true;
+            _lineRenderer.SetPosition(0, _tip.position);
+            _lineRenderer.SetPosition(1, pillar.GetComponent<PitchShifterable>().Grip.position);
+
             if (Input.GetMouseButtonUp(0))
             {
-                if (_focusedObject.GetComponent<Pillar>())
+                pillar.CheckPitch();
+                _lineRenderer.enabled = false;
+
+                if (Observer.FocusedGameObject != pillar)
                 {
-                    var pillar = _focusedObject.GetComponent<Pillar>();
-                    pillar.CheckPitch();
-                    DeactivateLockNonVr();
+                    _focusedObject = null;
                 }
             }
         }
-    }
 
-    private void DeactivateLockNonVr()
-    {
-        if (!Input.GetMouseButton(0))
+        if (Observer.FocusedGameObject == null)
+            return;
+
+        if (Observer.FocusedGameObject.GetComponent<PitchShifterable>())
         {
-            _lineRenderer.enabled = false;
-            _lockedTarget = false;
-            _focusedObject = null;
+            if (!Observer.FocusedGameObject.GetComponent<PitchShifterable>().Active)
+                return;
+
+            var focus = Observer.FocusedGameObject.GetComponent<PitchShifterable>();
+
+            _lineRenderer.enabled = true;
+            _lineRenderer.SetPosition(0, _tip.position);
+            _lineRenderer.SetPosition(1, focus.Grip.position);
+
+            if (Input.GetMouseButton(0))
+            {
+                _focusedObject = Observer.FocusedGameObject;
+            }
         }
-    }
-
-    private void DeactivateLockVr()
-    {
-        if (!Observer.PlayerInput.RightTriggerPressed.state)
+        else
         {
             _lineRenderer.enabled = false;
-            _lockedTarget = false;
-            _focusedObject = null;
         }
     }
 }
