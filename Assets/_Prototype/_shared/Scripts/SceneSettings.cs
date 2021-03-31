@@ -23,9 +23,6 @@ public class SceneSettings : MonoBehaviour
 
     public bool ResetProgress;
     
-    
-
-    
     public static SceneSettings Instance;
 
     private void Awake()
