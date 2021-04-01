@@ -25,7 +25,6 @@ public class LoudnessDisplay : MonoBehaviour
 
     private void Start()
     {
-
         _sliderCanvas = GetComponent<CanvasGroup>();
         _slider = GetComponent<Slider>();
         _blackFade.alpha = 0.0f;
@@ -34,19 +33,20 @@ public class LoudnessDisplay : MonoBehaviour
         _damageScreen.alpha = 0.0f;
         _sliderCanvas.alpha = 0.0f;
     }
+
     private void LateUpdate()
     {
-        if(Observer.Player == null)
+        if (Observer.Player == null)
             return;
-        
-        _canvas.position = Observer.PlayerHead.transform.position + Observer.PlayerHead.transform.forward*55;
+
+        _canvas.position = Observer.PlayerHead.transform.position + Observer.PlayerHead.transform.forward * 55;
         _canvas.rotation = Observer.PlayerHead.transform.rotation;
 
         if (SceneSettings.Instance.VREnabled)
             _crosshair.SetActive(false);
         else
             _crosshair.SetActive(true);
-        
+
         if (!SceneSettings.Instance.PlayerCanDie)
         {
             _blackFade.alpha = 0.0f;
@@ -56,14 +56,11 @@ public class LoudnessDisplay : MonoBehaviour
             _sliderCanvas.alpha = 0.0f;
             return;
         }
-        
-        if (!SceneSettings.Instance.VREnabled)
-        {
-            _sliderCanvas.alpha = 1.0f;
-            _slider.value = Observer.LoudnessValue;
-            _fillImage.color = Color.Lerp(_lowColor, _highColor, _slider.value);
-        }
-        
+
+        _sliderCanvas.alpha = 1.0f;
+        _slider.value = Observer.LoudnessValue;
+        _fillImage.color = Color.Lerp(_lowColor, _highColor, _slider.value);
+
         if (Observer.LoudnessValue > 0.50f)
         {
             _damageScreen.alpha = (Observer.LoudnessValue - 0.50f) / (1 - 0.50f);
@@ -72,8 +69,8 @@ public class LoudnessDisplay : MonoBehaviour
         {
             _damageScreen.alpha = 0.0f;
         }
-        
-        
+
+
         if (Observer.LoudnessValue >= 1.0f && SceneSettings.Instance.PlayerCanDie)
         {
             StartCoroutine(FadeToBlack());
@@ -86,7 +83,7 @@ public class LoudnessDisplay : MonoBehaviour
 
         float t = 0.0f;
         float timer = SceneSettings.Instance.RespawnTime / 5;
-        
+
         while (t < timer)
         {
             t += Time.deltaTime;
@@ -94,9 +91,9 @@ public class LoudnessDisplay : MonoBehaviour
             _blackFade.alpha = Mathf.Lerp(0, 1, t / timer);
             yield return null;
         }
-        
+
         t = 0.0f;
-        
+
         while (t < timer)
         {
             t += Time.deltaTime;
@@ -104,9 +101,9 @@ public class LoudnessDisplay : MonoBehaviour
             _deathText.alpha = Mathf.Lerp(0, 1, t / timer);
             yield return null;
         }
-        
+
         t = 0.0f;
-        
+
         while (t < timer)
         {
             t += Time.deltaTime;
@@ -114,9 +111,9 @@ public class LoudnessDisplay : MonoBehaviour
             _subText.alpha = Mathf.Lerp(0, 1, t / timer);
             yield return null;
         }
-        
+
         t = 0.0f;
-        
+
         while (t < timer)
         {
             t += Time.deltaTime;
@@ -124,7 +121,7 @@ public class LoudnessDisplay : MonoBehaviour
             _deathText.alpha = Mathf.Lerp(1, 0, t / timer);
             yield return null;
         }
-        
+
         t = 0.0f;
 
         while (t < timer)
@@ -135,7 +132,7 @@ public class LoudnessDisplay : MonoBehaviour
             _subText.alpha = Mathf.Lerp(1, 0, t / timer);
             yield return null;
         }
-        
+
         Observer.IsRespawning = false;
 
         yield return null;
