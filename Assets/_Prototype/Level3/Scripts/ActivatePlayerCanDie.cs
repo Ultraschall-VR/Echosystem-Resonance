@@ -15,19 +15,14 @@ public class ActivatePlayerCanDie : MonoBehaviour
     {
         _beaconSocket = GetComponent<BeaconSocket>();
         SceneSettings.Instance.PlayerCanDie = false;
-        _uiManager = FindObjectOfType<UiManager>();
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        
         if (_beaconSocket.IsOccupied && !_activated)
         {
             _activated = true;
-            _uiManager.LoadCanvas(_uiManager.Index+1);
-           // Observer.LoudnessValue = 0;
             SceneSettings.Instance.PlayerCanDie = true;
         }
     }

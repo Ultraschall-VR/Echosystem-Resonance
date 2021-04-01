@@ -6,7 +6,12 @@ public class ObjectivesOverride : MonoBehaviour
 {
     public List<HudObjective> HudObjectivesList;
 
-    private void Update()
+    private void Start()
+    {
+        Invoke("Delay", 0.2f);
+    }
+
+    private void Delay()
     {
         if (Observer.HudObjectives != null)
         {

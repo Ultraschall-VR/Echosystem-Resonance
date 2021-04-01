@@ -8,9 +8,10 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: AN_Broadleaf_Bark
-  m_Shader: {fileID: 4800000, guid: c61194769c49566439e564fcdf2deff8, type: 3}
-  m_ShaderKeywords: _COVERAGEOVERLAYTYPE_VERTEX_POSITION _INVERTCOVERAGE_ON _SMOOTHNESSCHANEL_R
-    _SMOOTHNESSFROM_R
+  m_Shader: {fileID: -6465566751694194690, guid: 7c3f78935ff08d34fac6bfa736acaea8,
+    type: 3}
+  m_ShaderKeywords: _COVERAGEOVERLAYTYPE_VERTEX_POSITION _COVERAGE_ON _GROUNDTEXTURE_ON
+    _INVERTCOVERAGE_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -20,6 +21,18 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_2BEB139:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_9BDB4EC1:
+        m_Texture: {fileID: 2800000, guid: 4c7aded8981fd8a4eaad5c2cc98252be, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_FDCD52B:
+        m_Texture: {fileID: 2800000, guid: 34f07406286974e4ca236867d8d58b51, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - TextureSample0:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -137,6 +150,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Boolean_ED434919: 1
+    - Normal_Strength: 5
+    - Vector1_31AADB69: 0
+    - Vector1_AF4E674E: 1
+    - Vector1_DAFD8602: 0
+    - _AlphaCutoff: 0.5
     - _BlendNormals: 0
     - _BlendNormals1: 1
     - _BottomCoverage: 0
@@ -181,8 +200,21 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SurfaceSmoothness: 0.2
+    - _TessEdgeLength: 16
+    - _TessMax: 25
+    - _TessMaxDisp: 25
+    - _TessMin: 10
+    - _TessPhongStrength: 0.5
+    - _TessValue: 16
     - _ThicknessLevel: 1
     - _ThicknessLevel1: 1
+    - _TransAmbient: 0.1
+    - _TransDirect: 0.9
+    - _TransNormal: 0.5
+    - _TransScattering: 2
+    - _TransShadow: 0.5
+    - _TransStrength: 1
+    - _TransmissionShadow: 0.5
     - _UVSec: 0
     - _WindForce: 1
     - _WindSpeed: 1
@@ -190,6 +222,8 @@ Material:
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
+    - Color_2D97BF0F: {r: 1, g: 1, b: 1, a: 1}
+    - Color_6D4C4192: {r: 0, g: 11.765367, b: 102.75575, a: 1}
     - _BarkColor: {r: 0.7, g: 0.55846995, b: 0.48196718, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color1: {r: 1, g: 1, b: 1, a: 0}

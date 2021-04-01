@@ -7,9 +7,16 @@ public class HudObjectives : MonoBehaviour
 {
     public List<HudObjective> HudObjectivesList;
     [SerializeField] private TextMeshProUGUI _textBox;
+    [SerializeField] private Canvas _canvas;
     private int _index = 0;
 
     private bool _initialized = false;
+
+    private void Awake()
+    {
+        _canvas.enabled = false;
+        _textBox.text = null;
+    }
 
     public void Initialize()
     {
@@ -18,11 +25,10 @@ public class HudObjectives : MonoBehaviour
 
     private void Update()
     {
-        Initialize();
-        
         if(!_initialized) 
             return;
         
+        _canvas.enabled = true;
         _textBox.text = HudObjectivesList[_index].ObjectiveText;
     }
 
