@@ -17,6 +17,8 @@ namespace Echosystem.Resonance.Prototyping
 
         [SerializeField] private GameObject _crossfade;
 
+        
+        
         private void Update()
         {
             if(Observer.Player == null)
@@ -32,6 +34,8 @@ namespace Echosystem.Resonance.Prototyping
             StartCoroutine(FadeMixerGroupFrom.StartFadeFrom(_audioMixer, _exposedParameter, transitionTime, 1,
                 0, 0));
             StartCoroutine(LoadLevelTransition(sceneNumber));
+            
+            Observer.HudObjectives.Hide();
         }
 
         IEnumerator LoadLevelTransition(int sceneNumber)
