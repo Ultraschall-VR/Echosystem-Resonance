@@ -156,6 +156,9 @@ namespace CurvedUI
                         mesh.UpdateSubmesh(true, false);
                 }
 
+                if(tmpText.text == null)
+                    return;
+                
                 //Upload mesh to TMP Object's renderer
                 if(tmpText.text.Length > 0)
                     tmpText.canvasRenderer.SetMesh(tmpText.mesh);

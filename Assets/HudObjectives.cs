@@ -23,6 +23,12 @@ public class HudObjectives : MonoBehaviour
         _initialized = true;
     }
 
+    public void Hide()
+    {
+        _canvas.enabled = false;
+        _textBox.text = null;
+    }
+
     private void Update()
     {
         if(!_initialized) 

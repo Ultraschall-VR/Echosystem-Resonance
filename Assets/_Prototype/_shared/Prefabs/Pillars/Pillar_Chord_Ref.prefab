@@ -20,7 +20,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &8105809394210104888
 Transform:
@@ -289,6 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aac17c66927d485299053c0cb01064f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioExternal: 0
   _audioPeer: {fileID: 0}
   _visualEffect: {fileID: 0}
   _band: 4
@@ -372,7 +373,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &507311127663980957
 Transform:
@@ -641,6 +642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aac17c66927d485299053c0cb01064f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioExternal: 0
   _audioPeer: {fileID: 0}
   _visualEffect: {fileID: 0}
   _band: 6
@@ -724,7 +726,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &758573555356917657
 Transform:
@@ -993,6 +995,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aac17c66927d485299053c0cb01064f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioExternal: 0
   _audioPeer: {fileID: 0}
   _visualEffect: {fileID: 0}
   _band: 3
@@ -1071,7 +1074,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 64
+  m_StaticEditorFlags: 65
   m_IsActive: 1
 --- !u!4 &7623642683685203076
 Transform:
@@ -1136,7 +1139,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &3768468604063106550
 Transform:
@@ -1215,7 +1218,7 @@ GameObject:
   m_TagString: PitchShifterable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 64
+  m_StaticEditorFlags: 65
   m_IsActive: 1
 --- !u!4 &7874094107213008403
 Transform:
@@ -1287,7 +1290,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 64
+  m_StaticEditorFlags: 65
   m_IsActive: 0
 --- !u!4 &7874094107282143923
 Transform:
@@ -1486,6 +1489,11 @@ PrefabInstance:
       propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[1].m_Overridden
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4170969099389423066, guid: f19d5f2bcdb7748b88b1dd6c36663977,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4170969099389423067, guid: f19d5f2bcdb7748b88b1dd6c36663977,
         type: 3}
       propertyPath: m_Enabled
@@ -1515,6 +1523,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4170969100423024800, guid: f19d5f2bcdb7748b88b1dd6c36663977,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4170969100423024801, guid: f19d5f2bcdb7748b88b1dd6c36663977,
         type: 3}
@@ -1678,7 +1691,7 @@ PrefabInstance:
     - target: {fileID: -3064763384204754191, guid: 872fc17b1c4242042827a6f03383d707,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 64
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 473567505132318578, guid: 872fc17b1c4242042827a6f03383d707,
         type: 3}
@@ -1698,7 +1711,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 872fc17b1c4242042827a6f03383d707,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 64
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 4458635466619210892, guid: 872fc17b1c4242042827a6f03383d707,
         type: 3}
@@ -1708,7 +1721,7 @@ PrefabInstance:
     - target: {fileID: 7898003516258909506, guid: 872fc17b1c4242042827a6f03383d707,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 64
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 8564593871193889291, guid: 872fc17b1c4242042827a6f03383d707,
         type: 3}
@@ -1905,6 +1918,11 @@ PrefabInstance:
       propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[1].m_Overridden
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4170969099389423066, guid: f19d5f2bcdb7748b88b1dd6c36663977,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4170969099389423067, guid: f19d5f2bcdb7748b88b1dd6c36663977,
         type: 3}
       propertyPath: m_Enabled
@@ -1934,6 +1952,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4170969100423024800, guid: f19d5f2bcdb7748b88b1dd6c36663977,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4170969100423024801, guid: f19d5f2bcdb7748b88b1dd6c36663977,
         type: 3}
@@ -2199,6 +2222,11 @@ PrefabInstance:
       propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[1].m_Overridden
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4170969099389423066, guid: f19d5f2bcdb7748b88b1dd6c36663977,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4170969099389423067, guid: f19d5f2bcdb7748b88b1dd6c36663977,
         type: 3}
       propertyPath: m_Enabled
@@ -2228,6 +2256,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4170969100423024800, guid: f19d5f2bcdb7748b88b1dd6c36663977,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4170969100423024801, guid: f19d5f2bcdb7748b88b1dd6c36663977,
         type: 3}
