@@ -5,10 +5,20 @@ namespace Echosystem.Resonance.Prototyping
     public class LevelChecker : MonoBehaviour
     {
         [SerializeField] private LevelLock[] _levelPads;
+        [SerializeField] private GameObject _orpheus;
         
         private int _levelUnlocked;
         void Start()
         {
+            _levelUnlocked = PlayerPrefs.GetInt("levelUnlocked")
+            
+            if (_levelPads.Length == _levelUnlocked)
+            {
+                _orpheus.SetActive(false);
+                OpenDoors();
+                return;
+            }
+            
            Invoke("DelayedStart", .5f);
         }
 
@@ -17,14 +27,6 @@ namespace Echosystem.Resonance.Prototyping
             if (SceneSettings.Instance.ResetProgress)
             {
                 PlayerPrefs.SetInt("levelUnlocked", 0);
-            }
-            
-            _levelUnlocked = PlayerPrefs.GetInt("levelUnlocked");
-
-            if (_levelPads.Length == _levelUnlocked)
-            {
-                OpenDoors();
-                return;
             }
             
             FindObjectOfType<OrpheusDialogue>().PlayOrpheusIndex(_levelUnlocked, 0);
@@ -44,6 +46,5 @@ namespace Echosystem.Resonance.Prototyping
                 _levelPads[i]._unlocked = true;
             }
         }
-        
     }
 }
