@@ -10,10 +10,11 @@ namespace Echosystem.Resonance.Prototyping
         private int _levelUnlocked;
         void Start()
         {
-            _levelUnlocked = PlayerPrefs.GetInt("levelUnlocked")
+            _levelUnlocked = PlayerPrefs.GetInt("levelUnlocked");
             
             if (_levelPads.Length == _levelUnlocked)
             {
+                Observer.HudObjectives.NextObjective();
                 _orpheus.SetActive(false);
                 OpenDoors();
                 return;
