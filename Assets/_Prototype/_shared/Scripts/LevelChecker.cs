@@ -18,24 +18,27 @@ namespace Echosystem.Resonance.Prototyping
             {
                 PlayerPrefs.SetInt("levelUnlocked", 0);
             }
-
+            
             _levelUnlocked = PlayerPrefs.GetInt("levelUnlocked");
 
             if (_levelPads.Length == _levelUnlocked)
             {
+                OpenDoors();
                 return;
             }
             
             FindObjectOfType<OrpheusDialogue>().PlayOrpheusIndex(_levelUnlocked, 0);
 
             var cliplength = FindObjectOfType<OrpheusDialogue>().OrpheusAudioSource.clip.length;
-            
-            Invoke("WaitForOrpheus", cliplength);
+
+            Invoke("OpenDoors", cliplength);
             
         }
 
-        private void WaitForOrpheus()
+        private void OpenDoors()
         {
+            Observer.HudObjectives.Initialize();
+            
             for (int i = 0; i < _levelUnlocked + 1; i++)
             {
                 _levelPads[i]._unlocked = true;

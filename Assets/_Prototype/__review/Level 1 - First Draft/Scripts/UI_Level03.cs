@@ -30,15 +30,5 @@ public class UI_Level03 : MonoBehaviour
             _played2 = true;
             FindObjectOfType<OrpheusDialogue2D>().PlayOrpheus2DIndex(0, 1.5f);
         }
-        
-
-        if (CollectibleManager.AllCollected && !_objective1)
-        {
-            Observer.HudObjectives.NextObjective();
-            _objective1 = true;
-            _worldmarkerEnd.SetActive(true);
-            
-            
-        }
     }
 }

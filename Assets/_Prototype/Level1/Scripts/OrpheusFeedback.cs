@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Echosystem.Resonance.Prototyping
 {
@@ -11,12 +9,7 @@ namespace Echosystem.Resonance.Prototyping
         private bool _played1;
         private bool _played2;
         private bool _played3;
-        // Start is called before the first frame update
-        void Start()
-        {
-        }
 
-        // Update is called once per frame
         void Update()
         {
             if (CollectibleManager.Index == 1 && !_played1 && Vector3.Distance(transform.position, Observer.Player.transform.position) < _distance)

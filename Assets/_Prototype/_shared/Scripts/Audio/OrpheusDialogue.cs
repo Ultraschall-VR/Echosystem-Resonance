@@ -2,7 +2,7 @@
 
 public class OrpheusDialogue : MonoBehaviour
 {
-    public AudioSource OrpheusAudioSource; 
+    [HideInInspector]public AudioSource OrpheusAudioSource; 
     [SerializeField] private AudioClip[] _audioClips;
     
 
