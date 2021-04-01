@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class UI_Level_03 : MonoBehaviour
+public partial class UI_Level_03 : MonoBehaviour
 {
     
 }

@@ -5,8 +5,10 @@ namespace Echosystem.Resonance.Prototyping
 {
     public class AudioreactiveVFXRing : MonoBehaviour
     {
+        [SerializeField] private bool _audioExternal;
         [SerializeField] private AudioPeer _audioPeer;
         [SerializeField] private VisualEffect _visualEffect;
+        
 
         [Range(0, 8)] [SerializeField] private int _band = 4;
         [SerializeField] private float _minParticleSize = .1f, _maxParticleSize = 1;
@@ -15,7 +17,10 @@ namespace Echosystem.Resonance.Prototyping
 
         void Start()
         {
-            _audioPeer = GetComponent<AudioPeer>();
+            if (!_audioExternal)
+                _audioPeer = GetComponent<AudioPeer>();
+            
+           
             _visualEffect = GetComponent<VisualEffect>();
         }
 
