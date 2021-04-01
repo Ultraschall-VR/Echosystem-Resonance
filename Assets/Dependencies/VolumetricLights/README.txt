@@ -39,9 +39,6 @@ Of course, all updates of Volumetric Lights will be eventually available on the 
 Version history
 ---------------
 
-v3.6.4
-- Profile must now created specifically when using volumetric lights in prefabs
-
 v3.6.3
 - Improved dust particle rendering
 
