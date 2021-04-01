@@ -25,8 +25,12 @@ public class OrpheusDialogue : MonoBehaviour
     
     public void PlayOrpheusIndex(int index, float delay)
     {
-     //   OrpheusAudioSource.PlayOneShot(_audioClips[index]);
-     OrpheusAudioSource.clip = _audioClips[index];
+        OrpheusAudioSource.clip = _audioClips[index];
      OrpheusAudioSource.PlayDelayed(delay);
+    }
+    public void PlayOrpheusIndexNoDelay(int index)
+    {
+        OrpheusAudioSource.clip = _audioClips[index];
+        OrpheusAudioSource.Play();
     }
 }
