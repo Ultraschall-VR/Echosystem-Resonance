@@ -6,6 +6,10 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+#if UNITY_EDITOR
+using UnityEditor;
+using UnityEditor.Experimental.SceneManagement;
+#endif
 
 namespace VolumetricLights {
 
@@ -443,6 +447,10 @@ namespace VolumetricLights {
         /// Creates an automatic profile if profile is not set
         /// </summary>
         public void CheckProfile() {
+#if UNITY_EDITOR
+            // In prefab mode, profile must be created separately
+            if (PrefabUtility.IsPartOfAnyPrefab(gameObject) || PrefabStageUtility.GetCurrentPrefabStage() != null) return;
+#endif
             if (profile == null) {
                 profile = ScriptableObject.CreateInstance<VolumetricLightProfile>();
                 profile.name = AUTO_PROFILE_NAME;
