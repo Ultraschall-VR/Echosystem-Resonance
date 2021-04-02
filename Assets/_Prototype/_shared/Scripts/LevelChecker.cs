@@ -6,16 +6,20 @@ namespace Echosystem.Resonance.Prototyping
     {
         [SerializeField] private LevelLock[] _levelPads;
         [SerializeField] private GameObject _orpheus;
+        [SerializeField] private GameObject _credits;
         
         private int _levelUnlocked;
         void Start()
         {
+            _credits.SetActive(false);
+            
             _levelUnlocked = PlayerPrefs.GetInt("levelUnlocked");
             
             if (_levelPads.Length == _levelUnlocked)
             {
                 Observer.HudObjectives.NextObjective();
                 _orpheus.SetActive(false);
+                _credits.SetActive(true);
                 OpenDoors();
                 return;
             }
