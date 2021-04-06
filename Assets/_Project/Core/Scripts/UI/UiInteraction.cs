@@ -8,7 +8,6 @@ namespace Echosystem.Resonance.UI
         [SerializeField] private GameObject _cursor;
         [SerializeField] private LineRenderer _lineRenderer;
         [SerializeField] private Transform _hand;
-
         private void Update()
         {
             if (Observer.FocusedGameObject == null)
@@ -16,14 +15,10 @@ namespace Echosystem.Resonance.UI
 
             if (Observer.FocusedGameObject.layer == 20)
             {
-                
-                
                 float distance = Vector3.Distance(transform.position, Observer.FocusedGameObject.transform.position);
 
-                if (distance > 4)
+                if (distance > 5)
                     return;
-                
-                Debug.Log("moin");
                 
                 _cursor.SetActive(true);
                 _cursor.transform.position = Observer.FocusedPoint;
@@ -32,11 +27,45 @@ namespace Echosystem.Resonance.UI
                 _lineRenderer.enabled = true;
                 _lineRenderer.SetPosition(0, _hand.position);
                 _lineRenderer.SetPosition(1, Observer.FocusedPoint);
+
+                InteractibleUI interactibleUi = null;
+                
+                if (Observer.FocusedGameObject.GetComponent<InteractibleUI>())
+                {
+                    interactibleUi = Observer.FocusedGameObject.GetComponent<InteractibleUI>();
+                }
+
+                HandleInput(interactibleUi);
             }
             else
             {
                 _lineRenderer.enabled = false;
                 _cursor.SetActive(false);
+            }
+        }
+
+        private static void HandleInput(InteractibleUI interactibleUi)
+        {
+            if (interactibleUi != null)
+            {
+                interactibleUi.Hover();
+                interactibleUi.DeClick();
+                
+                if (SceneSettings.Instance.VREnabled)
+                {
+                    if (Observer.PlayerInput.RightTriggerPressed.stateDown)
+                    {
+                        interactibleUi.Click();
+                    }
+                }
+
+                else
+                {
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        interactibleUi.Click();
+                    }
+                }
             }
         }
     }
