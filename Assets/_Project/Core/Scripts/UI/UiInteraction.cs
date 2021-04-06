@@ -10,14 +10,14 @@ namespace Echosystem.Resonance.UI
         [SerializeField] private Transform _hand;
         private void Update()
         {
-            if (Observer.FocusedGameObject == null)
+            if(Observer.FocusedGameObject == null)
                 return;
-
-            if (Observer.FocusedGameObject.layer == 20)
+            
+            if (Observer.FocusedGameObject.layer == 20 || Observer.FocusedGameObject.GetComponent<InteractibleUI>())
             {
                 float distance = Vector3.Distance(transform.position, Observer.FocusedGameObject.transform.position);
 
-                if (distance > 5)
+                if (distance > 6)
                     return;
                 
                 _cursor.SetActive(true);

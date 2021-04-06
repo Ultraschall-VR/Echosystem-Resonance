@@ -29,6 +29,7 @@ namespace Echosystem.Resonance.Game
         public SteamVR_Action_Single LeftGripForce;
 
         public SteamVR_Action_Boolean RightAPressed;
+        public SteamVR_Action_Boolean MenuPressed;
 
         public GameObject Head;
         public GameObject Player;

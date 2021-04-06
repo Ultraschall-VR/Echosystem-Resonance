@@ -1,63 +1,78 @@
-using System;
+using System.Collections.Generic;
+using System.Linq;
+using Echosystem.Resonance.Prototyping;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
-    private Toggle m_MenuToggle;
-	private float m_TimeScaleRef = 1f;
-    private float m_VolumeRef = 1f;
-    private bool m_Paused;
+    [SerializeField] private Canvas _menu;
+    [SerializeField] private List<AudioSource> _pauseMenuAudioSources;
 
-
-    void Awake()
+    private void Start()
     {
-        m_MenuToggle = GetComponent <Toggle> ();
-	}
-
-
-    private void MenuOn ()
-    {
-        m_TimeScaleRef = Time.timeScale;
-        Time.timeScale = 0f;
-
-        m_VolumeRef = AudioListener.volume;
-        AudioListener.volume = 0f;
-
-        m_Paused = true;
+        _menu.enabled = false;
     }
 
-
-    public void MenuOff ()
+    private void LateUpdate()
     {
-        Time.timeScale = m_TimeScaleRef;
-        AudioListener.volume = m_VolumeRef;
-        m_Paused = false;
-    }
-
-
-    public void OnMenuStatusChange ()
-    {
-        if (m_MenuToggle.isOn && !m_Paused)
+        if (Observer.Player != null)
         {
-            MenuOn();
+            var allAudioSources = FindObjectsOfType<AudioSource>().ToList();
+
+            foreach (var source in _pauseMenuAudioSources)
+            {
+                if (allAudioSources.Contains(source))
+                {
+                    allAudioSources.Remove(source);
+                }
+            }
+
+            if (_menu.enabled)
+            {
+                foreach (var source in allAudioSources)
+                {
+                    if (source.isPlaying)
+                        source.Pause();
+                }
+
+                return;
+            }
+
+            foreach (var source in allAudioSources)
+            {
+                if (!source.isPlaying)
+                    source.Play();
+            }
+
+            _menu.transform.position =
+                Observer.PlayerHead.transform.position + Observer.PlayerHead.transform.forward * 4;
+            _menu.transform.rotation = Observer.PlayerHead.transform.rotation;
         }
-        else if (!m_MenuToggle.isOn && m_Paused)
+
+        if (SceneSettings.Instance.VREnabled)
+            VrInput();
+        else
+            NonVrInput();
+    }
+
+    public void Toggle()
+    {
+        _menu.enabled = !_menu.enabled;
+    }
+
+    private void NonVrInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            MenuOff();
+            Toggle();
         }
     }
 
-
-#if !MOBILE_INPUT
-	void Update()
-	{
-		if(Input.GetKeyUp(KeyCode.Escape))
-		{
-		    m_MenuToggle.isOn = !m_MenuToggle.isOn;
-            Cursor.visible = m_MenuToggle.isOn;//force the cursor visible if anythign had hidden it
-		}
-	}
-#endif
-
+    private void VrInput()
+    {
+        if (Observer.PlayerInput.MenuPressed.stateDown)
+        {
+            Toggle();
+        }
+    }
 }
