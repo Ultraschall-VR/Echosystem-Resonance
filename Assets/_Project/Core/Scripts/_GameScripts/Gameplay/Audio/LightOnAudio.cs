@@ -10,6 +10,7 @@ namespace Echosystem.Resonance.Prototyping
         [Range(0, 8)] [SerializeField] private int _band = 3;
         [SerializeField] private float _minIntensity = 0, _maxIntesity = 1;
         private Light _light;
+        private bool _defaultSwitched;
 
         // Start is called before the first frame update
         void Start()
@@ -26,7 +27,8 @@ namespace Echosystem.Resonance.Prototyping
         // Update is called once per frame
         void Update()
         {
-            _light.intensity = (AudioPeer._audioBandBuffer[_band] * (_maxIntesity - _minIntensity)) + _minIntensity;
+            if (AudioPeer._audioBandBuffer[_band] < 1)
+                _light.intensity = (AudioPeer._audioBandBuffer[_band] * (_maxIntesity - _minIntensity)) + _minIntensity;
         }
     }
 }
