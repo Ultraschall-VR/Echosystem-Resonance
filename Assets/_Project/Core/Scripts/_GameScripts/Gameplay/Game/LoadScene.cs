@@ -1,19 +1,15 @@
-﻿using UnityEngine;
+﻿using Echosystem.Resonance.Prototyping;
+using UnityEngine;
 
 namespace Echosystem.Resonance.Game
 {
     public class LoadScene : MonoBehaviour
     {
-        [SerializeField] private SceneLoader.Scene _scene;
-        [SerializeField] private SceneLoader.Scene _loadingScene;
-        [SerializeField] private float _loadDuration;
-        private SceneLoader _sceneLoader;
-
-        private void OnEnable()
+        [SerializeField] private int _levelIndex;
+        
+        private void Start()
         {
-            _sceneLoader = FindObjectOfType<SceneLoader>();
-
-            _sceneLoader.LoadScene(_scene, _loadingScene, _loadDuration);
+            FindObjectOfType<LevelLoader>().LoadLevel(_levelIndex);
         }
     }
 }
