@@ -1,15 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
 public class AudioDelay : MonoBehaviour
 {
-    public float DelayTime=0;
-    AudioSource audioData;
+    [SerializeField] private float _delay;
+    private AudioSource _audioSource;
+    [SerializeField] private bool _randomDelay;
+    [SerializeField] private float _minDelay, _maxDelay;
 
-    void Start() {
-        audioData = GetComponent<AudioSource>();
-        audioData.PlayDelayed(DelayTime);
+    void Start()
+    {
+        _audioSource = GetComponent<AudioSource>();
+        if (_randomDelay)
+            _audioSource.PlayDelayed(Random.Range(_minDelay, _maxDelay));
+
+
+        if (!_randomDelay)
+            _audioSource.PlayDelayed(_delay);
     }
 }

@@ -22,17 +22,24 @@ namespace Echosystem.Resonance.Prototyping
             
            
             _visualEffect = GetComponent<VisualEffect>();
+            
+            _visualEffect.SetFloat("Particle Size", _minParticleSize);
+            _visualEffect.SetFloat("Circle Radius", _minRadius);
+            _visualEffect.SetFloat("Lifetime", _minLifetime);
         }
 
 
         void Update()
         {
-            _visualEffect.SetFloat("Particle Size",
-                (_audioPeer._audioBandBuffer[_band] * (_maxParticleSize - _minParticleSize)) + _minParticleSize);
-            _visualEffect.SetFloat("Circle Radius",
-                (_audioPeer._audioBandBuffer[_band] * (_maxRadius - _minRadius)) + _minRadius);
-            _visualEffect.SetFloat("Lifetime",
-                (_audioPeer._audioBandBuffer[_band] * (_maxLifetime - _minLifetime)) + _minLifetime);
+            if (_audioPeer._audioBandBuffer[_band] < 1)
+            {
+                _visualEffect.SetFloat("Particle Size",
+                    (_audioPeer._audioBandBuffer[_band] * (_maxParticleSize - _minParticleSize)) + _minParticleSize);
+                _visualEffect.SetFloat("Circle Radius",
+                    (_audioPeer._audioBandBuffer[_band] * (_maxRadius - _minRadius)) + _minRadius);
+                _visualEffect.SetFloat("Lifetime",
+                    (_audioPeer._audioBandBuffer[_band] * (_maxLifetime - _minLifetime)) + _minLifetime);
+            }
         }
     }
 }
