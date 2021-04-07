@@ -35,5 +35,8 @@ public class SceneSettings : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        if (VREnabled)
+            CinemaMode = false;
     }
 }

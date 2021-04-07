@@ -35,6 +35,8 @@ public class PauseMenu : MonoBehaviour
                         source.Pause();
                 }
 
+                Time.timeScale = 0;
+
                 return;
             }
 
@@ -42,6 +44,8 @@ public class PauseMenu : MonoBehaviour
             {
                 if (!source.isPlaying)
                     source.Play();
+                
+                Time.timeScale = 1;
             }
 
             _menu.transform.position =
