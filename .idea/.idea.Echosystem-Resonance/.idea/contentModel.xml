@@ -47,7 +47,6 @@
                       <e p="AudioFadeIn.cs" t="Include" />
                       <e p="AudioFadeInFrom.cs" t="Include" />
                       <e p="AudioLight.cs" t="Include" />
-                      <e p="AudioLoopDelay.cs" t="Include" />
                       <e p="AudioLoudness.cs" t="Include" />
                       <e p="AudioRandomClip.cs" t="Include" />
                       <e p="AudioRandomPitch.cs" t="Include" />
@@ -89,7 +88,6 @@
                     <e p="GameStateMachine.cs" t="Include" />
                     <e p="GrabCaster.cs" t="Include" />
                     <e p="GravityPull.cs" t="Include" />
-                    <e p="HideUI.cs" t="Include" />
                     <e p="IgnorePlayerCollision.cs" t="Include" />
                     <e p="KeyboardInput.cs" t="Include" />
                     <e p="LoadScene.cs" t="Include" />
@@ -146,7 +144,6 @@
                 <e p="IntroSceneVideo.cs" t="Include" />
                 <e p="Menu.cs" t="Include" />
                 <e p="MenuCalibration.cs" t="Include" />
-                <e p="MenuController.cs" t="Include" />
                 <e p="MenuElement.cs" t="Include" />
                 <e p="ObjectInteraction.cs" t="Include" />
                 <e p="ToolTipps.cs" t="Include" />
@@ -234,6 +231,7 @@
               </e>
               <e p="DynamicCollider.cs" t="Include" />
               <e p="Editor" t="Include">
+                <e p="AutomatedBuildPipeline.cs" t="Include" />
                 <e p="EditorSceneSwitch.cs" t="Include" />
               </e>
               <e p="EnableComponents.cs" t="Include" />
@@ -256,6 +254,21 @@
               <e p="SceneSettings.cs" t="Include" />
               <e p="SetAreaIndex.cs" t="Include" />
               <e p="SilenceSphere.cs" t="Include" />
+              <e p="UI" t="Include">
+                <e p="Continue.cs" t="Include" />
+                <e p="DisableMarker.cs" t="Include" />
+                <e p="HudObjectives.cs" t="Include" />
+                <e p="InteractibleUI.cs" t="Include" />
+                <e p="LoadNextObjective.cs" t="Include" />
+                <e p="NextObjective.cs" t="Include" />
+                <e p="ObjectivesOverride.cs" t="Include" />
+                <e p="resetProgress.cs" t="Include" />
+                <e p="StartInfoboxAnimation.cs" t="Include" />
+                <e p="SwitchCanvas.cs" t="Include" />
+                <e p="TriggerByDistance.cs" t="Include" />
+                <e p="UI_Level0.cs" t="Include" />
+              </e>
+              <e p="VRPlayer.cs" t="Include" />
               <e p="WorldspaceMarker.cs" t="Include" />
             </e>
           </e>
@@ -296,7 +309,14 @@
               <e p="UI_Level03.cs" t="Include" />
             </e>
           </e>
+          <e p="LevelMenu" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="ActivateRing.cs" t="Include" />
+            </e>
+          </e>
         </e>
+        <e p="CinemaModeDisabler.cs" t="Include" />
+        <e p="CinemaModePostProcessing.cs" t="Include" />
         <e p="Dependencies" t="Include">
           <e p="Amazing Assets" t="Include">
             <e p="Dynamic Radial Masks" t="Include">
@@ -1727,7 +1747,6 @@
             </e>
           </e>
         </e>
-        <e p="DisableMarker.cs" t="Include" />
         <e p="Editor" t="Include">
           <e p="x64" t="Include">
             <e p="Bakery" t="Include">
@@ -1776,10 +1795,6 @@
             </e>
           </e>
         </e>
-        <e p="HudObjectives.cs" t="Include" />
-        <e p="LoadNextObjective.cs" t="Include" />
-        <e p="NextObjective.cs" t="Include" />
-        <e p="ObjectivesOverride.cs" t="Include" />
         <e p="Plugins" t="Include">
           <e p="ScreenshotCompanion" t="Include">
             <e p="Editor" t="Include">
@@ -2022,7 +2037,6 @@
             </e>
           </e>
         </e>
-        <e p="StartInfoboxAnimation.cs" t="Include" />
         <e p="TextMesh Pro" t="Include">
           <e p="Examples &amp; Extras" t="Include">
             <e p="Scripts" t="Include">
@@ -2094,9 +2108,6 @@
             <e p="EmojiOne Attribution.txt" t="Include" />
           </e>
         </e>
-        <e p="TriggerByDistance.cs" t="Include" />
-        <e p="UI_Level0.cs" t="Include" />
-        <e p="VRPlayer.cs" t="Include" />
       </e>
       <e p="BakeryEditorAssembly.csproj" t="IncludeRecursive" />
       <e p="BakeryRuntimeAssembly.csproj" t="IncludeRecursive" />

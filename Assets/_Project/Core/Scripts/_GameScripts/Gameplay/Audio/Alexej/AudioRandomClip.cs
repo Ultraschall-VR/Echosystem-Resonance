@@ -5,6 +5,7 @@ using UnityEngine;
 public class AudioRandomClip : MonoBehaviour
 {
     AudioSource randomSound;
+    [SerializeField] private bool _randomDelay;
     [SerializeField] AudioClip[] audioSources;
 
     // Start is called before the first frame update
@@ -13,7 +14,8 @@ public class AudioRandomClip : MonoBehaviour
         randomSound= GetComponent<AudioSource>();
         randomSound.clip = audioSources[Random.Range(0, audioSources.Length)];
         randomSound.Play();
-       // CallAudio();
+
+        // CallAudio();
     }
 /*
     void CallAudio() {

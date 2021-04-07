@@ -4,7 +4,7 @@ namespace Echosystem.Resonance
 {
     public class Exit : MonoBehaviour
     {
-        private void OnEnable()
+        private void Start()
         {
             Application.Quit();
         }

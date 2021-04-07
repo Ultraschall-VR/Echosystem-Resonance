@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class OrpheusDialogue : MonoBehaviour
 {
@@ -14,7 +15,6 @@ public class OrpheusDialogue : MonoBehaviour
         
     }
 
-  
     /*
     void ContinueContinue()
     {

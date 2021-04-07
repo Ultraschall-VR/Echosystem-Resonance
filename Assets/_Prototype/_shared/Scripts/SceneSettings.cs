@@ -6,9 +6,8 @@ public class SceneSettings : MonoBehaviour
     public float LoudnessDecreaseTime;
     public float EchoDropLifetime;
     public float LightsourceRadius;
-    
+
     public bool Beacons;
-    public bool EchoDrops;
     public bool PitchShifter;
 
     public bool DebugMode;
@@ -18,7 +17,8 @@ public class SceneSettings : MonoBehaviour
     public float RespawnTime;
 
     public float SpawnDelay;
-
+    
+    public bool CinemaMode;
     public bool VREnabled;
 
     public bool ResetProgress;
