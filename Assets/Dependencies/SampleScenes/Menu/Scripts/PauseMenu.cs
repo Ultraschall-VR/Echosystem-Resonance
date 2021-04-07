@@ -1,13 +1,13 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Echosystem.Resonance.Prototyping;
 using UnityEngine;
+using Valve.Newtonsoft.Json.Utilities;
 
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private Canvas _menu;
-    [SerializeField] private List<AudioSource> _pauseMenuAudioSources;
+    [SerializeField] private List<AudioSource> _menuSounds;
 
     private void Start()
     {
@@ -19,39 +19,45 @@ public class PauseMenu : MonoBehaviour
         if (Observer.Player != null)
         {
             var allAudioSources = FindObjectsOfType<AudioSource>().ToList();
+            
+            List<AudioSource> sceneAudioSources = new List<AudioSource>();
 
-            foreach (var source in _pauseMenuAudioSources)
+            foreach (var source in allAudioSources)
             {
-                if (allAudioSources.Contains(source))
+                if (!_menuSounds.Contains(source))
                 {
-                    allAudioSources.Remove(source);
+                    sceneAudioSources.Add(source);
                 }
             }
 
             if (_menu.enabled)
             {
-                foreach (var source in allAudioSources)
-                {
-                    if (source.isPlaying)
-                        source.Pause();
-                }
-
-                //Time.timeScale = 0;
-
-                return;
-            }
-
-            foreach (var source in allAudioSources)
-            {
-                if (!source.isPlaying)
-                    source.Play();
+                Time.timeScale = 0;
+                PlayStateMachine.CurrentPlayState = PlayStateMachine.PlayState.Pause;
                 
-                //Time.timeScale = 1;
-            }
+                foreach (var source in sceneAudioSources)
+                {
+                    source.Pause();
+                }
+                
+                Vector3 euler = new Vector3(_menu.transform.eulerAngles.x, _menu.transform.eulerAngles.y, 0);
 
-            _menu.transform.position =
-                Observer.PlayerHead.transform.position + Observer.PlayerHead.transform.forward * 3;
-            _menu.transform.rotation = Observer.PlayerHead.transform.rotation;
+                _menu.transform.eulerAngles = euler;
+            }
+            else
+            {
+                Time.timeScale = 1;
+                PlayStateMachine.CurrentPlayState = PlayStateMachine.PlayState.Game;
+                
+                foreach (var source in sceneAudioSources)
+                {
+                    source.UnPause();
+                }
+                
+                _menu.transform.position =
+                    Observer.PlayerHead.transform.position + Observer.PlayerHead.transform.forward * 3;
+                _menu.transform.rotation = Observer.PlayerHead.transform.rotation;
+            }
         }
     }
 

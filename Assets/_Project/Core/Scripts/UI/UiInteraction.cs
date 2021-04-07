@@ -20,8 +20,8 @@ namespace Echosystem.Resonance.UI
 
             if (SceneSettings.Instance.VREnabled)
             {
-                origin = Observer.PlayerInput.ControllerRight.transform.position;
-                forward = Observer.PlayerInput.ControllerRight.transform.forward;
+                origin = _hand.position;
+                forward = _hand.forward;
             }
             else
             {

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7867856711983687274}
   - component: {fileID: 7867856711983687273}
   - component: {fileID: 7867856711983687275}
+  - component: {fileID: 5493758441723342722}
   m_Layer: 0
   m_Name: '[PostProcessing]'
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7867856711983687272}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 23.429998, y: 10.376999, z: -3.966}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -48,7 +49,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: 3e894475b977b0d4b8f222a4aec27cb8, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 33ab1fe4ad2a2ab4d80220fff8219b96, type: 2}
 --- !u!114 &7867856711983687275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,4 +64,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cinemaVolumeProfile: {fileID: 11400000, guid: 903ecbdbab8801f4e80305e1d2fc13e5,
     type: 2}
+  _defaultProfile: {fileID: 11400000, guid: 3e894475b977b0d4b8f222a4aec27cb8, type: 2}
+--- !u!114 &5493758441723342722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7867856711983687272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 450cf2bb9d1fdb449bafe46c28af1765, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pauseMenuProfile: {fileID: 11400000, guid: 33ab1fe4ad2a2ab4d80220fff8219b96, type: 2}
   _defaultProfile: {fileID: 11400000, guid: 3e894475b977b0d4b8f222a4aec27cb8, type: 2}
