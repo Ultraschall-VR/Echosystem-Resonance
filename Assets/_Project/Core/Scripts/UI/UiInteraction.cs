@@ -1,5 +1,4 @@
-﻿using Echosystem.Resonance.Game;
-using Echosystem.Resonance.Prototyping;
+﻿using Echosystem.Resonance.Prototyping;
 using UnityEngine;
 
 namespace Echosystem.Resonance.UI
@@ -54,35 +53,6 @@ namespace Echosystem.Resonance.UI
                 _lineRenderer.enabled = false;
                 _cursor.SetActive(false);
             }
-            
-                
-            //if(Observer.FocusedGameObject == null)
-            //    return;
-            //
-            //if (Observer.FocusedGameObject.layer == 20 || Observer.FocusedGameObject.GetComponent<InteractibleUI>())
-            //{
-            //    float distance = Vector3.Distance(transform.position, Observer.FocusedGameObject.transform.position);
-//
-            //    if (distance > 6)
-            //        return;
-            //    
-            //    _cursor.SetActive(true);
-            //    _cursor.transform.position = Observer.FocusedPoint;
-            //    _cursor.transform.forward = Observer.FocusedGameObject.transform.forward;
-//
-            //    _lineRenderer.enabled = true;
-            //    _lineRenderer.SetPosition(0, _hand.position);
-            //    _lineRenderer.SetPosition(1, Observer.FocusedPoint);
-//
-            //    InteractibleUI interactibleUi = null;
-            //    
-            //    if (Observer.FocusedGameObject.GetComponent<InteractibleUI>())
-            //    {
-            //        interactibleUi = Observer.FocusedGameObject.GetComponent<InteractibleUI>();
-            //    }
-//
-            //    HandleInput(interactibleUi);
-            //}
         }
 
         private static void HandleInput(InteractibleUI interactibleUi)
