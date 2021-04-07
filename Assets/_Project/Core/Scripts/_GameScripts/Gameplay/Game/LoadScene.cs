@@ -9,6 +9,14 @@ namespace Echosystem.Resonance.Game
         
         private void Start()
         {
+            if (FindObjectOfType<PauseMenu>())
+            {
+                if (FindObjectOfType<PauseMenu>().Active)
+                {
+                    FindObjectOfType<PauseMenu>().Toggle(); 
+                }
+            }
+            
             FindObjectOfType<LevelLoader>().LoadLevel(_levelIndex);
         }
     }

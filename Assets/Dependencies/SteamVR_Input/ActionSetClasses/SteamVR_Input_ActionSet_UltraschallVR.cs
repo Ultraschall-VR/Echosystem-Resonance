@@ -17,14 +17,6 @@ namespace Valve.VR
     public class SteamVR_Input_ActionSet_UltraschallVR : Valve.VR.SteamVR_ActionSet
     {
         
-        public virtual SteamVR_Action_Boolean AnyTriggerPressed
-        {
-            get
-            {
-                return SteamVR_Actions.ultraschallVR_AnyTriggerPressed;
-            }
-        }
-        
         public virtual SteamVR_Action_Boolean HeadsetOnHead
         {
             get
@@ -70,38 +62,6 @@ namespace Valve.VR
             get
             {
                 return SteamVR_Actions.ultraschallVR_Pose;
-            }
-        }
-        
-        public virtual SteamVR_Action_Boolean RightAPressed
-        {
-            get
-            {
-                return SteamVR_Actions.ultraschallVR_RightAPressed;
-            }
-        }
-        
-        public virtual SteamVR_Action_Boolean LeftGripPressed
-        {
-            get
-            {
-                return SteamVR_Actions.ultraschallVR_LeftGripPressed;
-            }
-        }
-        
-        public virtual SteamVR_Action_Single LeftGripForce
-        {
-            get
-            {
-                return SteamVR_Actions.ultraschallVR_LeftGripForce;
-            }
-        }
-        
-        public virtual SteamVR_Action_Boolean BButtonPressed
-        {
-            get
-            {
-                return SteamVR_Actions.ultraschallVR_BButtonPressed;
             }
         }
         

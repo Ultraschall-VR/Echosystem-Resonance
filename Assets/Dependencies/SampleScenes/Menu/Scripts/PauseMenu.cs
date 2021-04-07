@@ -6,8 +6,10 @@ using UnityEngine;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private Canvas _menu;
-    [SerializeField] private List<AudioSource> _pauseMenuAudioSources;
+    [SerializeField] private List<AudioSource> _menuSounds;
 
+    public bool Active;
+    
     private void Start()
     {
         _menu.enabled = false;
@@ -15,40 +17,56 @@ public class PauseMenu : MonoBehaviour
 
     private void LateUpdate()
     {
+        Active = _menu.enabled;
+        
         if (Observer.Player != null)
         {
             var allAudioSources = FindObjectsOfType<AudioSource>().ToList();
+            
+            List<AudioSource> sceneAudioSources = new List<AudioSource>();
 
-            foreach (var source in _pauseMenuAudioSources)
+            foreach (var source in allAudioSources)
             {
-                if (allAudioSources.Contains(source))
+                if (!_menuSounds.Contains(source))
                 {
-                    allAudioSources.Remove(source);
+                    sceneAudioSources.Add(source);
                 }
             }
 
             if (_menu.enabled)
             {
-                foreach (var source in allAudioSources)
+
+                Time.timeScale = 0f;
+                PlayStateMachine.CurrentPlayState = PlayStateMachine.PlayState.Pause;
+                
+                foreach (var source in sceneAudioSources)
                 {
-                    if (source.isPlaying)
-                        source.Pause();
+                    source.Pause();
                 }
+                
+                Vector3 euler = new Vector3(_menu.transform.eulerAngles.x, _menu.transform.eulerAngles.y, 0);
 
-                return;
+                _menu.transform.eulerAngles = euler;
             }
-
-            foreach (var source in allAudioSources)
+            else
             {
-                if (!source.isPlaying)
-                    source.Play();
+                Time.timeScale = 1;
+                PlayStateMachine.CurrentPlayState = PlayStateMachine.PlayState.Game;
+                
+                foreach (var source in sceneAudioSources)
+                {
+                    source.UnPause();
+                }
+                
+                _menu.transform.position =
+                    Observer.PlayerHead.transform.position + Observer.PlayerHead.transform.forward * 3;
+                _menu.transform.rotation = Observer.PlayerHead.transform.rotation;
             }
-
-            _menu.transform.position =
-                Observer.PlayerHead.transform.position + Observer.PlayerHead.transform.forward * 4;
-            _menu.transform.rotation = Observer.PlayerHead.transform.rotation;
         }
+    }
 
+    private void Update()
+    {
         if (SceneSettings.Instance.VREnabled)
             VrInput();
         else

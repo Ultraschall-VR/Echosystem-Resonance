@@ -24,7 +24,7 @@ namespace Echosystem.Resonance.Prototyping
                 return;
             }
             
-           Invoke("DelayedStart", .5f);
+            Invoke("DelayedStart", .5f);
         }
 
         private void DelayedStart()

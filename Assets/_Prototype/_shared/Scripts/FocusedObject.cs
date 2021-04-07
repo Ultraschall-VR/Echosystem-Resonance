@@ -16,8 +16,8 @@ public class FocusedObject : MonoBehaviour
 
         if (SceneSettings.Instance.VREnabled)
         {
-            origin = Observer.Player.GetComponent<PlayerInput>().ControllerRight.transform.position;
-            forward = Observer.Player.GetComponent<PlayerInput>().ControllerRight.transform.forward;
+            origin = Observer.PlayerInput.ControllerRight.transform.position;
+            forward = Observer.PlayerInput.ControllerRight.transform.forward;
         }
         else
         {

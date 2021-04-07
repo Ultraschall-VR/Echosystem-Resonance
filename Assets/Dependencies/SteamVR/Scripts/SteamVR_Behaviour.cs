@@ -211,12 +211,12 @@ namespace Valve.VR
         protected static int lastFrameCount = -1;
         protected void PreCull()
         {
+            SteamVR_Input.OnPreCull();
+            
             // Only update poses on the first camera per frame.
             if (Time.frameCount != lastFrameCount)
             {
                 lastFrameCount = Time.frameCount;
-
-                SteamVR_Input.OnPreCull();
             }
         }
 
