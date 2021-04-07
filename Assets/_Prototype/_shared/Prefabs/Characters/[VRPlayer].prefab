@@ -2333,10 +2333,6 @@ MonoBehaviour:
   ControllerRight: {fileID: 3138173649294329320}
   ControllerLeftGhost: {fileID: 6455501167829402946}
   ControllerRightGhost: {fileID: 6455501167829386608}
-  ControllerLeftCollider: {fileID: 4611556939348949746}
-  ControllerRightCollider: {fileID: 7755844362480518963}
-  RightHanded: 1
-  PlayerHand: {fileID: 0}
   TouchpadPressed:
     actionPath: /actions/UltraschallVR/in/TouchpadPressed
     needsReinit: 0
@@ -2348,16 +2344,6 @@ MonoBehaviour:
     needsReinit: 0
   RightTriggerPressed:
     actionPath: /actions/UltraschallVR/in/RightTriggerPressed
-    needsReinit: 0
-  BButtonPressed:
-    actionPath: /actions/UltraschallVR/in/BButtonPressed
-    needsReinit: 0
-  LeftGripPressed: 0
-  LeftGripForce:
-    actionPath: /actions/UltraschallVR/in/LeftGripForce
-    needsReinit: 0
-  RightAPressed:
-    actionPath: /actions/UltraschallVR/in/RightAPressed
     needsReinit: 0
   MenuPressed:
     actionPath: /actions/UltraschallVR/in/MenuPressed
@@ -3634,6 +3620,11 @@ PrefabInstance:
       propertyPath: _hand
       value: 
       objectReference: {fileID: 6455501167829065390}
+    - target: {fileID: 1535400631196794627, guid: 4672dd70c1407ee40b06967982745dab,
+        type: 3}
+      propertyPath: _layerMask.m_Bits
+      value: 1835008
+      objectReference: {fileID: 0}
     - target: {fileID: 4564069193778756516, guid: 4672dd70c1407ee40b06967982745dab,
         type: 3}
       propertyPath: m_Layer
@@ -4125,21 +4116,15 @@ PrefabInstance:
     - {fileID: 2786075774011263723, guid: 96b5f33dd6dfd954d9dec40d3da92fb3, type: 3}
     - {fileID: 868220627589543743, guid: 96b5f33dd6dfd954d9dec40d3da92fb3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 96b5f33dd6dfd954d9dec40d3da92fb3, type: 3}
---- !u!65 &4611556939348949746 stripped
-BoxCollider:
-  m_CorrespondingSourceObject: {fileID: 164905346062845813, guid: 96b5f33dd6dfd954d9dec40d3da92fb3,
+--- !u!1 &9210082850635888681 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4784687153115530670, guid: 96b5f33dd6dfd954d9dec40d3da92fb3,
     type: 3}
   m_PrefabInstance: {fileID: 4446836324678385031}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &2252841371138774670 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2519171740434033417, guid: 96b5f33dd6dfd954d9dec40d3da92fb3,
-    type: 3}
-  m_PrefabInstance: {fileID: 4446836324678385031}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &9210082850635888681 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4784687153115530670, guid: 96b5f33dd6dfd954d9dec40d3da92fb3,
     type: 3}
   m_PrefabInstance: {fileID: 4446836324678385031}
   m_PrefabAsset: {fileID: 0}
@@ -4531,12 +4516,6 @@ PrefabInstance:
     - {fileID: 7022287684670337174, guid: 96b5f33dd6dfd954d9dec40d3da92fb3, type: 3}
     - {fileID: 868220627589543743, guid: 96b5f33dd6dfd954d9dec40d3da92fb3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 96b5f33dd6dfd954d9dec40d3da92fb3, type: 3}
---- !u!65 &7755844362480518963 stripped
-BoxCollider:
-  m_CorrespondingSourceObject: {fileID: 164905346062845813, guid: 96b5f33dd6dfd954d9dec40d3da92fb3,
-    type: 3}
-  m_PrefabInstance: {fileID: 7632360926598758470}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5412889743198808911 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2519171740434033417, guid: 96b5f33dd6dfd954d9dec40d3da92fb3,
@@ -4745,15 +4724,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd77c29ba293fb244b9ddfa0cc73743f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &7638819480072576194 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2092292168266346102, guid: b9d8be166ff36d9498e115d5736314c9,
-    type: 3}
-  m_PrefabInstance: {fileID: 8578189043783152308}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &7638819480072576205 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2092292168266346105, guid: b9d8be166ff36d9498e115d5736314c9,
+    type: 3}
+  m_PrefabInstance: {fileID: 8578189043783152308}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7638819480072576194 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2092292168266346102, guid: b9d8be166ff36d9498e115d5736314c9,
     type: 3}
   m_PrefabInstance: {fileID: 8578189043783152308}
   m_PrefabAsset: {fileID: 0}

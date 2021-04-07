@@ -89,50 +89,50 @@ namespace Echosystem.Resonance.Game
                 return;
             }
             
-            if (_playerInput.RightAPressed.state)
-            {
-                _isTeleporting = false;
-
-                RaycastHit hit;
-
-                if (Physics.Raycast(_playerInput.ControllerRight.transform.position,
-                    -_playerInput.ControllerRight.transform.up + _playerInput.ControllerRight.transform.forward,
-                    out hit,
-                    Mathf.Infinity, _teleportIgnoreLayer))
-                {
-                    teleportCaster.RaycastTarget.position = hit.point + hit.transform.up / 8;
-                    
-                    if (hit.collider.CompareTag("TeleportArea"))
-                    {
-                        if (Vector3.Distance(_playerInput.Player.transform.position, hit.point) <= TeleportMaxRange)
-                        {
-                            teleportCaster.ShowValidTeleport(_playerInput.ControllerRight.transform.position,
-                                hit.point,
-                                1);
-                            
-                            var offsetPos = _playerInput.Head.transform.position - transform.position;
-
-                            _teleportTarget = hit.point - offsetPos;
-                            _teleportTarget.y = hit.point.y + 0.1f;
-                        }
-
-                        else
-                        {
-                            teleportCaster.ShowInvalidTeleport(_playerInput.ControllerRight.transform.position,
-                                hit.point,
-                                1);
-                            _teleportTarget = Vector3.zero;
-                        }
-                    }
-                    else
-                    {
-                        teleportCaster.ShowInvalidTeleport(_playerInput.ControllerRight.transform.position,
-                            hit.point,
-                            1);
-                        _teleportTarget = Vector3.zero;
-                    }
-                }
-            }
+            //if (_playerInput.RightAPressed.state)
+            //{
+            //    _isTeleporting = false;
+//
+            //    RaycastHit hit;
+//
+            //    if (Physics.Raycast(_playerInput.ControllerRight.transform.position,
+            //        -_playerInput.ControllerRight.transform.up + _playerInput.ControllerRight.transform.forward,
+            //        out hit,
+            //        Mathf.Infinity, _teleportIgnoreLayer))
+            //    {
+            //        teleportCaster.RaycastTarget.position = hit.point + hit.transform.up / 8;
+            //        
+            //        if (hit.collider.CompareTag("TeleportArea"))
+            //        {
+            //            if (Vector3.Distance(_playerInput.Player.transform.position, hit.point) <= TeleportMaxRange)
+            //            {
+            //                teleportCaster.ShowValidTeleport(_playerInput.ControllerRight.transform.position,
+            //                    hit.point,
+            //                    1);
+            //                
+            //                var offsetPos = _playerInput.Head.transform.position - transform.position;
+//
+            //                _teleportTarget = hit.point - offsetPos;
+            //                _teleportTarget.y = hit.point.y + 0.1f;
+            //            }
+//
+            //            else
+            //            {
+            //                teleportCaster.ShowInvalidTeleport(_playerInput.ControllerRight.transform.position,
+            //                    hit.point,
+            //                    1);
+            //                _teleportTarget = Vector3.zero;
+            //            }
+            //        }
+            //        else
+            //        {
+            //            teleportCaster.ShowInvalidTeleport(_playerInput.ControllerRight.transform.position,
+            //                hit.point,
+            //                1);
+            //            _teleportTarget = Vector3.zero;
+            //        }
+            //    }
+            //}
             else
             {
                 teleportCaster.Hide();

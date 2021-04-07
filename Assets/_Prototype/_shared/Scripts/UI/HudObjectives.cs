@@ -14,8 +14,7 @@ public class HudObjectives : MonoBehaviour
 
     private void Awake()
     {
-        _canvas.enabled = false;
-        _textBox.text = null;
+        Hide();
     }
 
     public void Initialize()
@@ -31,8 +30,16 @@ public class HudObjectives : MonoBehaviour
 
     private void Update()
     {
-        if(!_initialized) 
+        if (!_initialized)
+        {
             return;
+        }
+        
+        if (HudObjectivesList.Count == 0)
+        {
+            Hide();
+            return;
+        }
         
         _canvas.enabled = true;
         _textBox.text = HudObjectivesList[_index].ObjectiveText;

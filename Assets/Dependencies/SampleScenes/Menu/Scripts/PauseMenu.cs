@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Echosystem.Resonance.Prototyping;
@@ -35,7 +36,7 @@ public class PauseMenu : MonoBehaviour
                         source.Pause();
                 }
 
-                Time.timeScale = 0;
+                //Time.timeScale = 0;
 
                 return;
             }
@@ -45,14 +46,17 @@ public class PauseMenu : MonoBehaviour
                 if (!source.isPlaying)
                     source.Play();
                 
-                Time.timeScale = 1;
+                //Time.timeScale = 1;
             }
 
             _menu.transform.position =
-                Observer.PlayerHead.transform.position + Observer.PlayerHead.transform.forward * 4;
+                Observer.PlayerHead.transform.position + Observer.PlayerHead.transform.forward * 3;
             _menu.transform.rotation = Observer.PlayerHead.transform.rotation;
         }
+    }
 
+    private void Update()
+    {
         if (SceneSettings.Instance.VREnabled)
             VrInput();
         else
