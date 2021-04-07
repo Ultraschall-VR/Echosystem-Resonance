@@ -2,13 +2,14 @@ using System.Collections.Generic;
 using System.Linq;
 using Echosystem.Resonance.Prototyping;
 using UnityEngine;
-using Valve.Newtonsoft.Json.Utilities;
 
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private Canvas _menu;
     [SerializeField] private List<AudioSource> _menuSounds;
 
+    public bool Active;
+    
     private void Start()
     {
         _menu.enabled = false;
@@ -16,6 +17,8 @@ public class PauseMenu : MonoBehaviour
 
     private void LateUpdate()
     {
+        Active = _menu.enabled;
+        
         if (Observer.Player != null)
         {
             var allAudioSources = FindObjectsOfType<AudioSource>().ToList();
@@ -32,7 +35,8 @@ public class PauseMenu : MonoBehaviour
 
             if (_menu.enabled)
             {
-                Time.timeScale = 0;
+
+                Time.timeScale = 0f;
                 PlayStateMachine.CurrentPlayState = PlayStateMachine.PlayState.Pause;
                 
                 foreach (var source in sceneAudioSources)

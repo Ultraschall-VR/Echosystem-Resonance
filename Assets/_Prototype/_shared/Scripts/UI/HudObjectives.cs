@@ -27,6 +27,11 @@ public class HudObjectives : MonoBehaviour
         _canvas.enabled = false;
         _textBox.text = null;
     }
+    
+    public void Show()
+    {
+        _canvas.enabled = true;
+    }
 
     private void Update()
     {
@@ -35,14 +40,24 @@ public class HudObjectives : MonoBehaviour
             return;
         }
         
+        if (PlayStateMachine.CurrentPlayState == PlayStateMachine.PlayState.Pause)
+        {
+            Hide();
+        }
+        else
+        {
+            if (_initialized)
+            {
+                Show();
+                _textBox.text = HudObjectivesList[_index].ObjectiveText;
+            }
+
+        }
+        
         if (HudObjectivesList.Count == 0)
         {
             Hide();
-            return;
         }
-        
-        _canvas.enabled = true;
-        _textBox.text = HudObjectivesList[_index].ObjectiveText;
     }
 
     public void NextObjective()
