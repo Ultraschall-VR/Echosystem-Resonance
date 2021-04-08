@@ -218,6 +218,8 @@
               <e p="BeaconPlacement.cs" t="Include" />
               <e p="BeaconSocket.cs" t="Include" />
               <e p="Billboard.cs" t="Include" />
+              <e p="CinemaModeDisabler.cs" t="Include" />
+              <e p="CinemaModePostProcessing.cs" t="Include" />
               <e p="CollectibleManager.cs" t="Include" />
               <e p="ControlsUI" t="Include">
                 <e p="InputCheck.cs" t="Include" />
@@ -309,14 +311,28 @@
               <e p="UI_Level03.cs" t="Include" />
             </e>
           </e>
+          <e p="LevelCinematic" t="Include">
+            <e p="VFX" t="Include">
+              <e p="UnderwaterEffect" t="Include">
+                <e p="FogEffect.cs" t="Include" />
+                <e p="FogImageEffect.shader" t="Include" />
+                <e p="UnderwaterEffect.cs" t="Include" />
+                <e p="UnderwaterImageEffect.shader" t="Include" />
+              </e>
+              <e p="Water" t="Include">
+                <e p="CustomRenderPassFeature.cs" t="Include" />
+                <e p="noiseSimplex.cginc" t="Include" />
+                <e p="Water.shader" t="Include" />
+              </e>
+            </e>
+          </e>
           <e p="LevelMenu" t="Include">
             <e p="Scripts" t="Include">
               <e p="ActivateRing.cs" t="Include" />
             </e>
           </e>
         </e>
-        <e p="CinemaModeDisabler.cs" t="Include" />
-        <e p="CinemaModePostProcessing.cs" t="Include" />
+        <e p="CinematicSwitch.cs" t="Include" />
         <e p="Dependencies" t="Include">
           <e p="Amazing Assets" t="Include">
             <e p="Dynamic Radial Masks" t="Include">
@@ -1275,6 +1291,13 @@
                   <e p="ReflectiveDiffuseSpec.shader" t="Include" />
                   <e p="ReflectiveDiffuseSpecTransp.shader" t="Include" />
                 </e>
+              </e>
+            </e>
+          </e>
+          <e p="Starfield Skybox" t="Include">
+            <e p="Demo" t="Include">
+              <e p="Script" t="Include">
+                <e p="LookCamera.cs" t="Include" />
               </e>
             </e>
           </e>
