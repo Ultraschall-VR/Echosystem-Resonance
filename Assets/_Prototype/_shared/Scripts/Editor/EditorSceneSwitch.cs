@@ -37,4 +37,18 @@ public static class EditorSceneSwitch
         EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo();
         EditorSceneManager.OpenScene("Assets/_Prototype/Scenes/Level3.unity");
     }
+
+    [MenuItem("Scenes/LevelCinematic0")]
+    public static void OpenLevelCinematic0()
+    {
+        EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo();
+        EditorSceneManager.OpenScene("Assets/_Prototype/Scenes/LevelCinematic0.unity");
+    }
+    
+    [MenuItem("Scenes/LevelCinematic1")]
+    public static void OpenLevelCinematic1()
+    {
+        EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo();
+        EditorSceneManager.OpenScene("Assets/_Prototype/Scenes/LevelCinematic1.unity");
+    }
 }

@@ -15,20 +15,20 @@ namespace Echosystem.Resonance.Prototyping
         // Start is called before the first frame update
         void Start()
         {
-            if (!_fromOtherObject)
-            {
-                AudioPeer = GetComponent<AudioPeer>();
-            }
-
-            _light = GetComponent<Light>();
-            _light.intensity = 0f;
+            //if (!_fromOtherObject)
+            //{
+            //    AudioPeer = GetComponent<AudioPeer>();
+            //}
+//
+            //_light = GetComponent<Light>();
+            //_light.intensity = 0f;
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (AudioPeer._audioBandBuffer[_band] < 1)
-                _light.intensity = (AudioPeer._audioBandBuffer[_band] * (_maxIntesity - _minIntensity)) + _minIntensity;
+            //if (AudioPeer._audioBandBuffer[_band] < 1)
+            //    _light.intensity = (AudioPeer._audioBandBuffer[_band] * (_maxIntesity - _minIntensity)) + _minIntensity;
         }
     }
 }
