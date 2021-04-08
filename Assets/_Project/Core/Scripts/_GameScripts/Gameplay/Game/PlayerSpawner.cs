@@ -9,18 +9,11 @@ namespace Echosystem.Resonance.Game
         [SerializeField] private GameObject _vrPlayerPrefab;
         [SerializeField] private GameObject _nonVrPlayerPrefab;
         [SerializeField] private Transform _playerSpawn;
-
-        [Header("Settings")] [SerializeField] private bool _joystickMovement;
-        [SerializeField] private float _joystickMovementSpeed;
-        [SerializeField] private bool _teleportMovement;
-        [SerializeField] private float _teleportMaxRange;
-        [SerializeField] private float _teleportMovementSpeed;
         
         [HideInInspector] public GameObject PlayerInstance = null;
         
         public static PlayerSpawner Instance;
-
-
+        
         private void Awake()
         {
             if (Instance == null)

@@ -3,13 +3,30 @@ using UnityEngine;
 
 namespace Echosystem.Resonance.Prototyping
 {
-    public class LoudnessMeter : MonoBehaviour
+    public class DecayMeter : MonoBehaviour
     {
         private float _currentLoudness = 0.0f;
         private bool _resetPlayer = false;
+        private bool _initialized = false;
+
+        private void Start()
+        {
+            Invoke("Initialize", 2f);
+
+            _currentLoudness = 0.0f;
+            Observer.LoudnessValue = _currentLoudness;
+        }
+
+        private void Initialize()
+        {
+            _initialized = true;
+        }
 
         void Update()
         {
+            if(!_initialized)
+                return;
+            
             if (Observer.CurrentSilenceSphere == null)
             {
                 _currentLoudness += Time.deltaTime / SceneSettings.Instance.LoudnessIncreaseTime;
