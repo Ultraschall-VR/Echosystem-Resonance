@@ -23,11 +23,17 @@ public class OrpheusDialogue : MonoBehaviour
     
     public void PlayOrpheusIndex(int index, float delay)
     {
+        if(_audioClips.Length == 0)
+            return;
+        
         OrpheusAudioSource.clip = _audioClips[index];
-     OrpheusAudioSource.PlayDelayed(delay);
+        OrpheusAudioSource.PlayDelayed(delay);
     }
     public void PlayOrpheusIndexNoDelay(int index)
     {
+        if(_audioClips.Length == 0)
+            return;
+        
         OrpheusAudioSource.clip = _audioClips[index];
         OrpheusAudioSource.Play();
     }

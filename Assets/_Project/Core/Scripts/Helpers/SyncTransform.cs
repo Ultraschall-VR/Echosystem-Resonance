@@ -7,7 +7,7 @@ namespace Echosystem.Resonance.Helper
     {
         [SerializeField] private bool _targetIsPlayer;
         [SerializeField] private GameObject _target;
-
+        
         [SerializeField] private bool _xAxis;
         [SerializeField] private bool _yAxis;
         [SerializeField] private bool _zAxis;
