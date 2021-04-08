@@ -18,6 +18,8 @@ public static class AutomatedBuildPipeline
         // Set BuildPath
         var path = Path.GetDirectoryName(Path.GetDirectoryName(Application.dataPath));
         var buildPath = Path.Combine(path, "Build");
+        buildPath = Path.Combine(buildPath, PlayerSettings.bundleVersion);
+        buildPath = Path.Combine(buildPath, "VR");
         buildPath = Path.Combine(buildPath, "Windows")  + Path.DirectorySeparatorChar + PlayerSettings.productName + " (" +PlayerSettings.bundleVersion + "-VR"+ ")" + ".exe";
         
         // Set BuildSettings

@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class OrpheusDialogue : MonoBehaviour
 {
@@ -12,7 +11,6 @@ public class OrpheusDialogue : MonoBehaviour
     void Start()
     {
         OrpheusAudioSource = GetComponent<AudioSource>();
-        
     }
 
     /*

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.VFX;
 
 namespace Echosystem.Resonance.Prototyping
@@ -24,7 +25,7 @@ namespace Echosystem.Resonance.Prototyping
             
             _visualEffect.SetFloat("Size", _minSize);
             _visualEffect.SetFloat("ParticleEnergy", _minEnergy);
-            _visualEffect.SetFloat("AttractionSpeed", _minAttractionSpeed);
+            //_visualEffect.SetFloat("AttractionSpeed", _minAttractionSpeed);
         }
 
 
@@ -35,7 +36,7 @@ namespace Echosystem.Resonance.Prototyping
                 _visualEffect.SetFloat("Size", (_audioPeer._audioBandBuffer[_band] * (_maxSize - _minSize)) + _minSize);
                 _visualEffect.SetFloat("ParticleEnergy",
                     (_audioPeer._audioBandBuffer[_band] * (_maxEnergy - _minEnergy)) + _minEnergy);
-                _visualEffect.SetFloat("AttractionSpeed", (_audioPeer._audioBandBuffer[_band] * (_maxAttractionSpeed - _minAttractionSpeed)) + _minAttractionSpeed);
+                //_visualEffect.SetFloat("AttractionSpeed", (_audioPeer._audioBandBuffer[_band] * (_maxAttractionSpeed - _minAttractionSpeed)) + _minAttractionSpeed);
             }
         }
     }

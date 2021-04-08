@@ -1,5 +1,4 @@
-﻿using System;
-using Echosystem.Resonance.Prototyping;
+﻿using Echosystem.Resonance.Prototyping;
 using UnityEngine;
 
 public class PitchShifter : MonoBehaviour
@@ -12,7 +11,13 @@ public class PitchShifter : MonoBehaviour
     public bool _lockedTarget;
     public GameObject _focusedObject;
 
-    void Update()
+    private void Update()
+    {
+        if(!SceneSettings.Instance.VREnabled)
+            HandleTransformNonVr();
+    }
+
+    void FixedUpdate()
     {
         if (!SceneSettings.Instance.PitchShifter)
         {
@@ -104,7 +109,6 @@ public class PitchShifter : MonoBehaviour
 
     private void NonVrInput()
     {
-        HandleTransformNonVr();
         HandleFocusNonVr();
 
         if (_focusedObject != null)
