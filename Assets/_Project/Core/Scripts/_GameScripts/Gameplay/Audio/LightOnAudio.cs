@@ -11,24 +11,24 @@ namespace Echosystem.Resonance.Prototyping
         [SerializeField] private float _minIntensity = 0, _maxIntesity = 1;
         private Light _light;
         private bool _defaultSwitched;
-
-        // Start is called before the first frame update
+        
         void Start()
         {
-            //if (!_fromOtherObject)
-            //{
-            //    AudioPeer = GetComponent<AudioPeer>();
-            //}
-//
-            //_light = GetComponent<Light>();
-            //_light.intensity = 0f;
+            if (!_fromOtherObject)
+            {
+                AudioPeer = GetComponent<AudioPeer>();
+            }
+
+            _light = GetComponent<Light>();
+            _light.intensity = 0f;
         }
 
-        // Update is called once per frame
+
         void Update()
         {
-            //if (AudioPeer._audioBandBuffer[_band] < 1)
-            //    _light.intensity = (AudioPeer._audioBandBuffer[_band] * (_maxIntesity - _minIntensity)) + _minIntensity;
+             
+         if (AudioPeer._audioBandBuffer[_band] < 1)
+                _light.intensity = (AudioPeer._audioBandBuffer[_band] * (_maxIntesity - _minIntensity)) + _minIntensity;
         }
     }
 }
