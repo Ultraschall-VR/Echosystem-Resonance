@@ -11,9 +11,11 @@ public class SceneFixer : MonoBehaviour
 
         foreach (var renderer in renderers)
         {
-            if (renderer.sharedMaterial.name == "Default-Material")
+            if (renderer.sharedMaterial.name == "Default-Material (Instance)")
                 renderer.sharedMaterial = _litMat;
         }
+        
+      
         
         var colliders = FindObjectsOfType<Collider>();
 
