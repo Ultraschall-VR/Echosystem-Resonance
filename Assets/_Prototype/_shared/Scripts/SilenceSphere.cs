@@ -31,6 +31,8 @@ namespace Echosystem.Resonance.Prototyping
         private DRMGameObjectsPool _drmGameObjectsPool;
 
         private float _animationTime = 2.0f;
+
+        [SerializeField] private GameObject _hubFogVoid;
         
         
 
@@ -94,6 +96,8 @@ namespace Echosystem.Resonance.Prototyping
             }
 
             _outerSphere.SetActive(_innerSphereTrigger.Triggered);
+
+            _hubFogVoid.transform.localScale = _outerSphere.transform.localScale;
         }
 
         public void DecreaseSize()
@@ -134,7 +138,7 @@ namespace Echosystem.Resonance.Prototyping
             _outerSphere.transform.localScale = normalizedScale;
             //_innerSphere.transform.localScale = normalizedScale;
 
-            DrmGameObject.radius = _outerSphere.transform.localScale.x / 4;
+            DrmGameObject.radius = _outerSphere.transform.localScale.x / 2;
         }
 
         private IEnumerator AnimateScale()
