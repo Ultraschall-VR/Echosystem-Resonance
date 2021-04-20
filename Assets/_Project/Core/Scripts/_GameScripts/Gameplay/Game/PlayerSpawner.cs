@@ -1,4 +1,5 @@
-﻿using Echosystem.Resonance.Prototyping;
+﻿using DearVR;
+using Echosystem.Resonance.Prototyping;
 using UnityEngine;
 using VolumetricFogAndMist2;
 
@@ -63,6 +64,7 @@ namespace Echosystem.Resonance.Game
             Observer.PlayerHead = PlayerInstance.GetComponent<PlayerInput>().Head;
             Observer.PlayerInput = PlayerInstance.GetComponent<PlayerInput>();
             Observer.HudObjectives = PlayerInstance.GetComponent<VRPlayer>().HudObjectives;
+            DearVRManager.DearListener = Observer.PlayerHead.GetComponent<AudioListener>();
 
         }
 
@@ -84,6 +86,8 @@ namespace Echosystem.Resonance.Game
             Observer.Player = PlayerInstance;
             Observer.PlayerHead = PlayerInstance.GetComponent<NonVRPlayer>().PlayerHead.gameObject;
             Observer.HudObjectives = PlayerInstance.GetComponent<NonVRPlayer>().HudObjectives;
+            DearVRManager.DearListener = Observer.PlayerHead.GetComponent<AudioListener>();
+          
         }
     }
 }

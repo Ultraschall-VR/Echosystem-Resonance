@@ -9,6 +9,7 @@ namespace Echosystem.Resonance.Prototyping
         private Animator _animator;
         private bool _animationTriggered;
         private AudioSource  _audioSource;
+        private float delay;
         
         [SerializeField] private AudioClip _doorSound;
 
@@ -16,17 +17,20 @@ namespace Echosystem.Resonance.Prototyping
         {
             _animator = GetComponentInChildren<Animator>();
             _audioSource = GetComponent<AudioSource>();
-            
+            delay = Random.Range(0.1f, 2f);
+            _audioSource.clip = _doorSound;
+            _audioSource.pitch = Random.Range(.8f, 1.2f);
+            _audioSource.volume = 0;
+
         }
 
         void Update()
         {
             if (!_animationTriggered && _levelUiPad._unlocked)
             {
-                float delay = Random.Range(0.1f, 2f);
-                _audioSource.clip = _doorSound;
-                _audioSource.pitch = Random.Range(.8f, 1.2f);
-                _audioSource.PlayDelayed(delay);
+               // float delay = Random.Range(0.1f, 2f);
+             
+             //  _audioSource.PlayDelayed(delay);
                 
                 Invoke("PlayDelayed", delay);
             }
@@ -36,6 +40,9 @@ namespace Echosystem.Resonance.Prototyping
         {
             _animationTriggered = true;
             _animator.SetBool("Condition", true);
+            _audioSource.Play();
+            _audioSource.FadeIn(.2f,1);
+            
 
         }
     }

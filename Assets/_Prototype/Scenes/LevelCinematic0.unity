@@ -2410,24 +2410,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1553036085}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &63063615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 63063613}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 959d52ead1c6549e5a86a3ef352401e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _randomDelay: 0
-  audioSources:
-  - {fileID: 8300000, guid: 965c856f82aad48f196e327ee33d861d, type: 3}
-  - {fileID: 8300000, guid: 4a1daa0e928964bb7a139fcec8afa0e3, type: 3}
-  - {fileID: 8300000, guid: 25eef1e134adc4a65a6224bd69157eb9, type: 3}
-  - {fileID: 8300000, guid: 4d954a72f86964b4399c665540442eb4, type: 3}
 --- !u!114 &63063616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2457,7 +2439,7 @@ MonoBehaviour:
   distanceCorrection: 1
   useUnityDistance: 0
   auralization: 1
-  roomPreset: 7
+  roomPreset: 24
   internalReverb: 0
   performanceMode: 0
   dearVRPlayOnAwake: 0
@@ -2480,7 +2462,7 @@ MonoBehaviour:
   obstructionRayUpdateFreq: 0.2
   obstructionDebugRayCast: 0
   reverbSends:
-  - roomIndex: 1
+  - roomIndex: 11
     send: 0
 --- !u!1001 &64691622
 PrefabInstance:
@@ -15652,6 +15634,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Orpheus_Machinery_7_loop (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1524281928443125375, guid: 9326dc4a779474f1faa0db2317745612,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1524281928443125361, guid: 9326dc4a779474f1faa0db2317745612, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9326dc4a779474f1faa0db2317745612, type: 3}
@@ -15919,6 +15906,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77df05b9ae65541a396ab84bd463ea4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _randomizeVolume: 0
   pitchMin: 0.8
   pitchMax: 1
   volumeMin: 1
@@ -15952,7 +15940,7 @@ MonoBehaviour:
   distanceCorrection: 1
   useUnityDistance: 0
   auralization: 1
-  roomPreset: 7
+  roomPreset: 24
   internalReverb: 0
   performanceMode: 0
   dearVRPlayOnAwake: 0
@@ -15975,7 +15963,7 @@ MonoBehaviour:
   obstructionRayUpdateFreq: 0.2
   obstructionDebugRayCast: 0
   reverbSends:
-  - roomIndex: 1
+  - roomIndex: 11
     send: 0
 --- !u!1001 &368272100
 PrefabInstance:
@@ -21374,6 +21362,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Orpheus Signal_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1524281928443125375, guid: 9326dc4a779474f1faa0db2317745612,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1524281928443125361, guid: 9326dc4a779474f1faa0db2317745612, type: 3}
@@ -27488,6 +27481,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Orpheus_Machinery_9_loop
       objectReference: {fileID: 0}
+    - target: {fileID: 1524281928443125375, guid: f6528d6797b304ecbb1814e9031b582b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1524281928443125361, guid: f6528d6797b304ecbb1814e9031b582b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f6528d6797b304ecbb1814e9031b582b, type: 3}
@@ -27730,6 +27728,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Orpheus Signal_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1524281928443125375, guid: 9326dc4a779474f1faa0db2317745612,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1524281928443125361, guid: 9326dc4a779474f1faa0db2317745612, type: 3}
@@ -40291,7 +40294,7 @@ MonoBehaviour:
   distanceCorrection: 1
   useUnityDistance: 0
   auralization: 1
-  roomPreset: 7
+  roomPreset: 24
   internalReverb: 0
   performanceMode: 0
   dearVRPlayOnAwake: 0
@@ -40314,7 +40317,7 @@ MonoBehaviour:
   obstructionRayUpdateFreq: 0.2
   obstructionDebugRayCast: 0
   reverbSends:
-  - roomIndex: 1
+  - roomIndex: 11
     send: 0
 --- !u!1001 &886171047
 PrefabInstance:
@@ -40962,6 +40965,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Orpheus Signal_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1524281928443125375, guid: 9326dc4a779474f1faa0db2317745612,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1524281928443125361, guid: 9326dc4a779474f1faa0db2317745612, type: 3}
@@ -43036,6 +43044,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77df05b9ae65541a396ab84bd463ea4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _randomizeVolume: 0
   pitchMin: 0.8
   pitchMax: 1
   volumeMin: 1
@@ -43069,7 +43078,7 @@ MonoBehaviour:
   distanceCorrection: 1
   useUnityDistance: 0
   auralization: 1
-  roomPreset: 7
+  roomPreset: 24
   internalReverb: 0
   performanceMode: 0
   dearVRPlayOnAwake: 0
@@ -43092,7 +43101,7 @@ MonoBehaviour:
   obstructionRayUpdateFreq: 0.2
   obstructionDebugRayCast: 0
   reverbSends:
-  - roomIndex: 1
+  - roomIndex: 11
     send: 0
 --- !u!1001 &968305907
 PrefabInstance:
@@ -43784,7 +43793,7 @@ PrefabInstance:
     - target: {fileID: 1524281928443125362, guid: 9326dc4a779474f1faa0db2317745612,
         type: 3}
       propertyPath: m_Volume
-      value: 0.427
+      value: 0.193
       objectReference: {fileID: 0}
     - target: {fileID: 1524281928443125362, guid: 9326dc4a779474f1faa0db2317745612,
         type: 3}
@@ -44231,7 +44240,7 @@ PrefabInstance:
     - target: {fileID: 1524281928443125362, guid: f6528d6797b304ecbb1814e9031b582b,
         type: 3}
       propertyPath: m_Volume
-      value: 0.757
+      value: 0.278
       objectReference: {fileID: 0}
     - target: {fileID: 1524281928443125362, guid: f6528d6797b304ecbb1814e9031b582b,
         type: 3}
@@ -46886,10 +46895,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   occlusionWallMask:
     serializedVersion: 2
-    m_Bits: 2096951
+    m_Bits: 130871
   obstructionWallMask:
     serializedVersion: 2
-    m_Bits: 2096951
+    m_Bits: 130871
   occlusionRayUpdateTime: 1
   obstructionRayUpdateTime: 1
   clipIsPlaying: 0
@@ -46900,8 +46909,8 @@ MonoBehaviour:
   azimuthCorrection: 1
   distanceCorrection: 1
   useUnityDistance: 0
-  auralization: 0
-  roomPreset: 7
+  auralization: 1
+  roomPreset: 24
   internalReverb: 0
   performanceMode: 0
   dearVRPlayOnAwake: 0
@@ -48575,24 +48584,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1603276781}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1108956455
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1108956453}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 959d52ead1c6549e5a86a3ef352401e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _randomDelay: 0
-  audioSources:
-  - {fileID: 8300000, guid: 965c856f82aad48f196e327ee33d861d, type: 3}
-  - {fileID: 8300000, guid: 4a1daa0e928964bb7a139fcec8afa0e3, type: 3}
-  - {fileID: 8300000, guid: 25eef1e134adc4a65a6224bd69157eb9, type: 3}
-  - {fileID: 8300000, guid: 4d954a72f86964b4399c665540442eb4, type: 3}
 --- !u!114 &1108956456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48622,7 +48613,7 @@ MonoBehaviour:
   distanceCorrection: 1
   useUnityDistance: 0
   auralization: 1
-  roomPreset: 7
+  roomPreset: 24
   internalReverb: 0
   performanceMode: 0
   dearVRPlayOnAwake: 0
@@ -48645,7 +48636,7 @@ MonoBehaviour:
   obstructionRayUpdateFreq: 0.2
   obstructionDebugRayCast: 0
   reverbSends:
-  - roomIndex: 1
+  - roomIndex: 11
     send: 0
 --- !u!1001 &1113752348
 PrefabInstance:
@@ -51665,7 +51656,7 @@ PrefabInstance:
     - target: {fileID: 1524281928443125362, guid: 9326dc4a779474f1faa0db2317745612,
         type: 3}
       propertyPath: m_Volume
-      value: 0.785
+      value: 0.167
       objectReference: {fileID: 0}
     - target: {fileID: 1524281928443125362, guid: 9326dc4a779474f1faa0db2317745612,
         type: 3}
@@ -51736,7 +51727,7 @@ MonoBehaviour:
   distanceCorrection: 1
   useUnityDistance: 0
   auralization: 1
-  roomPreset: 7
+  roomPreset: 24
   internalReverb: 0
   performanceMode: 0
   dearVRPlayOnAwake: 0
@@ -51759,7 +51750,7 @@ MonoBehaviour:
   obstructionRayUpdateFreq: 0.2
   obstructionDebugRayCast: 0
   reverbSends:
-  - roomIndex: 1
+  - roomIndex: 11
     send: 0
 --- !u!1001 &1202294574
 PrefabInstance:
@@ -61090,6 +61081,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77df05b9ae65541a396ab84bd463ea4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _randomizeVolume: 0
   pitchMin: 0.8
   pitchMax: 1
   volumeMin: 1
@@ -65287,6 +65279,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Orpheus Signal_8
       objectReference: {fileID: 0}
+    - target: {fileID: 1524281928443125375, guid: 9326dc4a779474f1faa0db2317745612,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1524281928443125361, guid: 9326dc4a779474f1faa0db2317745612, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9326dc4a779474f1faa0db2317745612, type: 3}
@@ -65498,6 +65495,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Orpheus_Machinery_7_loop (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1524281928443125375, guid: 9326dc4a779474f1faa0db2317745612,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1524281928443125361, guid: 9326dc4a779474f1faa0db2317745612, type: 3}
@@ -67018,7 +67020,7 @@ PrefabInstance:
     - target: {fileID: 1524281928443125362, guid: 9326dc4a779474f1faa0db2317745612,
         type: 3}
       propertyPath: m_Volume
-      value: 0.25
+      value: 0.139
       objectReference: {fileID: 0}
     - target: {fileID: 1524281928443125362, guid: 9326dc4a779474f1faa0db2317745612,
         type: 3}
@@ -69394,7 +69396,7 @@ PrefabInstance:
     - target: {fileID: 1524281928443125362, guid: 9326dc4a779474f1faa0db2317745612,
         type: 3}
       propertyPath: m_Volume
-      value: 0.25
+      value: 0.133
       objectReference: {fileID: 0}
     - target: {fileID: 1524281928443125362, guid: 9326dc4a779474f1faa0db2317745612,
         type: 3}
@@ -74624,7 +74626,7 @@ PrefabInstance:
     - target: {fileID: 1524281928443125362, guid: f6528d6797b304ecbb1814e9031b582b,
         type: 3}
       propertyPath: m_Volume
-      value: 0.757
+      value: 0.263
       objectReference: {fileID: 0}
     - target: {fileID: 1524281928443125362, guid: f6528d6797b304ecbb1814e9031b582b,
         type: 3}
@@ -75496,7 +75498,7 @@ PrefabInstance:
     - target: {fileID: 1524281928443125362, guid: f6528d6797b304ecbb1814e9031b582b,
         type: 3}
       propertyPath: m_Volume
-      value: 0.757
+      value: 0.246
       objectReference: {fileID: 0}
     - target: {fileID: 1524281928443125362, guid: f6528d6797b304ecbb1814e9031b582b,
         type: 3}
@@ -81889,6 +81891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77df05b9ae65541a396ab84bd463ea4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _randomizeVolume: 0
   pitchMin: 0.8
   pitchMax: 1
   volumeMin: 1
@@ -81922,7 +81925,7 @@ MonoBehaviour:
   distanceCorrection: 1
   useUnityDistance: 0
   auralization: 1
-  roomPreset: 7
+  roomPreset: 24
   internalReverb: 0
   performanceMode: 0
   dearVRPlayOnAwake: 0
@@ -81945,7 +81948,7 @@ MonoBehaviour:
   obstructionRayUpdateFreq: 0.2
   obstructionDebugRayCast: 0
   reverbSends:
-  - roomIndex: 1
+  - roomIndex: 11
     send: 0
 --- !u!1001 &1903731729
 PrefabInstance:
@@ -82624,7 +82627,7 @@ MonoBehaviour:
   distanceCorrection: 1
   useUnityDistance: 0
   auralization: 1
-  roomPreset: 7
+  roomPreset: 24
   internalReverb: 0
   performanceMode: 0
   dearVRPlayOnAwake: 0
@@ -82647,7 +82650,7 @@ MonoBehaviour:
   obstructionRayUpdateFreq: 0.2
   obstructionDebugRayCast: 0
   reverbSends:
-  - roomIndex: 1
+  - roomIndex: 11
     send: 0
 --- !u!1001 &1916788700
 PrefabInstance:
@@ -88353,6 +88356,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Orpheus machinery_3
       objectReference: {fileID: 0}
+    - target: {fileID: 1524281928443125375, guid: 9326dc4a779474f1faa0db2317745612,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1524281928443125361, guid: 9326dc4a779474f1faa0db2317745612, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9326dc4a779474f1faa0db2317745612, type: 3}
@@ -89292,10 +89300,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   occlusionWallMask:
     serializedVersion: 2
-    m_Bits: 2096951
+    m_Bits: 130871
   obstructionWallMask:
     serializedVersion: 2
-    m_Bits: 2096951
+    m_Bits: 130871
   occlusionRayUpdateTime: 1
   obstructionRayUpdateTime: 1
   clipIsPlaying: 0
@@ -89306,8 +89314,8 @@ MonoBehaviour:
   azimuthCorrection: 1
   distanceCorrection: 1
   useUnityDistance: 0
-  auralization: 0
-  roomPreset: 7
+  auralization: 1
+  roomPreset: 24
   internalReverb: 0
   performanceMode: 0
   dearVRPlayOnAwake: 0
@@ -90538,7 +90546,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 6fc8317cf9ca24f84aaf45b8ab098d0c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.259
+  m_Volume: 0.15
   m_Pitch: 1
   Loop: 1
   Mute: 0
