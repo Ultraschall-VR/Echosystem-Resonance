@@ -8,17 +8,14 @@ namespace Echosystem.Resonance.Prototyping
     {
         public AudioMixerSnapshot _3D;
         public AudioMixerSnapshot _NO3D;
-
         public AudioMixer _hubMixer;
 
         [SerializeField] private float _TransitionIn;
-
         [Range(-80f, 0f)] [SerializeField] private float _hubVol = -80f;
         [SerializeField] private float _mixTimer;
 
         private bool _startedMixing = false;
         //private float volMin = -80f, volMax = 0f;
-        
 
 
         private void Update()
@@ -38,7 +35,6 @@ namespace Echosystem.Resonance.Prototyping
 
         private void HandleMixer(bool started, bool goingUp)
         {
-            //  Debug.Log("GoingUP");
             _startedMixing = started;
             StopAllCoroutines();
             StartCoroutine(LerpMixer(goingUp));
