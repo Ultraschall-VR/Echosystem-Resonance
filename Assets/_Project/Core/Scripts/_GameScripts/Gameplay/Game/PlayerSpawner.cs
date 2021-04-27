@@ -2,6 +2,7 @@
 using Echosystem.Resonance.Prototyping;
 using UnityEngine;
 using VolumetricFogAndMist2;
+using UnityStandardAssets.Characters.FirstPerson;
 
 namespace Echosystem.Resonance.Game
 {
@@ -10,6 +11,9 @@ namespace Echosystem.Resonance.Game
         [SerializeField] private GameObject _vrPlayerPrefab;
         [SerializeField] private GameObject _nonVrPlayerPrefab;
         [SerializeField] private Transform _playerSpawn;
+
+        [SerializeField] private bool _disableMovement;
+        [SerializeField] private bool _hidePlayer;
         
         [HideInInspector] public GameObject PlayerInstance = null;
         
@@ -87,7 +91,12 @@ namespace Echosystem.Resonance.Game
             Observer.PlayerHead = PlayerInstance.GetComponent<NonVRPlayer>().PlayerHead.gameObject;
             Observer.HudObjectives = PlayerInstance.GetComponent<NonVRPlayer>().HudObjectives;
             DearVRManager.DearListener = Observer.PlayerHead.GetComponent<AudioListener>();
-          
+
+            if(_disableMovement)
+                PlayerInstance.GetComponent<FirstPersonController>().Enabled = false;
+            
+            if(_hidePlayer)
+                PlayerInstance.GetComponent<NonVRPlayer>().HidePlayer();
         }
     }
 }

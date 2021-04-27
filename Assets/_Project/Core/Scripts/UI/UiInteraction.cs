@@ -29,7 +29,7 @@ namespace Echosystem.Resonance.UI
                 forward = Observer.PlayerHead.transform.forward;
             }
             
-            if (Physics.Raycast(origin, forward, out hit, 4, _layerMask))
+            if (Physics.Raycast(origin, forward, out hit, 8, _layerMask))
             {
                 _cursor.SetActive(true);
                 _cursor.transform.position = hit.point;

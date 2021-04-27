@@ -14,10 +14,9 @@ namespace Echosystem.Resonance.Prototyping
         // AUDIO
         [SerializeField] private AudioMixer _audioMixer;
         [SerializeField] private string _exposedParameter;
-
         [SerializeField] private GameObject _crossfade;
 
-        
+        private float _loadScreenDuration = 2f;
         
         private void Update()
         {
@@ -30,7 +29,6 @@ namespace Echosystem.Resonance.Prototyping
 
         public void LoadLevel(int sceneNumber)
         {
-            Debug.Log("sceneBuildIndex to load:" + sceneNumber);
             StartCoroutine(FadeMixerGroupFrom.StartFadeFrom(_audioMixer, _exposedParameter, transitionTime, 1,
                 0, 0));
             StartCoroutine(LoadLevelTransition(sceneNumber));
@@ -46,10 +44,17 @@ namespace Echosystem.Resonance.Prototyping
             }
 
             transition.SetTrigger("Start");
-
+            
             yield return new WaitForSeconds(transitionTime);
+            
+            var loadingScene = SceneManager.LoadSceneAsync("Loading");
+            
+            yield return null;
+        }
 
-            SceneManager.LoadScene(sceneNumber);
+        private void UnloadScene(string scene)
+        {
+            SceneManager.UnloadSceneAsync(scene);
         }
     }
 }
