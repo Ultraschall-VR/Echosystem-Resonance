@@ -69,6 +69,16 @@ namespace Echosystem.Resonance.Game
             Observer.PlayerInput = PlayerInstance.GetComponent<PlayerInput>();
             Observer.HudObjectives = PlayerInstance.GetComponent<VRPlayer>().HudObjectives;
             DearVRManager.DearListener = Observer.PlayerHead.GetComponent<AudioListener>();
+            
+            if(_disableMovement)
+                PlayerInstance.GetComponent<PlayerMovement>().enabled = false;
+            else
+                PlayerInstance.GetComponent<PlayerMovement>().enabled = true;
+            
+            if(_hidePlayer)
+                PlayerInstance.GetComponent<VRPlayer>().HidePlayer();
+            else
+                PlayerInstance.GetComponent<VRPlayer>().ShowPlayer();
 
         }
 
@@ -94,9 +104,13 @@ namespace Echosystem.Resonance.Game
 
             if(_disableMovement)
                 PlayerInstance.GetComponent<FirstPersonController>().Enabled = false;
+            else 
+                PlayerInstance.GetComponent<FirstPersonController>().Enabled = true;
             
             if(_hidePlayer)
                 PlayerInstance.GetComponent<NonVRPlayer>().HidePlayer();
+            else 
+                PlayerInstance.GetComponent<NonVRPlayer>().ShowPlayer();
         }
     }
 }

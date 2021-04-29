@@ -1,5 +1,4 @@
-﻿using Echosystem.Resonance.Prototyping;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Echosystem.Resonance.Game
 {
@@ -9,15 +8,15 @@ namespace Echosystem.Resonance.Game
         
         private void Start()
         {
-            if (FindObjectOfType<PauseMenu>())
+            if (EchosystemSceneManager.PauseMenu != null)
             {
-                if (FindObjectOfType<PauseMenu>().Active)
+                if (EchosystemSceneManager.PauseMenu.Active)
                 {
-                    FindObjectOfType<PauseMenu>().Toggle(); 
+                    EchosystemSceneManager.PauseMenu.Toggle(); 
                 }
             }
             
-            FindObjectOfType<LevelLoader>().LoadLevel(_levelIndex);
+            EchosystemSceneManager.LevelLoader.LoadLevel(_levelIndex);
         }
     }
 }

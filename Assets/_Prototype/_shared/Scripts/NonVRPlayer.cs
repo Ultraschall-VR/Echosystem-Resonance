@@ -17,4 +17,12 @@ public class NonVRPlayer : MonoBehaviour
             go.SetActive(false);
         }
     }
+
+    public void ShowPlayer()
+    {
+        foreach (var go in _hideComponents)
+        {
+            go.SetActive(true);
+        }
+    }
 }

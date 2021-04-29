@@ -16,8 +16,8 @@ namespace Echosystem.Resonance.Prototyping
         [SerializeField] private string _exposedParameter;
         [SerializeField] private GameObject _crossfade;
 
-        private float _loadScreenDuration = 2f;
-        
+        private float _loadScreenDuration = 10f;
+
         private void Update()
         {
             if(Observer.Player == null)
@@ -25,6 +25,16 @@ namespace Echosystem.Resonance.Prototyping
 
             _crossfade.transform.position = Observer.PlayerHead.transform.position + Observer.PlayerHead.transform.forward;
             _crossfade.transform.rotation = Observer.PlayerHead.transform.rotation;
+        }
+
+        private void Start()
+        {
+            if (SceneManager.GetActiveScene().name == "Loading")
+            {
+                StartCoroutine("LoadScene");
+            }
+
+            EchosystemSceneManager.LevelLoader = this;
         }
 
         public void LoadLevel(int sceneNumber)
@@ -38,23 +48,29 @@ namespace Echosystem.Resonance.Prototyping
 
         IEnumerator LoadLevelTransition(int sceneNumber)
         {
-            if (PauseMenuEchosystem.GameIsPaused == true)
-            {
-                _pauseManager.GetComponent<PauseMenuEchosystem>().ResumeToGame();
-            }
-
             transition.SetTrigger("Start");
             
             yield return new WaitForSeconds(transitionTime);
             
             var loadingScene = SceneManager.LoadSceneAsync("Loading");
-            
-            yield return null;
+
+            while (loadingScene.progress < 0.9f)
+            {
+                yield return null;
+            }
+
+            EchosystemSceneManager.SceneToLoad = sceneNumber;
         }
 
-        private void UnloadScene(string scene)
+        private IEnumerator LoadScene()
         {
-            SceneManager.UnloadSceneAsync(scene);
+            yield return new WaitForSeconds(_loadScreenDuration);
+            
+            transition.SetTrigger("Start");
+            
+            yield return new WaitForSeconds(transitionTime);
+
+            var targetScene = SceneManager.LoadSceneAsync(EchosystemSceneManager.SceneToLoad);
         }
     }
 }
