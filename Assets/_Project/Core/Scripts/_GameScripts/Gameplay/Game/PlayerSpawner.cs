@@ -1,6 +1,8 @@
-﻿using Echosystem.Resonance.Prototyping;
+﻿using DearVR;
+using Echosystem.Resonance.Prototyping;
 using UnityEngine;
 using VolumetricFogAndMist2;
+using UnityStandardAssets.Characters.FirstPerson;
 
 namespace Echosystem.Resonance.Game
 {
@@ -9,6 +11,9 @@ namespace Echosystem.Resonance.Game
         [SerializeField] private GameObject _vrPlayerPrefab;
         [SerializeField] private GameObject _nonVrPlayerPrefab;
         [SerializeField] private Transform _playerSpawn;
+
+        [SerializeField] private bool _disableMovement;
+        [SerializeField] private bool _hidePlayer;
         
         [HideInInspector] public GameObject PlayerInstance = null;
         
@@ -63,6 +68,17 @@ namespace Echosystem.Resonance.Game
             Observer.PlayerHead = PlayerInstance.GetComponent<PlayerInput>().Head;
             Observer.PlayerInput = PlayerInstance.GetComponent<PlayerInput>();
             Observer.HudObjectives = PlayerInstance.GetComponent<VRPlayer>().HudObjectives;
+            DearVRManager.DearListener = Observer.PlayerHead.GetComponent<AudioListener>();
+            
+            if(_disableMovement)
+                PlayerInstance.GetComponent<PlayerMovement>().enabled = false;
+            else
+                PlayerInstance.GetComponent<PlayerMovement>().enabled = true;
+            
+            if(_hidePlayer)
+                PlayerInstance.GetComponent<VRPlayer>().HidePlayer();
+            else
+                PlayerInstance.GetComponent<VRPlayer>().ShowPlayer();
 
         }
 
@@ -84,6 +100,17 @@ namespace Echosystem.Resonance.Game
             Observer.Player = PlayerInstance;
             Observer.PlayerHead = PlayerInstance.GetComponent<NonVRPlayer>().PlayerHead.gameObject;
             Observer.HudObjectives = PlayerInstance.GetComponent<NonVRPlayer>().HudObjectives;
+            DearVRManager.DearListener = Observer.PlayerHead.GetComponent<AudioListener>();
+
+            if(_disableMovement)
+                PlayerInstance.GetComponent<FirstPersonController>().Enabled = false;
+            else 
+                PlayerInstance.GetComponent<FirstPersonController>().Enabled = true;
+            
+            if(_hidePlayer)
+                PlayerInstance.GetComponent<NonVRPlayer>().HidePlayer();
+            else 
+                PlayerInstance.GetComponent<NonVRPlayer>().ShowPlayer();
         }
     }
 }

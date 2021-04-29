@@ -45,7 +45,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private AudioSource m_AudioSource;
 
         // Use this for initialization
-        private void Start()
+        private void Awake()
         {
             Enabled = true;
             m_CharacterController = GetComponent<CharacterController>();
@@ -66,7 +66,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
             if (!Enabled)
                 return;
-            
             
             RotateView();
             // the jump state needs to read here to make sure it is not missed
@@ -101,6 +100,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void FixedUpdate()
         {
+            if (!Enabled)
+                return;
+            
             float speed;
             GetInput(out speed);
             // always move along the camera forward as it is the direction that it being aimed at

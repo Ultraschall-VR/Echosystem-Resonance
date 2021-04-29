@@ -31,7 +31,9 @@ namespace Valve.VR
         
         private static SteamVR_Action_Boolean p_ultraschallVR_MenuPressed;
         
-        private static SteamVR_Action_Vibration p_ultraschallVR_Haptic;
+        private static SteamVR_Action_Vibration p_ultraschallVR_LeftHaptic;
+        
+        private static SteamVR_Action_Vibration p_ultraschallVR_RightHaptic;
         
         public static SteamVR_Action_Boolean ultraschallVR_HeadsetOnHead
         {
@@ -89,11 +91,19 @@ namespace Valve.VR
             }
         }
         
-        public static SteamVR_Action_Vibration ultraschallVR_Haptic
+        public static SteamVR_Action_Vibration ultraschallVR_LeftHaptic
         {
             get
             {
-                return SteamVR_Actions.p_ultraschallVR_Haptic.GetCopy<SteamVR_Action_Vibration>();
+                return SteamVR_Actions.p_ultraschallVR_LeftHaptic.GetCopy<SteamVR_Action_Vibration>();
+            }
+        }
+        
+        public static SteamVR_Action_Vibration ultraschallVR_RightHaptic
+        {
+            get
+            {
+                return SteamVR_Actions.p_ultraschallVR_RightHaptic.GetCopy<SteamVR_Action_Vibration>();
             }
         }
         
@@ -107,7 +117,8 @@ namespace Valve.VR
                     SteamVR_Actions.ultraschallVR_RightTriggerPressed,
                     SteamVR_Actions.ultraschallVR_Pose,
                     SteamVR_Actions.ultraschallVR_MenuPressed,
-                    SteamVR_Actions.ultraschallVR_Haptic};
+                    SteamVR_Actions.ultraschallVR_LeftHaptic,
+                    SteamVR_Actions.ultraschallVR_RightHaptic};
             Valve.VR.SteamVR_Input.actionsIn = new Valve.VR.ISteamVR_Action_In[] {
                     SteamVR_Actions.ultraschallVR_HeadsetOnHead,
                     SteamVR_Actions.ultraschallVR_TouchpadPosition,
@@ -117,9 +128,11 @@ namespace Valve.VR
                     SteamVR_Actions.ultraschallVR_Pose,
                     SteamVR_Actions.ultraschallVR_MenuPressed};
             Valve.VR.SteamVR_Input.actionsOut = new Valve.VR.ISteamVR_Action_Out[] {
-                    SteamVR_Actions.ultraschallVR_Haptic};
+                    SteamVR_Actions.ultraschallVR_LeftHaptic,
+                    SteamVR_Actions.ultraschallVR_RightHaptic};
             Valve.VR.SteamVR_Input.actionsVibration = new Valve.VR.SteamVR_Action_Vibration[] {
-                    SteamVR_Actions.ultraschallVR_Haptic};
+                    SteamVR_Actions.ultraschallVR_LeftHaptic,
+                    SteamVR_Actions.ultraschallVR_RightHaptic};
             Valve.VR.SteamVR_Input.actionsPose = new Valve.VR.SteamVR_Action_Pose[] {
                     SteamVR_Actions.ultraschallVR_Pose};
             Valve.VR.SteamVR_Input.actionsBoolean = new Valve.VR.SteamVR_Action_Boolean[] {
@@ -151,7 +164,8 @@ namespace Valve.VR
             SteamVR_Actions.p_ultraschallVR_RightTriggerPressed = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/UltraschallVR/in/RightTriggerPressed")));
             SteamVR_Actions.p_ultraschallVR_Pose = ((SteamVR_Action_Pose)(SteamVR_Action.Create<SteamVR_Action_Pose>("/actions/UltraschallVR/in/Pose")));
             SteamVR_Actions.p_ultraschallVR_MenuPressed = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/UltraschallVR/in/MenuPressed")));
-            SteamVR_Actions.p_ultraschallVR_Haptic = ((SteamVR_Action_Vibration)(SteamVR_Action.Create<SteamVR_Action_Vibration>("/actions/UltraschallVR/out/Haptic")));
+            SteamVR_Actions.p_ultraschallVR_LeftHaptic = ((SteamVR_Action_Vibration)(SteamVR_Action.Create<SteamVR_Action_Vibration>("/actions/UltraschallVR/out/LeftHaptic")));
+            SteamVR_Actions.p_ultraschallVR_RightHaptic = ((SteamVR_Action_Vibration)(SteamVR_Action.Create<SteamVR_Action_Vibration>("/actions/UltraschallVR/out/RightHaptic")));
         }
     }
 }
