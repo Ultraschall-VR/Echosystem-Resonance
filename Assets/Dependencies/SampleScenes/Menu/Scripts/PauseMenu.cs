@@ -13,6 +13,8 @@ public class PauseMenu : MonoBehaviour
     private void Start()
     {
         _menu.enabled = false;
+
+        EchosystemSceneManager.PauseMenu = this;
     }
 
     private void LateUpdate()

@@ -51,4 +51,13 @@ public static class EditorSceneSwitch
         EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo();
         EditorSceneManager.OpenScene("Assets/_Prototype/Scenes/LevelCinematic1.unity");
     }
+    
+    [MenuItem("Scenes/Loading")]
+    public static void OpenLevelLoading()
+    {
+        EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo();
+        EditorSceneManager.OpenScene("Assets/_Prototype/Scenes/Loading.unity");
+    }
+    
+    
 }

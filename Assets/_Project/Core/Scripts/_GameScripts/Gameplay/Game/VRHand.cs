@@ -9,7 +9,6 @@ namespace Echosystem.Resonance.Game
         private bool _initialized = false;
 
         [SerializeField] private GameObject _inputHand;
-        [SerializeField] private bool _isRightHand;
         
         public SteamVR_Action_Vibration hapticAction;
 
@@ -19,10 +18,8 @@ namespace Echosystem.Resonance.Game
 
         [SerializeField] private Transform _ring;
         
-       // [SerializeField] private AudioSource _audioSource;
 
         public bool Idle;
-        public bool Bow;
 
         private void Start()
         {
@@ -41,12 +38,16 @@ namespace Echosystem.Resonance.Game
             {
                 return;
             }
-
-         //   _audioSource.pitch = (_rb.velocity.magnitude / 4) + 0.33f;
+            
             _ring.eulerAngles = new Vector3(_ring.eulerAngles.x, _ring.eulerAngles.y, 0);
             transform.rotation = _inputHand.transform.rotation;
             
             _animator.SetBool("Idle", Idle);
+        }
+
+        public void Vibrate(float duration, float frequency, float strength)
+        {
+            hapticAction.Execute(0, duration, frequency, strength, SteamVR_Input_Sources.Any);
         }
 
         private void OnCollisionStay(Collision other)
