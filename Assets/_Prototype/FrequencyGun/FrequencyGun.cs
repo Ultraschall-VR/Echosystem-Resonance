@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.VFX;
 
 public class FrequencyGun : MonoBehaviour
@@ -14,7 +15,6 @@ public class FrequencyGun : MonoBehaviour
     void Start()
     {
         _lineRenderer = GetComponent<LineRenderer>();
-
         DisableRenderer();
     }
     
@@ -35,6 +35,9 @@ public class FrequencyGun : MonoBehaviour
         
         if(Input.GetMouseButtonDown(0))
             ShootBlast();
+
+        if (Input.GetMouseButtonUp(0))
+            StartCoroutine(nameof(CoolDown));
     }
 
     private void DisableRenderer()
@@ -47,7 +50,7 @@ public class FrequencyGun : MonoBehaviour
     private void ShootRay()
     {
         RaycastHit hit;
-        float offset = Time.time;
+        float offset = Time.time * 2;
         
         _lineRenderer.enabled = true;
         _lineRenderer.SetPosition(0, _tip.position);
@@ -55,6 +58,12 @@ public class FrequencyGun : MonoBehaviour
         _muffle.gameObject.transform.position = _tip.position;
         _muffle.gameObject.transform.forward = _tip.forward;
         _lineRenderer.material.SetTextureOffset("_BaseMap", new Vector2(-offset, 0));
+
+        var randX = Random.Range(_hand.transform.position.x - .02f, _hand.transform.position.x + .02f);
+        var randY = Random.Range(_hand.transform.position.y - .02f, _hand.transform.position.y + .02f);
+        var randZ = Random.Range(_hand.transform.position.z - .02f, _hand.transform.position.z + .02f);
+        
+        _hand.transform.position = new Vector3(randX, randY, randZ);
 
         
         if (Physics.Raycast(_hand.position, _hand.transform.forward, out hit, Mathf.Infinity))
@@ -86,6 +95,23 @@ public class FrequencyGun : MonoBehaviour
         // Charge Target
     }
 
+    private IEnumerator CoolDown()
+    {
+        float timer = .4f;
+        float t = 0f;
+
+        while (t < timer)
+        {
+            t += Time.deltaTime;
+            var randX = Random.Range(_hand.transform.position.x - .01f, _hand.transform.position.x + .01f);
+            var randY = Random.Range(_hand.transform.position.y - .01f, _hand.transform.position.y + .01f);
+            var randZ = Random.Range(_hand.transform.position.z - .01f, _hand.transform.position.z + .01f);
+        
+            _hand.transform.position = new Vector3(randX, randY, randZ);
+            yield return null;
+        }
+    }
+    
     private void ShootBlast()
     {
         // Implement
