@@ -20,6 +20,11 @@ public class BeamGenerator : MonoBehaviour
     public void ShootBeam(Transform raycastOrigin, Vector3 direction, Transform beamOrigin, float distance,
         ModulationType modulationType)
     {
+        if (_modulator != null)
+        {
+            _modulator.Active = false;
+        }
+        
         RaycastHit hit;
         float offset = Time.time * 2;
         
